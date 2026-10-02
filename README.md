@@ -43,6 +43,6 @@ Open `index.html` for the full write-up: an annotated map, a then-and-now slider
 - Trap Danmark, 5th ed.; S. V. Wiberg, Præstehistorie; C. Klitgaard, Vendsysselske Præstefamilier
 - Danmarks Stednavne (Københavns Universitet)
 
-Historical maps and aerial photos are Danish public data under the Klimadatastyrelsen open-data terms. The Google Maps satellite image behind the main map is used for private research.
+Historical maps and aerial photos are Danish public data under the Klimadatastyrelsen open-data terms. The orthophoto behind the main map is the GeoDanmark spring orthophoto 2024 (Dataforsyningen, open data).
 
 Research done with Claude, October 2026.
