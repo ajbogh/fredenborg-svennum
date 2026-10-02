@@ -1,0 +1,239 @@
+{
+ "centre": [
+  57.2806,
+  10.12073
+ ],
+ "R1": 0.06,
+ "B": [
+  57.187,
+  10.131
+ ],
+ "RB": 1.5,
+ "rows": [
+  [
+   "Fredenborg · matr. 9, Svennum",
+   "found",
+   57.2806,
+   10.12073,
+   0.0,
+   1.8572785649204073,
+   "House site from the 1884 General Staff sheet, placed by its own survey grid and checked against lidar contours: the large building north of the smithy. Today the north side of the Hellumvej 23 farmyard, 25 m north of the farmhouse. ±15 m."
+  ],
+  [
+   "Jerslev kirke & præstegård",
+   "god",
+   57.2836,
+   10.0904,
+   1.8572785649204073,
+   0.0,
+   "Marie Fischer, the priest’s wife, lived here. Also Kjeld Nors the parish clerk, if he is “Kield Andersøn”. Anders of Fredenborg took the tithe from Kirsten Jensdatter’s field on Jerslev mark in 1676."
+  ],
+  [
+   "Kølskegård",
+   "god",
+   57.2497,
+   10.1163,
+   3.4501234499721383,
+   4.083534671020657,
+   "Knud Kampmann lived here with his sister’s household; died here 1704. "
+  ],
+  [
+   "Nørre Trøgdrup (approx.)",
+   "court",
+   57.196,
+   10.124,
+   9.41973172877659,
+   9.959459710455832,
+   "Jens Nielsen and the Nørre Trøgdrup tenants: the party that summoned Peder Andersen of Fredenborg on 7 Sep 1676. Position approximate, from Trøgdrupvej."
+  ],
+  [
+   "Sønder Trøgdrup (approx.)",
+   "court",
+   57.187,
+   10.131,
+   10.437901117772174,
+   11.028110035849332,
+   "The other village in the Bløden dispute. Peder Andersen of Fredenborg was summoned on this side, with Klausholm and Allerup. Position approximate."
+  ],
+  [
+   "Klausholm",
+   "court",
+   57.1816,
+   10.1357,
+   11.057511184656734,
+   11.677928025348427,
+   "Christen Mortensen of Klausholm, also written ‘i sdr Trøgdrup’, led the Sønder Trøgdrup side in 1676."
+  ],
+  [
+   "Allerup",
+   "court",
+   57.2304,
+   10.1924,
+   7.061669064971676,
+   8.533720501249695,
+   "Peder Andersen of Allerup, a former forest warden, summoned with Fredenborg and Klausholm."
+  ],
+  [
+   "Landvad",
+   "court",
+   57.2119,
+   10.2061,
+   9.215868215545818,
+   10.596247682493038,
+   "Povl Sørensen of Landvad, born in Trøgdrup, gave the 64-year memory testimony."
+  ],
+  [
+   "Hellevad kirke",
+   "ctx",
+   57.2129,
+   10.1527,
+   7.778526534094398,
+   8.71926227590104,
+   "Hellevad parish church at Klokkerholm. Hellevad’s own registers begin in 1646."
+  ],
+  [
+   "Svennum",
+   "reg",
+   57.2792,
+   10.1139,
+   0.43995161780449243,
+   1.4979285660034474,
+   "Hamlet in Jerslev parish. The Jerslev burial register for 15 Jan 1688 places Fredenborg here: ‘Niels, Peder Andersens [barn] i Fredenborg i Svennum’."
+  ],
+  [
+   "Sterup",
+   "reg",
+   57.313,
+   10.1055,
+   3.7216169709640905,
+   3.396854807995476,
+   "“Stærup” in the register; village, recorded 1408."
+  ],
+  [
+   "Øster Mellerup",
+   "reg",
+   57.2923,
+   10.0849,
+   2.520848870509311,
+   1.0235846417387264,
+   "“Møllerup/Mellerup”; recorded 1491. Placed by its road."
+  ],
+  [
+   "Vester Mellerup",
+   "reg",
+   57.2977,
+   10.0516,
+   4.5786863671863305,
+   2.815364478984158,
+   "Manor farm, recorded 1578. Placed by its road."
+  ],
+  [
+   "Løt",
+   "reg",
+   57.3125,
+   10.0835,
+   4.199979928211763,
+   3.2438861724803756,
+   "“Lött”; recorded 1688 as Løtte. Placed by its road."
+  ],
+  [
+   "Dårbak",
+   "reg",
+   57.3152,
+   10.1552,
+   4.375702854718607,
+   5.254599013530055,
+   "“Daarbak”, Jan 1698 entry; recorded 1662. Placed by its road."
+  ],
+  [
+   "Krattet",
+   "reg",
+   57.3199,
+   10.1332,
+   4.438894683236126,
+   4.793324825293345,
+   "Sterupkrat 1606. Placed by its road."
+  ],
+  [
+   "Abildgård",
+   "reg",
+   57.3232,
+   10.0885,
+   5.124258496927564,
+   4.409757495128037,
+   "Single farm, 1500s. Placed by its road."
+  ],
+  [
+   "Hjulskov",
+   "reg",
+   57.2991,
+   10.1283,
+   2.109299791775429,
+   2.861700072037217,
+   "Vester Hjulskov hamlet; recorded 1457."
+  ],
+  [
+   "Klæstrup",
+   "reg",
+   57.2819,
+   10.0547,
+   3.9801216871883702,
+   2.1587936981628633,
+   "Village; recorded 1366."
+  ],
+  [
+   "Kirkholt",
+   "reg",
+   57.304,
+   10.1636,
+   3.667991607034643,
+   4.9598252080936245,
+   "Recorded 1662."
+  ],
+  [
+   "Lindholt",
+   "reg",
+   57.3594,
+   10.1666,
+   9.196900766302893,
+   9.605720509894129,
+   "Farm in the Vrejlev enclave; Jan 1698 godparents came from here."
+  ],
+  [
+   "Hallund kirke",
+   "ctx",
+   57.2387,
+   10.1026,
+   4.790456035222915,
+   5.05200548766762,
+   "Neighbouring parish church, Dronninglund herred."
+  ],
+  [
+   "Hellum kirke",
+   "ctx",
+   57.2615,
+   10.161,
+   3.2256986950468636,
+   4.91309967419494,
+   "Jerslev’s later annex parish (from 1859)."
+  ],
+  [
+   "Stubdrup",
+   "ctx",
+   57.2642,
+   10.0258,
+   6.002715889120303,
+   4.45045080690388,
+   "Øster Brønderslev parish; Anders Pedersen of Stubdrup in the Oct 1676 court session."
+  ],
+  [
+   "Burholt",
+   "ctx",
+   57.251,
+   9.9615,
+   10.141842946095434,
+   8.570842182642517,
+   "Øster Brønderslev parish; Sofie Bloch, Knud Kampmann’s mother, died here 1719."
+  ]
+ ]
+}
