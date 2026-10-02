@@ -1,0 +1,82 @@
+<title>The Bøgh Line</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Archivo+Narrow:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+:root{--bg:#f2f4ef;--surface:#fff;--ink:#1f2a24;--muted:#5b6660;--rule:#d5dbd3;--birth:#2e6b3a;--death:#8a2f2a;--path:#1f4e8a;--display:'Source Serif 4',Georgia,serif;--sans:'Archivo Narrow','Arial Narrow',Arial,sans-serif;--mono:'IBM Plex Mono',Menlo,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#171b18;--surface:#202621;--ink:#e6e9e3;--muted:#a3ada6;--rule:#39423b;--birth:#8fd09a;--death:#f09a92;--path:#8fb6f0}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#171b18;--surface:#202621;--ink:#e6e9e3;--muted:#a3ada6;--rule:#39423b;--birth:#8fd09a;--death:#f09a92;--path:#8fb6f0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;margin:0;padding-block:32px 64px;padding-inline:clamp(16px,4vw,48px)}
+.wrap{max-width:1080px;margin:0 auto;display:grid;gap:28px}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(30px,4.5vw,44px);line-height:1.1;margin:0;text-wrap:balance} h2{font-family:var(--display);font-weight:600;font-size:22px;margin:0 0 10px}
+p{max-width:68ch;margin:0 0 12px} .eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px} .lede{font-size:18px;max-width:70ch}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:16px} a{color:var(--path)}
+.tmap{position:relative;width:100%;aspect-ratio:2400/1180;overflow:hidden;border-radius:4px;border:1px solid var(--rule)}
+.tmap img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.tmap svg{position:absolute;inset:0;width:100%;height:100%}
+.tpin{position:absolute;transform:translate(-50%,-50%);font-size:12px;white-space:nowrap}
+.tpin i{display:block;width:16px;height:16px;border-radius:50%;border:3px solid var(--birth);background:var(--birth);margin:0 auto;box-shadow:0 0 0 2px #fff}
+.tpin.death i{background:transparent;border-color:var(--death)} .tpin.both i{background:var(--birth);border-color:var(--death)}
+.tpin span{position:absolute;left:14px;top:-3px;background:rgba(255,255,255,.88);color:#1f2a24;padding:1px 6px;border-radius:3px;font-weight:600}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;color:var(--muted);margin-bottom:10px} .legend span{display:inline-flex;align-items:center;gap:7px}
+.sw{display:inline-block;width:12px;height:12px;border-radius:50%;border:3px solid var(--birth);background:var(--birth)} .sw.d{background:none;border-color:var(--death)} .sw.p{width:22px;height:0;border:0;border-top:3px dashed var(--path);border-radius:0}
+table{border-collapse:collapse;width:100%;font-size:14px} th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)} td.num{font-family:var(--mono)} td.note{color:var(--muted);min-width:260px} td.conf{font-size:13px} .muted{color:var(--muted)}
+.tablewrap{overflow-x:auto} ul,ol{margin:0;padding-left:20px;max-width:70ch} li{margin-bottom:6px} .fine{font-size:13px;color:var(--muted)}
+</style>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Jerslev · Vester Brønderslev · Hellevad · Skæve · Klæstrup — Vendsyssel, Denmark</div>
+    <h1>The Bøgh Line</h1>
+    <p class="lede">Eight generations from Søren Jensen of Fredenborg, documented in the Jerslev register in 1698 and 1702, to Jens Kristian Marinus Thomsen Bøgh, born at Klæstrup in 1903. The whole line lived within a 25 km stretch of central Vendsyssel, and after two centuries it came back to the parish it started in. This page companions <a href="index.html">Finding Fredenborg</a>, which locates the house where it begins.</p>
+  </header>
+
+  <section class="card">
+    <h2>Births and deaths on the map</h2>
+    <div class="legend"><span><i class="sw"></i>Birthplace</span><span><i class="sw d"></i>Place of death</span><span><i class="sw p"></i>Order of moves, generation by generation</span></div>
+    <div class="tmap">
+      <img src="img/tree_basemap.jpg" alt="Topographic map of central Vendsyssel between Brønderslev and Skæve">
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline points="46.964,27.520 46.964,27.520 46.964,27.520 46.964,27.520 13.568,36.640 53.774,81.696 87.711,21.152 87.711,21.152 87.711,21.152 87.711,21.152 32.906,26.456 32.906,26.456" fill="none" stroke="var(--path)" stroke-width="0.35" stroke-dasharray="1 0.8" vector-effect="non-scaling-stroke" style="stroke-width:3px"/></svg>
+      <div class="tpin both" style="left:46.964%;top:27.520%" title="birth · Søren Jensen · c. 1660s? | death · Søren Jensen · after 1702 | birth · Christen Sørensen · 13 Feb 1698 | death · Christen Sørensen · 20 Feb 1746 (reported)"><i></i><span>Fredenborg, Svennum</span></div><div class="tpin birth" style="left:13.568%;top:36.640%" title="birth · Peder Sørensen · 1724"><i></i><span>Vester Brønderslev</span></div><div class="tpin birth" style="left:53.774%;top:81.696%" title="birth · Simon Pedersen · 1774"><i></i><span>Hellevad</span></div><div class="tpin both" style="left:87.711%;top:21.152%" title="death · Simon Pedersen · 25 Jul 1853 | birth · Thomas Simonsen · 16 Dec 1814 | death · Thomas Simonsen · 5 Dec 1898 | birth · Christen (Kresten) Thomsen · 7 Aug 1850"><i></i><span>Skæve</span></div><div class="tpin birth" style="left:32.906%;top:26.456%" title="birth · Jens Kristian Severin Thomsen Bøgh · 22 Apr 1876 | birth · Jens Kristian Marinus Thomsen Bøgh · 1903"><i></i><span>Klæstrup</span></div>
+    </div>
+    <p class="fine" style="margin-top:10px">Pins are placed on the parish church for births and deaths recorded only by parish, and on the house or hamlet where the record names one (Fredenborg, Klæstrup). Hover a pin for the people and dates behind it. Basemap: Danmarks Topografiske Kortværk, skærmkort (Klimadatastyrelsen, open data). Frame 57.190–57.315 N, 9.900–10.370 E.</p>
+  </section>
+
+  <section class="card">
+    <h2>The generations</h2>
+    <div class="tablewrap"><table>
+      <thead><tr><th>#</th><th>Name</th><th>Born</th><th>Died</th><th>Record and notes</th><th>Status</th></tr></thead>
+      <tbody>
+<tr><td class="num">1</td><td><strong>Søren Jensen</strong></td><td>c. 1660s?<br><span class="muted">Fredenborg, Svennum</span></td><td>after 1702<br><span class="muted">Fredenborg, Svennum</span></td><td class="note">Named “Sørens udj Fredenborg” at Christen’s baptism, 13 Feb 1698, and in full as “Søren Jensen Fredenborg” at the baptism of a son Jens, 10 Sep 1702 (Jerslev kirkebog). Birth year unknown; no record read gives his age or parents. He is not one of the Andersen brothers who held the house in 1676–1699 and probably came into it by marriage.</td><td class="conf">Documented 1698–1702. Birth and death open.</td></tr>
+<tr><td class="num">2</td><td><strong>Christen Sørensen</strong></td><td>13 Feb 1698<br><span class="muted">Fredenborg, Svennum</span></td><td>20 Feb 1746 (reported)<br><span class="muted">Fredenborg, Svennum</span></td><td class="note">Baptised Jerslev 13 Feb 1698, godparents Knud Kampmann of Kølskegård, Kield Andersøn, Lars Nielsen, the priest’s wife Marie Fischer and Dorthe Jensdatter. Death at Fredenborg on 20 Feb 1746 is as reported in the family record and not yet checked against the Jerslev burials; if confirmed it shows the house name still in use in 1746.</td><td class="conf">Baptism documented. Death to verify.</td></tr>
+<tr><td class="num">3</td><td><strong>Peder Sørensen</strong></td><td>1724<br><span class="muted">Vester Brønderslev kirke</span></td><td>—<br><span class="muted"></span></td><td class="note">As given in the family record. Note the patronymic: a son of Christen Sørensen would be Peder Christensen. Either the index has the wrong father, or this Peder is Christen’s brother. A Peder Sørensen of Svennum, 49, was buried at Jerslev on 17 Mar 1720, so a 1724 child named Peder could be an honorific for him. Vester Brønderslev was the second church of the Jerslev pastorate until 1859.</td><td class="conf">Weakest link. Check the 1724 baptism image.</td></tr>
+<tr><td class="num">4</td><td><strong>Simon Pedersen</strong></td><td>1774<br><span class="muted">Hellevad kirke</span></td><td>25 Jul 1853<br><span class="muted">Skæve kirke</span></td><td class="note">As given. Hellevad parish borders Jerslev to the south; Trøgdrup, where Fredenborg’s Peder Andersen was summoned in 1676, lies in it. Hellevad registers survive from 1646.</td><td class="conf">From family record.</td></tr>
+<tr><td class="num">5</td><td><strong>Thomas Simonsen</strong></td><td>16 Dec 1814<br><span class="muted">Skæve kirke</span></td><td>5 Dec 1898<br><span class="muted">Skæve kirke</span></td><td class="note">As given. Skæve is the next parish east of Jerslev; Original 2 maps for Skæve exist in the same archive.</td><td class="conf">From family record.</td></tr>
+<tr><td class="num">6</td><td><strong>Christen (Kresten) Thomsen</strong></td><td>7 Aug 1850<br><span class="muted">Skæve kirke</span></td><td>—<br><span class="muted"></span></td><td class="note">As given.</td><td class="conf">From family record.</td></tr>
+<tr><td class="num">7</td><td><strong>Jens Kristian Severin Thomsen Bøgh</strong></td><td>22 Apr 1876<br><span class="muted">Klæstrup</span></td><td>—<br><span class="muted"></span></td><td class="note">As given. Klæstrup is a hamlet in Jerslev parish, 2 km west of the church and 4 km west of Fredenborg: the family is back in the parish it left two centuries earlier. The name Bøgh is a farm name or byname taken as a surname, as the 1828 and 1856 naming laws encouraged.</td><td class="conf">From family record.</td></tr>
+<tr><td class="num">8</td><td><strong>Jens Kristian Marinus Thomsen Bøgh</strong></td><td>1903<br><span class="muted">Klæstrup</span></td><td>—<br><span class="muted"></span></td><td class="note">As given.</td><td class="conf">From family record.</td></tr>
+      </tbody></table></div>
+  </section>
+
+  <section class="card">
+    <h2>The pattern of movement</h2>
+    <p>Four moves in eight generations, all short, all within the same group of neighbouring parishes. Total distance about 51 km over two hundred years.</p>
+    <ul><li><strong>Fredenborg, Svennum → Vester Brønderslev</strong>, c. 1700–1724: 10 km.</li><li><strong>Vester Brønderslev → Hellevad</strong>, 1724–1774: 13 km.</li><li><strong>Hellevad → Skæve</strong>, 1774–1814: 13 km.</li><li><strong>Skæve → Klæstrup</strong>, 1850–1876: 16 km.</li></ul>
+    <p>Each step is to an adjoining parish, which is what a family of cottagers and smallholders in this period typically did: marriages, leases and farm service were found within walking distance, and a move of one parish was a big one. The return to Klæstrup in 1876 closes a loop. Klæstrup lies 4 km west of Fredenborg, in the same village fields that Anders of Fredenborg was harvesting in 1676.</p>
+  </section>
+
+  <section class="card">
+    <h2>What would strengthen the line</h2>
+    <ol>
+      <li><strong>Christen Sørensen’s burial, Jerslev, February 1746.</strong> Would confirm the reported death date, give his age, and show whether the scribe still wrote “Fredenborg”.</li>
+      <li><strong>The 1724 baptism of Peder.</strong> Vester Brønderslev was in the Jerslev pastorate, so the entry may be in either church’s book. The father’s name as written decides whether Peder is Christen’s son (Peder Christensen) or something else.</li>
+      <li><strong>Søren Jensen’s burial.</strong> Age at death gives his birth year and settles whether the Peder Sørensen buried in 1720, aged 49, could be his son.</li>
+      <li><strong>Christen Sørensen’s marriage, Jerslev or Vester Brønderslev, c. 1720–1724.</strong> Names his wife and her home, and may explain the move toward Vester Brønderslev.</li>
+      <li><strong>Simon Pedersen’s baptism, Hellevad 1774, and marriage.</strong> Hellevad registers run from 1646, so both should be recoverable, and the marriage will show how the family reached Skæve.</li>
+      <li><strong>The 1787, 1801 and 1834 censuses</strong> for Hellevad and Skæve, which list households by place and would fix where Simon and Thomas lived between baptisms.</li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>Sources</h2>
+    <p class="fine">Generations 1–2 from the Jerslev parish register (Rigsarkivet; images via Danish Family Search, sogn 359), read in <a href="index.html">Finding Fredenborg</a>. Generations 3–8 as given in the family record supplied by the researcher, October 2026; not yet checked against the register images, except where noted. Church coordinates from OpenStreetMap. Basemap and the Fredenborg site from Klimadatastyrelsen open data.</p>
+  </section>
+</div>
