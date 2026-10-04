@@ -20,7 +20,9 @@ Ancestry and have not yet been checked. Items marked **[hypothesis]** are infere
 | Lille Nejsum | Skæve | Dronninglund | 57.3153, 10.2573 | Farm on Nejsumvej, 4.5 km W of Skæve church; Nejsum recorded 1463. Simon Pedersen's farm 1814–1853. |
 | Store Nejsum | Skæve | Dronninglund | near Lille Nejsum | Jørgen Pedersen farmer 1814. |
 | Ravnsholt (Raunsholt) | Skæve | Dronninglund | c. 57.303, 10.241 (plantage) | Single farm; Trap: Sdr. Ravnsholt, 1610 Raffuenshollt. Peder Jørgensen's family 1787 and 1801. |
-| Villestrup | Jerslev | Børglum | east of Sterup, c. 57.31, 10.13 | Farm, 1662 Willestrup. Jørgen Pedersen and Mette Pedersdatter 1729; Peder Jørgensen baptised from here. |
+| Villestrup | Jerslev | Børglum | east of Sterup, c. 57.31, 10.13 | Farm, 1662 Willestrup. Jørgen Pedersen and Mette Pedersdatter 1728–38; Peder Jørgensen baptised from here. |
+| Sterup | Jerslev | Børglum | c. 57.31, 10.11 | Largest village in the parish, 3 km N of the church. Peder Pedersen, Mette's father, 1703–05; Niels and Laurs Pedersen (probable brothers) 1703. |
+| Krattet (Sterupkrat) | Jerslev | Børglum | c. 0.5 km from Villestrup | Hamlet, 1606 Sterupkrat. Peder Sørensen's household 1701–22 (not kin on present evidence); Christen Pedersen's wife godmother 1728–29; Peder Pedersen "af Krattet" buried 1739. |
 | Hørkied / Hørkiær, Kirkeskov | Hellevad | Dronninglund | — | Peder Jørgensen and Inger 1761–63. |
 | Allerup | Hellevad | Dronninglund | 57.2304, 10.1924 | Simon Christensen, godfather 1761/1763; Inger's probable home. |
 | Barkholt (Øster, Vester, Ny) | Skæve | Dronninglund | 57.298, 10.306 | Farmhand Simon Jensen i Barkholt godparent 1777. |
@@ -36,7 +38,7 @@ Ancestry and have not yet been checked. Items marked **[hypothesis]** are infere
 - Possibly the same as "Søren Jensen i Knæppen i Svennum" who baptised a son Jens 25 Nov 1708 (Knæppen a locality in Svennum).
 - Not an Andersen brother; probably entered the house by marriage. **[hypothesis]**
 - Possible father: Jens Sørensen, co-tenant of Svennum farm no. 6 in 1688, perhaps the Jens Sørensen who was farmhand to Anders and Niels Pedersen of Jerslev in 1653. **[hypothesis]**
-- Birth and death not found. Burials to 1725 have no Søren Jensen of Fredenborg.
+- Buried 13 Jul 1727, "Søren Jensen i Jerslef", aged 78 (b. c. 1649). The only Søren Jensen buried in Jerslev 1685–1734. (Image 14415961.) Wife's name and burial not found; their marriage c. 1690–97 would be in the Jerslev marriages, not yet read for it.
 
 ### The Andersen household at Fredenborg, 1676–1699 **[verified]**
 - Anders "i Fredenborg", 1676 tithe case. Probably Anders Pedersen of Jerslev (fl. 1632–1654), son of Peder Pedersen, estate agent for the Kaas family. **[hypothesis]**
@@ -46,6 +48,7 @@ Ancestry and have not yet been checked. Items marked **[hypothesis]** are infere
 - Jens Andersen, tenant of Svennum no. 4 in 1688.
 - Niels Tomsen, tenant of Svennum no. 2 in 1688; "Niels Tomsen Fredenborren" buried 7 May 1699 aged 80.
 - Palle Nielsen "i Fredenborg", godfather 28 Jun 1704.
+- "Peder Fredenborgs hustru i Jerslef", aged 62, buried 12 Dec 1728: a Peder was still carrying the byname in 1728, probably Peder Andersen or a son. (Image 14415961/962.)
 
 ### Generation 2: Christen Sørensen **[baptism verified]**
 - Baptised Jerslev 13 Feb 1698, son of Søren of Fredenborg. Godparents: Knud Kampmann (of Kølskegård, 1666–1704, son of the priest of Aggersborg), Kield Andersøn (possibly Kjeld Nors, parish clerk), Lars Nielsen (probably tenant of Svennum no. 5), Marie Fischer the priest's wife (1652–1717, wife of Frederik Boysen, priest 1684–1699), Dorthe Jensdatter (of the clerk's house).
@@ -68,15 +71,26 @@ Ancestry and have not yet been checked. Items marked **[hypothesis]** are infere
 - Alive 1 Feb 1801 at Raunsholt.
 
 ### Generation 2: Jørgen Pedersen and Mette Pedersdatter of Villestrup **[verified; patronymic 2:1]**
-- Betrothed 13 Apr 1727, married 26 Oct 1727, Jerslev. The marriage entry writes the groom **"Jørgen Jensen"**; both baptisms (1728, 1729) write **"Jørgen Pedersen"**. Taken as Pedersen on the two baptisms, with the 1727 form recorded as a scribal variant until a fourth record settles it. No home farm given for either party.
+- Betrothed 13 Apr 1727, married 26 Oct 1727, Jerslev. The marriage entry writes the groom **"Jørgen Jensen"**; both baptisms (1728, 1729) write **"Jørgen Pedersen"**. Taken as Pedersen on the two baptisms, with the 1727 form recorded as a scribal variant until a fourth record settles it. No home farm given for either party. (Image 14415903.)
 - Children:
-  - **Kirsten**, bapt. 11 Feb 1728, Villestrup. Godparents: Jens i Kiøbakken, Christen Christensen i Jerslev, Peder Mylund i Jerslev, Christen Pedersens hustru i Krattet, Maren Pedersdatter i Smikken.
-  - **Peder**, bapt. 6 Nov 1729, Villestrup (scribe first wrote "Christen Jensens", struck, corrected to Jørgen Pedersen). Godparents: Christen i Sigaard, Jens i Høholt, Peder i Falden, Christens hustru i Krattet, Maren Jensdatter paa Veiene.
+  - **Kirsten**, bapt. 11 Feb 1728, Villestrup. Godparents: Jens i Kiøbakken, Christen Christensen i Jerslev, Peder Mylund i Jerslev, Christen Pedersens hustru i Krattet, Maren Pedersdatter i Smikken. (Image 14415865.) **Buried 15 Jun 1738**, "Jørgen Pedersens datter Kirsten i Villestrup", aged about 11. (Image 14415964.)
+  - **Peder**, bapt. 6 Nov 1729, Villestrup (scribe first wrote "Christen Jensens", struck, corrected to Jørgen Pedersen). Godparents: Christen i Sigaard, Jens i Høholt, Peder i Falden, Christens hustru i Krattet, Maren Jensdatter paa Veiene. (Image 14415867.)
   - No further children in Jerslev baptisms Jan 1727 – Feb 1733 (read in full).
-- Not buried in Jerslev 1725–1734 (read in full); deaths later.
-- **Christen Pedersen's wife of Krattet** stood godmother at both baptisms: Christen Pedersen of Krattet is the likely brother of Jørgen. Krattet (Sterupkrat, 1606) lies c. 0.5 km from Villestrup. Next thread: his baptisms, marriage and burial for the father's name.
+- Resident at Villestrup 1728 to at least June 1738.
+- Not buried in Jerslev 1725–1744 (read in full); deaths later.
+- **Jørgen Pedersen's origin**: NOT baptised in Jerslev. Every Jerslev baptism Jan 1693 – Dec 1707 has been read; the only Jørgen is Søren Jørgensen's son of 1694. Born c. 1695–1705 outside the parish, or in the lost Hellevad gap (1673–1732). Father a Peder by patronymic; nothing more.
+- **Mette Pedersdatter's origin**: **baptised 24 May 1705, Jerslev, "Mette, Peder Pedersens i Sterup"**. Godparents: Jens Pedersen i Vester Mølle, Peder Jensen Møller, Peder Jensen i Jerslef, Anne Sørensdatter i Kraggaarden, Maren Tomsdatter ibid. (Image 14415798_L.) She is the only Mette baptised to any Peder in Jerslev 1693–1707; aged 22 at marriage, 23 at Kirsten's birth. Identity rests on name, parish and age fit; no later record names her father. **[strong]**
+- **Krattet, final reading.** The Krattet godmother of 1728–29 (Christen Pedersen's wife) was first read as Jørgen's sister-in-law, then as Mette's. Both readings are withdrawn. Krattet was Peder Sørensen's household (daughter Magdalena bapt. 4 Dec 1701; son Christen bapt. 26 Jul 1722, wife Maren Christensdatter; Christen Pedersen and Jens Pedersen of Krattet, godfathers 1722, fit as his grown sons). Jørgen is absent from the Jerslev baptisms in Peder Sørensen's child-bearing years, and Mette was baptised from Sterup to a Peder Pedersen, not from Krattet to Peder Sørensen. Krattet and Sterup are adjacent; the godmother is a neighbour. The one loose end: **Peder Pedersen "af Krattet", buried 21 Jun 1739, no age** (image 14415964), could be Mette's father moved from Sterup late in life. Unproven.
 - Villestrup: farm in Jerslev parish east of Sterup, 1662 "Willestrup". Neighbouring godparent farms: Sigård, Høholt, Falden, Krattet, Vejen, Smikken, Kiøbakken (Kjøbakken).
 - Ancestry hint "Jørgen Pedersen b. 1689 Elsted, Århus, son of Peder Sørensen and Mette Clementsdatter" rejected: 170 km away and a decade too old for a first marriage in 1727.
+
+### Generation 1 (Mette's side): Peder Pedersen of Sterup **[verified as Mette's father]**
+- Householder at Sterup, Jerslev parish, 1703–1705. Named as father at Mette's baptism 24 May 1705. Wife not named.
+- Godfather 23 Dec 1703 at the baptism of **Peder, son of Laurs Pedersen of Sterup** (co-godparents Niels Pedersen and Jens Jensen of Sterup, Anne Christensdatter). Zoomed and confirmed: the father is Laurs, not Peder; this child is Laurs's son, not Mette's brother. (Image 14415795_R.)
+- 16 Dec 1703: **Peder, son of Niels Pedersen of Sterup**; godparents Niels Christensen i Hjørholt, Laurs Pedersen i Sterup, Peder [Pedersen?]. (Same image.)
+- Niels, Laurs and Peder Pedersen, all of Sterup, godparenting one another's children within two years, read as **probable brothers** (sons of an older Peder of Sterup). **[hypothesis]**
+- Death: possibly the Peder Pedersen "af Krattet" buried 21 Jun 1739 (no age). **[possible]**
+- Mette's siblings: none yet confirmed. "Christen, Peder Christensens i Sterup", 25 Mar 1703, is a different father. Baptisms 1708–1715 not yet read for "Peder Pedersen i Sterup"; that is where younger siblings would be. Older siblings (c. 1690–1702) would be in the pages already read, and none to a Peder Pedersen of Sterup was noted, so Mette may be among the eldest.
 
 ### Generation 4: Simon Pedersen **[1814, 1834 verified; birth open]** — son of Peder Jørgensen and Inger Christensdatter (1787 census)
 - Gaardmand (farmer) at Lille Nejsum, Skæve parish.
@@ -107,16 +121,17 @@ Ancestry and have not yet been checked. Items marked **[hypothesis]** are infere
 - Born 1903, Klæstrup, Jerslev parish.
 
 ## Open questions, in order of value
-1. Christen Pedersen of Krattet (godparent household 1728–29): his records for the father's name, and to settle Jørgen's patronymic (Pedersen vs the 1727 "Jensen").
-1b. Jørgen Pedersen and Mette Pedersdatter: burials after 1734; Kirsten Jørgensdatter's later life.
-2. Peder Jørgensen's confirmation c. 1744–46 (Jerslev or Hellevad confirmation lists from 1737) and his burial after 1801 (Skæve).
-3. Simon Pedersen's baptism c. 1777–78, now to be sought under father Peder Jørgensen: Hellevad 1776–78 reread for that name; Ørum/Hellum pages; Skæve 1778 reread.
-4. Inger Christensdatter's baptism c. 1731–36 and parents (Hellevad, Ørum, Hellum).
-5. The Fredenborg line (Søren Jensen, Christen Sørensen): a separate, documented family, no longer in the direct line; their story stays on the Finding Fredenborg page.
-6. Thomas Simonsen's marriage and the 1850 Skæve census household at Lille Nejsum.
+1. Jørgen Pedersen's origin: not in Jerslev 1693–1707. Try Vester Brønderslev (same pastorate), Hellum, Serritslev, Tolstrup baptisms c. 1695–1705 for a Jørgen to a Peder; and the Jerslev confirmation lists if any survive before 1737.
+1b. Jørgen Pedersen and Mette Pedersdatter: burials after 1744, Jerslev.
+2. Mette's siblings: Jerslev baptisms 1708–1715 for "Peder Pedersen i Sterup"; the mother's name from any of them. Age of the Peder Pedersen buried 1739 from a probate, if any.
+3. Peder Jørgensen's confirmation c. 1744–46 (Jerslev or Hellevad confirmation lists from 1737) and his burial after 1801 (Skæve).
+4. Simon Pedersen's baptism c. 1777–78, now to be sought under father Peder Jørgensen: Hellevad 1776–78 reread for that name; Ørum/Hellum pages; Skæve 1778 reread.
+5. Inger Christensdatter's baptism c. 1731–36 and parents (Hellevad, Ørum, Hellum).
+6. The Fredenborg line (Søren Jensen, Christen Sørensen): a separate, documented family, no longer in the direct line; their story stays on the Finding Fredenborg page.
+7. Thomas Simonsen's marriage and the 1850 Skæve census household at Lille Nejsum.
 
 ## Image references
-- Jerslev kirkebog 1684–: Danish Family Search folder `ch/359/133720/`, images 14415760–14416000. Baptisms c. 14415784–14415880 (1727–33 at 14415864–871); marriages 14415895–14415915 (1690–1780; 1725–29 at 14415903); burials 14415940–14415979 (1725–34 at 14415960–962); baptisms 1780s–90s 14415980–14416000.
+- Jerslev kirkebog 1684–: Danish Family Search folder `ch/359/133720/`, images 14415760–14416000. Baptisms c. 14415784–14415880 (1693–1707 at 14415784–14415800: 1703 Sterup entries 14415795 right page, 1705 Mette 14415798 left page; 1727–33 at 14415864–871); marriages 14415895–14415915 (1690–1780; 1725–29 at 14415903); burials 14415940–14415979 (1725–34 at 14415960–962; 1738–39 at 14415964); baptisms 1780s–90s 14415980–14416000.
 - Hellevad–Ørum–Hellum kirkebog 1646–: Rigsarkivet images from 27494689 (1777 Hellevad baptisms at +310 and +359).
 - Skæve kirkebog: Rigsarkivet images from 28361212 (1776–77 baptisms at +213 to +215; vol. 2 from +240, 1778 at +243–244).
 - Hellevad 1850 census: Danish Family Search folder `ft/1850/30423/`.
