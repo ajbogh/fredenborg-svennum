@@ -84,13 +84,24 @@ Ancestry and have not yet been checked. Items marked **[hypothesis]** are infere
 - Villestrup: farm in Jerslev parish east of Sterup, 1662 "Willestrup". Neighbouring godparent farms: Sigård, Høholt, Falden, Krattet, Vejen, Smikken, Kiøbakken (Kjøbakken).
 - Ancestry hint "Jørgen Pedersen b. 1689 Elsted, Århus, son of Peder Sørensen and Mette Clementsdatter" rejected: 170 km away and a decade too old for a first marriage in 1727.
 
-### Generation 1 (Mette's side): Peder Pedersen of Sterup **[verified as Mette's father]**
-- Householder at Sterup, Jerslev parish, 1703–1705. Named as father at Mette's baptism 24 May 1705. Wife not named.
+### Generation 1 (Mette's side): Peder Pedersen of Sterup and Karen Jensdatter **[marriage and baptism verified]**
+- **Married 17 Jul 1701, Jerslev: "Peder Pedersen og Karen Jensdatter i V. Mølle"** (Vester Mølle, the mill in Jerslev parish). The entry gives only the bride's home. (Image 14415897_L.) Linked to Mette's parents by her 1705 godparents: Jens Pedersen i Vester Mølle and Peder Jensen Møller (the miller), i.e. Karen's family. **[strong]**
+- Householder at Sterup by 1703. Named as father at Mette's baptism 24 May 1705.
 - Godfather 23 Dec 1703 at the baptism of **Peder, son of Laurs Pedersen of Sterup** (co-godparents Niels Pedersen and Jens Jensen of Sterup, Anne Christensdatter). Zoomed and confirmed: the father is Laurs, not Peder; this child is Laurs's son, not Mette's brother. (Image 14415795_R.)
 - 16 Dec 1703: **Peder, son of Niels Pedersen of Sterup**; godparents Niels Christensen i Hjørholt, Laurs Pedersen i Sterup, Peder [Pedersen?]. (Same image.)
-- Niels, Laurs and Peder Pedersen, all of Sterup, godparenting one another's children within two years, read as **probable brothers** (sons of an older Peder of Sterup). **[hypothesis]**
-- Death: possibly the Peder Pedersen "af Krattet" buried 21 Jun 1739 (no age). **[possible]**
-- Mette's siblings: none yet confirmed. "Christen, Peder Christensens i Sterup", 25 Mar 1703, is a different father. Baptisms 1708–1715 not yet read for "Peder Pedersen i Sterup"; that is where younger siblings would be. Older siblings (c. 1690–1702) would be in the pages already read, and none to a Peder Pedersen of Sterup was noted, so Mette may be among the eldest.
+- Related Sterup marriages: Malte Pedersen and Johanne Baltzersdatter i Sterup, 26 Dec 1699 (Malte Pedersen's children buried Sterup 1703, 1705); Laurs Pedersen and Edel(?) Christensdatter i Sterup, 11 Jun 1702. Other Peder Pedersens marrying in the parish: 7 Dec 1690 Ingierd Nielsdatter i Jerslev; 23 Oct 1692 Anne Andersdatter i Klæstrup; 7 Jan 1703 Maren Knudsdatter i Klæstrup. None of these is in Sterup.
+- Niels, Laurs, Malte and Peder Pedersen, all of Sterup, marrying 1699–1702 and godparenting one another's children, read as **probable brothers**, sons of the old Peder Pedersen below. **[hypothesis]**
+- Death: possibly the Peder Pedersen "af Krattet" buried 21 Jun 1739 (no age). Not buried in Jerslev 1693–1707 (read in full). **[possible]**
+- Mette's siblings: none yet confirmed. Baptisms 1708–1715 not yet read for "Peder Pedersen i Sterup". No child of his noted 1701–1704, so Mette may be the eldest surviving.
+
+### Generation 0 (Mette's side): old Peder Pedersen of Sterup, c. 1625–1705 **[burials verified; link to the younger Peder is patronymic + village only]**
+- **Buried 19 Apr 1705, "Peder Pedersen i Sterup", aged 80** (b. c. 1625). One month before Mette's baptism. (Image 14415951_L.)
+- **His wife buried 25 May 1702, "Peder Pedersens hustru i Sterup", aged 71** (b. c. 1631). Name not given. (Image 14415949_R.) Mette, born 1705, may carry her name (first daughter named for the paternal grandmother). Unproven.
+- **1688 matrikel: co-tenant with Jens Nielsen of Sterup farm no. 2** (modelbog 1781, fol. 130). Other Pedersens in Sterup 1688: no. 22 Laurs Pedersen Skræder, no. 23 Niels Pedersen, no. 26 Bertel Bollesen (wife Anne Pedersdatter per court 1688). Farms 3 and 11 have a second tenant whose name is unclear.
+- **Jerslev herred court books (Brejl extracts):** 30 Sep 1652, "en dreng Peder Pedersen, som tjente Christen Christensen i Sterup", named as father of Kirsten Jensdatter's child: a farmhand of the right age (b. c. 1625) and the earliest likely trace. 15 Mar 1666, "Peder Pedersen i Sterup" distrained by Jens Sørensen of Hallund for 3 mark: a householder by then.
+- **Not the bailiff.** The court books also have herredsfoged (district bailiff) Peder Pedersen of Nørgård in Sterup, son of bailiff Peder Jensen and Maren Pedersdatter, active 1649–1654, dead by 7 Nov 1655. A different, older-established family on the Nørgård farm; Jens Pedersen of Nørgård (1666; wife buried 1701 aged 40) belongs to it.
+- An elder Niels Pedersen of Sterup, "dreng, født i Sterup" 1655, acting for the Kaas and Urne estates 1660–1680, is of old Peder's generation: possibly his brother. **[hypothesis]**
+- Parents: not recorded. Only the patronymic (a Peder) survives. The Jerslev register begins 1684, so his baptism c. 1625 is beyond any surviving church record; probate or estate records (fæstebreve) are the only route further back.
 
 ### Generation 4: Simon Pedersen **[1814, 1834 verified; birth open]** — son of Peder Jørgensen and Inger Christensdatter (1787 census)
 - Gaardmand (farmer) at Lille Nejsum, Skæve parish.
@@ -121,9 +132,9 @@ Ancestry and have not yet been checked. Items marked **[hypothesis]** are infere
 - Born 1903, Klæstrup, Jerslev parish.
 
 ## Open questions, in order of value
-1. Jørgen Pedersen's origin: not in Jerslev 1693–1707. Try Vester Brønderslev (same pastorate), Hellum, Serritslev, Tolstrup baptisms c. 1695–1705 for a Jørgen to a Peder; and the Jerslev confirmation lists if any survive before 1737.
+1. Jørgen Pedersen's origin: not in Jerslev 1693–1707; 1684–1692 baptisms not yet read (he would be 35+ at marriage, unlikely but open). Try Vester Brønderslev (same pastorate), Hellum, Serritslev, Tolstrup baptisms c. 1695–1705 for a Jørgen to a Peder; and the Jerslev confirmation lists if any survive before 1737.
 1b. Jørgen Pedersen and Mette Pedersdatter: burials after 1744, Jerslev.
-2. Mette's siblings: Jerslev baptisms 1708–1715 for "Peder Pedersen i Sterup"; the mother's name from any of them. Age of the Peder Pedersen buried 1739 from a probate, if any.
+2. Mette's siblings: Jerslev baptisms 1708–1715 for "Peder Pedersen i Sterup". Burials 1707–1725 for Karen Jensdatter and the younger Peder. Probate (skifte) for old Peder Pedersen 1705 or his wife 1702 under the estate owning Sterup no. 2 would name the children and prove the link to the younger Peder.
 3. Peder Jørgensen's confirmation c. 1744–46 (Jerslev or Hellevad confirmation lists from 1737) and his burial after 1801 (Skæve).
 4. Simon Pedersen's baptism c. 1777–78, now to be sought under father Peder Jørgensen: Hellevad 1776–78 reread for that name; Ørum/Hellum pages; Skæve 1778 reread.
 5. Inger Christensdatter's baptism c. 1731–36 and parents (Hellevad, Ørum, Hellum).
@@ -131,7 +142,8 @@ Ancestry and have not yet been checked. Items marked **[hypothesis]** are infere
 7. Thomas Simonsen's marriage and the 1850 Skæve census household at Lille Nejsum.
 
 ## Image references
-- Jerslev kirkebog 1684–: Danish Family Search folder `ch/359/133720/`, images 14415760–14416000. Baptisms c. 14415784–14415880 (1693–1707 at 14415784–14415800: 1703 Sterup entries 14415795 right page, 1705 Mette 14415798 left page; 1727–33 at 14415864–871); marriages 14415895–14415915 (1690–1780; 1725–29 at 14415903); burials 14415940–14415979 (1725–34 at 14415960–962; 1738–39 at 14415964); baptisms 1780s–90s 14415980–14416000.
+- Jerslev herreds tingbøger 1631–1688, Brejl extracts: brejl.dk (Jerslev herred, parts 1–2).
+- Jerslev kirkebog 1684–: Danish Family Search folder `ch/359/133720/`, images 14415760–14416000. Baptisms c. 14415784–14415880 (1693–1707 at 14415784–14415800: 1703 Sterup entries 14415795 right page, 1705 Mette 14415798 left page; 1727–33 at 14415864–871); marriages 14415895–14415915 (1690–1780; 1725–29 at 14415903); burials 14415940–14415979 (1693–1707 at 14415944–951, read in full; 1725–34 at 14415960–962; 1738–39 at 14415964); baptisms 1780s–90s 14415980–14416000.
 - Hellevad–Ørum–Hellum kirkebog 1646–: Rigsarkivet images from 27494689 (1777 Hellevad baptisms at +310 and +359).
 - Skæve kirkebog: Rigsarkivet images from 28361212 (1776–77 baptisms at +213 to +215; vol. 2 from +240, 1778 at +243–244).
 - Hellevad 1850 census: Danish Family Search folder `ft/1850/30423/`.
