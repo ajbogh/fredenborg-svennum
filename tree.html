@@ -105,6 +105,8 @@ a{color:var(--path)}
 .rel dt{color:var(--muted);font-size:12px;letter-spacing:.05em;text-transform:uppercase;padding-top:2px}
 .rel dd{margin:0}
 .rel button{appearance:none;background:none;border:0;padding:0;font:inherit;color:var(--path);cursor:pointer;text-decoration:underline;text-underline-offset:2px;text-align:left}
+.plink{color:var(--path);text-decoration:underline;text-underline-offset:2px}
+.plink::after{content:"↗";font-size:.75em;margin-left:1px;vertical-align:super;text-decoration:none;display:inline-block}
 .story p{font-family:var(--display);font-size:17px;line-height:1.62;max-width:none}
 .story p:first-child::first-letter{font-size:2.6em;float:left;line-height:.9;padding:4px 6px 0 0;font-weight:600;color:var(--accent)}
 .dbody h3{font-family:var(--sans);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:22px 0 8px;font-weight:600}
@@ -177,7 +179,7 @@ a{color:var(--path)}
       <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline id="route" fill="none" stroke="var(--path)" stroke-width="3" stroke-dasharray="7 6" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg>
     </div>
     <div class="mapkey"><span><i class="sw"></i>Homes of the direct line, in order</span></div>
-    <p class="fine" style="margin-top:8px">The farms at Lille Nejsum and Raunsholt are traced on their own page, <a href="nejsum.html">Finding Lille Nejsum</a>. Vester Mølle and the farm Hørkær in Kirkeskov have not been located on a modern map. Events there are shown at Jerslev church and Hellevad church. Basemap: Danmarks Topografiske Kortværk, skærmkort, Klimadatastyrelsen open data. Place positions from the Danish place-name register.</p>
+    <p class="fine" style="margin-top:8px">The farms at Lille Nejsum and Raunsholt are traced on their own page, <a href="nejsum.html" target="_blank" rel="noopener">Finding Lille Nejsum</a>. Vester Mølle and the farm Hørkær in Kirkeskov have not been located on a modern map. Events there are shown at Jerslev church and Hellevad church. Basemap: Danmarks Topografiske Kortværk, skærmkort, Klimadatastyrelsen open data. Place positions from the Danish place-name register.</p>
   </section>
 
   <section class="card" aria-labelledby="gal-h">
@@ -198,7 +200,7 @@ a{color:var(--path)}
 
   <section class="card" aria-labelledby="src-h">
     <h2 id="src-h">Sources</h2>
-    <p class="fine">Jerslev–Vester Brønderslev parish register from 1684, Hellevad–Ørum–Hellum register, Skæve register, and Øster Brønderslev–Hallund register from 1700 (Rigsarkivet, images via Danish Family Search and Arkivalieronline). Censuses of 1787, 1801, 1834, 1845 and 1850. Christian V's land register, 1688, Jerslev herred. Jerslev herred court books 1631 to 1688, extracts by Brejl. Full working notes, with image numbers for every record, are in <a href="https://github.com/ajbogh/fredenborg-svennum/blob/main/FAMILY-RECORD.md">FAMILY-RECORD.md</a>. Simon Pedersen's farm is located in <a href="nejsum.html">Finding Lille Nejsum</a>. The search for Fredenborg, the house once thought to start this line, is told in <a href="index.html">Finding Fredenborg</a>. That family turned out to be a different one.</p>
+    <p class="fine">Jerslev–Vester Brønderslev parish register from 1684, Hellevad–Ørum–Hellum register, Skæve register, and Øster Brønderslev–Hallund register from 1700 (Rigsarkivet, images via Danish Family Search and Arkivalieronline). Censuses of 1787, 1801, 1834, 1845 and 1850. Christian V's land register, 1688, Jerslev herred. Jerslev herred court books 1631 to 1688, extracts by Brejl. Full working notes, with image numbers for every record, are in <a href="https://github.com/ajbogh/fredenborg-svennum/blob/main/FAMILY-RECORD.md">FAMILY-RECORD.md</a>. Simon Pedersen's farm is located in <a href="nejsum.html" target="_blank" rel="noopener">Finding Lille Nejsum</a>. The search for Fredenborg, the house once thought to start this line, is told in <a href="index.html">Finding Fredenborg</a>. That family turned out to be a different one.</p>
   </section>
 </div>
 
@@ -397,7 +399,7 @@ simon:{name:"Simon Pedersen",tag:"of Lille Nejsum",born:"c. 1777",died:"25 Jul 1
  story:[
  "Simon was the youngest child of Peder Jørgensen and Inger Christensdatter, born about 1777. In his old age he told the census takers he was born in Hellevad parish. He carried the name of his mother's brother, Simon Christensen of Allerup. He was nine when the family is recorded at Raunsholt in Skæve parish in 1787. By 1801, about twenty-three, he had gone into service on another farm, as young men did.",
  "His married life began with grief. In 1810 he married Mette Hansdatter, and she died in March 1812. In November 1812 he married Maren Larsdatter. On 19 July 1813 she gave birth to a daughter and died the same day. Four days later, on 23 July 1813, with a newborn in the house, he married Ane Thomasdatter. A farm could not run without a wife, and a motherless baby could not wait. The haste was not coldness.",
- "This third marriage lasted forty years. Simon was now a farmer at [[Lille Nejsum|n_simon]]. On the survey of 1813 his name is written across its fields, beside his partner Anders Christensen. Søndre Raunsholt, very probably his parents' farm, lay just across the stream meadow. On 16 December 1814 Ane bore a son, baptised at home the next day and named Thomas for her father. Mette followed around 1818, Christen around 1820, and Inger around 1825. Mette may honour his grandmother or his first wife. Christen was named for his grandfather, and Inger for his mother.",
+ "This third marriage lasted forty years. Simon was now a farmer at Lille Nejsum. On the survey of 1813 [[his name is written across its fields|n_simon]], beside his partner Anders Christensen. Søndre Raunsholt, very probably his parents' farm, lay just across the stream meadow. On 16 December 1814 Ane bore a son, baptised at home the next day and named Thomas for her father. Mette followed around 1818, Christen around 1820, and Inger around 1825. Mette may honour his grandmother or his first wife. Christen was named for his grandfather, and Inger for his mother.",
  "In the 1834 census he is sixty, a farmer with Ane, four children and a servant. By 1845 he had handed the farm to his son Thomas and lived on as aftægtsmand, a retired father kept by the farm under contract. The 1850 census finds him there at seventy-three, now with a new grandson, Christen, born that August.",
  "Simon Pedersen died on 25 July 1853, most likely at Lille Nejsum, aged seventy-six, and was buried at Skæve. He had buried two wives and lived to see his grandson begin to walk on the farm he had worked for forty years."],
  sources:["Census 1787, Raunsholt: Simon, 9, child of Peder and Inger.","Skæve marriages 1810, 1812, 23 Jul 1813 (reported by the researcher from the Skæve register).","Skæve baptisms, 17 Dec 1814.","Censuses 1834, 1840, 1845, 1850, Lille Nejsum.","Skæve burials, 1853, aged 76."]},
@@ -514,6 +516,10 @@ const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const yrs=p=>{const b=(p.born||"").match(/\d{4}/),d=(p.died||"").match(/\d{4}/);const pre=/^after/.test(p.died||"")?"aft. ":/^before/.test(p.died||"")?"bef. ":"";return (b?((/c\.|–/.test(p.born)?"c. ":"")+b[0]):"?")+" – "+(d?pre+d[0]:"?");};
 const linkify=t=>esc(t).replace(/\[\[([^|\]]+)\|([a-z0-9_]+)\]\]/g,(m,txt,k)=>IMG[k]?`<button class="ilink" data-img="${k}">${txt}</button>`:txt);
+const NEJSUM_RE=/(Søndre Raunsholt|Nørre Raunsholt|Lille Nejsum|Lille Neisum|Raunsholt)/g;
+const placeLink=html=>{let depth=0;return html.split(/(<[^>]+>)/).map(seg=>{
+  if(seg.startsWith("<")){if(/^<(button|a)\b/i.test(seg))depth++;else if(/^<\/(button|a)>/i.test(seg))depth--;return seg;}
+  return depth>0?seg:seg.replace(NEJSUM_RE,'<a class="plink" href="nejsum.html" target="_blank" rel="noopener" title="Open Finding Lille Nejsum in a new tab">$1</a>');}).join("");};
 const thumb=(k,set)=>`<button class="thumb" data-img="${k}" data-set="${(set||[]).join(",")}"><img src="${IMG[k].src}" alt="" loading="lazy"><span>${esc(IMG[k].t)}</span></button>`;
 const short=p=>{const b=(p.born||"").match(/\d{4}/);return b?b[0]:"";};
 
@@ -561,7 +567,7 @@ function openPerson(id,push=true){
   $("#d-badge").className="badge "+p.status; $("#d-badge").textContent=STATUS[p.status];
   $("#d-name").textContent=p.name;
   const bpl=p.bp&&PLACES[p.bp]?" · "+PLACES[p.bp].name.replace(" church",""):"";
-  $("#d-life").textContent=`Born ${p.born}${bpl} · Died ${p.died}`;
+  $("#d-life").innerHTML=placeLink(esc(`Born ${p.born}${bpl} · Died ${p.died}`));
   const r=p.rel||{};
   let rel="";
   if(id==="jorgen") rel+=`<dt>Parents</dt><dd>A father named Peder; not yet identified</dd>`;
@@ -570,10 +576,10 @@ function openPerson(id,push=true){
   if(r.siblings) rel+=`<dt>Siblings</dt><dd>${relLinks(r.siblings)}</dd>`;
   if(r.children) rel+=`<dt>Children</dt><dd>${relLinks(r.children)}</dd>`;
   const ev=E.filter(e=>e.who.includes(id)).sort((a,b)=>a.d.localeCompare(b.d));
-  const tl=ev.map(e=>`<li class="${e.who[0]===id?"self":""}"><span class="d">${esc(e.ds)}${e.rep?" · reported":""}${e.prob?" · probable":""}</span>${esc(e.t)}${e.pl?` <span class="pl">· ${esc(PLACES[e.pl].name)}</span>`:""}</li>`).join("");
+  const tl=ev.map(e=>`<li class="${e.who[0]===id?"self":""}"><span class="d">${esc(e.ds)}${e.rep?" · reported":""}${e.prob?" · probable":""}</span>${placeLink(esc(e.t))}${e.pl?` <span class="pl">· ${placeLink(esc(PLACES[e.pl].name))}</span>`:""}</li>`).join("");
   const i=ORDER.indexOf(id),prev=ORDER[i-1],next=ORDER[i+1];
   $("#d-body").innerHTML=`<dl class="rel">${rel}</dl>
-    <div class="story">${p.story.map(s=>`<p>${linkify(s)}</p>`).join("")}</div>
+    <div class="story">${p.story.map(s=>`<p>${placeLink(linkify(s))}</p>`).join("")}</div>
     ${p.imgs&&p.imgs.length?`<h3>Images</h3><div class="thumbs">${p.imgs.map(k=>thumb(k,p.imgs)).join("")}</div>`:""}
     ${tl?`<h3>Life events</h3><ul class="tl">${tl}</ul>`:""}
     <h3>Records</h3><ul class="src">${p.sources.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
@@ -613,7 +619,8 @@ function showPop(k){
   const ev=E.filter(e=>e.pl===k).sort((a,b)=>a.d.localeCompare(b.d));
   const items=ev.map(e=>`<li><span class="d">${esc(e.ds.replace(/^\d+ \w+ /,""))}</span><span><button data-id="${e.who[0]}">${esc(e.t)}</button></span></li>`).join("")||`<li><span></span><span>No dated events.</span></li>`;
   const d=document.createElement("div"); d.className="pop"; d.setAttribute("role","dialog"); d.setAttribute("aria-label",pl.name);
-  d.innerHTML=`<button class="x" aria-label="Close">×</button><h3>${esc(pl.name)}</h3><p class="note">${esc(pl.note)}</p><ul>${items}</ul>`;
+  const more=(k==="nejsum"||k==="raunsholt")?`<p class="note"><a href="nejsum.html" target="_blank" rel="noopener">Open Finding Lille Nejsum ↗</a></p>`:"";
+  d.innerHTML=`<button class="x" aria-label="Close">×</button><h3>${esc(pl.name)}</h3><p class="note">${placeLink(esc(pl.note))}</p>${more}<ul>${items}</ul>`;
   m.appendChild(d);
   const W=m.clientWidth,H=m.clientHeight,pw=d.offsetWidth,ph=d.offsetHeight;
   let left=x/100*W+14, top=y/100*H-ph/2;
