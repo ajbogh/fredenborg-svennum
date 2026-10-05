@@ -126,10 +126,11 @@ tr.hl td{background:var(--accent-soft);font-weight:600}
 
   <section class="card" id="compare">
     <h2>Then and now: drag the divider</h2>
-    <p>The 1884 General Staff map, today's lidar terrain and contours, and the 2024 orthophoto, all on one coordinate frame. All of them come georeferenced from the Danish map services. On the 1884 sheet, the farms of old Klæstrup cluster round the spot height 104, north of the word "Klæstrup". The school, the smithy ("Smedi") and Koldnaae ("Kolnaa") line the road below. Blue ditches drain a wet meadow to the north-west, and a small watercourse leaves the ponds toward the north-east.</p>
+    <p>Marinus's map, the 1884 General Staff map, today's lidar terrain and contours, and the 2024 orthophoto, all on one coordinate frame. The survey layers come georeferenced from the Danish map services. Marinus's sketch has no scale or grid, so it was fitted by matching seventeen of his numbered houses to their addresses and solving for the best turn, stretch and skew. A sketch drawn from memory can't be exact: his houses land a median of about 50 m from their true places. Because he drew with south at the top, his writing reads upside down once the map is turned to north. Tick "Marinus's map over" to lay his lines on any other layer. On the 1884 sheet, the farms of old Klæstrup cluster round the spot height 104, north of the word "Klæstrup". The school, the smithy ("Smedi") and Koldnaae ("Kolnaa") line the road below. Blue ditches drain a wet meadow to the north-west, and a small watercourse leaves the ponds toward the north-east.</p>
     <div class="cmp-controls">
-      <label>Left <select id="cmp-left"><option value="gs" selected>1884 General Staff</option><option value="hs">Lidar terrain</option><option value="or">2024 orthophoto</option><option value="c05">0.5 m contours</option><option value="c25">2.5 m contours</option></select></label>
-      <label>Right <select id="cmp-right"><option value="gs">1884 General Staff</option><option value="hs">Lidar terrain</option><option value="or" selected>2024 orthophoto</option><option value="c05">0.5 m contours</option><option value="c25">2.5 m contours</option></select></label>
+      <label>Left <select id="cmp-left"><option value="mm">Marinus's map (fitted)</option><option value="gs" selected>1884 General Staff</option><option value="hs">Lidar terrain</option><option value="or">2024 orthophoto</option><option value="c05">0.5 m contours</option><option value="c25">2.5 m contours</option></select></label>
+      <label>Right <select id="cmp-right"><option value="mm">Marinus's map (fitted)</option><option value="gs">1884 General Staff</option><option value="hs">Lidar terrain</option><option value="or" selected>2024 orthophoto</option><option value="c05">0.5 m contours</option><option value="c25">2.5 m contours</option></select></label>
+      <label><input type="checkbox" id="cmp-mm"> Marinus's map over</label>
       <label><input type="checkbox" id="cmp-c25"> 2.5 m contours over</label>
       <label><input type="checkbox" id="cmp-pins" checked> Pins</label>
       <label>Zoom <input type="range" id="cmp-zoom" min="1" max="5" step="0.1" value="1.6"></label>
@@ -138,6 +139,7 @@ tr.hl td{background:var(--accent-soft);font-weight:600}
       <div class="cmp-stage" id="cmp-stage">
         <img class="cmp-layer" id="cmp-img-r" src="img/klaestrup/ortho_2024.jpg" alt="2024 orthophoto of Klæstrup" draggable="false">
         <img class="cmp-layer" id="cmp-img-l" src="img/klaestrup/gs_1884.jpg" alt="1884 General Staff map of Klæstrup" draggable="false">
+        <img class="cmp-layer" id="cmp-mm-img" src="img/klaestrup/marinus_overlay.png" alt="" hidden draggable="false">
         <img class="cmp-layer" id="cmp-c25-img" src="img/klaestrup/c25.png" alt="" hidden draggable="false">
         <div class="cmp-pins" id="cmp-pinlayer"></div>
       </div>
@@ -284,7 +286,7 @@ const thumb=(k,set)=>`<button class="thumb" data-img="${k}" data-set="${set.join
 $("#gallery").innerHTML=GALLERY.map(k=>thumb(k,GALLERY)).join("");
 /* ---------- slider ---------- */
 (function(){
-  const SRC={gs:'img/klaestrup/gs_1884.jpg',hs:'img/klaestrup/hillshade.jpg',or:'img/klaestrup/ortho_2024.jpg',c05:'img/klaestrup/c05.png',c25:'img/klaestrup/c25.png'};
+  const SRC={mm:'img/klaestrup/marinus_fitted.jpg',gs:'img/klaestrup/gs_1884.jpg',hs:'img/klaestrup/hillshade.jpg',or:'img/klaestrup/ortho_2024.jpg',c05:'img/klaestrup/c05.png',c25:'img/klaestrup/c25.png'};
   const PINS=[["#20 Jens Bøgh · matr. 22a",64.0,34.5,false],["#18 Kren Tamsen",56.94,31.26,true],["Osdam (pond)",62.49,41.0,false],["Skole (school)",41.09,72.7,false],["Smedie and købmand, 1900s",31.0,73.5,true],["Smedie, 1884",21.33,68.5,true],["Klæstrup Mølle",85.64,67.57,true],["Kragbak",40.71,42.4,true]];
   const svg='<svg viewBox="0 0 22 30" aria-hidden="true"><path d="M11 1C5.5 1 1 5.4 1 10.9 1 18.3 11 29 11 29s10-10.7 10-18.1C21 5.4 16.5 1 11 1z" fill="#c0392b" stroke="#fff" stroke-width="1.6"/><circle cx="11" cy="11" r="3.6" fill="#fff"/></svg>';
   $("#cmp-pinlayer").innerHTML=PINS.map(([n,x,y,l])=>`<div class="cpin${l?" l":""}" style="left:${x}%;top:${y}%">${svg}<span>${n}</span></div>`).join("");
@@ -293,7 +295,7 @@ $("#gallery").innerHTML=GALLERY.map(k=>thumb(k,GALLERY)).join("");
   $("#cmp-left").addEventListener('change',e=>set(L,e.target.value));
   $("#cmp-right").addEventListener('change',e=>set(R,e.target.value));
   const tog=(id,el)=>{const cb=$(id),t=$(el);const f=()=>{t.hidden=!cb.checked;};cb.addEventListener('change',f);f();};
-  tog('#cmp-c25','#cmp-c25-img'); tog('#cmp-pins','#cmp-pinlayer');
+  tog('#cmp-mm','#cmp-mm-img'); tog('#cmp-c25','#cmp-c25-img'); tog('#cmp-pins','#cmp-pinlayer');
   let z=1.6,px=.56,py=.44,tx=0,ty=0,ox=0,oy=0;
   function clip(){const w=cmp.clientWidth;const s=parseFloat(getComputedStyle(cmp).getPropertyValue('--split'))/100*w;let f=((s-ox)/z)/w;f=Math.min(1,Math.max(0,f));L.style.clipPath='inset(0 '+((1-f)*100)+'% 0 0)';}
   function apply(){const w=cmp.clientWidth,h=cmp.clientHeight;
