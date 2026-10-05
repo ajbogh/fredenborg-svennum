@@ -79,15 +79,15 @@ td.num{font-family:var(--mono);white-space:nowrap}
     <div class="crumbs"><a href="tree.html">The Bøgh Line</a> · <a href="index.html">Finding Fredenborg</a></div>
     <div class="eyebrow">Skæve parish · Dronninglund herred · Vendsyssel, Denmark</div>
     <h1>Finding Lille Nejsum</h1>
-    <p class="lede">Simon Pedersen farmed Lille Nejsum for forty years, from before 1813 until his death in 1853. His son Thomas was born there in 1814 and took the farm over. The farmstead stands today where the surveyors drew it in 1813 and 1884. Next door lies Søndre Raunsholt. That is one of two farms that could be the "Raunsholt" where Simon grew up.</p>
+    <p class="lede">Simon Pedersen farmed Lille Nejsum for forty years, from before 1813 until his death in 1853. His son Thomas was born there in 1814 and took the farm over. The farmstead stands today where the surveyors drew it in 1813 and 1884. Next door lies Søndre Raunsholt. The 1801 census route shows it was very probably the "Raunsholt" where Simon grew up.</p>
   </header>
 
   <section class="card">
     <h2>The answer</h2>
     <div class="verdict">
       <div class="vbox"><b>Lille Nejsum</b><span class="c">57.30484 N, 10.24899 E · ±15 m</span><p>Found. The 1813 survey writes "Simon Pedersen" on the farm's land, and the 1884 map labels the farmstead "L. Nejsum". Today's farmhouse stands 11 m from the 1884 building.</p></div>
-      <div class="vbox open"><b>Søndre Raunsholt</b><span class="c">57.30155 N, 10.24620 E · ±15 m</span><p>Located, about 400 m south-west of Lille Nejsum, across the stream meadow. Whether this is the Raunsholt of the 1787 and 1801 censuses is still open.</p></div>
-      <div class="vbox open"><b>Nørre Raunsholt</b><span class="c">c. 57.319 N, 10.233 E</span><p>The other Raunsholt in Skæve parish, about 1.9 km north-west. It is the other candidate for Peder Jørgensen's farm.</p></div>
+      <div class="vbox"><b>Søndre Raunsholt</b><span class="c">57.30155 N, 10.24620 E · ±15 m</span><p>Very probably Peder Jørgensen's farm. It lies about 400 m south-west of Lille Nejsum, across the stream meadow. The 1801 census lists it between Hytten and Mølbak, its southern neighbours.</p></div>
+      <div class="vbox open"><b>Nørre Raunsholt</b><span class="c">c. 57.319 N, 10.233 E</span><p>The other Raunsholt in Skæve parish, about 1.9 km north-west, beside Vrængmose. The 1801 census route makes it unlikely.</p></div>
     </div>
   </section>
 
@@ -130,12 +130,12 @@ td.num{font-family:var(--mono);white-space:nowrap}
   </section>
 
   <section class="card">
-    <h2>Which Raunsholt?</h2>
+    <h2>Which Raunsholt? Very probably Søndre</h2>
     <p>The 1787 and 1801 censuses place Peder Jørgensen and Inger Christensdatter at "Raunsholt" in Skæve parish, with their son Christen and, in 1787, their youngest son Simon. Skæve had two farms of that name. The <button class="ilink" data-img="o1813_sheet">1813 survey</button> draws <button class="ilink" data-img="nr">"N: Raunsholt"</button> as a lone house symbol at the edge of the sheet, and surveys <button class="ilink" data-img="ln_rh">"S. Raunsholt"</button> in full, next to Lille Nejsum. The <button class="ilink" data-img="gs_wide">1884 map</button> labels the northern farm "Nre Ravnsholt" and the southern one with an abbreviated "S".</p>
     <ul>
       <li><strong>For Søndre Raunsholt:</strong> it is Lille Nejsum's nearest neighbour. Simon, who grew up at Raunsholt, ended up farming the land next door, which is just how farm families of the time moved.</li>
       <li><strong>Against it, or at least not for it:</strong> in 1813 the surveyor wrote <button class="ilink" data-img="rh_names">"Mathias Sørensen"</button> as the holder of Søndre Raunsholt, with a later name in red. No member of Peder Jørgensen's family appears there. By 1813 Peder was dead or past eighty, so this does not rule it out.</li>
-      <li><strong>How to settle it:</strong> the census pages themselves. Danish censuses of 1787 and 1801 often head each household with the full farm name, Nørre or Søndre. The Skæve entries for 1787 and 1801 would decide it in one look.</li>
+      <li><strong>The census route decides it.</strong> Censuses were taken household by household along the enumerator's path. In 1801 he went Bås, Tuen, Krogen, Hytten, then Raunholt with Peder Jørgensen, then Mølbak, Nymølle, Nødbakken and Mosen. All of those farms are on the 1813 sheet that surveys Søndre Raunsholt, and Krogen, Hytten and Mølbak lie just south of it. Nørre Raunsholt's neighbours, Lille Vrængmose and Vrængmose, come later, as households 16 and 17. Søndre Raunsholt is very probably the family's farm. The 1813 holder, Mathias Sørensen, would then be the tenant who followed Peder after his death.</li>
     </ul>
   </section>
 
@@ -178,7 +178,7 @@ $("#gallery").innerHTML=GALLERY.map(k=>thumb(k,GALLERY)).join("");
 /* ---------- slider ---------- */
 (function(){
   const SRC={o13:'img/nejsum/o1813_fitted.jpg',gs:'img/nejsum/gs_1884.jpg',hs:'img/nejsum/hillshade.jpg',or:'img/nejsum/ortho_2024.jpg',c05:'img/nejsum/c05.png',c25:'img/nejsum/c25.png'};
-  const PINS=[["Lille Nejsum",56.85,39.17,false],["Søndre Raunsholt",47.25,58.53,true],["Store Nejsum",80.8,2.6,true]];
+  const PINS=[["Lille Nejsum",56.85,39.17,false],["Søndre Raunsholt (Peder Jørgensen)",47.25,58.53,true],["Store Nejsum",80.8,2.6,true]];
   const svg='<svg viewBox="0 0 22 30" aria-hidden="true"><path d="M11 1C5.5 1 1 5.4 1 10.9 1 18.3 11 29 11 29s10-10.7 10-18.1C21 5.4 16.5 1 11 1z" fill="#c0392b" stroke="#fff" stroke-width="1.6"/><circle cx="11" cy="11" r="3.6" fill="#fff"/></svg>';
   $("#cmp-pinlayer").innerHTML=PINS.map(([n,x,y,l])=>`<div class="cpin${l?" l":""}" style="left:${x}%;top:${y}%">${svg}<span>${n}</span></div>`).join("");
   const cmp=$("#cmp"),stage=$("#cmp-stage"),L=$("#cmp-img-l"),R=$("#cmp-img-r");
