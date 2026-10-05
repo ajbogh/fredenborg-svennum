@@ -181,7 +181,7 @@ a{color:var(--path)}
       <img src="img/line_basemap.jpg" alt="Topographic map of central Vendsyssel from Klæstrup in the west to Skæve in the east">
       <svg id="routesvg" aria-hidden="true"></svg><div id="leglabels"></div>
     </div>
-    <p class="fine" style="margin-top:8px">The farms at Lille Nejsum and Raunsholt are traced on their own page, <a href="nejsum.html" target="_blank" rel="noopener">Finding Lille Nejsum</a>. Vester Mølle and the farm Hørkær in Kirkeskov have not been located on a modern map. Events there are shown at Jerslev church and Hellevad. Basemap: Danmarks Topografiske Kortværk, skærmkort, Klimadatastyrelsen open data. Place positions from the Danish place-name register.</p>
+    <p class="fine" style="margin-top:8px">The farms at Lille Nejsum and Raunsholt are traced on their own page, <a href="nejsum.html" target="_blank" rel="noopener">Finding Lille Nejsum</a>, and the Bøgh farm at Klæstrup on <a href="bogh.html" target="_blank" rel="noopener">Finding the Bøgh Farm</a>. Vester Mølle and the farm Hørkær in Kirkeskov have not been located on a modern map. Events there are shown at Jerslev church and Hellevad. Basemap: Danmarks Topografiske Kortværk, skærmkort, Klimadatastyrelsen open data. Place positions from the Danish place-name register.</p>
   </section>
 
   <section class="card" aria-labelledby="gal-h">
@@ -202,7 +202,7 @@ a{color:var(--path)}
 
   <section class="card" aria-labelledby="src-h">
     <h2 id="src-h">Sources</h2>
-    <p class="fine">Jerslev–Vester Brønderslev parish register from 1684, Hellevad–Ørum–Hellum register, Skæve register, and Øster Brønderslev–Hallund register from 1700 (Rigsarkivet, images via Danish Family Search and Arkivalieronline). Censuses of 1787, 1801, 1834, 1845 and 1850. Christian V's land register, 1688, Jerslev herred. Jerslev herred court books 1631 to 1688, extracts by Brejl. Full working notes, with image numbers for every record, are in <a href="https://github.com/ajbogh/fredenborg-svennum/blob/main/FAMILY-RECORD.md">FAMILY-RECORD.md</a>. Simon Pedersen's farm is located in <a href="nejsum.html" target="_blank" rel="noopener">Finding Lille Nejsum</a>. The search for Fredenborg, the house once thought to start this line, is told in <a href="index.html">Finding Fredenborg</a>. That family turned out to be a different one.</p>
+    <p class="fine">Jerslev–Vester Brønderslev parish register from 1684, Hellevad–Ørum–Hellum register, Skæve register, and Øster Brønderslev–Hallund register from 1700 (Rigsarkivet, images via Danish Family Search and Arkivalieronline). Censuses of 1787, 1801, 1834, 1845 and 1850. Christian V's land register, 1688, Jerslev herred. Jerslev herred court books 1631 to 1688, extracts by Brejl. Full working notes, with image numbers for every record, are in <a href="https://github.com/ajbogh/fredenborg-svennum/blob/main/FAMILY-RECORD.md">FAMILY-RECORD.md</a>. The family's last home, the Bøgh farm at Klæstrup, is found in <a href="bogh.html" target="_blank" rel="noopener">Finding the Bøgh Farm</a>. Simon Pedersen's farm is located in <a href="nejsum.html" target="_blank" rel="noopener">Finding Lille Nejsum</a>. The search for Fredenborg, the house once thought to start this line, is told in <a href="index.html">Finding Fredenborg</a>. That family turned out to be a different one.</p>
   </section>
 </div>
 
@@ -233,7 +233,7 @@ const PLACES={
   villestrup:{name:"Villestrup",lat:57.32560,lon:10.17890,note:"Farm on the eastern edge of Jerslev parish. Written Willestrup in 1662."},
   krattet:{name:"Krattet",lat:57.32894,lon:10.13325,note:"Hamlet beside Sterup, written Sterupkrat in 1606.",left:true},
   jerslev:{name:"Jerslev church",lat:57.28364,lon:10.09036,note:"Parish church of Jerslev, with Vester Brønderslev in the same pastorate. Vester Mølle, the parish mill, has not been located; its events are shown here."},
-  klaestrup:{name:"Klæstrup",lat:57.28272,lon:10.05517,note:"Hamlet 2 km west of Jerslev church.",left:true},
+  klaestrup:{name:"Klæstrup",lat:57.28555,lon:10.06240,note:"Village 2 km west of Jerslev church. The pin marks the Bøgh farm, Marinus Bøgh's house no. 20, at Gl. Klæstrupvej 41.",left:true},
   hellevad:{name:"Hellevad",lat:57.21288,lon:10.15274,note:"Hellevad parish church, for Hellevad, Ørum and Hellum. The farm Hørkær in Kirkeskov, Hellevad parish, has not been located; its events are shown here."},
   allerup:{name:"Allerup",lat:57.23040,lon:10.19240,note:"Village in Hellevad parish. Home of Simon Christensen, probably Inger Christensdatter's brother."},
   raunsholt:{name:"Søndre Raunsholt",lat:57.30155,lon:10.24620,note:"Farm in Skæve parish, about 400 m from Lille Nejsum across the stream meadow. Very probably Peder Jørgensen's farm: the 1801 census lists it between its southern neighbours Hytten and Mølbak. Skæve also had a Nørre Raunsholt, 1.9 km north-west.",left:true},
@@ -246,7 +246,7 @@ const LEGS=[
  {from:"villestrup",to:"hellevad",d:"by 1760",why:"Peder Jørgensen in service at Hørkær, Hellevad parish, when he marries Inger Christensdatter",who:["pj","inger"]},
  {from:"hellevad",to:"raunsholt",d:"1777–87",why:"Peder Jørgensen's family moves to Raunsholt, Skæve parish",who:["pj","inger","simon"]},
  {from:"raunsholt",to:"nejsum",d:"by 1813",why:"Simon Pedersen takes the farm at Lille Nejsum",who:["simon"],loop:true},
- {from:"nejsum",to:"klaestrup",d:"by 1876",why:"Christen Thomsen settles at Klæstrup, Jerslev parish",who:["christen","jks"],bend:0.2}];
+ {from:"nejsum",to:"klaestrup",d:"by 1876",why:"Christen Thomsen settles at Klæstrup, Jerslev parish, where the family takes the name Bøgh",who:["christen","jks"],bend:0.2}];
 
 /* ===================== IMAGES ===================== */
 const IMG={
@@ -268,9 +268,12 @@ const IMG={
  r1760:{src:"img/records/1760_marriage_peder_inger.jpg",t:"Marriage of Peder Jørgensen and Inger Christensdatter, 1760",cap:"The Hellevad marriage entry: the young man Peder Jørgensen and the maid Inger Christensdatter, both of Hørkær, betrothed 11 November and married 15 December 1760.",ref:"Hellevad–Ørum–Hellum parish register, marriages 1760"},
  n_simon:{src:"img/nejsum/r_1813_simon_pedersen.jpg",t:"\"Simon Pedersen og Anders Christensen\", 1813",cap:"On the 1813 survey of central Skæve, the holders of Lille Nejsum are written across the field north of the farmstead: Simon Pedersen and Anders Christensen. The full story of the farm is on the Finding Lille Nejsum page.",ref:"Original 1, Den mellemste Del, Skæve, surveyed 1813 (Klimadatastyrelsen)"},
  n_ln_rh:{src:"img/nejsum/r_1813_nejsum_raunsholt.jpg",t:"Lille Nejsum and Søndre Raunsholt, 1813",cap:"Lille Neisum at the top, its farmhouses in red at the road junction, and S. Raunsholt across the stream meadow below.",ref:"Original 1, Den mellemste Del, Skæve, surveyed 1813"},
+ b_marinus:{src:"https://arkibasapi-apim.azure-api.net/filer/visning/46f8e82dc96d4cbaaefd863ef9e73a62",t:"Klæstrup, drawn from memory by Marinus Bøgh",cap:"Marinus Bøgh's map of Klæstrup, with 37 numbered houses. South is at the top. House 20, Jens Bøgh, is in the middle beside Osdam, the pond; house 18, Kren Tamsen (Thomsen), is just right of it.",ref:"Egnsmindesamlingen for Jerslev og Omegn, B1934, arkiv.dk/vis/3759332"},
+ b_core:{src:"img/klaestrup/r_1884_cadastral_core.jpg",t:"Old Klæstrup's village green",cap:"The core of Klæstrup on the cadastral map: lanes radiating from a green with two ponds. The Bøgh farm's plot lies on the south side of the green beside the western pond.",ref:"Original 2, Klæstrup By, surveyed 1806, redrawn 1884"},
+ b_today:{src:"img/klaestrup/r_22a_ortho2024.jpg",t:"The Bøgh farm today",cap:"Land parcel 22a outlined in red: the wooded plot and farmhouse at Gl. Klæstrupvej 41.",ref:"GeoDanmark orthophoto 2024; Matriklen"},
  r1763:{src:"img/records/1763_baptism_christen.jpg",t:"Baptism of Christen Pedersen, 1763",cap:"'d. 20 Novbr. Peder Jørgensens og Inger Christensdatters barn af Hørkied i Kirkeskov, kaldet Christen. Frembaaret af Maren Hansdatter fra Brønhaven i Voer Sogn...' The godfathers, Jens Andersen of Fodtved, Christen Nielsen of Kirkeskov and Simon Christensen of Allerup, follow.",ref:"Hellevad–Ørum–Hellum parish register, baptisms 1763"}
 };
-const GALLERY=["n_simon","n_ln_rh","m1688_no2","o1813_full","o1813_village","o1813_title","m1688_page","r1701","r1702b","r1702d","r1703","r1705d","r1705b","r1727","r1728","r1729","r1739","r1760","r1763"];
+const GALLERY=["b_marinus","b_today","n_simon","n_ln_rh","m1688_no2","o1813_full","o1813_village","o1813_title","m1688_page","r1701","r1702b","r1702d","r1703","r1705d","r1705b","r1727","r1728","r1729","r1739","r1760","r1763"];
 
 /* ===================== PEOPLE ===================== */
 const P={
@@ -456,20 +459,23 @@ s_inger:{name:"Inger Simonsdatter",tag:"daughter of Simon and Ane",born:"c. 1825
  story:["Inger, the youngest, was nine in 1834. She was named for her grandmother, Inger Christensdatter of Raunsholt."],
  sources:["Census 1834, Lille Nejsum."]},
 
-christen:{name:"Christen (Kresten) Thomsen",tag:"",born:"7 Aug 1850",died:"not yet recorded",bp:"skaeve",dp:null,status:"reported",direct:true,
+christen:{name:"Christen (Kresten) Thomsen",tag:"of Klæstrup",born:"7 Aug 1850",died:"not yet recorded",bp:"skaeve",dp:null,status:"reported",direct:true,
  rel:{parents:["thomas"],children:["jks"]},
- story:["Christen Thomsen was born on 7 August 1850 in Skæve parish, most likely at Lille Nejsum, where his father Thomas farmed. His grandfather Simon, then seventy-three, was living in the house as a retired father, and died when Christen was almost three.","Sometime before 1876 he moved west to Klæstrup in Jerslev parish. That was the parish his great-grandfather Peder Jørgensen had left more than a century before. His son Jens Kristian Severin was born there in April 1876. His baptism, marriage and death are still to be read from the registers."],
- sources:["Birth as given in the family record. Not yet checked against the image."]},
+ imgs:["b_marinus","b_core"],
+ story:["Christen Thomsen was born on 7 August 1850 in Skæve parish, most likely at Lille Nejsum, where his father Thomas farmed. His grandfather Simon, then seventy-three, was living in the house as a retired father, and died when Christen was almost three.","Sometime before 1876 he moved west to Klæstrup in Jerslev parish. That was the parish his great-grandfather Peder Jørgensen had left more than a century before. His son Jens Kristian Severin was born there in April 1876.","On the [[map Marinus Bøgh drew of Klæstrup from memory|b_marinus]], house no. 18, at Gl. Klæstrupvej 33, belongs to \"Kren Tamsen (Thomsen)\". Kren is the Vendsyssel form of Christen. The house stands two doors from no. 20, the Bøgh house. It is very likely Christen or his household, though no record yet joins the two. His baptism, marriage and death are still to be read from the registers."],
+ sources:["Birth as given in the family record. Not yet checked against the image.","Marinus Bøgh's map of Klæstrup, no. 18 (Egnsmindesamlingen for Jerslev og Omegn, B1934)."]},
 
-jks:{name:"Jens Kristian Severin Thomsen Bøgh",tag:"of Klæstrup",born:"22 Apr 1876",died:"not yet recorded",bp:"klaestrup",dp:null,status:"reported",direct:true,
+jks:{name:"Jens Kristian Severin Thomsen Bøgh",tag:"of the Bøgh farm, Klæstrup",born:"22 Apr 1876",died:"not yet recorded",bp:"klaestrup",dp:null,status:"reported",direct:true,
  rel:{parents:["christen"],children:["jkm"]},
- story:["Jens Kristian Severin was born at Klæstrup, a hamlet 2 km west of Jerslev church, on 22 April 1876. He was the first of the line to carry the name Bøgh. Families of this period often took a farm name or byname as a fixed surname, as the naming laws of 1828 and 1856 encouraged.","He was born four kilometres from Sterup, where the line begins. His son Jens Kristian Marinus was born at Klæstrup in 1903."],
- sources:["Birth as given in the family record. Not yet checked against the image."]},
+ imgs:["b_marinus","b_core","b_today"],
+ story:["Jens Kristian Severin was born at Klæstrup, in Jerslev parish, on 22 April 1876, the son of Christen Thomsen. He kept his father's patronymic, Thomsen, and added a surname no one before him in this line had used: Bøgh.","The name came with a house. Marinus Bøgh's map of Klæstrup puts \"Jens Bøgh\" at no. 20, the farm on the old village green at Gl. Klæstrupvej 41, beside the pond the village called Osdam. [[That farm still stands|b_today]], on land parcel 22a, where the 1884 General Staff map already drew it.","Marinus wrote that the Jens Bøgh of the house was the foster son of \"old Jens Bøgh\", and that someone died in 1914. If the foster son was Severin, he took the name and the farm from the old man who raised him, while his birth father lived two doors away. If the foster son was Marinus, old Jens Bøgh was the head of the house in Marinus's boyhood. The Klæstrup censuses of 1880 to 1916 would settle it.","Bøgh is an old spelling of bøg, beech. The Danish name law of 1904 made it easy for families to leave behind the endless -sen names and take a name of their own, often from a farm or place. A Thomsen who became Bøgh fits that pattern. The full story of the house and the name is on its own page, Finding the Bøgh Farm."],
+ sources:["Birth as given in the family record. Not yet checked against the image.","Marinus Bøgh's map of Klæstrup, no. 20: \"Jens Bøgh. Plejesøn af gamle Jens Bøgh. død 1914. Gl. Klæstrupvej 41. 22a.\"","Original 2 cadastral map of Klæstrup By, 1806 survey redrawn 1884; General Staff map 1884; Matriklen, parcel 22a."]},
 
 jkm:{name:"Jens Kristian Marinus Thomsen Bøgh",tag:"of Klæstrup",born:"1903",died:"not yet recorded",bp:"klaestrup",dp:null,status:"reported",direct:true,
  rel:{parents:["jks"]},
- story:["Jens Kristian Marinus was born at Klæstrup in Jerslev parish in 1903. He is the most recent generation in this record, nine generations from the elder Peder Pedersen of Sterup."],
- sources:["Birth as given in the family record."]}
+ imgs:["b_marinus"],
+ story:["Jens Kristian Marinus was born at Klæstrup in Jerslev parish in 1903, nine generations from the elder Peder Pedersen of Sterup.","Late in life he [[drew Klæstrup from memory|b_marinus]]: thirty-seven houses, each with its family, its address and the nickname the village used. There is Pisen and Koldnaae, Dejlig Peter, Skål-Nørgård with his sisters Gine and Mie, Sladder-Maren, a veteran of 1864, and a parish councillor jailed for fourteen days after the brawl at Store Brønderslev market. At no. 20, on the old village green, he wrote the Bøgh name. His map is how the farm was found, more than three hundred years after his ancestor farmed a strip of Sterup's land.","The family remembers him as the foster son of old Jens Bøgh. A collection at the same archive, given by a Marius Bøgh, holds a history of Klæstrup School from 1847 to 1962 and a list of the village's residents in 1960, and may also be his. The search that began this whole record, with his own birthplace, ends where he drew it."],
+ sources:["Birth as given in the family record.","Marinus Bøgh's map of Klæstrup (Egnsmindesamlingen for Jerslev og Omegn, B1934; arkiv.dk/vis/3759332)."]}
 };
 
 /* ===================== EVENTS (shared across everyone they touched) ===================== */
@@ -524,10 +530,10 @@ const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const yrs=p=>{const b=(p.born||"").match(/\d{4}/),d=(p.died||"").match(/\d{4}/);const pre=/^after/.test(p.died||"")?"aft. ":/^before/.test(p.died||"")?"bef. ":"";return (b?((/c\.|–/.test(p.born)?"c. ":"")+b[0]):"?")+" – "+(d?pre+d[0]:"?");};
 const linkify=t=>esc(t).replace(/\[\[([^|\]]+)\|([a-z0-9_]+)\]\]/g,(m,txt,k)=>IMG[k]?`<button class="ilink" data-img="${k}">${txt}</button>`:txt);
-const NEJSUM_RE=/(Søndre Raunsholt|Nørre Raunsholt|Lille Nejsum|Lille Neisum|Raunsholt)/g;
+const NEJSUM_RE=/(Søndre Raunsholt|Nørre Raunsholt|Lille Nejsum|Lille Neisum|Raunsholt|Finding the Bøgh Farm|Klæstrup(?!vej))/g;
 const placeLink=html=>{let depth=0;return html.split(/(<[^>]+>)/).map(seg=>{
   if(seg.startsWith("<")){if(/^<(button|a)\b/i.test(seg))depth++;else if(/^<\/(button|a)>/i.test(seg))depth--;return seg;}
-  return depth>0?seg:seg.replace(NEJSUM_RE,'<a class="plink" href="nejsum.html" target="_blank" rel="noopener" title="Open Finding Lille Nejsum in a new tab">$1</a>');}).join("");};
+  return depth>0?seg:seg.replace(NEJSUM_RE,m=>{const b=/Klæstrup|Bøgh/.test(m);return `<a class="plink" href="${b?"bogh.html":"nejsum.html"}" target="_blank" rel="noopener" title="Open ${b?"Finding the Bøgh Farm":"Finding Lille Nejsum"} in a new tab">${m}</a>`;});}).join("");};
 const thumb=(k,set)=>`<button class="thumb" data-img="${k}" data-set="${(set||[]).join(",")}"><img src="${IMG[k].src}" alt="" loading="lazy"><span>${esc(IMG[k].t)}</span></button>`;
 const short=p=>{const b=(p.born||"").match(/\d{4}/);return b?b[0]:"";};
 
@@ -674,7 +680,7 @@ function showPop(k){
   const ev=E.filter(e=>e.pl===k).sort((a,b)=>a.d.localeCompare(b.d));
   const items=ev.map(e=>`<li><span class="d">${esc(e.ds.replace(/^\d+ \w+ /,""))}</span><span><button data-id="${e.who[0]}">${esc(e.t)}</button></span></li>`).join("")||`<li><span></span><span>No dated events.</span></li>`;
   const d=document.createElement("div"); d.className="pop"; d.setAttribute("role","dialog"); d.setAttribute("aria-label",pl.name);
-  const more=(k==="nejsum"||k==="raunsholt")?`<p class="note"><a href="nejsum.html" target="_blank" rel="noopener">Open Finding Lille Nejsum ↗</a></p>`:"";
+  const more=(k==="nejsum"||k==="raunsholt")?`<p class="note"><a href="nejsum.html" target="_blank" rel="noopener">Open Finding Lille Nejsum ↗</a></p>`:k==="klaestrup"?`<p class="note"><a href="bogh.html" target="_blank" rel="noopener">Open Finding the Bøgh Farm ↗</a></p>`:"";
   d.innerHTML=`<button class="x" aria-label="Close">×</button><h3>${esc(pl.name)}</h3><p class="note">${placeLink(esc(pl.note))}</p>${more}<ul>${items}</ul>`;
   m.appendChild(d);
   const W=m.clientWidth,H=m.clientHeight,pw=d.offsetWidth,ph=d.offsetHeight;

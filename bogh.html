@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Finding the Bøgh Farm</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Archivo+Narrow:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+:root{--bg:#f2f4ef;--surface:#fff;--surface2:#f7f8f4;--ink:#1f2a24;--muted:#5b6660;--rule:#d5dbd3;--line:#9aa69d;--accent:#2e6b3a;--accent-soft:#e3efe4;--warn:#8a5a12;--warn-soft:#f6ecd9;--path:#1f4e8a;--pin:#c0392b;--shadow:0 1px 2px rgba(0,0,0,.06),0 6px 24px rgba(0,0,0,.08);--display:'Source Serif 4',Georgia,serif;--sans:'Archivo Narrow','Arial Narrow',Arial,sans-serif;--mono:'IBM Plex Mono',Menlo,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#151916;--surface:#1f2520;--surface2:#252c26;--ink:#e6e9e3;--muted:#a3ada6;--rule:#39423b;--line:#5d6a60;--accent:#8fd09a;--accent-soft:#25382a;--warn:#e8bf73;--warn-soft:#3a3020;--path:#8fb6f0;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#151916;--surface:#1f2520;--surface2:#252c26;--ink:#e6e9e3;--muted:#a3ada6;--rule:#39423b;--line:#5d6a60;--accent:#8fd09a;--accent-soft:#25382a;--warn:#e8bf73;--warn-soft:#3a3020;--path:#8fb6f0;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.4)}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;margin:0;padding-block:32px 64px;padding-inline:clamp(16px,4vw,48px)}
+.wrap{max-width:1120px;margin:0 auto;display:grid;gap:28px}
+.wrap>*{min-width:0}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(32px,5vw,48px);line-height:1.08;margin:0;text-wrap:balance}
+h2{font-family:var(--display);font-weight:600;font-size:23px;margin:0 0 8px}
+p{max-width:72ch;margin:0 0 12px}
+a{color:var(--path)}
+.eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.lede{font-family:var(--display);font-size:clamp(17px,2vw,19px);max-width:68ch;margin-top:14px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:clamp(14px,2.5vw,24px)}
+.fine{font-size:13px;color:var(--muted)}
+.crumbs{font-size:14px;margin-bottom:14px}
+.verdict{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:6px}
+.vbox{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:6px;padding:12px 14px;background:var(--surface2)}
+.vbox.open{border-left-color:var(--warn)}
+.vbox b{display:block;font-family:var(--display);font-size:18px}
+.vbox .c{font:13px var(--mono);color:var(--muted);display:block;margin:2px 0 6px}
+.vbox p{font-size:14.5px;margin:0}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:620px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+td.num{font-family:var(--mono);white-space:nowrap}
+.ilink{appearance:none;background:none;border:0;padding:0;font:inherit;color:var(--path);cursor:zoom-in;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
+
+/* slider */
+.cmp-controls{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;margin:10px 0}
+.cmp-controls label{display:inline-flex;align-items:center;gap:6px}
+.cmp-controls select,.cmp-controls input[type=range]{font:inherit;max-width:100%}
+.cmp{position:relative;width:100%;aspect-ratio:2000/1645;max-height:82vh;overflow:hidden;border:1px solid var(--rule);border-radius:6px;background:#222;user-select:none;touch-action:none;cursor:grab;--split:50%}
+.cmp-stage{position:absolute;inset:0;transform-origin:0 0}
+.cmp-layer{position:absolute;inset:0;width:100%;height:100%;display:block}
+.cmp-layer.paper{background:#f3f1ea}
+.cmp-divider{position:absolute;top:0;bottom:0;left:var(--split);width:0;border-left:3px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.5);pointer-events:none}
+.cmp-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;background:#fff;color:#222;display:grid;place-items:center;font-size:18px;box-shadow:0 1px 4px rgba(0,0,0,.5);pointer-events:auto}
+.cmp-pins{position:absolute;inset:0;pointer-events:none}
+.cpin{position:absolute;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center}
+.cpin svg{width:calc(20px / var(--z,1));height:calc(28px / var(--z,1));filter:drop-shadow(0 1px 1px rgba(0,0,0,.5))}
+.cpin span{position:absolute;bottom:calc(18px / var(--z,1));left:calc(12px / var(--z,1));white-space:nowrap;font:600 calc(12px / var(--z,1)) var(--sans);color:#fff;background:rgba(0,0,0,.66);padding:0 calc(5px / var(--z,1));border-radius:calc(3px / var(--z,1))}
+.cpin.l span{left:auto;right:calc(12px / var(--z,1))}
+
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.thumb{appearance:none;border:1px solid var(--rule);background:var(--surface2);border-radius:6px;padding:0;overflow:hidden;cursor:zoom-in;text-align:left;font:inherit;color:inherit;display:flex;flex-direction:column}
+.thumb img{display:block;width:100%;height:130px;object-fit:cover;background:#e9e4d6}
+.thumb span{font-size:13px;padding:7px 9px;line-height:1.3;color:var(--muted)}
+.thumb:focus-visible{outline:3px solid var(--path);outline-offset:2px}
+
+.lb{position:fixed;inset:0;z-index:40;background:#0b0d0c;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .18s ease}
+.lb.on{opacity:1;pointer-events:auto}
+.lb-bar{display:flex;align-items:center;gap:8px;padding:calc(10px + env(safe-area-inset-top,0px)) 12px 8px;color:#e6e9e3}
+.lb-bar .t{flex:1;min-width:0;font:600 15px var(--sans);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb-bar button{appearance:none;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;min-width:38px;height:38px;padding:0 10px;font-size:18px;cursor:pointer}
+.lb-stage{flex:1;position:relative;overflow:hidden;touch-action:none;cursor:grab}
+.lb-stage.drag{cursor:grabbing}
+.lb-stage img{position:absolute;left:50%;top:50%;max-width:none;transform-origin:0 0;user-select:none;-webkit-user-drag:none;background:#f4efe2}
+.lb-cap{color:#d8ddd6;font:14.5px/1.5 var(--display);padding:10px 16px calc(14px + env(safe-area-inset-bottom,0px));max-height:34vh;overflow:auto;border-top:1px solid rgba(255,255,255,.12)}
+.lb-cap .src{display:block;font:12px var(--mono);color:#9aa59d;margin-top:4px}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);appearance:none;border:0;background:rgba(0,0,0,.45);color:#fff;width:42px;height:64px;font-size:26px;cursor:pointer;z-index:2}
+.lb-nav.prev{left:0;border-radius:0 8px 8px 0}.lb-nav.next{right:0;border-radius:8px 0 0 8px}
+@media (prefers-reduced-motion:reduce){.lb{transition:none}}
+</style>
+<style>
+.mapfig{margin:0;display:grid;gap:8px}
+.mapfig button{appearance:none;border:1px solid var(--rule);border-radius:6px;padding:0;background:#fff;cursor:zoom-in;overflow:hidden}
+.mapfig img{display:block;width:100%;height:auto}
+.mapfig figcaption{font-size:13px;color:var(--muted)}
+.gen3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.person{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:6px;padding:14px 16px;background:var(--surface2)}
+.person.rep{border-left-color:#5b5f8a}
+.person h3{font-family:var(--display);font-size:19px;margin:0 0 2px}
+.person .yrs{font:13px var(--mono);color:var(--muted);display:block;margin-bottom:8px}
+.person p{font-family:var(--display);font-size:15.5px;line-height:1.55;margin:0 0 8px}
+.readings{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:10px 0}
+.reading{border:1px dashed var(--line);border-radius:6px;padding:12px 14px}
+.reading b{display:block;font-family:var(--display);font-size:16px;margin-bottom:4px}
+.reading p{font-size:14.5px;margin:0}
+.story p{font-family:var(--display);font-size:16.5px;line-height:1.6}
+table.list td:first-child{font-family:var(--mono);white-space:nowrap}
+tr.hl td{background:var(--accent-soft);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="crumbs"><a href="tree.html">The Bøgh Line</a> · <a href="nejsum.html">Finding Lille Nejsum</a> · <a href="index.html">Finding Fredenborg</a></div>
+    <div class="eyebrow">Klæstrup · Jerslev parish · Børglum herred · Vendsyssel, Denmark</div>
+    <h1>Finding the Bøgh Farm</h1>
+    <p class="lede">Late in life, Marinus Bøgh sat down and drew Klæstrup from memory. He drew every house, every family and every nickname, as the village stood when he was young. Beside house number 20 he wrote "Jens Bøgh". That house still stands. It is the farm at Gl. Klæstrupvej 41, land parcel 22a. It sits on the edge of the old village green, a stone's throw from the pond Marinus called Osdam. The family name that ends this line was carried from that house.</p>
+  </header>
+
+  <section class="card">
+    <h2>The answer</h2>
+    <div class="verdict">
+      <div class="vbox"><b>Marinus's house no. 20</b><span class="c">57.28555 N, 10.06240 E · ±15 m</span><p>Gl. Klæstrupvej 41, 9740 Jerslev, land parcel 22a of Klæstrup By. A 4,400 m² plot, wooded today, with the farmhouse at its east end. The 1884 General Staff map draws a building on the same spot.</p></div>
+      <div class="vbox"><b>The old village</b><span class="c">c. 500 m north-east of today's main street</span><p>Klæstrup's original core was a ring of farms round a star-shaped green and its ponds. The houses along today's Klæstrupvej came later. The school, smithy and shop stood there.</p></div>
+      <div class="vbox open"><b>Klæstrupvej 56</b><span class="c">57.28128 N, 10.05232 E</span><p>Not house no. 20. Marinus drew his map with south at the top, so it reads as a mirror image if north is assumed. In 1884 the smithy stood close to this spot.</p></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Marinus's map</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;align-items:start">
+      <figure class="mapfig"><button data-img="marinus" aria-label="Enlarge Marinus Bøgh's map"><img src="https://arkibasapi-apim.azure-api.net/filer/visning/46f8e82dc96d4cbaaefd863ef9e73a62" alt="Hand-drawn map of Klæstrup by Marinus Bøgh, with numbered houses" loading="lazy"></button>
+        <figcaption>"Kort tegnet af Marinus Bøgh, Klæstrup." Egnsmindesamlingen for Jerslev og Omegn, B1934, via <a href="https://arkiv.dk/en/vis/3759332" target="_blank" rel="noopener">arkiv.dk</a>. Shown from the archive's own server.</figcaption></figure>
+      <div>
+        <p>The archive describes it as a map "with owners, residents, original persons, with their known names and nicknames, told by Marinus Bøgh from memory". He numbered 37 houses and gave each a name and an address. Entry 20 reads:</p>
+        <p style="font-family:var(--display);font-size:18px;border-left:3px solid var(--accent);padding-left:12px">"20. Jens Bøgh. Plejesøn af gamle Jens Bøgh. død 1914. Gl. Klæstrupvej 41. 22a."</p>
+        <p>That is "Jens Bøgh, foster son of old Jens Bøgh, died 1914", with the address and the land-register number. Two entries away is "18. Kren Tamsen (Thomsen), Gl. Klæstrupvej 33". Kren is the Vendsyssel form of Christen.</p>
+        <p><strong>The map is drawn looking north from the main road.</strong> Klæstrupvej runs across the top. The school (no. 2) sits left of the smithy and shop (nos. 4 and 5), and the mill (no. 37) and Lunden (no. 32) sit on the left edge. On the ground the mill and Lunden are at the east end of the village. So south is at the top of his drawing and east is on the left. Turned the right way up, house 20 lies north-east of the main street, beside the pond.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" id="compare">
+    <h2>Then and now: drag the divider</h2>
+    <p>The 1884 General Staff map, today's lidar terrain and contours, and the 2024 orthophoto, all on one coordinate frame. All of them come georeferenced from the Danish map services. On the 1884 sheet, the farms of old Klæstrup cluster round the spot height 104, north of the word "Klæstrup". The school, the smithy ("Smedi") and Koldnaae ("Kolnaa") line the road below. Blue ditches drain a wet meadow to the north-west, and a small watercourse leaves the ponds toward the north-east.</p>
+    <div class="cmp-controls">
+      <label>Left <select id="cmp-left"><option value="gs" selected>1884 General Staff</option><option value="hs">Lidar terrain</option><option value="or">2024 orthophoto</option><option value="c05">0.5 m contours</option><option value="c25">2.5 m contours</option></select></label>
+      <label>Right <select id="cmp-right"><option value="gs">1884 General Staff</option><option value="hs">Lidar terrain</option><option value="or" selected>2024 orthophoto</option><option value="c05">0.5 m contours</option><option value="c25">2.5 m contours</option></select></label>
+      <label><input type="checkbox" id="cmp-c25"> 2.5 m contours over</label>
+      <label><input type="checkbox" id="cmp-pins" checked> Pins</label>
+      <label>Zoom <input type="range" id="cmp-zoom" min="1" max="5" step="0.1" value="1.6"></label>
+    </div>
+    <div class="cmp" id="cmp">
+      <div class="cmp-stage" id="cmp-stage">
+        <img class="cmp-layer" id="cmp-img-r" src="img/klaestrup/ortho_2024.jpg" alt="2024 orthophoto of Klæstrup" draggable="false">
+        <img class="cmp-layer" id="cmp-img-l" src="img/klaestrup/gs_1884.jpg" alt="1884 General Staff map of Klæstrup" draggable="false">
+        <img class="cmp-layer" id="cmp-c25-img" src="img/klaestrup/c25.png" alt="" hidden draggable="false">
+        <div class="cmp-pins" id="cmp-pinlayer"></div>
+      </div>
+      <div class="cmp-divider" id="cmp-divider"><div class="cmp-handle">⟷</div></div>
+    </div>
+    <p class="fine" style="margin-top:10px">Frame 57.2790–57.2890 N, 10.0480–10.0705 E, about 1.35 × 1.1 km. Drag the white handle to wipe between layers, and drag elsewhere to pan when zoomed. Sources: Generalstabens høje målebordsblade, surveyed 1884; Danmarks Højdemodel; GeoDanmark spring orthophoto 2024 (Klimadatastyrelsen, Dataforsyningen). Shop and smithy positions are the addresses Marinus gave and may have moved over time.</p>
+  </section>
+
+  <section class="card">
+    <h2>How house no. 20 was found</h2>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Year</th><th>Source</th><th>What it gives</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1806</td><td>Survey of Klæstrup By's lands, redrawn 1884 (Original 2 cadastral map)</td><td>The village is drawn as a star: lanes radiating from a central green, with farm plots in a ring and two ponds. A plot numbered 22 sits on the south side of the green, beside the western pond. Its buildings are drawn in pink. <button class="ilink" data-img="core">See the village core</button>.</td></tr>
+        <tr><td class="num">1820–22</td><td>Enclosure map of Jerslev and Klæstrup, surveyed 1819</td><td>The open fields are divided among the farms. Klæstrup is a tight cluster of farmsteads and ponds west of Jerslev church. <button class="ilink" data-img="e1819">See the enclosure map</button>.</td></tr>
+        <tr><td class="num">1884</td><td>General Staff 1:20,000 map</td><td>A farm building inside today's parcel 22a, on the lane east of spot height 104, with the pond about 100 m to the south. <button class="ilink" data-img="g22">See the 1884 detail</button>.</td></tr>
+        <tr><td class="num">1999</td><td>Marinus Bøgh's map and list, Egnsmindesamlingen for Jerslev og Omegn</td><td>"20. Jens Bøgh … Gl. Klæstrupvej 41. 22a." He places it beside Osdam, the pond.</td></tr>
+        <tr><td class="num">today</td><td>Danish land register and address register</td><td>Parcel 22a of Klæstrup By surrounds Gl. Klæstrupvej 41. The farmhouse stands at its east end, where the 1884 building was. <button class="ilink" data-img="o22">See the parcel today</button>.</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <h2>The last three generations</h2>
+    <p class="sub">Dates in this section come from the family record and have not yet been checked against the church registers. Marinus's map adds the house and a family relationship that needs explaining.</p>
+    <div class="gen3">
+      <div class="person rep"><h3>Christen (Kresten) Thomsen</h3><span class="yrs">b. 7 Aug 1850, Skæve</span>
+        <p>Christen was born in Skæve parish in the summer of 1850, the son of Thomas Simonsen of Lille Nejsum. His grandfather Simon was still alive in the house, retired, and died when the boy was almost three.</p>
+        <p>Sometime before 1876 he moved west to Klæstrup, back into the parish his great-grandfather Peder Jørgensen had left as a young man. On Marinus's map a "Kren Tamsen (Thomsen)" lives at no. 18, Gl. Klæstrupvej 33, two doors from the Bøgh house. Kren is the local form of Christen. It is very likely him or his household, but no record yet joins the two.</p></div>
+      <div class="person rep"><h3>Jens Kristian Severin Thomsen Bøgh</h3><span class="yrs">b. 22 Apr 1876, Klæstrup</span>
+        <p>Jens Kristian Severin was born at Klæstrup in April 1876, Christen Thomsen's son. He carried his father's patronymic, Thomsen, and added a surname no one before him in this line had used: Bøgh.</p>
+        <p>He grew up in a village small enough for Marinus to fit every household onto one sheet, with a school, a smithy and a shop on the main road, and the old farms round the green and its ponds. The Bøgh house at Gl. Klæstrupvej 41 stood on that green. His son Jens Kristian Marinus was born in Klæstrup in 1903.</p></div>
+      <div class="person rep"><h3>Jens Kristian Marinus Thomsen Bøgh</h3><span class="yrs">b. 1903, Klæstrup</span>
+        <p>Marinus was born at Klæstrup in 1903 and kept the village in his head for the rest of his life. His map names the people of his youth by the names the village used. There is Pisen, Koldnaae, Dejlig Peter, Skål-Nørgård with his sisters Gine and Mie, Sladder-Maren and Tårs-Martinus. There is a veteran of 1864, a parish councillor who spent fourteen days in jail after the brawl at Store Brønderslev market, and the mother of the village drunk.</p>
+        <p>At no. 20 he wrote the Bøgh name. A second collection at the same archive, given by a Marius Bøgh, holds four chapters on the history of Klæstrup School from 1847 to 1962 and a list of Klæstrup residents from 1960. It may well be his work too.</p></div>
+    </div>
+    <h3 style="font-family:var(--display);font-size:19px;margin:22px 0 4px">Who was "old Jens Bøgh"?</h3>
+    <p>Entry 20 says the Jens Bøgh at the house was the foster son of an older Jens Bøgh, and that someone died in 1914. The sentence can be read two ways:</p>
+    <div class="readings">
+      <div class="reading"><b>Reading 1: the Bøgh name came from a foster father</b><p>"Jens Bøgh" is Jens Kristian Severin. He was raised by an older man, Jens Bøgh, who died in 1914. Severin took his foster father's surname and inherited the farm. His birth father, Christen Thomsen, lived two doors away at no. 18. This would explain why a Thomsen family suddenly became Bøgh.</p></div>
+      <div class="reading"><b>Reading 2: Marinus himself was the foster son</b><p>"Jens Bøgh" is Jens Kristian Marinus, who was also called Jens. "Old Jens Bøgh" is the older man of the house, who died in 1914, when Marinus was eleven. This fits the family's memory that Marinus was the foster son of old Jens Bøgh.</p></div>
+    </div>
+    <p>Three records would decide it. The first is the 1880, 1901, 1906, 1911 and 1916 censuses for Klæstrup, which list every household with relationships such as "plejesøn". The second is the 1914 burial of old Jens Bøgh in the Jerslev register, with his age. The third is a name-change note in the margin of a baptism entry, which Danish priests added when someone took a new surname.</p>
+  </section>
+
+  <section class="card story">
+    <h2>The name Bøgh</h2>
+    <p><strong>What it means.</strong> Bøgh is an old spelling of bøg, the Danish word for the beech tree, from Old Danish bøk. The silent h is a spelling habit of the 1700s and 1800s, kept as many families froze their names on paper. As a surname it usually comes from a place: a farm called Bøgen or Bøgholt, a house by a beech, or a beech wood.</p>
+    <p><strong>The law that made it possible.</strong> For centuries country people in Denmark carried patronymics. Christen, son of Thomas, was Christen Thomsen, and his son was a Christensen. A royal decree of 1828 required each child's surname to be fixed at baptism, but in the countryside patronymics carried on for decades. The name law of 1904 changed things. It let any family take a new, distinctive surname cheaply by a simple application, to thin out the endless Jensens and Hansens. Many families took the name of their farm or their district in the years that followed. A Thomsen who became Bøgh, keeping Thomsen as a middle name, fits that pattern exactly.</p>
+    <p><strong>Where the name may have come from.</strong> Three sources are possible, and the records above would tell which:</p>
+    <ul>
+      <li><strong>A foster father named Bøgh.</strong> Marinus's map says there was an older Jens Bøgh in the house. If he already carried the name, the family simply inherited it with the farm.</li>
+      <li><strong>The farm Bøgen.</strong> An old farm of that name lies about 4 km west-south-west of Klæstrup, toward Brønderslev. The Jerslev herred court books already name Bøgen and Nørre Bøgen in the 1600s. A family member born or in service there could have brought the name.</li>
+      <li><strong>Beech trees at the house.</strong> Parcel 22a is heavily wooded today, unusually so for open Vendsyssel farmland. A spring aerial photo can't tell beech from other trees, though. A winter visit would, because young beech keeps its copper-brown leaves until spring. It would be a fitting origin, but for now it is a guess.</li>
+    </ul>
+  </section>
+
+  <section class="card story">
+    <h2>Klæstrup as Marinus knew it</h2>
+    <p><strong>The village green and its ponds.</strong> Old Klæstrup was a forte village: farms set round a common green, with lanes leading out to the fields like spokes. The 1806 survey draws two ponds on the green. One of them is Marinus's Osdam, right beside house 20. On the 1884 map a small watercourse runs from the ponds toward the north-east, and blue ditches drain a wet meadow on the north-west side of the village. Most of that water has since been drained. Switch the slider to the lidar terrain to look for the hollows it left.</p>
+    <p><strong>The school.</strong> Klæstrup Gamle Skole stood on the main road at Klæstrupvej 82, a number that no longer exists. The 1884 map labels "Skole" on the north side of the road, at today's Klæstrupvej 80. A village school was the only one most children attended, usually from age seven to fourteen. It is where the family learned to read the catechism and write their names.</p>
+    <p><strong>The smithy and the shop.</strong> In Marinus's day the smithy was at Klæstrupvej 72 and Alfred Christensen's shop next door at no. 70. In 1884 the map shows a smithy, "Smedi", about 150 m further west, close to today's Klæstrupvej 56. It may have moved, or there may have been two.</p>
+    <p><strong>The mill.</strong> Klæstrup Mølle stood at the east end of the village, Marinus's no. 37, "Thea, widow". The 1884 map marks it with an M beside the road.</p>
+    <p><strong>Koldnaae.</strong> The farm Marinus calls Koldnaae, no. 3, is labelled "Kolnaa" on the 1884 map, south of the road by the school. Its old farmhouse was pulled down when the farm moved out into its fields, which happened to many village farms after enclosure. The wood south of the village is still called Koldnaae Skov on his map.</p>
+  </section>
+
+  <section class="card">
+    <h2>Marinus's list, matched to today</h2>
+    <p class="fine">Names, nicknames and addresses as given in the archive's description of the map. Land-register numbers are his. Addresses are those in use when the list was written.</p>
+    <div class="tablewrap"><table class="list">
+      <thead><tr><th>No.</th><th>Household</th><th>Address</th><th>Parcel</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Jens Pedersen (Pisen). Took the family name Klæstrup</td><td>Klæstrupvej 92</td><td>8a</td></tr>
+        <tr><td>2</td><td>Klæstrup gamle Skole, the old school</td><td>Klæstrupvej 82</td><td>2d</td></tr>
+        <tr><td>3</td><td>Koldnaae. Lars Kristian Kristensen</td><td>Klæstrupvej 76</td><td>38a</td></tr>
+        <tr><td>4</td><td>Smedien, the smithy</td><td>Klæstrupvej 72</td><td>26c</td></tr>
+        <tr><td>5</td><td>Købmanden, the shop. Alfred Christensen</td><td>Klæstrupvej 70</td><td>26b</td></tr>
+        <tr><td>6</td><td>Sine Rugholm, widow (Peter Rugholm d. 1917). House built 1906</td><td>Gl. Klæstrupvej 7</td><td>33d</td></tr>
+        <tr><td>7</td><td>Jerek-Marit, widow of Smed Jerek (Erik)</td><td>Gl. Klæstrupvej 10</td><td>34e</td></tr>
+        <tr><td>8</td><td>Kresten Vangsted</td><td>Jerslevvej 345</td><td>5c</td></tr>
+        <tr><td>9</td><td>Davle-Peter (Peter Nielsen)</td><td>Skagensvej 6</td><td>6d</td></tr>
+        <tr><td>10</td><td>Jacob Kragbak</td><td>Gl. Klæstrupvej 21</td><td>20a</td></tr>
+        <tr><td>11</td><td>Galel-Skrædderen, the tailor</td><td>Gl. Klæstrupvej 19a</td><td>37b</td></tr>
+        <tr><td>12</td><td>Klytti, later Davle-Henry and Andrea</td><td>Gl. Klæstrupvej 19</td><td>18b</td></tr>
+        <tr><td>13</td><td>Laurits Holm</td><td>Risholmvej 51</td><td>5k</td></tr>
+        <tr><td>14</td><td>Filli-Søren</td><td>Risholmvej 49</td><td>5e</td></tr>
+        <tr><td>15</td><td>Anton Sørensen (Holmgård)</td><td>Risholmvej 69</td><td>5h</td></tr>
+        <tr><td>16</td><td>Jørgen Smed&#x27;s children (Marit)</td><td>Gl. Klæstrupvej 26</td><td>16a</td></tr>
+        <tr><td>17</td><td>Niels Hansen</td><td>Gl. Klæstrupvej 31</td><td>21b</td></tr>
+        <tr class="hl"><td>18</td><td>Kren Tamsen (Thomsen)</td><td>Gl. Klæstrupvej 33</td><td>35a</td></tr>
+        <tr><td>19</td><td>Skål-Nørgård with sisters Gine and Mie</td><td>Gl. Klæstrupvej 33a</td><td>23a</td></tr>
+        <tr class="hl"><td>20</td><td>Jens Bøgh. Foster son of old Jens Bøgh. d. 1914</td><td>Gl. Klæstrupvej 41</td><td>22a</td></tr>
+        <tr><td>21</td><td>Toes-Sine (Tårs), widow</td><td>Nedre Klæstrupvej 30</td><td>8b</td></tr>
+        <tr><td>22</td><td>Røv-Søren, married to Stine</td><td>Nedre Klæstrupvej 24</td><td>3i</td></tr>
+        <tr><td>23</td><td>Skrædder-Karen (since pulled down)</td><td></td><td></td></tr>
+        <tr><td>24</td><td>Lunken-Line, widow. The old Koldnaae farmhouse before it moved out</td><td></td><td></td></tr>
+        <tr><td>25</td><td>Sladder-Maren, widow</td><td>Nedre Klæstrupvej 26</td><td>44</td></tr>
+        <tr><td>26</td><td>Kresten Olesen, parish councillor. Took part in the brawl at Store Brønderslev market; 14 days in jail</td><td>Nedre Klæstrupvej 16</td><td>5b</td></tr>
+        <tr><td>27</td><td>Sigten-Marie, mother of the drunkard Jens Sigtenborg. House pulled down</td><td>by a closed lane ESE of Nedre Klæstrupvej 16</td><td></td></tr>
+        <tr><td>28</td><td>Kræn (Kresten) J. Pedersen</td><td>Gl. Klæstrupvej 49</td><td>19a</td></tr>
+        <tr><td>29</td><td>Anton Rump (Nielsen)</td><td>Gl. Klæstrupvej 52</td><td>14a</td></tr>
+        <tr><td>30</td><td>Slagter-Kræn, home butcher</td><td>Nedre Klæstrupvej 28</td><td></td></tr>
+        <tr><td>31</td><td>Klavs, widower. Veteran of 1864</td><td>Gl. Klæstrupvej 66</td><td></td></tr>
+        <tr><td>32</td><td>Anders Lunden</td><td>Gl. Klæstrupvej 61</td><td>4b</td></tr>
+        <tr><td>33</td><td>Niels Nedergård, parish councillor, married to Martine</td><td>Gl. Klæstrupvej 51</td><td>17a</td></tr>
+        <tr><td>34</td><td>Tårs-Martinus, married to Anna</td><td>Jerslevvej 485</td><td>1ad</td></tr>
+        <tr><td>35</td><td>Henrik Asholm, married to Grethe</td><td>Jerslevvej 475</td><td>31d</td></tr>
+        <tr><td>36</td><td>Dål-Peter (Dal), married to Stine</td><td>Gl. Klæstrupvej 35</td><td>15a</td></tr>
+        <tr><td>37</td><td>Klæstrup Mølle, the mill. Thea, widow</td><td>Gl. Klæstrupvej 75</td><td>7h</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <h2>The maps and records</h2>
+    <p class="fine">Choose any image to open it full screen. Pinch, scroll or double-click to zoom.</p>
+    <div class="thumbs" id="gallery"></div>
+  </section>
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-labelledby="lb-t" aria-hidden="true">
+  <div class="lb-bar"><span class="t" id="lb-t"></span><button id="lb-out" aria-label="Zoom out">−</button><button id="lb-in" aria-label="Zoom in">+</button><button id="lb-fit" aria-label="Fit to screen">⤢</button><button id="lb-x" aria-label="Close">×</button></div>
+  <div class="lb-stage" id="lb-stage"><button class="lb-nav prev" id="lb-prev" aria-label="Previous image">‹</button><img id="lb-img" alt=""><button class="lb-nav next" id="lb-next" aria-label="Next image">›</button></div>
+  <div class="lb-cap" id="lb-cap"></div>
+</div>
+
+
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const IMG={
+ marinus:{src:"https://arkibasapi-apim.azure-api.net/filer/visning/46f8e82dc96d4cbaaefd863ef9e73a62",t:"Klæstrup, drawn from memory by Marinus Bøgh",cap:"Marinus Bøgh's map of Klæstrup, numbering 37 houses with their families. South is at the top: Klæstrupvej, the main road, runs across the top with the school, Koldnaae, the smithy and the shop. House 20, Jens Bøgh, is in the middle beside Osdam, the pond.",ref:"Egnsmindesamlingen for Jerslev og Omegn, B1934, arkiv.dk/vis/3759332"},
+ core:{src:"img/klaestrup/r_1884_cadastral_core.jpg",t:"Old Klæstrup's star-shaped green",cap:"The village core on the cadastral map: lanes radiate from a central green with two ponds. Plot 22, with buildings in pink, lies on the south side of the green beside the western pond. Black numbers are the land-register parcels; red figures are soil values.",ref:"Original 2, Klæstrup By, surveyed 1806, redrawn 1884 (Klimadatastyrelsen)"},
+ cfull:{src:"img/klaestrup/r_1884_cadastral_full.jpg",t:"Klæstrup By's lands, 1806 survey redrawn 1884",cap:"The whole of Klæstrup's land, with Jerslev to the east, Ålstrup to the west and Vester and Øster Mellerup to the north. The village core with its star of lanes is in the middle.",ref:"Original 2, Klæstrup By, Jerslev (Klimadatastyrelsen)"},
+ e1819:{src:"img/klaestrup/r_1819_enclosure.jpg",t:"Enclosure map of Jerslev and Klæstrup, 1819",cap:"Surveyed in 1819 for the division of the open fields in 1820–22. Klæstrup is the cluster of farmsteads and blue ponds left of centre. Jerslev church and village are on the right.",ref:"Udskiftningskort, Jerslev og Klæstrup Byer, surveyed by T. L. Birk (Klimadatastyrelsen)"},
+ g22:{src:"img/klaestrup/r_22a_gs1884.jpg",t:"House 20 on the 1884 map",cap:"Today's parcel 22a outlined in red on the 1884 General Staff map. A farm building stands inside it, beside the lane. The blue pond about 100 m south is Osdam.",ref:"Generalstabens høje målebordsblade 1884; parcel from Matriklen"},
+ o22:{src:"img/klaestrup/r_22a_ortho2024.jpg",t:"House 20 today",cap:"Parcel 22a on the 2024 orthophoto: a wooded plot with the farmhouse and outbuildings at its east end, Gl. Klæstrupvej 41. The pond to the south survives as a dark, tree-lined hollow.",ref:"GeoDanmark orthophoto 2024; parcel from Matriklen"},
+ l22:{src:"img/klaestrup/r_22a_lidar.jpg",t:"House 20 in the lidar terrain",cap:"The same view in the national lidar terrain model, with trees and buildings stripped away. Old pond hollows and filled watercourses show as shallow depressions.",ref:"Danmarks Højdemodel, terrain hillshade (Klimadatastyrelsen)"}
+};
+const GALLERY=["marinus","core","g22","o22","l22","cfull","e1819"];
+const thumb=(k,set)=>`<button class="thumb" data-img="${k}" data-set="${set.join(",")}"><img src="${IMG[k].src}" alt="" loading="lazy"><span>${esc(IMG[k].t)}</span></button>`;
+$("#gallery").innerHTML=GALLERY.map(k=>thumb(k,GALLERY)).join("");
+/* ---------- slider ---------- */
+(function(){
+  const SRC={gs:'img/klaestrup/gs_1884.jpg',hs:'img/klaestrup/hillshade.jpg',or:'img/klaestrup/ortho_2024.jpg',c05:'img/klaestrup/c05.png',c25:'img/klaestrup/c25.png'};
+  const PINS=[["#20 Jens Bøgh · matr. 22a",64.0,34.5,false],["#18 Kren Tamsen",56.94,31.26,true],["Osdam (pond)",62.49,41.0,false],["Skole (school)",41.09,72.7,false],["Smedie and købmand, 1900s",31.0,73.5,true],["Smedie, 1884",21.33,68.5,true],["Klæstrup Mølle",85.64,67.57,true],["Kragbak",40.71,42.4,true]];
+  const svg='<svg viewBox="0 0 22 30" aria-hidden="true"><path d="M11 1C5.5 1 1 5.4 1 10.9 1 18.3 11 29 11 29s10-10.7 10-18.1C21 5.4 16.5 1 11 1z" fill="#c0392b" stroke="#fff" stroke-width="1.6"/><circle cx="11" cy="11" r="3.6" fill="#fff"/></svg>';
+  $("#cmp-pinlayer").innerHTML=PINS.map(([n,x,y,l])=>`<div class="cpin${l?" l":""}" style="left:${x}%;top:${y}%">${svg}<span>${n}</span></div>`).join("");
+  const cmp=$("#cmp"),stage=$("#cmp-stage"),L=$("#cmp-img-l"),R=$("#cmp-img-r");
+  const set=(img,k)=>{img.src=SRC[k];img.classList.toggle('paper',k==='c05'||k==='c25');};
+  $("#cmp-left").addEventListener('change',e=>set(L,e.target.value));
+  $("#cmp-right").addEventListener('change',e=>set(R,e.target.value));
+  const tog=(id,el)=>{const cb=$(id),t=$(el);const f=()=>{t.hidden=!cb.checked;};cb.addEventListener('change',f);f();};
+  tog('#cmp-c25','#cmp-c25-img'); tog('#cmp-pins','#cmp-pinlayer');
+  let z=1.6,px=.56,py=.44,tx=0,ty=0,ox=0,oy=0;
+  function clip(){const w=cmp.clientWidth;const s=parseFloat(getComputedStyle(cmp).getPropertyValue('--split'))/100*w;let f=((s-ox)/z)/w;f=Math.min(1,Math.max(0,f));L.style.clipPath='inset(0 '+((1-f)*100)+'% 0 0)';}
+  function apply(){const w=cmp.clientWidth,h=cmp.clientHeight;
+    const minx=w-w*z,miny=h-h*z; ox=Math.min(0,Math.max(minx,w/2-px*w*z+tx)); oy=Math.min(0,Math.max(miny,h/2-py*h*z+ty));
+    stage.style.transform=`translate(${ox}px,${oy}px) scale(${z})`; stage.style.setProperty('--z',z); clip();}
+  $("#cmp-zoom").addEventListener('input',e=>{z=parseFloat(e.target.value);apply();}); apply(); addEventListener('resize',apply);
+  let drag=null,sx=0,sy=0,stx=0,sty=0;
+  cmp.addEventListener('pointerdown',e=>{const r=cmp.getBoundingClientRect();const s=parseFloat(getComputedStyle(cmp).getPropertyValue('--split'))/100*r.width;
+    drag=Math.abs(e.clientX-r.left-s)<30?'split':'pan';sx=e.clientX;sy=e.clientY;stx=tx;sty=ty;cmp.setPointerCapture(e.pointerId);cmp.style.cursor=drag==='split'?'ew-resize':'grabbing';});
+  cmp.addEventListener('pointermove',e=>{if(!drag)return;const r=cmp.getBoundingClientRect();
+    if(drag==='split'){cmp.style.setProperty('--split',Math.min(100,Math.max(0,(e.clientX-r.left)/r.width*100))+'%');clip();}
+    else{tx=stx+(e.clientX-sx);ty=sty+(e.clientY-sy);apply();const w=cmp.clientWidth,h=cmp.clientHeight;tx=ox-(w/2-px*w*z);ty=oy-(h/2-py*h*z);}});
+  const up=()=>{drag=null;cmp.style.cursor='grab';};cmp.addEventListener('pointerup',up);cmp.addEventListener('pointercancel',up);
+})();
+
+/* ---------- lightbox ---------- */
+const LB={set:[],i:0,s:1,x:0,y:0,fit:1,last:null};
+const lbImg=$("#lb-img"),stage=$("#lb-stage");
+function lbApply(){lbImg.style.transform=`translate(${LB.x}px,${LB.y}px) scale(${LB.s})`;}
+function lbFit(){const W=stage.clientWidth,H=stage.clientHeight,w=lbImg.naturalWidth,h=lbImg.naturalHeight;if(!w)return;LB.fit=Math.min(W/w,H/h)*0.98;LB.s=LB.fit;LB.x=-w*LB.s/2;LB.y=-h*LB.s/2;lbApply();}
+function lbZoom(f,cx,cy){const r=stage.getBoundingClientRect();cx=(cx??r.left+r.width/2)-r.left-r.width/2;cy=(cy??r.top+r.height/2)-r.top-r.height/2;const ns=Math.max(LB.fit*0.5,Math.min(LB.s*f,LB.fit*12));const k=ns/LB.s;LB.x=cx-(cx-LB.x)*k;LB.y=cy-(cy-LB.y)*k;LB.s=ns;lbApply();}
+function lbShow(i){LB.i=(i+LB.set.length)%LB.set.length;const im=IMG[LB.set[LB.i]];$("#lb-t").textContent=im.t;$("#lb-cap").innerHTML=`${esc(im.cap)}<span class="src">${esc(im.ref)}</span>`;lbImg.alt=im.t;lbImg.onload=lbFit;lbImg.src=im.src;if(lbImg.complete&&lbImg.naturalWidth)lbFit();const many=LB.set.length>1;$("#lb-prev").hidden=!many;$("#lb-next").hidden=!many;}
+function openLB(k,set){LB.last=document.activeElement;LB.set=(set&&set.includes(k))?set:[k];$("#lb").classList.add("on");$("#lb").setAttribute("aria-hidden","false");document.body.style.overflow="hidden";lbShow(LB.set.indexOf(k));$("#lb-x").focus({preventScroll:true});}
+function closeLB(){$("#lb").classList.remove("on");$("#lb").setAttribute("aria-hidden","true");document.body.style.overflow="";if(LB.last&&LB.last.focus)LB.last.focus({preventScroll:true});}
+$("#lb-x").addEventListener("click",closeLB);$("#lb-fit").addEventListener("click",lbFit);
+$("#lb-in").addEventListener("click",()=>lbZoom(1.5));$("#lb-out").addEventListener("click",()=>lbZoom(1/1.5));
+$("#lb-prev").addEventListener("click",e=>{e.stopPropagation();lbShow(LB.i-1);});$("#lb-next").addEventListener("click",e=>{e.stopPropagation();lbShow(LB.i+1);});
+stage.addEventListener("wheel",e=>{e.preventDefault();lbZoom(e.deltaY<0?1.15:1/1.15,e.clientX,e.clientY);},{passive:false});
+stage.addEventListener("dblclick",e=>{if(e.target.closest(".lb-nav"))return;LB.s>LB.fit*1.05?lbFit():lbZoom(2.5,e.clientX,e.clientY);});
+(()=>{const pts=new Map();let d0=0,s0=1,px=0,py=0;
+ stage.addEventListener("pointerdown",e=>{if(e.target.closest(".lb-nav"))return;stage.setPointerCapture(e.pointerId);pts.set(e.pointerId,{x:e.clientX,y:e.clientY});stage.classList.add("drag");if(pts.size===2){const [a,b]=[...pts.values()];d0=Math.hypot(a.x-b.x,a.y-b.y);s0=LB.s;}px=e.clientX;py=e.clientY;});
+ stage.addEventListener("pointermove",e=>{if(!pts.has(e.pointerId))return;pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(pts.size===2){const [a,b]=[...pts.values()];const d=Math.hypot(a.x-b.x,a.y-b.y);lbZoom((s0*d/d0)/LB.s,(a.x+b.x)/2,(a.y+b.y)/2);}
+  else{LB.x+=e.clientX-px;LB.y+=e.clientY-py;px=e.clientX;py=e.clientY;lbApply();}});
+ const up=e=>{pts.delete(e.pointerId);if(!pts.size)stage.classList.remove("drag");if(pts.size===1){const [a]=[...pts.values()];px=a.x;py=a.y;}};
+ stage.addEventListener("pointerup",up);stage.addEventListener("pointercancel",up);
+})();
+addEventListener("resize",()=>{if($("#lb").classList.contains("on"))lbFit();});
+document.addEventListener("click",e=>{const im=e.target.closest("[data-img]");if(im){e.preventDefault();openLB(im.dataset.img,(im.dataset.set||"").split(",").filter(Boolean));}});
+document.addEventListener("keydown",e=>{if(!$("#lb").classList.contains("on"))return;
+  if(e.key==="Escape")closeLB();else if(e.key==="ArrowLeft"&&LB.set.length>1)lbShow(LB.i-1);else if(e.key==="ArrowRight"&&LB.set.length>1)lbShow(LB.i+1);else if(e.key==="+"||e.key==="=")lbZoom(1.4);else if(e.key==="-")lbZoom(1/1.4);
+  if(e.key==="Tab"){e.preventDefault();$("#lb-x").focus();}});
+
+</script>
+</body>
+</html>

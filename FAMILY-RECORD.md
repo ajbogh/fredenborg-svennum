@@ -12,7 +12,7 @@ Ancestry and have not yet been checked. Items marked **[hypothesis]** are infere
 | Fredenborg | Jerslev | Børglum | 57.28060, 10.12073 | Cottage in Svennum; 1688 matr. no. 8, 1844 matr. no. 9. Site is the north side of the Hellumvej 23 farmyard. Name in use 1676–1704 at least. |
 | Svennum | Jerslev | Børglum | 57.2792, 10.1139 | Street village, 10 holdings in 1688. |
 | Jerslev kirke / præstegård | Jerslev | Børglum | 57.28364, 10.09036 | Pastorate Jerslev–Vester Brønderslev until 1859, then Jerslev–Hellum. |
-| Klæstrup | Jerslev | Børglum | 57.28193, 10.05466 | Hamlet 2 km W of the church; birthplace of generations 7–8. |
+| Klæstrup | Jerslev | Børglum | Bøgh farm 57.28555, 10.06240 | Village 2 km W of the church; birthplace of generations 7–8. Old core = forte (star-shaped green, two ponds) c. 500 m NE of today's Klæstrupvej. Bøgh farm = Marinus Bøgh's house no. 20, Gl. Klæstrupvej 41, matr. 22a Klæstrup By (4,400 m²); building there on 1884 GS; plot 22 on S side of green by W pond on Original 2 (1806 survey, redrawn 1884). See bogh.html. |
 | Kølskegård | Hallund | Dronninglund | 57.2497, 10.1163 | Manor; owned by the Kaas family in the 1600s, who also owned most of Svennum. |
 | Hellevad kirke | Hellevad | Dronninglund | 57.21288, 10.15274 | Pastorate Hellevad–Ørum–Hellum; one register for all three. Registers from 1646. |
 | Trøgdrup (Nørre and Sønder) | Hellevad | Dronninglund | c. 57.19, 10.12 | Common "Bløden" between them; 1676 dispute. |
@@ -127,12 +127,17 @@ Ancestry and have not yet been checked. Items marked **[hypothesis]** are infere
 - Died 5 Dec 1898, Skæve. **[reported]**
 
 ### Generation 6: Christen (Kresten) Thomsen **[reported]**
+- Lead: Marinus Bøgh's map of Klæstrup (Egnsmindesamlingen for Jerslev og Omegn B1934, arkiv.dk/vis/3759332) no. 18 "Kren Tamsen (Thomsen)", Gl. Klæstrupvej 33, matr. 35a, two doors from the Bøgh house. **[lead]**
 - Born 7 Aug 1850, Skæve. Probably at Lille Nejsum, in the household with grandfather Simon.
 
 ### Generation 7: Jens Kristian Severin Thomsen Bøgh **[reported]**
+- Marinus's map no. 20: "Jens Bøgh. Plejesøn af gamle Jens Bøgh. død 1914. Gl. Klæstrupvej 41. 22a." Ambiguous: either Severin (foster son of an older Jens Bøgh d. 1914, source of the surname) or Marinus (family memory). Settle with Klæstrup censuses 1880–1916, 1914 burial of old Jens Bøgh, and any name-change note in the baptism margin.
+- Marinus's map is drawn with SOUTH AT THE TOP (mill and Lunden, at the village's east end, are on the left). House 20 is NOT Klæstrupvej 56; in 1884 a smithy ("Smedi") stood near Klæstrupvej 56.
+- Surname origins to test: foster father's name; farm Bøgen 4 km WSW (court books 1600s); beech trees at the farm. Name law 1904.
 - Born 22 Apr 1876, Klæstrup, Jerslev parish. The line returns to Jerslev parish after c. 175 years.
 
 ### Generation 8: Jens Kristian Marinus Thomsen Bøgh **[reported]**
+- Drew the map of Klæstrup from memory (record dated 1999). Archive A3111 (archival creator "Marius Bøgh"): Klæstrup School history 1847–1962 and 1960 list of Klæstrup residents; possibly his.
 - Born 1903, Klæstrup, Jerslev parish.
 
 ## Open questions, in order of value
