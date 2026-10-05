@@ -22,7 +22,7 @@ a{color:var(--path)}
 .lede{font-family:var(--display);font-size:clamp(17px,2vw,19px);max-width:68ch;margin-top:14px}
 .card{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:clamp(14px,2.5vw,24px)}
 .fine{font-size:13px;color:var(--muted)}
-.crumbs{font-size:14px;margin-bottom:14px}
+.crumbs{font-size:14px;margin-bottom:14px}.crumbs [aria-current]{font-weight:600}
 .verdict{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:6px}
 .vbox{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:6px;padding:12px 14px;background:var(--surface2)}
 .vbox.open{border-left-color:var(--warn)}
@@ -95,7 +95,7 @@ tr.hl td{background:var(--accent-soft);font-weight:600}
 <body>
 <div class="wrap">
   <header>
-    <div class="crumbs"><a href="tree.html">The Bøgh Line</a> · <a href="nejsum.html">Finding Lille Nejsum</a> · <a href="index.html">Finding Fredenborg</a></div>
+    <nav class="crumbs" aria-label="Pages"><a href="tree.html">The Bøgh Line</a> · <span aria-current="page">Finding the Bøgh Farm</span> · <a href="nejsum.html">Finding Lille Nejsum</a> · <a href="index.html">Finding Fredenborg</a></nav>
     <div class="eyebrow">Klæstrup · Jerslev parish · Børglum herred · Vendsyssel, Denmark</div>
     <h1>Finding the Bøgh Farm</h1>
     <p class="lede">Late in life, Marinus Bøgh sat down and drew Klæstrup from memory. He drew every house, every family and every nickname, as the village stood when he was young. Beside house number 20 he wrote "Jens Bøgh". That house still stands. It is the farm at Gl. Klæstrupvej 41, land parcel 22a. It sits on the edge of the old village green, a stone's throw from the pond Marinus called Osdam. The family name that ends this line came from the old man who lived there: Jens Kristian Pedersen, a smallholder the village called Bøg, godfather and foster father to Jens Kristian Severin Thomsen.</p>

@@ -22,7 +22,7 @@ a{color:var(--path)}
 .lede{font-family:var(--display);font-size:clamp(17px,2vw,19px);max-width:68ch;margin-top:14px}
 .card{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:clamp(14px,2.5vw,24px)}
 .fine{font-size:13px;color:var(--muted)}
-.crumbs{font-size:14px;margin-bottom:14px}
+.crumbs{font-size:14px;margin-bottom:14px}.crumbs [aria-current]{font-weight:600}
 .verdict{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:6px}
 .vbox{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:6px;padding:12px 14px;background:var(--surface2)}
 .vbox.open{border-left-color:var(--warn)}
@@ -76,7 +76,7 @@ td.num{font-family:var(--mono);white-space:nowrap}
 <body>
 <div class="wrap">
   <header>
-    <div class="crumbs"><a href="tree.html">The Bøgh Line</a> · <a href="index.html">Finding Fredenborg</a></div>
+    <nav class="crumbs" aria-label="Pages"><a href="tree.html">The Bøgh Line</a> · <a href="bogh.html">Finding the Bøgh Farm</a> · <span aria-current="page">Finding Lille Nejsum</span> · <a href="index.html">Finding Fredenborg</a></nav>
     <div class="eyebrow">Skæve parish · Dronninglund herred · Vendsyssel, Denmark</div>
     <h1>Finding Lille Nejsum</h1>
     <p class="lede">Simon Pedersen farmed Lille Nejsum for forty years, from before 1813 until his death in 1853. His son Thomas was born there in 1814 and took the farm over. The farmstead stands today where the surveyors drew it in 1813 and 1884. Next door lies Søndre Raunsholt. The 1801 census route shows it was very probably the "Raunsholt" where Simon grew up.</p>
