@@ -85,6 +85,8 @@ a{color:var(--path)}
 .pop li .d{font:11.5px var(--mono);color:var(--muted)}
 .pop li button{appearance:none;background:none;border:0;padding:0;font:inherit;color:var(--path);text-align:left;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
 .pop .x{position:absolute;top:6px;right:8px;appearance:none;background:none;border:0;font-size:20px;line-height:1;color:var(--muted);cursor:pointer}
+.leg{position:absolute;transform:translate(-50%,-50%);font:600 12px var(--mono);color:#fff;background:var(--path);border:1.5px solid #fff;border-radius:999px;padding:1px 7px;white-space:nowrap;pointer-events:auto;cursor:help;box-shadow:0 1px 3px rgba(0,0,0,.35);z-index:1}
+@media (max-width:640px){.leg{font-size:10.5px;padding:0 5px}}
 .mapkey{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted);margin:10px 0 0}
 .mapkey .sw{display:inline-block;width:24px;height:0;border-top:3px dashed var(--path);vertical-align:middle;margin-right:6px}
 
@@ -173,12 +175,12 @@ a{color:var(--path)}
 
   <section class="card" aria-labelledby="map-h">
     <h2 id="map-h">Where they lived</h2>
-    <p class="sub">Each pin is a farm, hamlet or church named in the records. Choose a pin to see who was born, married, lived or was buried there. The dashed line follows the direct line's homes from Sterup to Klæstrup.</p>
+    <p class="sub">Each pin is a farm, hamlet or church named in the records. Choose a pin to see who was born, married, lived or was buried there. The dashed arrows follow the direct line's moves from Sterup to Klæstrup, each labelled with about when it happened. Hover a date for who moved.</p>
     <div class="mapwrap" id="map">
       <img src="img/line_basemap.jpg" alt="Topographic map of central Vendsyssel from Klæstrup in the west to Skæve in the east">
-      <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline id="route" fill="none" stroke="var(--path)" stroke-width="3" stroke-dasharray="7 6" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg>
+      <svg id="routesvg" aria-hidden="true"></svg><div id="leglabels"></div>
     </div>
-    <div class="mapkey"><span><i class="sw"></i>Homes of the direct line, in order</span></div>
+    <div class="mapkey"><span><i class="sw"></i>A move of the direct line, arrow toward the new home, with about when it happened</span></div>
     <p class="fine" style="margin-top:8px">The farms at Lille Nejsum and Raunsholt are traced on their own page, <a href="nejsum.html" target="_blank" rel="noopener">Finding Lille Nejsum</a>. Vester Mølle and the farm Hørkær in Kirkeskov have not been located on a modern map. Events there are shown at Jerslev church and Hellevad church. Basemap: Danmarks Topografiske Kortværk, skærmkort, Klimadatastyrelsen open data. Place positions from the Danish place-name register.</p>
   </section>
 
@@ -239,6 +241,12 @@ const PLACES={
   skaeve:{name:"Skæve church",lat:57.28856,lon:10.31224,note:"Parish church of Skæve.",left:true}
 };
 const ROUTE=["sterup","villestrup","hellevad","raunsholt","nejsum","klaestrup"];
+const LEGS=[
+ {from:"sterup",to:"villestrup",d:"1727",why:"Mette Pedersdatter marries Jørgen Pedersen and moves to Villestrup"},
+ {from:"villestrup",to:"hellevad",d:"by 1760",why:"Peder Jørgensen in service at Hørkær, Hellevad parish, when he marries"},
+ {from:"hellevad",to:"raunsholt",d:"1777–87",why:"Peder Jørgensen's family moves to Raunsholt, Skæve parish"},
+ {from:"raunsholt",to:"nejsum",d:"by 1813",why:"Simon Pedersen takes the farm at Lille Nejsum"},
+ {from:"nejsum",to:"klaestrup",d:"by 1876",why:"Christen Thomsen settles at Klæstrup, Jerslev parish"}];
 
 /* ===================== IMAGES ===================== */
 const IMG={
@@ -602,7 +610,7 @@ function closeDrawer(fromPop=false){
 const pct=(lat,lon)=>[(lon-FRAME.W)/(FRAME.E-FRAME.W)*100,(FRAME.N-lat)/(FRAME.N-FRAME.S)*100];
 function buildMap(){
   const m=$("#map");
-  $("#route").setAttribute("points",ROUTE.map(k=>pct(PLACES[k].lat,PLACES[k].lon).join(",")).join(" "));
+  drawRoute(); addEventListener("resize",drawRoute);
   for(const [k,pl] of Object.entries(PLACES)){
     const [x,y]=pct(pl.lat,pl.lon);
     const b=document.createElement("button");
@@ -611,6 +619,25 @@ function buildMap(){
     b.innerHTML=`<svg viewBox="0 0 22 30" aria-hidden="true"><path d="M11 1C5.5 1 1 5.4 1 10.9 1 18.3 11 29 11 29s10-10.7 10-18.1C21 5.4 16.5 1 11 1z" fill="var(--pin)" stroke="#fff" stroke-width="1.6"/><circle cx="11" cy="11" r="3.6" fill="#fff"/></svg><span class="lab">${esc(pl.name)}</span>`;
     m.appendChild(b);
   }
+}
+function drawRoute(){
+  const m=$("#map"),W=m.clientWidth,H=m.clientHeight,svg=$("#routesvg"); if(!W) return;
+  svg.setAttribute("viewBox",`0 0 ${W} ${H}`);
+  const sw=W<500?2.2:3, ah=W<500?9:13, gap=W<500?10:15;   // stroke, arrowhead length, gap before pin
+  const P2=k=>{const [x,y]=pct(PLACES[k].lat,PLACES[k].lon);return [x/100*W,y/100*H];};
+  let g="",labs="";
+  LEGS.forEach(L=>{
+    const [x1,y1]=P2(L.from),[x2,y2]=P2(L.to); const dx=x2-x1,dy=y2-y1,len=Math.hypot(dx,dy); if(len<1) return;
+    const ux=dx/len,uy=dy/len, back=Math.min(gap,len*0.3);
+    const ex=x2-ux*back, ey=y2-uy*back;                      // arrow tip
+    const bx=ex-ux*ah, by=ey-uy*ah, nx=-uy*ah*0.55, ny=ux*ah*0.55;
+    g+=`<line x1="${x1}" y1="${y1}" x2="${bx}" y2="${by}" stroke="var(--path)" stroke-width="${sw}" stroke-dasharray="${sw*2.4} ${sw*2}" stroke-linecap="round"/>`;
+    g+=`<path d="M${ex},${ey} L${bx+nx},${by+ny} L${bx-nx},${by-ny} Z" fill="var(--path)" stroke="#fff" stroke-width="1"/>`;
+    // label at midpoint; push short legs sideways so the label clears the pins
+    let mx=(x1+x2)/2,my=(y1+y2)/2; if(len<60){my+=W<500?22:30;}
+    labs+=`<div class="leg" style="left:${mx/W*100}%;top:${my/H*100}%" title="${esc(L.why)}">${esc(L.d)}</div>`;
+  });
+  svg.innerHTML=g; $("#leglabels").innerHTML=labs;
 }
 function showPop(k){
   closePop();
