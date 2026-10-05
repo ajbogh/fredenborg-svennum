@@ -137,6 +137,8 @@ Ancestry and have not yet been checked. Items marked **[hypothesis]** are infere
 - Born 22 Apr 1876, Klæstrup, Jerslev parish. The line returns to Jerslev parish after c. 175 years.
 
 ### Generation 8: Jens Kristian Marinus Thomsen Bøgh **[reported]**
+- **1906 census (1 Feb 1906), Skæve parish, Dronninglund herred, schema 23** (Rigsarkivet image 353860): at **Tuen, matr. 29** (the farm beside Søndre Raunsholt), household of gaardejer Niels Peter Martinus Madsen: **"Jens Kristjan Marjus Thomsen", M, b. 7/9 1889 (last digit possibly 7), unmarried, tjenestetyende** (servant), and **"Martin Kristjan Thomsen", M, b. 4/4 1891, unmarried, servant** (probable brother). Still Thomsen, not Bøgh, in 1906.
+- CONFLICT: the family record gives Jens Kristian Marinus b. 1903, son of Severin (b. 1876). A man b. 1889 cannot be Severin's son. Either (a) Marius b. 1889 is Christen Thomsen's son and Severin's brother, and the 1903 Marinus is a nephew named for him, or (b) the family record has merged two people. The archive's A3111 creator is "Marius Bøgh", matching the 1889 man's name. Which one drew the map is OPEN. Next: Severin's 1906 household in Klæstrup (Jerslev, Børglum herred) and the 1889 baptism.
 - Drew the map of Klæstrup from memory (record dated 1999). Archive A3111 (archival creator "Marius Bøgh"): Klæstrup School history 1847–1962 and 1960 list of Klæstrup residents; possibly his.
 - Born 1903, Klæstrup, Jerslev parish.
 
