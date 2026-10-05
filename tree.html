@@ -125,7 +125,28 @@ a{color:var(--path)}
   .dhead::before{content:"";position:absolute;top:6px;left:50%;width:40px;height:4px;border-radius:2px;background:var(--rule);transform:translateX(-50%)}
   .story p{font-size:16.5px}
 }
-@media (prefers-reduced-motion:reduce){.drawer,.scrim,.p{transition:none}}
+.ilink{appearance:none;background:none;border:0;padding:0;font:inherit;color:var(--path);cursor:zoom-in;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
+.ilink::after{content:"";display:inline-block;width:.8em;height:.8em;margin-left:3px;vertical-align:-1px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2 3h12v10H2z' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M3 12l3.5-4 2.5 3 2-2 2 3z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2 3h12v10H2z' fill='none' stroke='black' stroke-width='1.6'/%3E%3Cpath d='M3 12l3.5-4 2.5 3 2-2 2 3z'/%3E%3C/svg%3E") center/contain no-repeat}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.thumb{appearance:none;border:1px solid var(--rule);background:var(--surface2);border-radius:6px;padding:0;overflow:hidden;cursor:zoom-in;text-align:left;font:inherit;color:inherit;display:flex;flex-direction:column}
+.thumb img{display:block;width:100%;height:78px;object-fit:cover;object-position:left center;background:#e9e4d6}
+.thumb span{font-size:12.5px;padding:6px 8px;line-height:1.3;color:var(--muted)}
+.thumb:focus-visible{outline:3px solid var(--path);outline-offset:2px}
+.lb{position:fixed;inset:0;z-index:40;background:#0b0d0c;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .18s ease}
+.lb.on{opacity:1;pointer-events:auto}
+.lb-bar{display:flex;align-items:center;gap:8px;padding:calc(10px + env(safe-area-inset-top,0px)) 12px 8px;color:#e6e9e3}
+.lb-bar .t{flex:1;min-width:0;font:600 15px var(--sans);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb-bar button{appearance:none;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;min-width:38px;height:38px;padding:0 10px;font-size:18px;cursor:pointer}
+.lb-stage{flex:1;position:relative;overflow:hidden;touch-action:none;cursor:grab}
+.lb-stage.drag{cursor:grabbing}
+.lb-stage img{position:absolute;left:50%;top:50%;max-width:none;transform-origin:0 0;user-select:none;-webkit-user-drag:none;background:#f4efe2}
+.lb-cap{color:#d8ddd6;font:14.5px/1.5 var(--display);padding:10px 16px calc(14px + env(safe-area-inset-bottom,0px));max-height:34vh;overflow:auto;border-top:1px solid rgba(255,255,255,.12)}
+.lb-cap .src{display:block;padding:0;font:12px var(--mono);color:#9aa59d;margin-top:4px}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);appearance:none;border:0;background:rgba(0,0,0,.45);color:#fff;width:42px;height:64px;font-size:26px;cursor:pointer;z-index:2}
+.lb-nav.prev{left:0;border-radius:0 8px 8px 0}.lb-nav.next{right:0;border-radius:8px 0 0 8px}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.gallery .thumb img{height:120px}
+@media (prefers-reduced-motion:reduce){.drawer,.scrim,.p,.lb{transition:none}}
 
 .gaps{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
 .gap{border:1px solid var(--rule);border-radius:6px;padding:12px 14px;background:var(--surface2)}
@@ -159,6 +180,12 @@ a{color:var(--path)}
     <p class="fine" style="margin-top:8px">Vester Mølle and the farm Hørkær in Kirkeskov have not been located on a modern map. Events there are shown at Jerslev church and Hellevad church. Basemap: Danmarks Topografiske Kortværk, skærmkort, Klimadatastyrelsen open data. Place positions from the Danish place-name register.</p>
   </section>
 
+  <section class="card" aria-labelledby="gal-h">
+    <h2 id="gal-h">The records</h2>
+    <p class="sub">The original entries behind the story, cut from the scanned registers and maps. Choose any image to enlarge it. Pinch, scroll or double-click to zoom.</p>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
   <section class="card" aria-labelledby="gaps-h">
     <h2 id="gaps-h">Where the record runs out</h2>
     <div class="gaps">
@@ -188,6 +215,12 @@ a{color:var(--path)}
   <div class="dbody" id="d-body"></div>
 </aside>
 
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-labelledby="lb-t" aria-hidden="true">
+  <div class="lb-bar"><span class="t" id="lb-t"></span><button id="lb-out" aria-label="Zoom out">−</button><button id="lb-in" aria-label="Zoom in">+</button><button id="lb-fit" aria-label="Fit to screen">⤢</button><button id="lb-x" aria-label="Close">×</button></div>
+  <div class="lb-stage" id="lb-stage"><button class="lb-nav prev" id="lb-prev" aria-label="Previous image">‹</button><img id="lb-img" alt=""><button class="lb-nav next" id="lb-next" aria-label="Next image">›</button></div>
+  <div class="lb-cap" id="lb-cap"></div>
+</div>
+
 <script>
 /* ===================== PLACES ===================== */
 const FRAME={N:57.3420,S:57.1980,W:10.0200,E:10.3350};
@@ -205,46 +238,73 @@ const PLACES={
 };
 const ROUTE=["sterup","villestrup","hellevad","raunsholt","nejsum","klaestrup"];
 
+/* ===================== IMAGES ===================== */
+const IMG={
+ m1688_no2:{src:"img/records/1688_matrikel_sterup_no2.jpg",t:"Sterup no. 2 in the 1688 land register",cap:"Christian V's land register, Sterup By, no. 2. The tenants are written 'Jens Nielsen og Peder Pedersen'. To the right, the field classes (good, sharp and poor soil) with the seed sown on each, and below the line the farm's total of 3 tønder, 5 skæpper, 2 fjerdingkar and 2 album of hartkorn, the tax unit of the day. A farm of middling size for the village.",ref:"Modelbog 1781, Jerslev herred, fol. 130 (Rigsarkivet, bsid 408328)"},
+ m1688_page:{src:"img/records/1688_matrikel_sterup_page.jpg",t:"Sterup By, first page of the 1688 land register",cap:"The opening of Sterup By in the 1688 land register, with farms no. 1 to no. 4. Peder Pedersen and Jens Nielsen's farm, no. 2, is the second entry on the left page.",ref:"Modelbog 1781, Jerslev herred, fol. 130"},
+ o1813_full:{src:"img/records/1813_original1_sterup_full.jpg",t:"Sterup By, survey map of 1799, copied 1809",cap:"'Kort over endeel af Sterup Byes Eiendomme', a map of Sterup village's lands, surveyed in 1799 by Jørgen Winther and copied in 1809. The village sits at the centre of the strip fields that run out from it like spokes. These are the same fields Peder Pedersen and his neighbours ploughed in the 1600s, though by 1799 they had been re-divided and the farms renumbered. Farm no. 2 of 1688 cannot yet be matched to a numbered plot on this map.",ref:"Original 1, Sterup By, Jerslev (Klimadatastyrelsen, historical cadastral maps)"},
+ o1813_village:{src:"img/records/1813_original1_sterup_village.jpg",t:"Sterup village core on the 1799 survey",cap:"The village street of Sterup, with farmhouses drawn in pink and each farm's plot numbered. The roman numerals mark the farmsteads. The strips running south and east are the old open fields. A Lars Pedersen's widow and an Anders Pedersen still hold farms here in 1799.",ref:"Original 1, Sterup By, Jerslev"},
+ o1813_title:{src:"img/records/1813_original1_sterup_title.jpg",t:"Title of the Sterup survey map",cap:"'Kort over endeel af Sterup Byes Eiendomme med flere Ejendomme i Hiørring Amt, Børglum Herred, Jerslev Sogn, opmaalt 1799 af Jørgen Winther, copieret 1809.' A map of part of Sterup village's lands, measured in 1799 and copied in 1809.",ref:"Original 1, Sterup By, Jerslev"},
+ r1701:{src:"img/records/1701_marriage_peder_karen.jpg",t:"Marriage of Peder Pedersen and Karen Jensdatter, 1701",cap:"'d. 17 Julij Peder Pedersøn og Karen Jensdatter i V. Mølle.' The wedding entry gives only the bride's home, Vester Mølle.",ref:"Jerslev parish register, marriages 1701 (image 14415897)"},
+ r1702b:{src:"img/records/1702_baptism_mette.jpg",t:"Baptism of the first Mette, 1702",cap:"'d. 21 Maj døbt et barn Mette, Peder Pedersøns i Sterup. Test: Jens Pedersøn i Vester Mølle, Ole Tomsøn i Sterup, Laurs Pedersøn paa Heden, Mikkel Christensøns hustru i Vester Mølle og Kirstine Laursdatter i Sterup.'",ref:"Jerslev parish register, baptisms 1702 (image 14415791)"},
+ r1702d:{src:"img/records/1702_burial_peder_pedersens_hustru.jpg",t:"Burial of Peder Pedersen's wife, 1702",cap:"'d. 25 Maj Peder Pedersøns hustru i Sterup, gl. 71 aar.' Her own name is not written.",ref:"Jerslev parish register, burials 1702 (image 14415949)"},
+ r1703:{src:"img/records/1703_baptism_laurs_son_peder.jpg",t:"Baptism of Laurs Pedersen's son, 1703",cap:"'d. 23 Decemb: et barn Peder, Laurs Pedersøns i Sterup. Test: Niels Pedersøn, Jens Jensøn og Peder Pedersøn alle af Sterup, Anna Christensdatter.' Peder Pedersen stands godfather to his probable brother's son.",ref:"Jerslev parish register, baptisms 1703 (image 14415795)"},
+ r1705d:{src:"img/records/1705_burial_peder_pedersen.jpg",t:"Burial of the elder Peder Pedersen, 1705",cap:"'d. 19 April Peder Pedersøn i Sterup, gl. 80 aar.'",ref:"Jerslev parish register, burials 1705 (image 14415951)"},
+ r1705b:{src:"img/records/1705_baptism_mette.jpg",t:"Baptism of Mette Pedersdatter, 1705",cap:"'d. 24 Maj døbt et barn Mette, Peder Pedersøns i Sterup. Test: Jens Pedersøn i Vester Mølle, Peder Jensøn Møller og Peder Jensøn...' The line above belongs to the previous entry.",ref:"Jerslev parish register, baptisms 1705 (image 14415798)"},
+ r1727:{src:"img/records/1727_marriage_jorgen_mette.jpg",t:"Betrothal and marriage of Jørgen and Mette, 1727",cap:"'d. 13 Apr. Trolovede Jørgen Jensen og Mette Pedersdatter', and in the next column 'Copulerede d. 26 Octob.' The only record that writes him Jensen.",ref:"Jerslev parish register, marriages 1727 (image 14415903)"},
+ r1728:{src:"img/records/1728_baptism_kirsten.jpg",t:"Baptism of Kirsten, 1728",cap:"'d. 11 dito døbt et lidet barn Kirsten, Jørgen Pedersens og Mette Pedersdatters i Villestrup. Testes: Jens i Kiøbacken, Christen Christensen i Jerslef, Peder Mylund ibid., Christen Pedersens hustru i Krattet, Maren Pedersdatter i Smicken.'",ref:"Jerslev parish register, baptisms 1728 (image 14415865)"},
+ r1729:{src:"img/records/1729_baptism_peder.jpg",t:"Baptism of Peder Jørgensen, 1729",cap:"'Døbt et lidet barn Peder, Christen Jensens [struck through, 'Jørgen Pedersen' written above] og Mette Pedersdatters i Villestrup. Testes: Christen i Sigaard, Jens i Høholt, Peder i Fallen, Christens hustru i Krattet og Maren Jensdatter paa Veiene.'",ref:"Jerslev parish register, baptisms 6 Nov 1729 (image 14415867)"},
+ r1739:{src:"img/records/1739_burial_peder_pedersen_krattet.jpg",t:"Burial of a Peder Pedersen of Krattet, 1739",cap:"'d. 21 Junii begravet Peder Pedersen af Krattet.' No age is given. He may be Mette's father, but the record cannot show it.",ref:"Jerslev parish register, burials 1739 (image 14415964)"},
+ r1760:{src:"img/records/1760_marriage_peder_inger.jpg",t:"Marriage of Peder Jørgensen and Inger Christensdatter, 1760",cap:"The Hellevad marriage entry: the young man Peder Jørgensen and the maid Inger Christensdatter, both of Hørkær, betrothed 11 November and married 15 December 1760.",ref:"Hellevad–Ørum–Hellum parish register, marriages 1760"},
+ r1763:{src:"img/records/1763_baptism_christen.jpg",t:"Baptism of Christen Pedersen, 1763",cap:"'d. 20 Novbr. Peder Jørgensens og Inger Christensdatters barn af Hørkied i Kirkeskov, kaldet Christen. Frembaaret af Maren Hansdatter fra Brønhaven i Voer Sogn...' The godfathers, Jens Andersen of Fodtved, Christen Nielsen of Kirkeskov and Simon Christensen of Allerup, follow.",ref:"Hellevad–Ørum–Hellum parish register, baptisms 1763"}
+};
+const GALLERY=["m1688_no2","o1813_full","o1813_village","o1813_title","m1688_page","r1701","r1702b","r1702d","r1703","r1705d","r1705b","r1727","r1728","r1729","r1739","r1760","r1763"];
+
 /* ===================== PEOPLE ===================== */
 const P={
 old_peder:{name:"Peder Pedersen",tag:"the elder, of Sterup",born:"c. 1625",died:"buried 19 Apr 1705",bp:"sterup",dp:"jerslev",status:"probable",
  rel:{spouse:["old_wife"],children:["peder"]},
+ imgs:["m1688_no2", "m1688_page", "o1813_full", "o1813_village", "r1705d"],
  story:[
  "Peder Pedersen was born around 1625, while Christian IV was king and the farms of Sterup still belonged to the old noble estates. No church book survives from the years of his childhood. What is known of him comes from the courts, the land register, and the burial list that closed his life.",
  "In 1652 a young farmhand named Peder Pedersen, serving Christen Christensen in Sterup, was named by a servant woman, Kirsten Jensdatter, as the father of her child. The court book records the accusation and nothing more. A man of that name and age in that village is very probably him. If so, it is the first glimpse of him: a man in his twenties, in service and in trouble, between the Swedish war of 1643–45 and the far worse occupation of 1657–60.",
- "He came through those years. By 1666 he was a householder in Sterup, named in the court book when Jens Sørensen of Hallund distrained him for a small debt. In 1688, when Christian V's surveyors measured every farm in the kingdom, he was co-tenant of farm no. 2 in Sterup with Jens Nielsen, ploughing the same strips as his neighbours.",
- "His wife was about six years younger. She died in the spring of 1702, and he lived on three years more. By then the young men of Sterup who were probably his sons, Niels, Laurs, Malte and Peder, had married within three years of one another, and grandchildren were arriving. He was buried at Jerslev on 19 April 1705, recorded as eighty years old. Five weeks later his son Peder's wife Karen carried a daughter to the font, and named her Mette.",
+ "He came through those years. By 1666 he was a householder in Sterup, named in the court book when Jens Sørensen of Hallund distrained him for a small debt. In 1688, when Christian V's surveyors measured every farm in the kingdom, he was [[co-tenant of farm no. 2 in Sterup|m1688_no2]] with Jens Nielsen, ploughing the same strips as his neighbours. The [[survey map of 1799|o1813_full]] still shows those strips, fanning out from the village street like spokes of a wheel.",
+ "His wife was about six years younger. She died in the spring of 1702, and he lived on three years more. By then the young men of Sterup who were probably his sons, Niels, Laurs, Malte and Peder, had married within three years of one another, and grandchildren were arriving. He was [[buried at Jerslev on 19 April 1705|r1705d]], recorded as eighty years old. Five weeks later his son Peder's wife Karen carried a daughter to the font, and named her Mette.",
  "No record says in so many words that he was the younger Peder's father. But a Peder Pedersen holding land in Sterup for forty years, and a younger Peder Pedersen settling in the same village as he died, is the shape a family leaves in records like these."],
- sources:["Jerslev herred court book, 30 Sep 1652 and 15 Mar 1666 (Brejl extracts).","Christian V's land register 1688, Jerslev herred, fol. 130, Sterup no. 2.","Jerslev burials, 19 Apr 1705, aged 80 (image 14415951)."]},
+ sources:["Jerslev herred court book, 30 Sep 1652 and 15 Mar 1666 (Brejl extracts).","Christian V's land register 1688, Jerslev herred, fol. 130, Sterup no. 2.","Survey map of Sterup By, 1799, copied 1809 (Original 1, Klimadatastyrelsen).","Jerslev burials, 19 Apr 1705, aged 80 (image 14415951)."]},
 
 old_wife:{name:"Peder Pedersen's wife",tag:"name not recorded",born:"c. 1631",died:"buried 25 May 1702",bp:null,dp:"jerslev",status:"probable",
  rel:{spouse:["old_peder"],children:["peder"]},
+ imgs:["r1702d"],
  story:[
- "She was born around 1631. When she was buried at Jerslev on 25 May 1702, aged 71, the parish clerk wrote her only as Peder Pedersen's wife in Sterup. Her own name went into the ground with her, as so many women's did.",
+ "She was born around 1631. When she was [[buried at Jerslev on 25 May 1702|r1702d]], aged 71, the parish clerk wrote her only as Peder Pedersen's wife in Sterup. Her own name went into the ground with her, as so many women's did.",
  "She was a young woman when Swedish troops occupied Jutland from 1657 to 1660 and quartered soldiers on the farms. She raised her children in Sterup through the hard decades that followed, when many farms in the parish stood empty.",
  "She lived to see her sons marry. Four days before her burial, a granddaughter was carried to Jerslev church and baptised Mette. Danish families usually named a first daughter for the father's mother. If they did so here, her name was Mette. That name was given to two granddaughters in Sterup, to a great-great-granddaughter at Raunsholt in the 1770s, and to another girl at Lille Nejsum around 1818. This is a likelihood drawn from naming custom, not a recorded fact."],
  sources:["Jerslev burials, 25 May 1702, aged 71 (image 14415949)."]},
 
 peder:{name:"Peder Pedersen",tag:"of Sterup",born:"c. 1670–1678",died:"after 22 Jun 1710",bp:"sterup",dp:null,status:"verified",
  rel:{parents:["old_peder","old_wife"],spouse:["karen"],children:["mette1702","mette"]},
+ imgs:["r1701", "r1702b", "r1703", "r1705b", "r1739", "m1688_no2", "o1813_village"],
  story:[
- "Peder Pedersen grew up in Sterup, most likely a son of the old Peder Pedersen who farmed there. On 17 July 1701 he married Karen Jensdatter in Jerslev church. She came from Vester Mølle, the parish mill, and her family stood beside the couple at every christening that followed.",
- "Their first child, a daughter, was baptised Mette on 21 May 1702. Jens Pedersen of Vester Mølle and Mikkel Christensen's wife of the mill held her, with Ole Tomsen and Kirstine Laursdatter of Sterup and Laurs Pedersen of Heden. Four days later Peder's mother was buried.",
- "Sterup in those years was full of Pedersens. Peder, Niels, Laurs and Malte Pedersen all married between 1699 and 1702 and stood godparent to one another's children. In December 1703 Peder held Laurs's newborn son, also called Peder, at the font. They were very likely brothers.",
- "Spring 1705 brought both an ending and a beginning. His father was buried on 19 April, aged eighty. On 24 May Karen bore a second daughter, and they named her Mette. A name was given twice only when the first child had died, so the little Mette of 1702 was gone by then, though her burial has not been found.",
- "Peder was still in Sterup in June 1710, standing godfather at a neighbour's christening. After that the pages read so far fall silent. His daughter Mette married Jørgen Pedersen in 1727, and Peder lived to be grandfather to Kirsten and Peder of Villestrup. A Peder Pedersen 'of Krattet', the hamlet beside Sterup, was buried at Jerslev on 21 June 1739 with no age given. If that was him, he was about seventy, and he outlived his granddaughter Kirsten by a single year."],
+ "Peder Pedersen grew up in Sterup, most likely a son of the old Peder Pedersen who farmed there. On 17 July 1701 he [[married Karen Jensdatter|r1701]] in Jerslev church. She came from Vester Mølle, the parish mill, and her family stood beside the couple at every christening that followed.",
+ "Their first child, a daughter, was [[baptised Mette on 21 May 1702|r1702b]]. Jens Pedersen of Vester Mølle and Mikkel Christensen's wife of the mill held her, with Ole Tomsen and Kirstine Laursdatter of Sterup and Laurs Pedersen of Heden. Four days later Peder's mother was buried.",
+ "Sterup in those years was full of Pedersens. Peder, Niels, Laurs and Malte Pedersen all married between 1699 and 1702 and stood godparent to one another's children. In December 1703 Peder [[held Laurs's newborn son|r1703]], also called Peder, at the font. They were very likely brothers.",
+ "Spring 1705 brought both an ending and a beginning. His father was buried on 19 April, aged eighty. On 24 May Karen bore a second daughter, and they [[named her Mette|r1705b]]. A name was given twice only when the first child had died, so the little Mette of 1702 was gone by then, though her burial has not been found.",
+ "Peder was still in Sterup in June 1710, standing godfather at a neighbour's christening. After that the pages read so far fall silent. His daughter Mette married Jørgen Pedersen in 1727, and Peder lived to be grandfather to Kirsten and Peder of Villestrup. A Peder Pedersen 'of Krattet', the hamlet beside Sterup, was [[buried at Jerslev on 21 June 1739|r1739]] with no age given. If that was him, he was about seventy, and he outlived his granddaughter Kirsten by a single year."],
  sources:["Jerslev marriages, 17 Jul 1701 (image 14415897).","Jerslev baptisms, 21 May 1702 (14415791), 23 Dec 1703 (14415795), 24 May 1705 (14415798).","Jerslev burials, 21 Jun 1739 (14415964), identity possible only."]},
 
 karen:{name:"Karen Jensdatter",tag:"of Vester Mølle",born:"c. 1675–1682",died:"not found",bp:"jerslev",dp:null,status:"verified",
  rel:{spouse:["peder"],children:["mette1702","mette"]},
+ imgs:["r1701", "r1702b", "r1705b"],
  story:[
  "Karen Jensdatter came from Vester Mølle, the mill of Jerslev parish. She was most likely the daughter of Jens Pedersen of Vester Mølle and the sister of Peder Jensen, the miller. Jens Pedersen stood godfather to both of her daughters. When Peder Jensen's son Jens was baptised in October 1709, Karen was his godmother.",
- "She married Peder Pedersen of Sterup on 17 July 1701 and went to live in her husband's village. The first four years of her marriage held a great deal. Her first daughter, Mette, was born in May 1702, and her mother-in-law was buried the same week. Her father-in-law died in April 1705. A month later she bore a second daughter, and she gave her the same name, Mette, because the first was dead.",
+ "She [[married Peder Pedersen of Sterup|r1701]] on 17 July 1701 and went to live in her husband's village. The first four years of her marriage held a great deal. Her first daughter, Mette, was born in May 1702, and her mother-in-law was buried the same week. Her father-in-law died in April 1705. A month later she bore a second daughter, and she gave her the same name, Mette, because the first was dead.",
  "That second Mette grew up, married in 1727, and gave Karen two grandchildren at Villestrup. No burial for Karen has been found in the years read."],
  sources:["Jerslev marriages, 17 Jul 1701 (image 14415897).","Jerslev baptisms, 1702, 1705, and 27 Oct 1709 as godmother."]},
 
 mette1702:{name:"Mette Pedersdatter",tag:"the elder sister",born:"bapt. 21 May 1702",died:"before May 1705",bp:"sterup",dp:null,status:"verified",
  rel:{parents:["peder","karen"],siblings:["mette"]},
+ imgs:["r1702b"],
  story:[
  "She was the first child of Peder Pedersen and Karen Jensdatter, baptised at Jerslev on 21 May 1702. Her mother's family from the mill held her at the font. Four days later her grandmother was buried.",
  "When her parents named a new daughter Mette in May 1705, she had almost certainly died. Her burial has not been found. It is a small life, and the register gives it only one line. But her name passed to her sister, and through her sister down the whole line that follows."],
@@ -252,10 +312,11 @@ mette1702:{name:"Mette Pedersdatter",tag:"the elder sister",born:"bapt. 21 May 1
 
 jorgen:{name:"Jørgen Pedersen",tag:"of Villestrup",born:"c. 1695–1705",died:"after 15 Jun 1738",bp:null,dp:null,status:"verified",direct:true,
  rel:{spouse:["mette"],children:["kirsten","pj"]},
+ imgs:["r1727", "r1728", "r1729"],
  story:[
  "No one knows where Jørgen Pedersen was born. He was not baptised in Jerslev or Vester Brønderslev between 1690 and 1707, nor in Øster Brønderslev or Hallund between 1700 and 1705. He most likely came to Jerslev as a young man in service from a parish whose books are lost, as so many farmhands did, and found a wife there. His father was named Peder, and that is all.",
- "He was betrothed to Mette Pedersdatter of Sterup on 13 April 1727 and married her in Jerslev church on 26 October. The priest wrote him that day as Jørgen Jensen. At both christenings that followed he is Jørgen Pedersen, and two records outweigh one.",
- "The couple took Villestrup, a farm on the eastern edge of the parish. Their daughter Kirsten was baptised on 11 February 1728, held by neighbours from Kiøbakken, Jerslev, Krattet and Smikken. A son followed on 6 November 1729. The clerk began to write another man's name, Christen Jensen, struck it through, and wrote Jørgen Pedersen above it. The boy was named Peder, for his grandfathers.",
+ "He was [[betrothed to Mette Pedersdatter|r1727]] of Sterup on 13 April 1727 and married her in Jerslev church on 26 October. The priest wrote him that day as Jørgen Jensen. At both christenings that followed he is Jørgen Pedersen, and two records outweigh one.",
+ "The couple took Villestrup, a farm on the eastern edge of the parish. Their daughter Kirsten was [[baptised on 11 February 1728|r1728]], held by neighbours from Kiøbakken, Jerslev, Krattet and Smikken. A son followed on 6 November 1729. The clerk began to write another man's name, Christen Jensen, [[struck it through, and wrote Jørgen Pedersen above it|r1729]]. The boy was named Peder, for his grandfathers.",
  "No more children were baptised to them in the next four years. In June 1738 Kirsten died, about ten years old, and was buried at Jerslev on the 15th. The burial entry calls her Jørgen Pedersen's daughter of Villestrup. It is the last time he is seen alive.",
  "He is not among the Jerslev burials to 1744. Where and when he died is still unknown. In 1761 his son Peder named his own first son Jørgen, as custom asked, and the name came down the line again."],
  sources:["Jerslev marriages, betrothal 13 Apr and wedding 26 Oct 1727 (image 14415903).","Jerslev baptisms, 11 Feb 1728 (14415865) and 6 Nov 1729 (14415867).","Jerslev burials, 15 Jun 1738 (14415964).","Searched without result: Jerslev–Vester Brønderslev baptisms 1690–1707; Øster Brønderslev–Hallund baptisms 1700–1705."]},
@@ -264,8 +325,9 @@ jorgen_father:{name:"Peder —",tag:"Jørgen's father",unknown:true},
 
 mette:{name:"Mette Pedersdatter",tag:"of Sterup and Villestrup",born:"bapt. 24 May 1705",died:"after 1738",bp:"sterup",dp:null,status:"verified",direct:true,
  rel:{parents:["peder","karen"],spouse:["jorgen"],children:["kirsten","pj"],siblings:["mette1702"]},
+ imgs:["r1705b", "r1727", "r1728", "r1729", "r1739"],
  story:[
- "Mette was born in Sterup in the spring of 1705, five weeks after her grandfather was buried, and baptised at Jerslev on 24 May. Jens Pedersen of Vester Mølle and Peder Jensen the miller held her. They were almost certainly her mother's father and brother. Peder Jensen of Jerslev and two women of Kraggården stood with them. She carried the name of a sister who had died before she was born.",
+ "Mette was born in Sterup in the spring of 1705, five weeks after her grandfather was buried, and [[baptised at Jerslev on 24 May|r1705b]]. Jens Pedersen of Vester Mølle and Peder Jensen the miller held her. They were almost certainly her mother's father and brother. Peder Jensen of Jerslev and two women of Kraggården stood with them. She carried the name of a sister who had died before she was born.",
  "She grew up in Sterup among a crowd of Pedersen cousins. At twenty-two she married Jørgen Pedersen, a man from outside the parish, on 26 October 1727, and went with him to Villestrup.",
  "Her daughter Kirsten came in February 1728 and her son Peder in November 1729. Women from the neighbouring farms stood godmother, among them Christen Pedersen's wife of Krattet, at both. In June 1738 Mette buried Kirsten, who was about ten years old. A year later a Peder Pedersen of Krattet was buried, who may have been her father.",
  "Her death has not been found to 1744. Her name lasted well. Her son Peder named a daughter Mette Marie in the 1770s, and her grandson Simon named a daughter Mette around 1818."],
@@ -273,17 +335,19 @@ mette:{name:"Mette Pedersdatter",tag:"of Sterup and Villestrup",born:"bapt. 24 M
 
 kirsten:{name:"Kirsten Jørgensdatter",tag:"of Villestrup",born:"bapt. 11 Feb 1728",died:"buried 15 Jun 1738",bp:"villestrup",dp:"jerslev",status:"verified",
  rel:{parents:["jorgen","mette"],siblings:["pj"]},
+ imgs:["r1728"],
  story:[
- "Kirsten was the first child of Jørgen Pedersen and Mette Pedersdatter, born at Villestrup in their first winter there and baptised at Jerslev on 11 February 1728. Her godparents were neighbours: Jens of Kiøbakken, Christen Christensen and Peder Mylund of Jerslev, Christen Pedersen's wife of Krattet, and Maren Pedersdatter of Smikken. Her brother Peder was born when she was not yet two.",
+ "Kirsten was the first child of Jørgen Pedersen and Mette Pedersdatter, born at Villestrup in their first winter there and [[baptised at Jerslev on 11 February 1728|r1728]]. Her godparents were neighbours: Jens of Kiøbakken, Christen Christensen and Peder Mylund of Jerslev, Christen Pedersen's wife of Krattet, and Maren Pedersdatter of Smikken. Her brother Peder was born when she was not yet two.",
  "She died in June 1738, about ten years old, and was buried at Jerslev on 15 June. The register does not say what took her. Her brother Peder was eight. When he grew up and had children of his own, none was named Kirsten, but he did name a son for their father and a daughter for their mother."],
  sources:["Jerslev baptisms, 11 Feb 1728 (image 14415865).","Jerslev burials, 15 Jun 1738 (image 14415964)."]},
 
 pj:{name:"Peder Jørgensen",tag:"of Hørkær and Raunsholt",born:"bapt. 6 Nov 1729",died:"after 1 Feb 1801",bp:"villestrup",dp:null,status:"verified",direct:true,
  rel:{parents:["jorgen","mette"],spouse:["inger"],children:["pj_jorgen","pj_christen","pj_mads","pj_anne","pj_mette","simon"],siblings:["kirsten"]},
+ imgs:["r1729", "r1760", "r1763"],
  story:[
- "Peder was born at Villestrup in the autumn of 1729 and baptised at Jerslev on 6 November. The clerk wrote the wrong father's name, struck it out, and put Jørgen Pedersen above. Christen of Sigaard, Jens of Høholt, Peder of Falden, Christen's wife of Krattet and Maren Jensdatter of Veiene held him. When he was eight his only sister, Kirsten, died.",
- "As a young man he went south into Hellevad parish, 15 km away, to work on the farm Hørkær in Kirkeskov. Inger Christensdatter served on the same farm. They were betrothed on 11 November 1760 and married at Hellevad on 15 December: 'ung Karl Peder Jørgensen' and 'Pigen Inger Christensdatter', the young man and the maid, both of Hørkær. He was thirty-one.",
- "Their first son was baptised Jørgen on 8 March 1761, for Peder's father. A second son, Christen, followed in November 1763, for Inger's. Both times the godfathers were Jens Andersen of Fodtved, Christen Christensen of Kirkeskov and Simon Christensen of Allerup, who was probably Inger's brother. Mads came about 1767, Anne Kristine about 1771, Mette Marie in the mid-1770s for Peder's mother, and last Simon, about 1777.",
+ "Peder was born at Villestrup in the autumn of 1729 and baptised at Jerslev on 6 November. The clerk [[wrote the wrong father's name, struck it out, and put Jørgen Pedersen above|r1729]]. Christen of Sigaard, Jens of Høholt, Peder of Falden, Christen's wife of Krattet and Maren Jensdatter of Veiene held him. When he was eight his only sister, Kirsten, died.",
+ "As a young man he went south into Hellevad parish, 15 km away, to work on the farm Hørkær in Kirkeskov. Inger Christensdatter served on the same farm. They were betrothed on 11 November 1760 and [[married at Hellevad on 15 December|r1760]]: 'ung Karl Peder Jørgensen' and 'Pigen Inger Christensdatter', the young man and the maid, both of Hørkær. He was thirty-one.",
+ "Their first son was baptised Jørgen on 8 March 1761, for Peder's father. A second son, [[Christen, followed in November 1763|r1763]], for Inger's. Both times the godfathers included Jens Andersen of Fodtved and Simon Christensen of Allerup, who was probably Inger's brother. Mads came about 1767, Anne Kristine about 1771, Mette Marie in the mid-1770s for Peder's mother, and last Simon, about 1777.",
  "By 1787 the family had moved north to Raunsholt, a farm in Skæve parish. Their son Christen, about twenty-three, now held it, and Peder lived with him. The census taker wrote him as Peder Sørensen, aged sixty-three. That slip sent later researchers down a false trail for two centuries. Every other record, and the 1801 census, call him Peder Jørgensen.",
  "In February 1801 he was head of the household at Raunsholt again, seventy-one years old, a farmer married only once. Inger was beside him after forty years, with their daughter Mette and their son Christen at home. His youngest son, Simon, was away in service. Within a few years Simon would take a farm at Lille Nejsum, about 270 metres away.",
  "Peder's burial has not yet been found. It most likely lies in the Skæve register after 1801."],
@@ -291,9 +355,10 @@ pj:{name:"Peder Jørgensen",tag:"of Hørkær and Raunsholt",born:"bapt. 6 Nov 17
 
 inger:{name:"Inger Christensdatter",tag:"of Hørkær and Raunsholt",born:"c. 1733",died:"after 1 Feb 1801",bp:null,dp:null,status:"verified",direct:true,
  rel:{spouse:["pj"],children:["pj_jorgen","pj_christen","pj_mads","pj_anne","pj_mette","simon"]},
+ imgs:["r1760", "r1763"],
  story:[
  "Inger was born about 1733, a farmer's daughter whose father was named Christen. Her baptism has not been found. She was most likely from Hellevad parish, where the register survives only from 1733, and her family was probably at Allerup. Simon Christensen of Allerup stood godfather to her first two sons and was very likely her brother.",
- "In 1760 she was a maid on the farm Hørkær in Kirkeskov when she married Peder Jørgensen, a farmhand on the same farm, at Hellevad on 15 December. She was about twenty-seven.",
+ "In 1760 she was a maid on the farm Hørkær in Kirkeskov when she [[married Peder Jørgensen|r1760]], a farmhand on the same farm, at Hellevad on 15 December. She was about twenty-seven.",
  "She bore at least six children over some seventeen years: Jørgen in 1761, Christen in 1763, Mads, Anne Kristine, Mette Marie, and Simon, her youngest, about 1777. Christen was named for her father. Simon carried the name of the brother from Allerup, and through him that name came down into the Bøgh line.",
  "She moved with Peder to Raunsholt in Skæve parish. She was there at fifty-three in 1787, and still there at sixty-eight in 1801, keeping house with her husband, her son Christen and her daughter Mette. Her death has not been found."],
  sources:["Hellevad marriages, 15 Dec 1760.","Hellevad baptisms 1761, 1763, godfather Simon Christensen of Allerup.","Censuses 1787 (53) and 1801 (68), Raunsholt."]},
@@ -305,7 +370,8 @@ pj_jorgen:{name:"Jørgen Pedersen",tag:"son of Peder and Inger",born:"bapt. 8 Ma
 
 pj_christen:{name:"Christen Pedersen",tag:"of Raunsholt",born:"bapt. 20 Nov 1763",died:"unknown",bp:"hellevad",dp:null,status:"verified",
  rel:{parents:["pj","inger"],siblings:["pj_jorgen","pj_mads","pj_anne","pj_mette","simon"]},
- story:["Christen was baptised at Hellevad on 20 November 1763, carried to the font by Maren Hansdatter, with the same three godfathers as his brother Jørgen. He was named for his mother's father.","By 1787, at about twenty-three, he held the farm at Raunsholt, with his parents living in. In 1801 he was still there and still unmarried, his father again head of the house. He was a near neighbour to his brother Simon's farm at Lille Nejsum."],
+ imgs:["r1763"],
+ story:["Christen was [[baptised at Hellevad on 20 November 1763|r1763]], carried to the font by Maren Hansdatter of Brønhaven in Voer parish. His godfathers were Jens Andersen of Fodtved, Christen Nielsen of Kirkeskov and Simon Christensen of Allerup. He was named for his mother's father.","By 1787, at about twenty-three, he held the farm at Raunsholt, with his parents living in. In 1801 he was still there and still unmarried, his father again head of the house. He was a near neighbour to his brother Simon's farm at Lille Nejsum."],
  sources:["Hellevad baptisms, 20 Nov 1763.","Censuses 1787 and 1801, Raunsholt."]},
 
 pj_mads:{name:"Mads Pedersen",tag:"son of Peder and Inger",born:"c. 1767",died:"unknown",bp:null,dp:null,status:"verified",
@@ -444,6 +510,8 @@ const E=[
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const yrs=p=>{const b=(p.born||"").match(/\d{4}/),d=(p.died||"").match(/\d{4}/);const pre=/^after/.test(p.died||"")?"aft. ":/^before/.test(p.died||"")?"bef. ":"";return (b?((/c\.|–/.test(p.born)?"c. ":"")+b[0]):"?")+" – "+(d?pre+d[0]:"?");};
+const linkify=t=>esc(t).replace(/\[\[([^|\]]+)\|([a-z0-9_]+)\]\]/g,(m,txt,k)=>IMG[k]?`<button class="ilink" data-img="${k}">${txt}</button>`:txt);
+const thumb=(k,set)=>`<button class="thumb" data-img="${k}" data-set="${(set||[]).join(",")}"><img src="${IMG[k].src}" alt="" loading="lazy"><span>${esc(IMG[k].t)}</span></button>`;
 const short=p=>{const b=(p.born||"").match(/\d{4}/);return b?b[0]:"";};
 
 function card(id,extra=""){
@@ -502,7 +570,8 @@ function openPerson(id,push=true){
   const tl=ev.map(e=>`<li class="${e.who[0]===id?"self":""}"><span class="d">${esc(e.ds)}${e.rep?" · reported":""}${e.prob?" · probable":""}</span>${esc(e.t)}${e.pl?` <span class="pl">· ${esc(PLACES[e.pl].name)}</span>`:""}</li>`).join("");
   const i=ORDER.indexOf(id),prev=ORDER[i-1],next=ORDER[i+1];
   $("#d-body").innerHTML=`<dl class="rel">${rel}</dl>
-    <div class="story">${p.story.map(s=>`<p>${esc(s)}</p>`).join("")}</div>
+    <div class="story">${p.story.map(s=>`<p>${linkify(s)}</p>`).join("")}</div>
+    ${p.imgs&&p.imgs.length?`<h3>Images</h3><div class="thumbs">${p.imgs.map(k=>thumb(k,p.imgs)).join("")}</div>`:""}
     ${tl?`<h3>Life events</h3><ul class="tl">${tl}</ul>`:""}
     <h3>Records</h3><ul class="src">${p.sources.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
     <div class="navrow">${prev?`<button data-id="${prev}">← ${esc(P[prev].name)}</button>`:"<span></span>"}${next?`<button data-id="${next}">${esc(P[next].name)} →</button>`:""}</div>`;
@@ -552,9 +621,35 @@ function showPop(k){
 }
 function closePop(){document.querySelectorAll(".pop").forEach(n=>n.remove());}
 
+/* ===================== LIGHTBOX ===================== */
+const LB={set:[],i:0,s:1,x:0,y:0,fit:1,last:null};
+const lbImg=$("#lb-img"),stage=$("#lb-stage");
+function lbApply(){lbImg.style.transform=`translate(${LB.x}px,${LB.y}px) scale(${LB.s})`;}
+function lbFit(){const W=stage.clientWidth,H=stage.clientHeight,w=lbImg.naturalWidth,h=lbImg.naturalHeight;if(!w)return;LB.fit=Math.min(W/w,H/h)*0.98;LB.s=LB.fit;LB.x=-w*LB.s/2;LB.y=-h*LB.s/2;lbApply();}
+function lbZoom(f,cx,cy){const r=stage.getBoundingClientRect();cx=(cx??r.left+r.width/2)-r.left-r.width/2;cy=(cy??r.top+r.height/2)-r.top-r.height/2;const ns=Math.max(LB.fit*0.5,Math.min(LB.s*f,LB.fit*12));const k=ns/LB.s;LB.x=cx-(cx-LB.x)*k;LB.y=cy-(cy-LB.y)*k;LB.s=ns;lbApply();}
+function lbShow(i){LB.i=(i+LB.set.length)%LB.set.length;const im=IMG[LB.set[LB.i]];$("#lb-t").textContent=im.t;$("#lb-cap").innerHTML=`${esc(im.cap)}<span class="src">${esc(im.ref)}</span>`;lbImg.alt=im.t;lbImg.onload=lbFit;lbImg.src=im.src;if(lbImg.complete&&lbImg.naturalWidth)lbFit();const many=LB.set.length>1;$("#lb-prev").hidden=!many;$("#lb-next").hidden=!many;}
+function openLB(k,set){LB.last=document.activeElement;LB.set=(set&&set.length?set:[k]);if(!LB.set.includes(k))LB.set=[k];$("#lb").classList.add("on");$("#lb").setAttribute("aria-hidden","false");document.body.style.overflow="hidden";lbShow(LB.set.indexOf(k));$("#lb-x").focus({preventScroll:true});}
+function closeLB(){$("#lb").classList.remove("on");$("#lb").setAttribute("aria-hidden","true");if(!$("#drawer").classList.contains("on"))document.body.style.overflow="";if(LB.last&&LB.last.focus)LB.last.focus({preventScroll:true});}
+$("#lb-x").addEventListener("click",closeLB);$("#lb-fit").addEventListener("click",lbFit);
+$("#lb-in").addEventListener("click",()=>lbZoom(1.5));$("#lb-out").addEventListener("click",()=>lbZoom(1/1.5));
+$("#lb-prev").addEventListener("click",e=>{e.stopPropagation();lbShow(LB.i-1);});$("#lb-next").addEventListener("click",e=>{e.stopPropagation();lbShow(LB.i+1);});
+stage.addEventListener("wheel",e=>{e.preventDefault();lbZoom(e.deltaY<0?1.15:1/1.15,e.clientX,e.clientY);},{passive:false});
+stage.addEventListener("dblclick",e=>{if(e.target.closest(".lb-nav"))return;LB.s>LB.fit*1.05?lbFit():lbZoom(2.5,e.clientX,e.clientY);});
+(()=>{const pts=new Map();let d0=0,s0=1,px=0,py=0;
+ stage.addEventListener("pointerdown",e=>{if(e.target.closest(".lb-nav"))return;stage.setPointerCapture(e.pointerId);pts.set(e.pointerId,{x:e.clientX,y:e.clientY});stage.classList.add("drag");if(pts.size===2){const [a,b]=[...pts.values()];d0=Math.hypot(a.x-b.x,a.y-b.y);s0=LB.s;}px=e.clientX;py=e.clientY;});
+ stage.addEventListener("pointermove",e=>{if(!pts.has(e.pointerId))return;pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(pts.size===2){const [a,b]=[...pts.values()];const d=Math.hypot(a.x-b.x,a.y-b.y);lbZoom((s0*d/d0)/LB.s,(a.x+b.x)/2,(a.y+b.y)/2);}
+  else{LB.x+=e.clientX-px;LB.y+=e.clientY-py;px=e.clientX;py=e.clientY;lbApply();}});
+ const up=e=>{pts.delete(e.pointerId);if(!pts.size)stage.classList.remove("drag");if(pts.size===1){const [a]=[...pts.values()];px=a.x;py=a.y;}};
+ stage.addEventListener("pointerup",up);stage.addEventListener("pointercancel",up);
+})();
+window.addEventListener("resize",()=>{if($("#lb").classList.contains("on"))lbFit();});
+$("#gallery").innerHTML=GALLERY.map(k=>thumb(k,GALLERY)).join("");
+
 /* ===================== WIRING ===================== */
 buildTree(); buildMap();
 document.addEventListener("click",e=>{
+  const im=e.target.closest("[data-img]"); if(im){e.preventDefault(); openLB(im.dataset.img,(im.dataset.set||"").split(",").filter(Boolean)); return;}
   const t=e.target.closest("[data-id]"); if(t){e.preventDefault(); openPerson(t.dataset.id); return;}
   const pin=e.target.closest("[data-place]"); if(pin){showPop(pin.dataset.place); return;}
   if(!e.target.closest(".pop")) closePop();
@@ -562,6 +657,7 @@ document.addEventListener("click",e=>{
 $("#scrim").addEventListener("click",()=>closeDrawer());
 $("#d-close").addEventListener("click",()=>closeDrawer());
 document.addEventListener("keydown",e=>{
+  if($("#lb").classList.contains("on")){ if(e.key==="Escape") closeLB(); else if(e.key==="ArrowLeft"&&LB.set.length>1) lbShow(LB.i-1); else if(e.key==="ArrowRight"&&LB.set.length>1) lbShow(LB.i+1); else if(e.key==="+"||e.key==="=") lbZoom(1.4); else if(e.key==="-") lbZoom(1/1.4); if(e.key==="Tab"){e.preventDefault();$("#lb-x").focus();} return; }
   if(e.key==="Escape"){ if($("#drawer").classList.contains("on")) closeDrawer(); else closePop(); }
   if(e.key==="Tab"&&$("#drawer").classList.contains("on")){
     const f=[...$("#drawer").querySelectorAll("button")].filter(b=>b.offsetParent); if(!f.length) return;
