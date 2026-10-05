@@ -6,7 +6,7 @@
 <title>The Bøgh Line</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Archivo+Narrow:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
 <style>
-:root{--bg:#f2f4ef;--surface:#fff;--surface2:#f7f8f4;--ink:#1f2a24;--muted:#5b6660;--rule:#d5dbd3;--line:#9aa69d;--accent:#2e6b3a;--accent-soft:#e3efe4;--warn:#8a5a12;--warn-soft:#f6ecd9;--rep:#5b5f8a;--rep-soft:#e8e9f3;--path:#1f4e8a;--pin:#8a2f2a;--shadow:0 1px 2px rgba(0,0,0,.06),0 6px 24px rgba(0,0,0,.08);--display:'Source Serif 4',Georgia,serif;--sans:'Archivo Narrow','Arial Narrow',Arial,sans-serif;--mono:'IBM Plex Mono',Menlo,monospace}
+:root{--route:#0d3b8e;--mappin:#a52a22;--bg:#f2f4ef;--surface:#fff;--surface2:#f7f8f4;--ink:#1f2a24;--muted:#5b6660;--rule:#d5dbd3;--line:#9aa69d;--accent:#2e6b3a;--accent-soft:#e3efe4;--warn:#8a5a12;--warn-soft:#f6ecd9;--rep:#5b5f8a;--rep-soft:#e8e9f3;--path:#1f4e8a;--pin:#8a2f2a;--shadow:0 1px 2px rgba(0,0,0,.06),0 6px 24px rgba(0,0,0,.08);--display:'Source Serif 4',Georgia,serif;--sans:'Archivo Narrow','Arial Narrow',Arial,sans-serif;--mono:'IBM Plex Mono',Menlo,monospace}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#151916;--surface:#1f2520;--surface2:#252c26;--ink:#e6e9e3;--muted:#a3ada6;--rule:#39423b;--line:#5d6a60;--accent:#8fd09a;--accent-soft:#25382a;--warn:#e8bf73;--warn-soft:#3a3020;--rep:#b3b7e8;--rep-soft:#2b2d40;--path:#8fb6f0;--pin:#f09a92;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.4)}}
 :root[data-theme="dark"]{color-scheme:dark;--bg:#151916;--surface:#1f2520;--surface2:#252c26;--ink:#e6e9e3;--muted:#a3ada6;--rule:#39423b;--line:#5d6a60;--accent:#8fd09a;--accent-soft:#25382a;--warn:#e8bf73;--warn-soft:#3a3020;--rep:#b3b7e8;--rep-soft:#2b2d40;--path:#8fb6f0;--pin:#f09a92;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.4)}
 *{box-sizing:border-box}
@@ -86,10 +86,10 @@ a{color:var(--path)}
 .pop li button{appearance:none;background:none;border:0;padding:0;font:inherit;color:var(--path);text-align:left;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
 .pop .x{position:absolute;top:6px;right:8px;appearance:none;background:none;border:0;font-size:20px;line-height:1;color:var(--muted);cursor:pointer}
 .leg.r{transform:translate(0,-50%)}
-.leg{position:absolute;transform:translate(-50%,-50%);font:600 12px var(--mono);color:#fff;background:var(--path);border:1.5px solid #fff;border-radius:999px;padding:1px 7px;white-space:nowrap;pointer-events:auto;cursor:help;box-shadow:0 1px 3px rgba(0,0,0,.35);z-index:1}
+.leg{position:absolute;transform:translate(-50%,-50%);font:600 12px var(--mono);color:#fff;background:var(--route);border:1.5px solid #fff;font-weight:600;border-radius:999px;padding:1px 7px;white-space:nowrap;pointer-events:auto;cursor:help;box-shadow:0 1px 3px rgba(0,0,0,.35);z-index:1}
 @media (max-width:640px){.leg{font-size:9.5px;padding:0 4px;border-width:1px}.pin .lab{font-size:10px;padding:0 3px;bottom:16px;left:11px}.pin.lft .lab{left:auto;right:11px}.pin svg{width:17px;height:23px}}
 .mapkey{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted);margin:10px 0 0}
-.mapkey .sw{display:inline-block;width:24px;height:0;border-top:3px dashed var(--path);vertical-align:middle;margin-right:6px}
+.mapkey .sw{display:inline-block;width:24px;height:0;border-top:3px dashed var(--route);outline:5px solid #fffbe8;outline-offset:-1px;border-radius:1px;margin-left:5px;vertical-align:middle;margin-right:6px}
 
 /* ---------- drawer ---------- */
 .scrim{position:fixed;inset:0;background:rgba(10,14,11,.42);opacity:0;pointer-events:none;transition:opacity .2s ease;z-index:20}
@@ -617,7 +617,7 @@ function buildMap(){
     const b=document.createElement("button");
     b.className="pin"+(pl.left?" lft":""); b.style.left=x+"%"; b.style.top=y+"%"; b.dataset.place=k;
     b.setAttribute("aria-label",pl.name+": show people and events");
-    b.innerHTML=`<svg viewBox="0 0 22 30" aria-hidden="true"><path d="M11 1C5.5 1 1 5.4 1 10.9 1 18.3 11 29 11 29s10-10.7 10-18.1C21 5.4 16.5 1 11 1z" fill="var(--pin)" stroke="#fff" stroke-width="1.6"/><circle cx="11" cy="11" r="3.6" fill="#fff"/></svg><span class="lab">${esc(pl.name)}</span>`;
+    b.innerHTML=`<svg viewBox="0 0 22 30" aria-hidden="true"><path d="M11 1C5.5 1 1 5.4 1 10.9 1 18.3 11 29 11 29s10-10.7 10-18.1C21 5.4 16.5 1 11 1z" fill="var(--mappin)" stroke="#fff" stroke-width="1.6"/><circle cx="11" cy="11" r="3.6" fill="#fff"/></svg><span class="lab">${esc(pl.name)}</span>`;
     m.appendChild(b);
   }
 }
@@ -627,9 +627,10 @@ function drawRoute(){
   const small=W<500, sw=small?2.2:3, ah=small?9:13, HEAD=19, RAD=13;   // pin head centre sits 19px above the tip
   const C=k=>{const [x,y]=pct(PLACES[k].lat,PLACES[k].lon);return [x/100*W,y/100*H-HEAD];};
   const unit=(x,y)=>{const l=Math.hypot(x,y)||1;return [x/l,y/l];};
-  const dash=`stroke="var(--path)" stroke-width="${sw}" stroke-dasharray="${sw*2.4} ${sw*2}" stroke-linecap="round" fill="none"`;
+  const dash=`stroke="var(--route)" stroke-width="${sw}" stroke-dasharray="${sw*2.4} ${sw*2}" stroke-linecap="round" fill="none"`;
+  const halo=d=>`<path d="${d}" stroke="#fff" stroke-opacity=".85" stroke-width="${sw+3.5}" stroke-linecap="round" fill="none"/>`;
   const head=(ex,ey,tx,ty)=>{const [ux,uy]=unit(tx,ty),bx=ex-ux*ah,by=ey-uy*ah,nx=-uy*ah*.55,ny=ux*ah*.55;
-    return `<path d="M${ex},${ey} L${bx+nx},${by+ny} L${bx-nx},${by-ny} Z" fill="var(--path)" stroke="#fff" stroke-width="1"/>`;};
+    return `<path d="M${ex},${ey} L${bx+nx},${by+ny} L${bx-nx},${by-ny} Z" fill="var(--route)" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/>`;};
   const bez=(t,p0,p1,p2,p3)=>{const u=1-t;return [u*u*u*p0[0]+3*u*u*t*p1[0]+3*u*t*t*p2[0]+t*t*t*p3[0],u*u*u*p0[1]+3*u*u*t*p1[1]+3*u*t*t*p2[1]+t*t*t*p3[1]];};
   let g="",labs="";
   const lab=(x,y,L,cls="")=>{const pad=small?28:40; x=Math.max(pad,Math.min(W-(cls==="r"?pad*1.9:pad),x)); y=Math.max(12,Math.min(H-12,y)); labs+=`<div class="leg ${cls}" style="left:${x/W*100}%;top:${y/H*100}%" title="${esc(L.why)}">${esc(L.d)}</div>`;};
@@ -638,7 +639,7 @@ function drawRoute(){
     if(L.loop){                       // counter-clockwise swing round the east side
       const k=small?30:46, S=[A[0]+RAD*.8,A[1]+RAD*.6], E=[B[0]+RAD,B[1]+2];
       const c1=[S[0]+k*.9,S[1]+k*.7], c2=[E[0]+k*1.3,E[1]+k*.1];
-      g+=`<path d="M${S} C${c1} ${c2} ${E}" ${dash}/>`+head(E[0],E[1],E[0]-c2[0],E[1]-c2[1]);
+      g+=halo(`M${S} C${c1} ${c2} ${E}`)+`<path d="M${S} C${c1} ${c2} ${E}" ${dash}/>`+head(E[0],E[1],E[0]-c2[0],E[1]-c2[1]);
       const M=bez(.55,S,c1,c2,E); if(small) lab(A[0]-26,A[1]+30,L); else lab(M[0]+8,M[1]+20,L,"r"); return;
     }
     const [ux,uy]=unit(B[0]-A[0],B[1]-A[1]);
@@ -647,11 +648,11 @@ function drawRoute(){
       const Q=[(A[0]+B[0])/2+px*len*L.bend,(A[1]+B[1])/2+py*len*L.bend];
       const [sx,sy]=unit(Q[0]-A[0],Q[1]-A[1]),[ex,ey]=unit(Q[0]-B[0],Q[1]-B[1]);
       const S=[A[0]+sx*RAD,A[1]+sy*RAD],E=[B[0]+ex*RAD,B[1]+ey*RAD];
-      g+=`<path d="M${S} Q${Q} ${E}" ${dash}/>`+head(E[0],E[1],E[0]-Q[0],E[1]-Q[1]);
+      g+=halo(`M${S} Q${Q} ${E}`)+`<path d="M${S} Q${Q} ${E}" ${dash}/>`+head(E[0],E[1],E[0]-Q[0],E[1]-Q[1]);
       lab(.25*S[0]+.5*Q[0]+.25*E[0],.25*S[1]+.5*Q[1]+.25*E[1],L); return;
     }
     const S=[A[0]+ux*RAD,A[1]+uy*RAD+(uy<0.3?6:0)],E=[B[0]-ux*RAD,B[1]-uy*RAD];
-    g+=`<path d="M${S} L${E[0]-ux*ah*.8},${E[1]-uy*ah*.8}" ${dash}/>`+head(E[0],E[1],ux,uy);
+    g+=halo(`M${S} L${E[0]-ux*ah*.8},${E[1]-uy*ah*.8}`)+`<path d="M${S} L${E[0]-ux*ah*.8},${E[1]-uy*ah*.8}" ${dash}/>`+head(E[0],E[1],ux,uy);
     lab((S[0]+E[0])/2,(S[1]+E[1])/2,L);
   });
   svg.innerHTML=g; $("#leglabels").innerHTML=labs;
