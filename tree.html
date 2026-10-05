@@ -1,82 +1,582 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>The Bøgh Line</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Archivo+Narrow:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Archivo+Narrow:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
 <style>
-:root{--bg:#f2f4ef;--surface:#fff;--ink:#1f2a24;--muted:#5b6660;--rule:#d5dbd3;--birth:#2e6b3a;--death:#8a2f2a;--path:#1f4e8a;--display:'Source Serif 4',Georgia,serif;--sans:'Archivo Narrow','Arial Narrow',Arial,sans-serif;--mono:'IBM Plex Mono',Menlo,monospace}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#171b18;--surface:#202621;--ink:#e6e9e3;--muted:#a3ada6;--rule:#39423b;--birth:#8fd09a;--death:#f09a92;--path:#8fb6f0}}
-:root[data-theme="dark"]{color-scheme:dark;--bg:#171b18;--surface:#202621;--ink:#e6e9e3;--muted:#a3ada6;--rule:#39423b;--birth:#8fd09a;--death:#f09a92;--path:#8fb6f0}
+:root{--bg:#f2f4ef;--surface:#fff;--surface2:#f7f8f4;--ink:#1f2a24;--muted:#5b6660;--rule:#d5dbd3;--line:#9aa69d;--accent:#2e6b3a;--accent-soft:#e3efe4;--warn:#8a5a12;--warn-soft:#f6ecd9;--rep:#5b5f8a;--rep-soft:#e8e9f3;--path:#1f4e8a;--pin:#8a2f2a;--shadow:0 1px 2px rgba(0,0,0,.06),0 6px 24px rgba(0,0,0,.08);--display:'Source Serif 4',Georgia,serif;--sans:'Archivo Narrow','Arial Narrow',Arial,sans-serif;--mono:'IBM Plex Mono',Menlo,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#151916;--surface:#1f2520;--surface2:#252c26;--ink:#e6e9e3;--muted:#a3ada6;--rule:#39423b;--line:#5d6a60;--accent:#8fd09a;--accent-soft:#25382a;--warn:#e8bf73;--warn-soft:#3a3020;--rep:#b3b7e8;--rep-soft:#2b2d40;--path:#8fb6f0;--pin:#f09a92;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#151916;--surface:#1f2520;--surface2:#252c26;--ink:#e6e9e3;--muted:#a3ada6;--rule:#39423b;--line:#5d6a60;--accent:#8fd09a;--accent-soft:#25382a;--warn:#e8bf73;--warn-soft:#3a3020;--rep:#b3b7e8;--rep-soft:#2b2d40;--path:#8fb6f0;--pin:#f09a92;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.4)}
+*{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;margin:0;padding-block:32px 64px;padding-inline:clamp(16px,4vw,48px)}
-.wrap{max-width:1080px;margin:0 auto;display:grid;gap:28px}
-h1{font-family:var(--display);font-weight:600;font-size:clamp(30px,4.5vw,44px);line-height:1.1;margin:0;text-wrap:balance} h2{font-family:var(--display);font-weight:600;font-size:22px;margin:0 0 10px}
-p{max-width:68ch;margin:0 0 12px} .eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px} .lede{font-size:18px;max-width:70ch}
-.card{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:16px} a{color:var(--path)}
-.tmap{position:relative;width:100%;aspect-ratio:2400/1180;overflow:hidden;border-radius:4px;border:1px solid var(--rule)}
-.tmap img{position:absolute;inset:0;width:100%;height:100%;display:block}
-.tmap svg{position:absolute;inset:0;width:100%;height:100%}
-.tpin{position:absolute;transform:translate(-50%,-50%);font-size:12px;white-space:nowrap}
-.tpin i{display:block;width:16px;height:16px;border-radius:50%;border:3px solid var(--birth);background:var(--birth);margin:0 auto;box-shadow:0 0 0 2px #fff}
-.tpin.death i{background:transparent;border-color:var(--death)} .tpin.both i{background:var(--birth);border-color:var(--death)}
-.tpin span{position:absolute;left:14px;top:-3px;background:rgba(255,255,255,.88);color:#1f2a24;padding:1px 6px;border-radius:3px;font-weight:600}
-.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;color:var(--muted);margin-bottom:10px} .legend span{display:inline-flex;align-items:center;gap:7px}
-.sw{display:inline-block;width:12px;height:12px;border-radius:50%;border:3px solid var(--birth);background:var(--birth)} .sw.d{background:none;border-color:var(--death)} .sw.p{width:22px;height:0;border:0;border-top:3px dashed var(--path);border-radius:0}
-table{border-collapse:collapse;width:100%;font-size:14px} th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
-th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)} td.num{font-family:var(--mono)} td.note{color:var(--muted);min-width:260px} td.conf{font-size:13px} .muted{color:var(--muted)}
-.tablewrap{overflow-x:auto} ul,ol{margin:0;padding-left:20px;max-width:70ch} li{margin-bottom:6px} .fine{font-size:13px;color:var(--muted)}
+.wrap{max-width:1120px;margin:0 auto;display:grid;gap:28px}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(32px,5vw,48px);line-height:1.08;margin:0;text-wrap:balance}
+h2{font-family:var(--display);font-weight:600;font-size:23px;margin:0 0 6px}
+p{max-width:70ch;margin:0 0 12px}
+a{color:var(--path)}
+.eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.lede{font-family:var(--display);font-size:clamp(17px,2vw,19px);max-width:68ch;margin-top:14px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:clamp(14px,2.5vw,24px)}
+.sub{color:var(--muted);margin-bottom:16px;max-width:72ch}
+.fine{font-size:13px;color:var(--muted)}
+.key{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--muted);margin:0 0 18px}
+.key span{display:inline-flex;align-items:center;gap:6px}
+.dot{width:10px;height:10px;border-radius:2px;display:inline-block}
+.dot.kv{background:var(--accent)} .dot.kp{background:var(--warn)} .dot.kr{background:var(--rep)}
+
+/* ---------- tree ---------- */
+.tree{display:grid;gap:0;justify-items:center}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(12px,3vw,40px);width:100%;max-width:900px}
+.split .col{display:grid;justify-items:center;align-content:end}
+.gen{display:flex;flex-direction:column;align-items:center;width:100%}
+.couple{display:flex;align-items:stretch;justify-content:center;gap:0;position:relative;flex-wrap:nowrap}
+.marr{align-self:center;width:clamp(14px,3vw,28px);height:2px;background:var(--line);flex:none;position:relative}
+.marr b{position:absolute;left:50%;top:-9px;transform:translateX(-50%);font:600 11px var(--mono);color:var(--muted);background:var(--bg);padding:0 2px;display:none}
+.p{appearance:none;font:inherit;color:inherit;text-align:left;cursor:pointer;background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:6px;padding:8px 12px 9px;width:clamp(148px,24vw,232px);box-shadow:var(--shadow);transition:transform .12s ease,border-color .12s ease}
+.p:hover{transform:translateY(-1px);border-color:var(--line)}
+.p:focus-visible{outline:3px solid var(--path);outline-offset:2px}
+.p.probable{border-left-color:var(--warn)} .p.reported{border-left-color:var(--rep)}
+.p.unknown{border-style:dashed;border-left-width:1px;background:transparent;box-shadow:none;color:var(--muted);cursor:default}
+.p .nm{display:block;font-family:var(--display);font-weight:600;font-size:clamp(14px,1.7vw,16.5px);line-height:1.2}
+.p .yr{display:block;font:12px var(--mono);color:var(--muted);margin-top:3px}
+.p .pl{display:block;font-size:12.5px;color:var(--muted);margin-top:1px;line-height:1.25}
+.p.direct .nm::after{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-left:6px;vertical-align:middle}
+.kids{display:flex;flex-wrap:wrap;justify-content:center;gap:5px;margin:8px auto 0;max-width:640px;padding:0 4px}
+.kid{appearance:none;font:inherit;font-size:12.5px;color:var(--ink);background:var(--surface2);border:1px solid var(--rule);border-radius:999px;padding:2px 9px;cursor:pointer;line-height:1.5}
+.kid:hover{border-color:var(--line)} .kid.line{border-color:var(--accent);background:var(--accent-soft);font-weight:600}
+.kid i{font-style:normal;color:var(--muted);font-family:var(--mono);font-size:11px;margin-left:4px}
+.kidlabel{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);align-self:center;margin-right:2px}
+.stem{width:2px;height:26px;background:var(--line);margin:6px auto 6px}
+.stem.short{height:16px}
+.split.pair{position:relative;align-items:center}
+.split.pair::before{content:"";position:absolute;left:25%;right:25%;top:50%;height:2px;background:var(--line);z-index:0}
+.split.pair .col{position:relative;z-index:1}
+.stem2{display:grid;grid-template-columns:1fr 1fr;width:100%;max-width:900px;gap:0 clamp(12px,3vw,40px)}
+.stem2 i{display:block;width:2px;height:26px;background:var(--line);margin:6px auto}
+.others{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center}
+.others button{appearance:none;font:inherit;color:var(--path);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.gnum{font:11px var(--mono);color:var(--muted);letter-spacing:.06em;margin-bottom:6px;text-transform:uppercase}
+@media (max-width:640px){
+  .split{grid-template-columns:1fr;gap:10px}
+  .split .col.left{order:2}
+  .split.pair::before{display:none}.stem2{grid-template-columns:1fr}.stem2 i:first-child{display:none}
+  .split.pair .col.left{order:0}
+  .couple{flex-direction:column;align-items:center}
+  .marr{width:2px;height:14px}
+  .p{width:min(88vw,320px)}
+}
+
+/* ---------- map ---------- */
+.mapwrap{position:relative;width:100%;aspect-ratio:2400/2029;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background:#f5f1df}
+.mapwrap img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.mapwrap svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.pin{position:absolute;transform:translate(-50%,-100%);appearance:none;border:0;background:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center}
+.pin svg{position:static;width:22px;height:30px;filter:drop-shadow(0 1px 1.5px rgba(0,0,0,.45));pointer-events:auto}
+.pin .lab{position:absolute;bottom:20px;left:15px;white-space:nowrap;font:600 12px var(--sans);color:#1f2a24;background:rgba(255,255,255,.92);border:1px solid rgba(0,0,0,.12);border-radius:3px;padding:0 5px;line-height:1.5}
+.pin.lft .lab{left:auto;right:15px}
+.pin:focus-visible{outline:3px solid var(--path);outline-offset:2px;border-radius:4px}
+.pop{position:absolute;z-index:3;width:min(300px,80%);background:var(--surface);color:var(--ink);border:1px solid var(--rule);border-radius:8px;box-shadow:var(--shadow);padding:12px 14px;font-size:14px}
+.pop h3{font-family:var(--display);font-size:17px;margin:0 22px 2px 0}
+.pop .note{font-size:12.5px;color:var(--muted);margin:0 0 8px}
+.pop ul{list-style:none;margin:0;padding:0;display:grid;gap:5px;max-height:240px;overflow:auto}
+.pop li{display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:baseline}
+.pop li .d{font:11.5px var(--mono);color:var(--muted)}
+.pop li button{appearance:none;background:none;border:0;padding:0;font:inherit;color:var(--path);text-align:left;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.pop .x{position:absolute;top:6px;right:8px;appearance:none;background:none;border:0;font-size:20px;line-height:1;color:var(--muted);cursor:pointer}
+.mapkey{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted);margin:10px 0 0}
+.mapkey .sw{display:inline-block;width:24px;height:0;border-top:3px dashed var(--path);vertical-align:middle;margin-right:6px}
+
+/* ---------- drawer ---------- */
+.scrim{position:fixed;inset:0;background:rgba(10,14,11,.42);opacity:0;pointer-events:none;transition:opacity .2s ease;z-index:20}
+.scrim.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;z-index:21;top:0;right:0;bottom:0;width:min(560px,100vw);background:var(--surface);color:var(--ink);box-shadow:var(--shadow);transform:translateX(102%);transition:transform .24s ease;display:flex;flex-direction:column;outline:none}
+.drawer.on{transform:none}
+.dhead{padding:calc(14px + env(safe-area-inset-top,0px)) 20px 12px;border-bottom:1px solid var(--rule);display:flex;gap:12px;align-items:flex-start;background:var(--surface);position:relative}
+.dhead .who{flex:1;min-width:0}
+.dhead h2{font-size:clamp(22px,4vw,28px);line-height:1.15;margin:2px 0 4px}
+.dhead .life{font:13px var(--mono);color:var(--muted)}
+.dclose{appearance:none;border:1px solid var(--rule);background:var(--surface2);color:var(--ink);border-radius:999px;width:36px;height:36px;font-size:20px;line-height:1;cursor:pointer;flex:none}
+.badge{display:inline-block;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:1px 8px;font-weight:600}
+.badge.verified{background:var(--accent-soft);color:var(--accent)} .badge.probable{background:var(--warn-soft);color:var(--warn)} .badge.reported{background:var(--rep-soft);color:var(--rep)}
+.dbody{overflow:auto;padding:16px 20px calc(28px + env(safe-area-inset-bottom,0px));-webkit-overflow-scrolling:touch}
+.rel{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:14px;margin:0 0 18px;padding:10px 12px;background:var(--surface2);border-radius:6px}
+.rel dt{color:var(--muted);font-size:12px;letter-spacing:.05em;text-transform:uppercase;padding-top:2px}
+.rel dd{margin:0}
+.rel button{appearance:none;background:none;border:0;padding:0;font:inherit;color:var(--path);cursor:pointer;text-decoration:underline;text-underline-offset:2px;text-align:left}
+.story p{font-family:var(--display);font-size:17px;line-height:1.62;max-width:none}
+.story p:first-child::first-letter{font-size:2.6em;float:left;line-height:.9;padding:4px 6px 0 0;font-weight:600;color:var(--accent)}
+.dbody h3{font-family:var(--sans);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:22px 0 8px;font-weight:600}
+.tl{list-style:none;margin:0;padding:0;border-left:2px solid var(--rule);display:grid;gap:9px}
+.tl li{position:relative;padding-left:16px;font-size:14.5px}
+.tl li::before{content:"";position:absolute;left:-6px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--surface);border:2px solid var(--line)}
+.tl li.self::before{background:var(--accent);border-color:var(--accent)}
+.tl .d{font:12px var(--mono);color:var(--muted);display:block}
+.tl .pl{color:var(--muted)}
+.src{font-size:13px;color:var(--muted);padding-left:18px;margin:0}
+.src li{margin-bottom:4px}
+.navrow{display:flex;justify-content:space-between;gap:10px;margin-top:22px}
+.navrow button{appearance:none;font:inherit;font-size:14px;background:var(--surface2);border:1px solid var(--rule);color:var(--ink);border-radius:6px;padding:7px 12px;cursor:pointer}
+@media (max-width:640px){
+  .drawer{top:auto;left:0;width:100vw;height:92dvh;border-radius:14px 14px 0 0;transform:translateY(102%)}
+  .drawer.on{transform:none}
+  .dhead{padding-top:18px}
+  .dhead::before{content:"";position:absolute;top:6px;left:50%;width:40px;height:4px;border-radius:2px;background:var(--rule);transform:translateX(-50%)}
+  .story p{font-size:16.5px}
+}
+@media (prefers-reduced-motion:reduce){.drawer,.scrim,.p{transition:none}}
+
+.gaps{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.gap{border:1px solid var(--rule);border-radius:6px;padding:12px 14px;background:var(--surface2)}
+.gap b{display:block;font-family:var(--display);font-size:16px;margin-bottom:4px}
+.gap p{font-size:14px;margin:0;color:var(--muted)}
 </style>
+</head>
+<body>
 <div class="wrap">
   <header>
-    <div class="eyebrow">Jerslev · Vester Brønderslev · Hellevad · Skæve · Klæstrup — Vendsyssel, Denmark</div>
+    <div class="eyebrow">Sterup · Villestrup · Hellevad · Raunsholt · Lille Nejsum · Klæstrup — Vendsyssel, Denmark</div>
     <h1>The Bøgh Line</h1>
-    <p class="lede">Eight generations from Søren Jensen of Fredenborg, documented in the Jerslev register in 1698 and 1702, to Jens Kristian Marinus Thomsen Bøgh, born at Klæstrup in 1903. The whole line lived within a 25 km stretch of central Vendsyssel, and after two centuries it came back to the parish it started in. This page companions <a href="index.html">Finding Fredenborg</a>, which locates the house where it begins.</p>
+    <p class="lede">Nine generations of one family, from a farmhand in Sterup in the 1650s to a child born at Klæstrup in 1903. They never lived more than a day's walk apart. After a century and a half in Hellevad and Skæve, the line came back to Jerslev parish, where it began. Choose any name to read that person's life.</p>
   </header>
 
-  <section class="card">
-    <h2>Births and deaths on the map</h2>
-    <div class="legend"><span><i class="sw"></i>Birthplace</span><span><i class="sw d"></i>Place of death</span><span><i class="sw p"></i>Order of moves, generation by generation</span></div>
-    <div class="tmap">
-      <img src="img/tree_basemap.jpg" alt="Topographic map of central Vendsyssel between Brønderslev and Skæve">
-      <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline points="46.964,27.520 46.964,27.520 46.964,27.520 46.964,27.520 13.568,36.640 53.774,81.696 76.021,-0.240 87.711,21.152 87.711,21.152 87.711,21.152 87.711,21.152 32.906,26.456 32.906,26.456" fill="none" stroke="var(--path)" stroke-width="0.35" stroke-dasharray="1 0.8" vector-effect="non-scaling-stroke" style="stroke-width:3px"/></svg>
-      <div class="tpin both" style="left:46.964%;top:27.520%" title="birth · Søren Jensen · c. 1660s? | death · Søren Jensen · after 1702 | birth · Christen Sørensen · 13 Feb 1698 | death · Christen Sørensen · 20 Feb 1746 (reported)"><i></i><span>Fredenborg, Svennum</span></div><div class="tpin birth" style="left:13.568%;top:36.640%" title="birth · Peder Sørensen · 1724"><i></i><span>Vester Brønderslev</span></div><div class="tpin birth" style="left:53.774%;top:81.696%" title="birth · Simon Pedersen · 1774"><i></i><span>Hellevad</span></div><div class="tpin both" style="left:87.711%;top:21.152%" title="death · Simon Pedersen · 25 Jul 1853 | birth · Thomas Simonsen · 16 Dec 1814 | death · Thomas Simonsen · 5 Dec 1898 | birth · Christen (Kresten) Thomsen · 7 Aug 1850"><i></i><span>Skæve</span></div><div class="tpin birth" style="left:32.906%;top:26.456%" title="birth · Jens Kristian Severin Thomsen Bøgh · 22 Apr 1876 | birth · Jens Kristian Marinus Thomsen Bøgh · 1903"><i></i><span>Klæstrup</span><div class="tpin birth" style="left:76.021%;top:-0.240%" title="birth · Thomas Simonsen · 16 Dec 1814 | home · Simon Pedersen, gaardmand, 1814–1834"><i></i><span>Lille Nejsum</span></div></div>
+  <section class="card" aria-labelledby="tree-h">
+    <h2 id="tree-h">Family tree</h2>
+    <p class="sub">The oldest generation is at the top. Each card opens a biography with every birth, marriage and death that touched that person. A small dot marks the direct line. Brothers and sisters appear as chips under their parents.</p>
+    <div class="key"><span><i class="dot kv"></i>Read from the original record</span><span><i class="dot kp"></i>Probable, from strong but indirect evidence</span><span><i class="dot kr"></i>Reported in the family record, not yet checked</span></div>
+    <div class="tree" id="tree"></div>
+  </section>
+
+  <section class="card" aria-labelledby="map-h">
+    <h2 id="map-h">Where they lived</h2>
+    <p class="sub">Each pin is a farm, hamlet or church named in the records. Choose a pin to see who was born, married, lived or was buried there. The dashed line follows the direct line's homes from Sterup to Klæstrup.</p>
+    <div class="mapwrap" id="map">
+      <img src="img/line_basemap.jpg" alt="Topographic map of central Vendsyssel from Klæstrup in the west to Skæve in the east">
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline id="route" fill="none" stroke="var(--path)" stroke-width="3" stroke-dasharray="7 6" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg>
     </div>
-    <p class="fine" style="margin-top:10px">Pins are placed on the parish church for births and deaths recorded only by parish, and on the house or hamlet where the record names one (Fredenborg, Klæstrup). Hover a pin for the people and dates behind it. Basemap: Danmarks Topografiske Kortværk, skærmkort (Klimadatastyrelsen, open data). Frame 57.190–57.315 N, 9.900–10.370 E.</p>
+    <div class="mapkey"><span><i class="sw"></i>Homes of the direct line, in order</span></div>
+    <p class="fine" style="margin-top:8px">Vester Mølle and the farm Hørkær in Kirkeskov have not been located on a modern map. Events there are shown at Jerslev church and Hellevad church. Basemap: Danmarks Topografiske Kortværk, skærmkort, Klimadatastyrelsen open data. Place positions from the Danish place-name register.</p>
   </section>
 
-  <section class="card">
-    <h2>The generations</h2>
-    <div class="tablewrap"><table>
-      <thead><tr><th>#</th><th>Name</th><th>Born</th><th>Died</th><th>Record and notes</th><th>Status</th></tr></thead>
-      <tbody>
-<tr><td class="num">1</td><td><strong>Søren Jensen</strong></td><td>c. 1660s?<br><span class="muted">Fredenborg, Svennum</span></td><td>after 1702<br><span class="muted">Fredenborg, Svennum</span></td><td class="note">Named “Sørens udj Fredenborg” at Christen’s baptism, 13 Feb 1698, and in full as “Søren Jensen Fredenborg” at the baptism of a son Jens, 10 Sep 1702 (Jerslev kirkebog). Birth year unknown; no record read gives his age or parents. He is not one of the Andersen brothers who held the house in 1676–1699 and probably came into it by marriage.</td><td class="conf">Documented 1698–1702. Birth and death open.</td></tr>
-<tr><td class="num">2</td><td><strong>Christen Sørensen</strong></td><td>13 Feb 1698<br><span class="muted">Fredenborg, Svennum</span></td><td>20 Feb 1746 (reported)<br><span class="muted">Fredenborg, Svennum</span></td><td class="note">Baptised Jerslev 13 Feb 1698, godparents Knud Kampmann of Kølskegård, Kield Andersøn, Lars Nielsen, the priest’s wife Marie Fischer and Dorthe Jensdatter. Death at Fredenborg on 20 Feb 1746 is as reported in the family record and not yet checked against the Jerslev burials; if confirmed it shows the house name still in use in 1746.</td><td class="conf">Baptism documented. Death to verify.</td></tr>
-<tr><td class="num">3</td><td><strong>Peder Sørensen</strong></td><td>1724<br><span class="muted">Vester Brønderslev kirke</span></td><td>—<br><span class="muted"></span></td><td class="note">As given in the family record. Note the patronymic: a son of Christen Sørensen would be Peder Christensen. Either the index has the wrong father, or this Peder is Christen’s brother. A Peder Sørensen of Svennum, 49, was buried at Jerslev on 17 Mar 1720, so a 1724 child named Peder could be an honorific for him. Vester Brønderslev was the second church of the Jerslev pastorate until 1859.</td><td class="conf">Weakest link. Check the 1724 baptism image.</td></tr>
-<tr><td class="num">4</td><td><strong>Simon Pedersen</strong></td><td>c. 1774<br><span class="muted">Hellevad parish (as reported)</span></td><td>25 Jul 1853<br><span class="muted">Skæve parish</span></td><td class="note">Gaardmand (farmer) at <strong>Lille Nejsum</strong>, Skæve parish. The 1834 census lists him there, 60, married, with wife Ane Thomasdatter, 48, and children Thomas 20, Mette 16, Christen 14 and Inger 9, plus a servant. The 1814 baptism of Thomas names him “Gaardmand Simon Pedersen og hustru Ane Thomasdatter i Lille Neisum”. Married three times in four years: Mette Hansdatter 1810 (she died March 1812), Maren Larsdatter Nov 1812 (she died 19 Jul 1813, the day a daughter was born), Ane Thomasdatter 23 Jul 1813. Baptism in Hellevad not yet seen.</td><td class="conf">Documented 1814, 1834. Birth to verify.</td></tr>
-<tr><td class="num">5</td><td><strong>Thomas Simonsen</strong></td><td>16 Dec 1814<br><span class="muted">Lille Nejsum, Skæve parish</span></td><td>5 Dec 1898<br><span class="muted">Skæve parish</span></td><td class="note">Born 16 Dec 1814, baptised at home 17 Dec, brought to Skæve church 15 Jan 1815; mother churched 12 Feb. Godparents: farmer Jørgen Pedersen of Store Nejsum, Laurs Jensen of Stagsted, farmhand Otto Christensen of Lille Nejsum, farmer’s wife Ane Jensdatter of Kraverbede, and the girl Inger Christensdatter of Lille Nejsum. In the 1834 census, 20, at home. Named Thomas for his maternal grandfather, Ane Thomasdatter’s father.</td><td class="conf">Documented.</td></tr>
-<tr><td class="num">6</td><td><strong>Christen (Kresten) Thomsen</strong></td><td>7 Aug 1850<br><span class="muted">Skæve kirke</span></td><td>—<br><span class="muted"></span></td><td class="note">As given.</td><td class="conf">From family record.</td></tr>
-<tr><td class="num">7</td><td><strong>Jens Kristian Severin Thomsen Bøgh</strong></td><td>22 Apr 1876<br><span class="muted">Klæstrup</span></td><td>—<br><span class="muted"></span></td><td class="note">As given. Klæstrup is a hamlet in Jerslev parish, 2 km west of the church and 4 km west of Fredenborg: the family is back in the parish it left two centuries earlier. The name Bøgh is a farm name or byname taken as a surname, as the 1828 and 1856 naming laws encouraged.</td><td class="conf">From family record.</td></tr>
-<tr><td class="num">8</td><td><strong>Jens Kristian Marinus Thomsen Bøgh</strong></td><td>1903<br><span class="muted">Klæstrup</span></td><td>—<br><span class="muted"></span></td><td class="note">As given.</td><td class="conf">From family record.</td></tr>
-      </tbody></table></div>
+  <section class="card" aria-labelledby="gaps-h">
+    <h2 id="gaps-h">Where the record runs out</h2>
+    <div class="gaps">
+      <div class="gap"><b>Jørgen Pedersen's birth</b><p>Not in Jerslev or Vester Brønderslev, 1690 to 1707, nor in Øster Brønderslev and Hallund, 1700 to 1705. Hellevad and Hellum are lost from 1673 to 1732. Stenum, with Tolstrup, is the last neighbour to try.</p></div>
+      <div class="gap"><b>The elder Peder Pedersen's parents</b><p>Born about 1625, sixty years before the Jerslev register begins. A probate for him or his wife would prove he was the younger Peder's father.</p></div>
+      <div class="gap"><b>Simon Pedersen's baptism</b><p>Not found in Hellevad 1776 to 1778 or Skæve 1776 to 1779. The Ørum and Hellum pages of the Hellevad book are still to read.</p></div>
+      <div class="gap"><b>Generations seven to nine</b><p>The Klæstrup births and Christen Thomsen's 1850 birth are from the family record and still need checking against the registers.</p></div>
+    </div>
   </section>
 
-  <section class="card">
-    <h2>The pattern of movement</h2>
-    <p>Five moves in eight generations, all short, all within the same group of neighbouring parishes. Total distance about 56 km over two hundred years.</p>
-    <ul><li><strong>Fredenborg, Svennum → Vester Brønderslev</strong>, c. 1700–1724 (reported): 10 km.</li><li><strong>Vester Brønderslev → Hellevad</strong>, 1724–1774 (reported): 13 km.</li><li><strong>Hellevad → Lille Nejsum</strong>, by 1810: 13 km.</li><li><strong>Lille Nejsum → Skæve</strong>, 1814–1853: 4 km.</li><li><strong>Skæve → Klæstrup</strong>, 1850–1876: 16 km.</li></ul>
-    <p>Each step is to an adjoining parish, which is what a family of cottagers and smallholders in this period typically did: marriages, leases and farm service were found within walking distance, and a move of one parish was a big one. The return to Klæstrup in 1876 closes a loop. Klæstrup lies 4 km west of Fredenborg, in the same village fields that Anders of Fredenborg was harvesting in 1676.</p>
-  </section>
-
-  <section class="card">
-    <h2>What would strengthen the line</h2>
-    <ol>
-      <li><strong>Christen Sørensen’s burial, Jerslev, February 1746.</strong> Would confirm the reported death date, give his age, and show whether the scribe still wrote “Fredenborg”.</li>
-      <li><strong>The 1724 baptism of Peder.</strong> Vester Brønderslev was in the Jerslev pastorate, so the entry may be in either church’s book. The father’s name as written decides whether Peder is Christen’s son (Peder Christensen) or something else.</li>
-      <li><strong>Søren Jensen’s burial.</strong> Age at death gives his birth year and settles whether the Peder Sørensen buried in 1720, aged 49, could be his son.</li>
-      <li><strong>Christen Sørensen’s marriage, Jerslev or Vester Brønderslev, c. 1720–1724.</strong> Names his wife and her home, and may explain the move toward Vester Brønderslev.</li>
-      <li><strong>Simon Pedersen’s baptism, Hellevad c. 1774.</strong> His three marriages (1810, 1812, 1813) are in the Skæve register; the baptism would name his parents and close the gap to Peder.</li>
-      <li><strong>The 1787, 1801 and 1834 censuses</strong> for Hellevad and Skæve, which list households by place and would fix where Simon and Thomas lived between baptisms.</li>
-    </ol>
-  </section>
-
-  <section class="card">
-    <h2>Sources</h2>
-    <p class="fine">Generations 1–2 from the Jerslev parish register (Rigsarkivet; images via Danish Family Search, sogn 359), read in <a href="index.html">Finding Fredenborg</a>. Generations 3–8 as given in the family record supplied by the researcher, October 2026; not yet checked against the register images, except where noted. Church coordinates from OpenStreetMap. Basemap and the Fredenborg site from Klimadatastyrelsen open data.</p>
+  <section class="card" aria-labelledby="src-h">
+    <h2 id="src-h">Sources</h2>
+    <p class="fine">Jerslev–Vester Brønderslev parish register from 1684, Hellevad–Ørum–Hellum register, Skæve register, and Øster Brønderslev–Hallund register from 1700 (Rigsarkivet, images via Danish Family Search and Arkivalieronline). Censuses of 1787, 1801, 1834, 1845 and 1850. Christian V's land register, 1688, Jerslev herred. Jerslev herred court books 1631 to 1688, extracts by Brejl. Full working notes, with image numbers for every record, are in <a href="https://github.com/ajbogh/fredenborg-svennum/blob/main/FAMILY-RECORD.md">FAMILY-RECORD.md</a>. The search for Fredenborg, the house once thought to start this line, is told in <a href="index.html">Finding Fredenborg</a>. That family turned out to be a different one.</p>
   </section>
 </div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="d-name" tabindex="-1" aria-hidden="true">
+  <div class="dhead">
+    <div class="who">
+      <span class="badge" id="d-badge"></span>
+      <h2 id="d-name"></h2>
+      <div class="life" id="d-life"></div>
+    </div>
+    <button class="dclose" id="d-close" aria-label="Close">×</button>
+  </div>
+  <div class="dbody" id="d-body"></div>
+</aside>
+
+<script>
+/* ===================== PLACES ===================== */
+const FRAME={N:57.3420,S:57.1980,W:10.0200,E:10.3350};
+const PLACES={
+  sterup:{name:"Sterup",lat:57.31130,lon:10.09844,note:"Village in Jerslev parish, 3 km north of the church."},
+  villestrup:{name:"Villestrup",lat:57.32560,lon:10.17890,note:"Farm on the eastern edge of Jerslev parish. Written Willestrup in 1662."},
+  krattet:{name:"Krattet",lat:57.32894,lon:10.13325,note:"Hamlet beside Sterup, written Sterupkrat in 1606.",left:true},
+  jerslev:{name:"Jerslev church",lat:57.28364,lon:10.09036,note:"Parish church of Jerslev, with Vester Brønderslev in the same pastorate. Vester Mølle, the parish mill, has not been located; its events are shown here."},
+  klaestrup:{name:"Klæstrup",lat:57.28272,lon:10.05517,note:"Hamlet 2 km west of Jerslev church.",left:true},
+  hellevad:{name:"Hellevad church",lat:57.21288,lon:10.15274,note:"Parish church of Hellevad, Ørum and Hellum. The farm Hørkær in Kirkeskov, Hellevad parish, has not been located; its events are shown here."},
+  allerup:{name:"Allerup",lat:57.23040,lon:10.19240,note:"Village in Hellevad parish. Home of Simon Christensen, probably Inger Christensdatter's brother."},
+  raunsholt:{name:"Raunsholt",lat:57.30166,lon:10.24587,note:"Farm in Skæve parish, today Ravnsholt. It lies about 270 m from Lille Nejsum.",left:true},
+  nejsum:{name:"Lille Nejsum",lat:57.30411,lon:10.24569,note:"Farm in Skæve parish. Simon Pedersen's farm from at least 1814."},
+  skaeve:{name:"Skæve church",lat:57.28856,lon:10.31224,note:"Parish church of Skæve.",left:true}
+};
+const ROUTE=["sterup","villestrup","hellevad","raunsholt","nejsum","klaestrup"];
+
+/* ===================== PEOPLE ===================== */
+const P={
+old_peder:{name:"Peder Pedersen",tag:"the elder, of Sterup",born:"c. 1625",died:"buried 19 Apr 1705",bp:"sterup",dp:"jerslev",status:"probable",
+ rel:{spouse:["old_wife"],children:["peder"]},
+ story:[
+ "Peder Pedersen was born around 1625, while Christian IV was king and the farms of Sterup still belonged to the old noble estates. No church book survives from the years of his childhood. What is known of him comes from the courts, the land register, and the burial list that closed his life.",
+ "In 1652 a young farmhand named Peder Pedersen, serving Christen Christensen in Sterup, was named by a servant woman, Kirsten Jensdatter, as the father of her child. The court book records the accusation and nothing more. A man of that name and age in that village is very probably him. If so, it is the first glimpse of him: a man in his twenties, in service and in trouble, between the Swedish war of 1643–45 and the far worse occupation of 1657–60.",
+ "He came through those years. By 1666 he was a householder in Sterup, named in the court book when Jens Sørensen of Hallund distrained him for a small debt. In 1688, when Christian V's surveyors measured every farm in the kingdom, he was co-tenant of farm no. 2 in Sterup with Jens Nielsen, ploughing the same strips as his neighbours.",
+ "His wife was about six years younger. She died in the spring of 1702, and he lived on three years more. By then the young men of Sterup who were probably his sons, Niels, Laurs, Malte and Peder, had married within three years of one another, and grandchildren were arriving. He was buried at Jerslev on 19 April 1705, recorded as eighty years old. Five weeks later his son Peder's wife Karen carried a daughter to the font, and named her Mette.",
+ "No record says in so many words that he was the younger Peder's father. But a Peder Pedersen holding land in Sterup for forty years, and a younger Peder Pedersen settling in the same village as he died, is the shape a family leaves in records like these."],
+ sources:["Jerslev herred court book, 30 Sep 1652 and 15 Mar 1666 (Brejl extracts).","Christian V's land register 1688, Jerslev herred, fol. 130, Sterup no. 2.","Jerslev burials, 19 Apr 1705, aged 80 (image 14415951)."]},
+
+old_wife:{name:"Peder Pedersen's wife",tag:"name not recorded",born:"c. 1631",died:"buried 25 May 1702",bp:null,dp:"jerslev",status:"probable",
+ rel:{spouse:["old_peder"],children:["peder"]},
+ story:[
+ "She was born around 1631. When she was buried at Jerslev on 25 May 1702, aged 71, the parish clerk wrote her only as Peder Pedersen's wife in Sterup. Her own name went into the ground with her, as so many women's did.",
+ "She was a young woman when Swedish troops occupied Jutland from 1657 to 1660 and quartered soldiers on the farms. She raised her children in Sterup through the hard decades that followed, when many farms in the parish stood empty.",
+ "She lived to see her sons marry. Four days before her burial, a granddaughter was carried to Jerslev church and baptised Mette. Danish families usually named a first daughter for the father's mother. If they did so here, her name was Mette. That name was given to two granddaughters in Sterup, to a great-great-granddaughter at Raunsholt in the 1770s, and to another girl at Lille Nejsum around 1818. This is a likelihood drawn from naming custom, not a recorded fact."],
+ sources:["Jerslev burials, 25 May 1702, aged 71 (image 14415949)."]},
+
+peder:{name:"Peder Pedersen",tag:"of Sterup",born:"c. 1670–1678",died:"after 22 Jun 1710",bp:"sterup",dp:null,status:"verified",
+ rel:{parents:["old_peder","old_wife"],spouse:["karen"],children:["mette1702","mette"]},
+ story:[
+ "Peder Pedersen grew up in Sterup, most likely a son of the old Peder Pedersen who farmed there. On 17 July 1701 he married Karen Jensdatter in Jerslev church. She came from Vester Mølle, the parish mill, and her family stood beside the couple at every christening that followed.",
+ "Their first child, a daughter, was baptised Mette on 21 May 1702. Jens Pedersen of Vester Mølle and Mikkel Christensen's wife of the mill held her, with Ole Tomsen and Kirstine Laursdatter of Sterup and Laurs Pedersen of Heden. Four days later Peder's mother was buried.",
+ "Sterup in those years was full of Pedersens. Peder, Niels, Laurs and Malte Pedersen all married between 1699 and 1702 and stood godparent to one another's children. In December 1703 Peder held Laurs's newborn son, also called Peder, at the font. They were very likely brothers.",
+ "Spring 1705 brought both an ending and a beginning. His father was buried on 19 April, aged eighty. On 24 May Karen bore a second daughter, and they named her Mette. A name was given twice only when the first child had died, so the little Mette of 1702 was gone by then, though her burial has not been found.",
+ "Peder was still in Sterup in June 1710, standing godfather at a neighbour's christening. After that the pages read so far fall silent. His daughter Mette married Jørgen Pedersen in 1727, and Peder lived to be grandfather to Kirsten and Peder of Villestrup. A Peder Pedersen 'of Krattet', the hamlet beside Sterup, was buried at Jerslev on 21 June 1739 with no age given. If that was him, he was about seventy, and he outlived his granddaughter Kirsten by a single year."],
+ sources:["Jerslev marriages, 17 Jul 1701 (image 14415897).","Jerslev baptisms, 21 May 1702 (14415791), 23 Dec 1703 (14415795), 24 May 1705 (14415798).","Jerslev burials, 21 Jun 1739 (14415964), identity possible only."]},
+
+karen:{name:"Karen Jensdatter",tag:"of Vester Mølle",born:"c. 1675–1682",died:"not found",bp:"jerslev",dp:null,status:"verified",
+ rel:{spouse:["peder"],children:["mette1702","mette"]},
+ story:[
+ "Karen Jensdatter came from Vester Mølle, the mill of Jerslev parish. She was most likely the daughter of Jens Pedersen of Vester Mølle and the sister of Peder Jensen, the miller. Jens Pedersen stood godfather to both of her daughters. When Peder Jensen's son Jens was baptised in October 1709, Karen was his godmother.",
+ "She married Peder Pedersen of Sterup on 17 July 1701 and went to live in her husband's village. The first four years of her marriage held a great deal. Her first daughter, Mette, was born in May 1702, and her mother-in-law was buried the same week. Her father-in-law died in April 1705. A month later she bore a second daughter, and she gave her the same name, Mette, because the first was dead.",
+ "That second Mette grew up, married in 1727, and gave Karen two grandchildren at Villestrup. No burial for Karen has been found in the years read."],
+ sources:["Jerslev marriages, 17 Jul 1701 (image 14415897).","Jerslev baptisms, 1702, 1705, and 27 Oct 1709 as godmother."]},
+
+mette1702:{name:"Mette Pedersdatter",tag:"the elder sister",born:"bapt. 21 May 1702",died:"before May 1705",bp:"sterup",dp:null,status:"verified",
+ rel:{parents:["peder","karen"],siblings:["mette"]},
+ story:[
+ "She was the first child of Peder Pedersen and Karen Jensdatter, baptised at Jerslev on 21 May 1702. Her mother's family from the mill held her at the font. Four days later her grandmother was buried.",
+ "When her parents named a new daughter Mette in May 1705, she had almost certainly died. Her burial has not been found. It is a small life, and the register gives it only one line. But her name passed to her sister, and through her sister down the whole line that follows."],
+ sources:["Jerslev baptisms, 21 May 1702 (image 14415791)."]},
+
+jorgen:{name:"Jørgen Pedersen",tag:"of Villestrup",born:"c. 1695–1705",died:"after 15 Jun 1738",bp:null,dp:null,status:"verified",direct:true,
+ rel:{spouse:["mette"],children:["kirsten","pj"]},
+ story:[
+ "No one knows where Jørgen Pedersen was born. He was not baptised in Jerslev or Vester Brønderslev between 1690 and 1707, nor in Øster Brønderslev or Hallund between 1700 and 1705. He most likely came to Jerslev as a young man in service from a parish whose books are lost, as so many farmhands did, and found a wife there. His father was named Peder, and that is all.",
+ "He was betrothed to Mette Pedersdatter of Sterup on 13 April 1727 and married her in Jerslev church on 26 October. The priest wrote him that day as Jørgen Jensen. At both christenings that followed he is Jørgen Pedersen, and two records outweigh one.",
+ "The couple took Villestrup, a farm on the eastern edge of the parish. Their daughter Kirsten was baptised on 11 February 1728, held by neighbours from Kiøbakken, Jerslev, Krattet and Smikken. A son followed on 6 November 1729. The clerk began to write another man's name, Christen Jensen, struck it through, and wrote Jørgen Pedersen above it. The boy was named Peder, for his grandfathers.",
+ "No more children were baptised to them in the next four years. In June 1738 Kirsten died, about ten years old, and was buried at Jerslev on the 15th. The burial entry calls her Jørgen Pedersen's daughter of Villestrup. It is the last time he is seen alive.",
+ "He is not among the Jerslev burials to 1744. Where and when he died is still unknown. In 1761 his son Peder named his own first son Jørgen, as custom asked, and the name came down the line again."],
+ sources:["Jerslev marriages, betrothal 13 Apr and wedding 26 Oct 1727 (image 14415903).","Jerslev baptisms, 11 Feb 1728 (14415865) and 6 Nov 1729 (14415867).","Jerslev burials, 15 Jun 1738 (14415964).","Searched without result: Jerslev–Vester Brønderslev baptisms 1690–1707; Øster Brønderslev–Hallund baptisms 1700–1705."]},
+
+jorgen_father:{name:"Peder —",tag:"Jørgen's father",unknown:true},
+
+mette:{name:"Mette Pedersdatter",tag:"of Sterup and Villestrup",born:"bapt. 24 May 1705",died:"after 1738",bp:"sterup",dp:null,status:"verified",direct:true,
+ rel:{parents:["peder","karen"],spouse:["jorgen"],children:["kirsten","pj"],siblings:["mette1702"]},
+ story:[
+ "Mette was born in Sterup in the spring of 1705, five weeks after her grandfather was buried, and baptised at Jerslev on 24 May. Jens Pedersen of Vester Mølle and Peder Jensen the miller held her. They were almost certainly her mother's father and brother. Peder Jensen of Jerslev and two women of Kraggården stood with them. She carried the name of a sister who had died before she was born.",
+ "She grew up in Sterup among a crowd of Pedersen cousins. At twenty-two she married Jørgen Pedersen, a man from outside the parish, on 26 October 1727, and went with him to Villestrup.",
+ "Her daughter Kirsten came in February 1728 and her son Peder in November 1729. Women from the neighbouring farms stood godmother, among them Christen Pedersen's wife of Krattet, at both. In June 1738 Mette buried Kirsten, who was about ten years old. A year later a Peder Pedersen of Krattet was buried, who may have been her father.",
+ "Her death has not been found to 1744. Her name lasted well. Her son Peder named a daughter Mette Marie in the 1770s, and her grandson Simon named a daughter Mette around 1818."],
+ sources:["Jerslev baptisms, 24 May 1705 (image 14415798). The only Mette baptised to a Peder Pedersen in 1703–1707.","Jerslev marriages, 26 Oct 1727 (14415903).","Jerslev baptisms 1728, 1729; burials 15 Jun 1738."]},
+
+kirsten:{name:"Kirsten Jørgensdatter",tag:"of Villestrup",born:"bapt. 11 Feb 1728",died:"buried 15 Jun 1738",bp:"villestrup",dp:"jerslev",status:"verified",
+ rel:{parents:["jorgen","mette"],siblings:["pj"]},
+ story:[
+ "Kirsten was the first child of Jørgen Pedersen and Mette Pedersdatter, born at Villestrup in their first winter there and baptised at Jerslev on 11 February 1728. Her godparents were neighbours: Jens of Kiøbakken, Christen Christensen and Peder Mylund of Jerslev, Christen Pedersen's wife of Krattet, and Maren Pedersdatter of Smikken. Her brother Peder was born when she was not yet two.",
+ "She died in June 1738, about ten years old, and was buried at Jerslev on 15 June. The register does not say what took her. Her brother Peder was eight. When he grew up and had children of his own, none was named Kirsten, but he did name a son for their father and a daughter for their mother."],
+ sources:["Jerslev baptisms, 11 Feb 1728 (image 14415865).","Jerslev burials, 15 Jun 1738 (image 14415964)."]},
+
+pj:{name:"Peder Jørgensen",tag:"of Hørkær and Raunsholt",born:"bapt. 6 Nov 1729",died:"after 1 Feb 1801",bp:"villestrup",dp:null,status:"verified",direct:true,
+ rel:{parents:["jorgen","mette"],spouse:["inger"],children:["pj_jorgen","pj_christen","pj_mads","pj_anne","pj_mette","simon"],siblings:["kirsten"]},
+ story:[
+ "Peder was born at Villestrup in the autumn of 1729 and baptised at Jerslev on 6 November. The clerk wrote the wrong father's name, struck it out, and put Jørgen Pedersen above. Christen of Sigaard, Jens of Høholt, Peder of Falden, Christen's wife of Krattet and Maren Jensdatter of Veiene held him. When he was eight his only sister, Kirsten, died.",
+ "As a young man he went south into Hellevad parish, 15 km away, to work on the farm Hørkær in Kirkeskov. Inger Christensdatter served on the same farm. They were betrothed on 11 November 1760 and married at Hellevad on 15 December: 'ung Karl Peder Jørgensen' and 'Pigen Inger Christensdatter', the young man and the maid, both of Hørkær. He was thirty-one.",
+ "Their first son was baptised Jørgen on 8 March 1761, for Peder's father. A second son, Christen, followed in November 1763, for Inger's. Both times the godfathers were Jens Andersen of Fodtved, Christen Christensen of Kirkeskov and Simon Christensen of Allerup, who was probably Inger's brother. Mads came about 1767, Anne Kristine about 1771, Mette Marie in the mid-1770s for Peder's mother, and last Simon, about 1777.",
+ "By 1787 the family had moved north to Raunsholt, a farm in Skæve parish. Their son Christen, about twenty-three, now held it, and Peder lived with him. The census taker wrote him as Peder Sørensen, aged sixty-three. That slip sent later researchers down a false trail for two centuries. Every other record, and the 1801 census, call him Peder Jørgensen.",
+ "In February 1801 he was head of the household at Raunsholt again, seventy-one years old, a farmer married only once. Inger was beside him after forty years, with their daughter Mette and their son Christen at home. His youngest son, Simon, was away in service. Within a few years Simon would take a farm at Lille Nejsum, about 270 metres away.",
+ "Peder's burial has not yet been found. It most likely lies in the Skæve register after 1801."],
+ sources:["Jerslev baptisms, 6 Nov 1729 (image 14415867).","Hellevad marriages, 11 Nov / 15 Dec 1760.","Hellevad baptisms, 8 Mar 1761 and 20 Nov 1763.","Census 1787, Raunsholt, Skæve (written 'Peder Sørensen, 63').","Census 1801, Raunsholt, Skæve: Peder Jørgensen, 71."]},
+
+inger:{name:"Inger Christensdatter",tag:"of Hørkær and Raunsholt",born:"c. 1733",died:"after 1 Feb 1801",bp:null,dp:null,status:"verified",direct:true,
+ rel:{spouse:["pj"],children:["pj_jorgen","pj_christen","pj_mads","pj_anne","pj_mette","simon"]},
+ story:[
+ "Inger was born about 1733, a farmer's daughter whose father was named Christen. Her baptism has not been found. She was most likely from Hellevad parish, where the register survives only from 1733, and her family was probably at Allerup. Simon Christensen of Allerup stood godfather to her first two sons and was very likely her brother.",
+ "In 1760 she was a maid on the farm Hørkær in Kirkeskov when she married Peder Jørgensen, a farmhand on the same farm, at Hellevad on 15 December. She was about twenty-seven.",
+ "She bore at least six children over some seventeen years: Jørgen in 1761, Christen in 1763, Mads, Anne Kristine, Mette Marie, and Simon, her youngest, about 1777. Christen was named for her father. Simon carried the name of the brother from Allerup, and through him that name came down into the Bøgh line.",
+ "She moved with Peder to Raunsholt in Skæve parish. She was there at fifty-three in 1787, and still there at sixty-eight in 1801, keeping house with her husband, her son Christen and her daughter Mette. Her death has not been found."],
+ sources:["Hellevad marriages, 15 Dec 1760.","Hellevad baptisms 1761, 1763, godfather Simon Christensen of Allerup.","Censuses 1787 (53) and 1801 (68), Raunsholt."]},
+
+pj_jorgen:{name:"Jørgen Pedersen",tag:"son of Peder and Inger",born:"bapt. 8 Mar 1761",died:"unknown",bp:"hellevad",dp:null,status:"verified",
+ rel:{parents:["pj","inger"],siblings:["pj_christen","pj_mads","pj_anne","pj_mette","simon"]},
+ story:["Jørgen was the first child of Peder Jørgensen and Inger Christensdatter, born at Hørkær in Kirkeskov and baptised at Hellevad on 8 March 1761. He was named for his grandfather, Jørgen Pedersen of Villestrup. Jens Andersen of Fodtved, Christen Christensen of Kirkeskov and Simon Christensen of Allerup were his godfathers.","He is not with the family in the 1787 or 1801 census. He may have died young, or have been in service elsewhere. A farmer named Jørgen Pedersen of Store Nejsum stood godfather to Simon's son Thomas in 1814, close to Raunsholt. That could be him, but nothing yet ties the two together."],
+ sources:["Hellevad baptisms, 8 Mar 1761."]},
+
+pj_christen:{name:"Christen Pedersen",tag:"of Raunsholt",born:"bapt. 20 Nov 1763",died:"unknown",bp:"hellevad",dp:null,status:"verified",
+ rel:{parents:["pj","inger"],siblings:["pj_jorgen","pj_mads","pj_anne","pj_mette","simon"]},
+ story:["Christen was baptised at Hellevad on 20 November 1763, carried to the font by Maren Hansdatter, with the same three godfathers as his brother Jørgen. He was named for his mother's father.","By 1787, at about twenty-three, he held the farm at Raunsholt, with his parents living in. In 1801 he was still there and still unmarried, his father again head of the house. He was a near neighbour to his brother Simon's farm at Lille Nejsum."],
+ sources:["Hellevad baptisms, 20 Nov 1763.","Censuses 1787 and 1801, Raunsholt."]},
+
+pj_mads:{name:"Mads Pedersen",tag:"son of Peder and Inger",born:"c. 1767",died:"unknown",bp:null,dp:null,status:"verified",
+ rel:{parents:["pj","inger"],siblings:["pj_jorgen","pj_christen","pj_anne","pj_mette","simon"]},
+ story:["Mads appears in the 1787 census at Raunsholt as one of Peder and Inger's children, about twenty years old. He is not at home in 1801. His baptism has not been looked for yet."],
+ sources:["Census 1787, Raunsholt."]},
+
+pj_anne:{name:"Anne Kristine Pedersdatter",tag:"daughter of Peder and Inger",born:"c. 1771",died:"unknown",bp:null,dp:null,status:"verified",
+ rel:{parents:["pj","inger"],siblings:["pj_jorgen","pj_christen","pj_mads","pj_mette","simon"]},
+ story:["Anne Kristine appears in the 1787 census at Raunsholt as a daughter of the house, about sixteen. She is not at home in 1801, most likely married or in service elsewhere."],
+ sources:["Census 1787, Raunsholt."]},
+
+pj_mette:{name:"Mette Marie Pedersdatter",tag:"daughter of Peder and Inger",born:"c. 1774",died:"unknown",bp:null,dp:null,status:"verified",
+ rel:{parents:["pj","inger"],siblings:["pj_jorgen","pj_christen","pj_mads","pj_anne","simon"]},
+ story:["Mette Marie was named for her father's mother, Mette Pedersdatter of Villestrup. She was a child at Raunsholt in 1787. In 1801 she was still at home as Mette, twenty-seven, keeping house with her parents and her brother Christen."],
+ sources:["Censuses 1787 and 1801, Raunsholt."]},
+
+simon:{name:"Simon Pedersen",tag:"of Lille Nejsum",born:"c. 1777",died:"25 Jul 1853",bp:"hellevad",dp:"skaeve",status:"verified",direct:true,
+ rel:{parents:["pj","inger"],spouse:["mette_h","maren_l","ane"],children:["daughter1813","thomas","s_mette","s_christen","s_inger"],siblings:["pj_jorgen","pj_christen","pj_mads","pj_anne","pj_mette"]},
+ story:[
+ "Simon was the youngest child of Peder Jørgensen and Inger Christensdatter, born about 1777. In his old age he told the census takers he was born in Hellevad parish. He carried the name of his mother's brother, Simon Christensen of Allerup. He was nine when the family is recorded at Raunsholt in Skæve parish in 1787. By 1801, about twenty-three, he had gone into service on another farm, as young men did.",
+ "His married life began with grief. In 1810 he married Mette Hansdatter, and she died in March 1812. In November 1812 he married Maren Larsdatter. On 19 July 1813 she gave birth to a daughter and died the same day. Four days later, on 23 July 1813, with a newborn in the house, he married Ane Thomasdatter. A farm could not run without a wife, and a motherless baby could not wait. The haste was not coldness.",
+ "This third marriage lasted forty years. Simon was now a farmer at Lille Nejsum, about 270 metres from Raunsholt, where his parents and brother Christen lived. On 16 December 1814 Ane bore a son, baptised at home the next day and named Thomas for her father. Mette followed around 1818, Christen around 1820, and Inger around 1825. Mette may honour his grandmother or his first wife. Christen was named for his grandfather, and Inger for his mother.",
+ "In the 1834 census he is sixty, a farmer with Ane, four children and a servant. By 1845 he had handed the farm to his son Thomas and lived on as aftægtsmand, a retired father kept by the farm under contract. The 1850 census finds him there at seventy-three, now with a new grandson, Christen, born that August.",
+ "Simon Pedersen died on 25 July 1853, most likely at Lille Nejsum, aged seventy-six, and was buried at Skæve. He had buried two wives and lived to see his grandson begin to walk on the farm he had worked for forty years."],
+ sources:["Census 1787, Raunsholt: Simon, 9, child of Peder and Inger.","Skæve marriages 1810, 1812, 23 Jul 1813 (reported by the researcher from the Skæve register).","Skæve baptisms, 17 Dec 1814.","Censuses 1834, 1840, 1845, 1850, Lille Nejsum.","Skæve burials, 1853, aged 76."]},
+
+mette_h:{name:"Mette Hansdatter",tag:"Simon's first wife",born:"unknown",died:"Mar 1812",bp:null,dp:"skaeve",status:"reported",
+ rel:{spouse:["simon"]},
+ story:["Mette Hansdatter married Simon Pedersen in 1810 and died in March 1812, less than two years later. Nothing more is known of her yet. Simon gave the name Mette to a daughter born about 1818. That may have been for her, as widowers often did, or for his grandmother."],
+ sources:["Skæve register, as reported by the researcher. Not yet checked against the image."]},
+
+maren_l:{name:"Maren Larsdatter",tag:"Simon's second wife",born:"unknown",died:"19 Jul 1813",bp:null,dp:"skaeve",status:"reported",
+ rel:{spouse:["simon"],children:["daughter1813"]},
+ story:["Maren Larsdatter married Simon Pedersen in November 1812, eight months after his first wife died. On 19 July 1813 she gave birth to a daughter and died the same day. She was married for eight months."],
+ sources:["Skæve register, as reported by the researcher. Not yet checked against the image."]},
+
+daughter1813:{name:"Daughter of Simon and Maren",tag:"born 19 Jul 1813",born:"19 Jul 1813",died:"unknown",bp:"nejsum",dp:null,status:"reported",
+ rel:{parents:["simon","maren_l"],siblings:["thomas","s_mette","s_christen","s_inger"]},
+ story:["She was born on 19 July 1813, the day her mother, Maren Larsdatter, died. Four days later her father married Ane Thomasdatter, who would raise her. Her name and what became of her are not yet known. She is not in the 1834 household."],
+ sources:["Skæve register, as reported by the researcher."]},
+
+ane:{name:"Ane Thomasdatter",tag:"of Lille Nejsum",born:"c. 1786",died:"not yet found",bp:null,dp:null,status:"verified",direct:true,
+ rel:{spouse:["simon"],children:["thomas","s_mette","s_christen","s_inger"]},
+ story:[
+ "Ane was born about 1786, the daughter of a man named Thomas. She married Simon Pedersen of Lille Nejsum on 23 July 1813, four days after his second wife died in childbirth. She came into a house with a newborn baby that was not hers.",
+ "Her own first child was born on 16 December 1814 and baptised at home the next day. Two months later, on 12 February 1815, she was churched at Skæve. He was named Thomas, for her father. Mette, Christen and Inger followed over the next ten years.",
+ "In 1834 she was forty-eight, mistress of Lille Nejsum, with four children and a servant. She lived to see Thomas take over the farm and Simon retire into it. Her death has not yet been searched for."],
+ sources:["Skæve baptisms, 17 Dec 1814; churching 12 Feb 1815.","Census 1834, Lille Nejsum: Ane Thomasdatter, 48."]},
+
+thomas:{name:"Thomas Simonsen",tag:"of Lille Nejsum",born:"16 Dec 1814",died:"5 Dec 1898",bp:"nejsum",dp:"skaeve",status:"verified",direct:true,
+ rel:{parents:["simon","ane"],children:["christen"],siblings:["daughter1813","s_mette","s_christen","s_inger"]},
+ story:[
+ "Thomas was born at Lille Nejsum on 16 December 1814 and baptised at home the next day, perhaps because he was weak, or because of the winter cold. On 15 January 1815 he was brought to Skæve church to be presented. Jørgen Pedersen, farmer of Store Nejsum, held him, with Laurs Jensen of Stagsted, the farmhand Otto Christensen, Ane Jensdatter of Kraverbede, and a girl named Inger Christensdatter of Lille Nejsum. She bore exactly the name of his grandmother at Raunsholt. He was named Thomas for his mother's father.",
+ "He grew up on the farm with his sisters Mette and Inger and his brother Christen. In 1834 he was twenty and still at home. By 1845 he had taken over Lille Nejsum, and his father Simon lived on with him in retirement.",
+ "His son Christen was born in August 1850, while old Simon was still in the house. Thomas farmed Lille Nejsum through the second half of the century. He died on 5 December 1898, just short of his eighty-fourth birthday, and was buried at Skæve. His wife's name is still to be added from the records."],
+ sources:["Skæve baptisms, 17 Dec 1814; presentation 15 Jan 1815.","Censuses 1834, 1845, 1850, Lille Nejsum.","Death 5 Dec 1898, as given in the family record."]},
+
+s_mette:{name:"Mette Simonsdatter",tag:"daughter of Simon and Ane",born:"c. 1818",died:"unknown",bp:"nejsum",dp:null,status:"verified",
+ rel:{parents:["simon","ane"],siblings:["daughter1813","thomas","s_christen","s_inger"]},
+ story:["Mette was sixteen and living at home at Lille Nejsum in the 1834 census. Her name had come down from Mette Pedersdatter of Villestrup, her great-grandmother, or perhaps was given in memory of her father's first wife."],
+ sources:["Census 1834, Lille Nejsum."]},
+s_christen:{name:"Christen Simonsen",tag:"son of Simon and Ane",born:"c. 1820",died:"unknown",bp:"nejsum",dp:null,status:"verified",
+ rel:{parents:["simon","ane"],siblings:["daughter1813","thomas","s_mette","s_inger"]},
+ story:["Christen was fourteen and at home at Lille Nejsum in 1834. He was named for his uncle Christen of Raunsholt and his great-grandfather, Inger Christensdatter's father."],
+ sources:["Census 1834, Lille Nejsum."]},
+s_inger:{name:"Inger Simonsdatter",tag:"daughter of Simon and Ane",born:"c. 1825",died:"unknown",bp:"nejsum",dp:null,status:"verified",
+ rel:{parents:["simon","ane"],siblings:["daughter1813","thomas","s_mette","s_christen"]},
+ story:["Inger, the youngest, was nine in 1834. She was named for her grandmother, Inger Christensdatter of Raunsholt."],
+ sources:["Census 1834, Lille Nejsum."]},
+
+christen:{name:"Christen (Kresten) Thomsen",tag:"",born:"7 Aug 1850",died:"not yet recorded",bp:"skaeve",dp:null,status:"reported",direct:true,
+ rel:{parents:["thomas"],children:["jks"]},
+ story:["Christen Thomsen was born on 7 August 1850 in Skæve parish, most likely at Lille Nejsum, where his father Thomas farmed. His grandfather Simon, then seventy-three, was living in the house as a retired father, and died when Christen was almost three.","Sometime before 1876 he moved west to Klæstrup in Jerslev parish. That was the parish his great-grandfather Peder Jørgensen had left more than a century before. His son Jens Kristian Severin was born there in April 1876. His baptism, marriage and death are still to be read from the registers."],
+ sources:["Birth as given in the family record. Not yet checked against the image."]},
+
+jks:{name:"Jens Kristian Severin Thomsen Bøgh",tag:"of Klæstrup",born:"22 Apr 1876",died:"not yet recorded",bp:"klaestrup",dp:null,status:"reported",direct:true,
+ rel:{parents:["christen"],children:["jkm"]},
+ story:["Jens Kristian Severin was born at Klæstrup, a hamlet 2 km west of Jerslev church, on 22 April 1876. He was the first of the line to carry the name Bøgh. Families of this period often took a farm name or byname as a fixed surname, as the naming laws of 1828 and 1856 encouraged.","He was born four kilometres from Sterup, where the line begins. His son Jens Kristian Marinus was born at Klæstrup in 1903."],
+ sources:["Birth as given in the family record. Not yet checked against the image."]},
+
+jkm:{name:"Jens Kristian Marinus Thomsen Bøgh",tag:"of Klæstrup",born:"1903",died:"not yet recorded",bp:"klaestrup",dp:null,status:"reported",direct:true,
+ rel:{parents:["jks"]},
+ story:["Jens Kristian Marinus was born at Klæstrup in Jerslev parish in 1903. He is the most recent generation in this record, nine generations from the elder Peder Pedersen of Sterup."],
+ sources:["Birth as given in the family record."]}
+};
+
+/* ===================== EVENTS (shared across everyone they touched) ===================== */
+const E=[
+ {d:"1652-09-30",ds:"30 Sep 1652",pl:"sterup",t:"A farmhand Peder Pedersen in Sterup is named in court as the father of Kirsten Jensdatter's child",who:["old_peder"],prob:true},
+ {d:"1666-03-15",ds:"15 Mar 1666",pl:"sterup",t:"Peder Pedersen of Sterup, householder, distrained for a debt",who:["old_peder"]},
+ {d:"1688-01-01",ds:"1688",pl:"sterup",t:"Peder Pedersen co-tenant of Sterup farm no. 2 in Christian V's land register",who:["old_peder"]},
+ {d:"1701-07-17",ds:"17 Jul 1701",pl:"jerslev",t:"Peder Pedersen marries Karen Jensdatter of Vester Mølle",who:["peder","karen","old_peder","old_wife"]},
+ {d:"1702-05-21",ds:"21 May 1702",pl:"sterup",t:"Mette, first daughter of Peder and Karen, baptised",who:["mette1702","peder","karen","old_peder","old_wife"]},
+ {d:"1702-05-25",ds:"25 May 1702",pl:"jerslev",t:"The elder Peder Pedersen's wife buried, aged 71",who:["old_wife","old_peder","peder","karen","mette1702"]},
+ {d:"1703-12-23",ds:"23 Dec 1703",pl:"sterup",t:"Peder Pedersen stands godfather to Laurs Pedersen's son Peder",who:["peder"]},
+ {d:"1705-04-19",ds:"19 Apr 1705",pl:"jerslev",t:"The elder Peder Pedersen of Sterup buried, aged 80",who:["old_peder","peder","karen"]},
+ {d:"1705-05-24",ds:"24 May 1705",pl:"sterup",t:"Mette Pedersdatter baptised, the second daughter of that name",who:["mette","peder","karen","mette1702","old_peder"]},
+ {d:"1709-10-27",ds:"27 Oct 1709",pl:"jerslev",t:"Karen Jensdatter godmother to Peder Jensen the miller's son Jens",who:["karen"]},
+ {d:"1710-06-22",ds:"22 Jun 1710",pl:"sterup",t:"Peder Pedersen of Sterup godfather at a christening, the last record of him alive",who:["peder"]},
+ {d:"1727-04-13",ds:"13 Apr 1727",pl:"jerslev",t:"Jørgen Pedersen and Mette Pedersdatter betrothed",who:["jorgen","mette","peder","karen"]},
+ {d:"1727-10-26",ds:"26 Oct 1727",pl:"jerslev",t:"Jørgen Pedersen marries Mette Pedersdatter",who:["jorgen","mette","peder","karen"]},
+ {d:"1728-02-11",ds:"11 Feb 1728",pl:"villestrup",t:"Kirsten, daughter of Jørgen and Mette, baptised",who:["kirsten","jorgen","mette","peder","karen"]},
+ {d:"1729-11-06",ds:"6 Nov 1729",pl:"villestrup",t:"Peder, son of Jørgen and Mette, baptised",who:["pj","jorgen","mette","kirsten","peder","karen"]},
+ {d:"1738-06-15",ds:"15 Jun 1738",pl:"jerslev",t:"Kirsten Jørgensdatter of Villestrup buried, about ten years old",who:["kirsten","jorgen","mette","pj","peder"]},
+ {d:"1739-06-21",ds:"21 Jun 1739",pl:"krattet",t:"A Peder Pedersen of Krattet buried, no age given, possibly Mette's father",who:["peder","mette"],prob:true},
+ {d:"1760-12-15",ds:"15 Dec 1760",pl:"hellevad",t:"Peder Jørgensen marries Inger Christensdatter, both of Hørkær (betrothed 11 Nov)",who:["pj","inger"]},
+ {d:"1761-03-08",ds:"8 Mar 1761",pl:"hellevad",t:"Jørgen, son of Peder and Inger, baptised",who:["pj_jorgen","pj","inger"]},
+ {d:"1763-11-20",ds:"20 Nov 1763",pl:"hellevad",t:"Christen, son of Peder and Inger, baptised",who:["pj_christen","pj","inger","pj_jorgen"]},
+ {d:"1767-01-01",ds:"c. 1767",pl:null,t:"Mads, son of Peder and Inger, born",who:["pj_mads","pj","inger"]},
+ {d:"1771-01-01",ds:"c. 1771",pl:null,t:"Anne Kristine, daughter of Peder and Inger, born",who:["pj_anne","pj","inger"]},
+ {d:"1774-01-01",ds:"c. 1774",pl:null,t:"Mette Marie, daughter of Peder and Inger, born",who:["pj_mette","pj","inger"]},
+ {d:"1777-01-01",ds:"c. 1777",pl:"hellevad",t:"Simon, youngest son of Peder and Inger, born in Hellevad parish",who:["simon","pj","inger"]},
+ {d:"1787-07-01",ds:"1 Jul 1787",pl:"raunsholt",t:"Census at Raunsholt: Christen holds the farm; Peder, Inger, Mads, Anne Kristine, Mette Marie and Simon in the household",who:["pj","inger","pj_christen","pj_mads","pj_anne","pj_mette","simon"]},
+ {d:"1801-02-01",ds:"1 Feb 1801",pl:"raunsholt",t:"Census at Raunsholt: Peder, 71, and Inger, 68, with Christen and Mette at home",who:["pj","inger","pj_christen","pj_mette"]},
+ {d:"1810-01-01",ds:"1810",pl:"skaeve",t:"Simon Pedersen marries Mette Hansdatter",who:["simon","mette_h"],rep:true},
+ {d:"1812-03-01",ds:"Mar 1812",pl:"skaeve",t:"Mette Hansdatter, Simon's first wife, dies",who:["mette_h","simon"],rep:true},
+ {d:"1812-11-01",ds:"Nov 1812",pl:"skaeve",t:"Simon Pedersen marries Maren Larsdatter",who:["simon","maren_l"],rep:true},
+ {d:"1813-07-19",ds:"19 Jul 1813",pl:"nejsum",t:"A daughter born to Simon and Maren; Maren dies the same day",who:["daughter1813","maren_l","simon"],rep:true},
+ {d:"1813-07-23",ds:"23 Jul 1813",pl:"skaeve",t:"Simon Pedersen marries Ane Thomasdatter",who:["simon","ane","daughter1813"],rep:true},
+ {d:"1814-12-16",ds:"16 Dec 1814",pl:"nejsum",t:"Thomas, son of Simon and Ane, born; baptised at home the next day",who:["thomas","simon","ane","daughter1813"]},
+ {d:"1815-02-12",ds:"12 Feb 1815",pl:"skaeve",t:"Ane Thomasdatter churched after Thomas's birth",who:["ane"]},
+ {d:"1818-01-01",ds:"c. 1818",pl:"nejsum",t:"Mette, daughter of Simon and Ane, born",who:["s_mette","simon","ane","thomas"]},
+ {d:"1820-01-01",ds:"c. 1820",pl:"nejsum",t:"Christen, son of Simon and Ane, born",who:["s_christen","simon","ane","thomas"]},
+ {d:"1825-01-01",ds:"c. 1825",pl:"nejsum",t:"Inger, daughter of Simon and Ane, born",who:["s_inger","simon","ane","thomas"]},
+ {d:"1834-02-18",ds:"18 Feb 1834",pl:"nejsum",t:"Census at Lille Nejsum: Simon, 60, Ane, 48, Thomas, Mette, Christen and Inger",who:["simon","ane","thomas","s_mette","s_christen","s_inger"]},
+ {d:"1845-02-01",ds:"1845",pl:"nejsum",t:"Census: Thomas holds Lille Nejsum; Simon retired in the house",who:["thomas","simon"]},
+ {d:"1850-08-07",ds:"7 Aug 1850",pl:"skaeve",t:"Christen (Kresten), son of Thomas, born",who:["christen","thomas","simon"],rep:true},
+ {d:"1853-07-25",ds:"25 Jul 1853",pl:"skaeve",t:"Simon Pedersen dies, aged 76",who:["simon","ane","thomas","christen","s_mette","s_christen","s_inger"]},
+ {d:"1876-04-22",ds:"22 Apr 1876",pl:"klaestrup",t:"Jens Kristian Severin Thomsen Bøgh, son of Christen, born",who:["jks","christen"],rep:true},
+ {d:"1898-12-05",ds:"5 Dec 1898",pl:"skaeve",t:"Thomas Simonsen dies, aged 83",who:["thomas","christen","jks"],rep:true},
+ {d:"1903-01-01",ds:"1903",pl:"klaestrup",t:"Jens Kristian Marinus Thomsen Bøgh, son of Jens Kristian Severin, born",who:["jkm","jks"],rep:true}
+];
+
+/* ===================== HELPERS ===================== */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const yrs=p=>{const b=(p.born||"").match(/\d{4}/),d=(p.died||"").match(/\d{4}/);const pre=/^after/.test(p.died||"")?"aft. ":/^before/.test(p.died||"")?"bef. ":"";return (b?((/c\.|–/.test(p.born)?"c. ":"")+b[0]):"?")+" – "+(d?pre+d[0]:"?");};
+const short=p=>{const b=(p.born||"").match(/\d{4}/);return b?b[0]:"";};
+
+function card(id,extra=""){
+  const p=P[id]; if(!p) return "";
+  if(p.unknown) return `<div class="p unknown" aria-hidden="false"><span class="nm">${esc(p.name)}</span><span class="pl">${esc(p.tag)}. Name only known from the patronymic.</span></div>`;
+  const place=p.bp&&PLACES[p.bp]?PLACES[p.bp].name.replace(" church",""):(p.tag||"");
+  return `<button class="p ${p.status}${p.direct?" direct":""} ${extra}" data-id="${id}" aria-label="${esc(p.name)}, ${esc(yrs(p))}. Open biography"><span class="nm">${esc(p.name)}</span><span class="yr">${esc(yrs(p))}</span><span class="pl">${esc(p.tag||place)}</span></button>`;
+}
+function couple(a,b){return `<div class="couple">${card(a)}${b?`<span class="marr"><b>⚭</b></span>${card(b)}`:""}</div>`;}
+function kids(list,lineId,label="Children"){
+  if(!list||!list.length) return "";
+  return `<div class="kids"><span class="kidlabel">${label}</span>${list.map(k=>{const p=P[k];return `<button class="kid${k===lineId?" line":""}" data-id="${k}">${esc(p.name.split(" ")[0]==="Daughter"?"Daughter":p.name.split(" (")[0].split(" ").slice(0,p.name.startsWith("Anne")||p.name.startsWith("Mette Marie")?2:1).join(" "))}<i>${esc(short(p))}</i></button>`}).join("")}</div>`;
+}
+
+/* ===================== TREE ===================== */
+function buildTree(){
+  const t=[];
+  t.push(`<div class="split">
+    <div class="col left"><div class="gnum">Jørgen's family</div>${card("jorgen_father")}</div>
+    <div class="col right"><div class="gnum">Mette's family</div>${couple("old_peder","old_wife")}<div class="stem short"></div>${couple("peder","karen")}${kids(["mette1702","mette"],"mette")}</div>
+  </div>`);
+  t.push(`<div class="stem2"><i></i><i></i></div>`);
+  t.push(`<div class="split pair"><div class="col left">${card("jorgen")}</div><div class="col right">${card("mette")}</div></div>`);
+  t.push(`<div class="gen"><div class="stem short" style="margin-top:0"></div>${kids(["kirsten","pj"],"pj")}</div><div class="stem"></div>`);
+  t.push(`<div class="gen">${couple("pj","inger")}${kids(["pj_jorgen","pj_christen","pj_mads","pj_anne","pj_mette","simon"],"simon")}</div><div class="stem"></div>`);
+  t.push(`<div class="gen">${couple("simon","ane")}
+     <div class="others">Earlier wives: <button data-id="mette_h">Mette Hansdatter</button> (m. 1810, d. 1812) and <button data-id="maren_l">Maren Larsdatter</button> (m. 1812, d. 1813)</div>
+     ${kids(["daughter1813","thomas","s_mette","s_christen","s_inger"],"thomas")}</div><div class="stem"></div>`);
+  t.push(`<div class="gen">${couple("thomas")}</div><div class="stem"></div>`);
+  t.push(`<div class="gen">${couple("christen")}</div><div class="stem"></div>`);
+  t.push(`<div class="gen">${couple("jks")}</div><div class="stem"></div>`);
+  t.push(`<div class="gen">${couple("jkm")}</div>`);
+  $("#tree").innerHTML=t.join("");
+}
+
+/* ===================== DRAWER ===================== */
+let lastFocus=null;
+const ORDER=["old_peder","old_wife","peder","karen","mette1702","jorgen","mette","kirsten","pj","inger","pj_jorgen","pj_christen","pj_mads","pj_anne","pj_mette","simon","mette_h","maren_l","daughter1813","ane","thomas","s_mette","s_christen","s_inger","christen","jks","jkm"];
+const STATUS={verified:"Read from the record",probable:"Probable",reported:"Reported, not yet checked"};
+function relLinks(ids){return ids.map(i=>P[i]&&!P[i].unknown?`<button data-id="${i}">${esc(P[i].name)}</button>`:esc(P[i]?P[i].name:i)).join(", ");}
+function openPerson(id,push=true){
+  const p=P[id]; if(!p||p.unknown) return;
+  if(!$("#drawer").classList.contains("on")) lastFocus=document.activeElement;
+  $("#d-badge").className="badge "+p.status; $("#d-badge").textContent=STATUS[p.status];
+  $("#d-name").textContent=p.name;
+  const bpl=p.bp&&PLACES[p.bp]?" · "+PLACES[p.bp].name.replace(" church",""):"";
+  $("#d-life").textContent=`Born ${p.born}${bpl} · Died ${p.died}`;
+  const r=p.rel||{};
+  let rel="";
+  if(id==="jorgen") rel+=`<dt>Parents</dt><dd>A father named Peder; not yet identified</dd>`;
+  if(r.parents) rel+=`<dt>Parents</dt><dd>${relLinks(r.parents)}</dd>`;
+  if(r.spouse) rel+=`<dt>${r.spouse.length>1?"Spouses":"Spouse"}</dt><dd>${relLinks(r.spouse)}</dd>`;
+  if(r.siblings) rel+=`<dt>Siblings</dt><dd>${relLinks(r.siblings)}</dd>`;
+  if(r.children) rel+=`<dt>Children</dt><dd>${relLinks(r.children)}</dd>`;
+  const ev=E.filter(e=>e.who.includes(id)).sort((a,b)=>a.d.localeCompare(b.d));
+  const tl=ev.map(e=>`<li class="${e.who[0]===id?"self":""}"><span class="d">${esc(e.ds)}${e.rep?" · reported":""}${e.prob?" · probable":""}</span>${esc(e.t)}${e.pl?` <span class="pl">· ${esc(PLACES[e.pl].name)}</span>`:""}</li>`).join("");
+  const i=ORDER.indexOf(id),prev=ORDER[i-1],next=ORDER[i+1];
+  $("#d-body").innerHTML=`<dl class="rel">${rel}</dl>
+    <div class="story">${p.story.map(s=>`<p>${esc(s)}</p>`).join("")}</div>
+    ${tl?`<h3>Life events</h3><ul class="tl">${tl}</ul>`:""}
+    <h3>Records</h3><ul class="src">${p.sources.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
+    <div class="navrow">${prev?`<button data-id="${prev}">← ${esc(P[prev].name)}</button>`:"<span></span>"}${next?`<button data-id="${next}">${esc(P[next].name)} →</button>`:""}</div>`;
+  $("#d-body").scrollTop=0;
+  $("#drawer").classList.add("on"); $("#drawer").setAttribute("aria-hidden","false"); $("#scrim").classList.add("on");
+  document.body.style.overflow="hidden";
+  $("#drawer").focus({preventScroll:true});
+  if(push){ if(location.hash.slice(1)!==id) history.pushState({p:id},"","#"+id); }
+}
+function closeDrawer(fromPop=false){
+  if(!$("#drawer").classList.contains("on")) return;
+  $("#drawer").classList.remove("on"); $("#drawer").setAttribute("aria-hidden","true"); $("#scrim").classList.remove("on");
+  document.body.style.overflow="";
+  if(!fromPop && location.hash) history.pushState({},"",location.pathname+location.search);
+  if(lastFocus&&lastFocus.focus) lastFocus.focus({preventScroll:true});
+}
+
+/* ===================== MAP ===================== */
+const pct=(lat,lon)=>[(lon-FRAME.W)/(FRAME.E-FRAME.W)*100,(FRAME.N-lat)/(FRAME.N-FRAME.S)*100];
+function buildMap(){
+  const m=$("#map");
+  $("#route").setAttribute("points",ROUTE.map(k=>pct(PLACES[k].lat,PLACES[k].lon).join(",")).join(" "));
+  for(const [k,pl] of Object.entries(PLACES)){
+    const [x,y]=pct(pl.lat,pl.lon);
+    const b=document.createElement("button");
+    b.className="pin"+(pl.left?" lft":""); b.style.left=x+"%"; b.style.top=y+"%"; b.dataset.place=k;
+    b.setAttribute("aria-label",pl.name+": show people and events");
+    b.innerHTML=`<svg viewBox="0 0 22 30" aria-hidden="true"><path d="M11 1C5.5 1 1 5.4 1 10.9 1 18.3 11 29 11 29s10-10.7 10-18.1C21 5.4 16.5 1 11 1z" fill="var(--pin)" stroke="#fff" stroke-width="1.6"/><circle cx="11" cy="11" r="3.6" fill="#fff"/></svg><span class="lab">${esc(pl.name)}</span>`;
+    m.appendChild(b);
+  }
+}
+function showPop(k){
+  closePop();
+  const pl=PLACES[k],m=$("#map"),[x,y]=pct(pl.lat,pl.lon);
+  const homes=Object.entries(P).filter(([i,p])=>p.bp===k||p.dp===k).map(([i])=>i);
+  const ev=E.filter(e=>e.pl===k).sort((a,b)=>a.d.localeCompare(b.d));
+  const items=ev.map(e=>`<li><span class="d">${esc(e.ds.replace(/^\d+ \w+ /,""))}</span><span><button data-id="${e.who[0]}">${esc(e.t)}</button></span></li>`).join("")||`<li><span></span><span>No dated events.</span></li>`;
+  const d=document.createElement("div"); d.className="pop"; d.setAttribute("role","dialog"); d.setAttribute("aria-label",pl.name);
+  d.innerHTML=`<button class="x" aria-label="Close">×</button><h3>${esc(pl.name)}</h3><p class="note">${esc(pl.note)}</p><ul>${items}</ul>`;
+  m.appendChild(d);
+  const W=m.clientWidth,H=m.clientHeight,pw=d.offsetWidth,ph=d.offsetHeight;
+  let left=x/100*W+14, top=y/100*H-ph/2;
+  if(left+pw>W-6) left=x/100*W-pw-14;
+  left=Math.max(6,Math.min(left,W-pw-6)); top=Math.max(6,Math.min(top,H-ph-6));
+  d.style.left=left+"px"; d.style.top=top+"px";
+  d.querySelector(".x").addEventListener("click",closePop);
+}
+function closePop(){document.querySelectorAll(".pop").forEach(n=>n.remove());}
+
+/* ===================== WIRING ===================== */
+buildTree(); buildMap();
+document.addEventListener("click",e=>{
+  const t=e.target.closest("[data-id]"); if(t){e.preventDefault(); openPerson(t.dataset.id); return;}
+  const pin=e.target.closest("[data-place]"); if(pin){showPop(pin.dataset.place); return;}
+  if(!e.target.closest(".pop")) closePop();
+});
+$("#scrim").addEventListener("click",()=>closeDrawer());
+$("#d-close").addEventListener("click",()=>closeDrawer());
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"){ if($("#drawer").classList.contains("on")) closeDrawer(); else closePop(); }
+  if(e.key==="Tab"&&$("#drawer").classList.contains("on")){
+    const f=[...$("#drawer").querySelectorAll("button")].filter(b=>b.offsetParent); if(!f.length) return;
+    const a=f[0],z=f[f.length-1];
+    if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus();}
+    else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus();}
+  }
+});
+window.addEventListener("popstate",()=>{const id=location.hash.slice(1); if(id&&P[id]) openPerson(id,false); else closeDrawer(true);});
+/* swipe down to close on phones */
+(()=>{let y0=null;const d=$("#drawer");
+  d.addEventListener("touchstart",e=>{if(e.target.closest(".dbody")&&$("#d-body").scrollTop>0) return; y0=e.touches[0].clientY;},{passive:true});
+  d.addEventListener("touchend",e=>{if(y0!==null&&e.changedTouches[0].clientY-y0>90&&matchMedia("(max-width:640px)").matches) closeDrawer(); y0=null;});
+})();
+if(location.hash.slice(1)&&P[location.hash.slice(1)]) openPerson(location.hash.slice(1),false);
+</script>
+</body>
+</html>
