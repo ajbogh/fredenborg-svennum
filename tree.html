@@ -85,8 +85,9 @@ a{color:var(--path)}
 .pop li .d{font:11.5px var(--mono);color:var(--muted)}
 .pop li button{appearance:none;background:none;border:0;padding:0;font:inherit;color:var(--path);text-align:left;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
 .pop .x{position:absolute;top:6px;right:8px;appearance:none;background:none;border:0;font-size:20px;line-height:1;color:var(--muted);cursor:pointer}
+.leg.r{transform:translate(0,-50%)}
 .leg{position:absolute;transform:translate(-50%,-50%);font:600 12px var(--mono);color:#fff;background:var(--path);border:1.5px solid #fff;border-radius:999px;padding:1px 7px;white-space:nowrap;pointer-events:auto;cursor:help;box-shadow:0 1px 3px rgba(0,0,0,.35);z-index:1}
-@media (max-width:640px){.leg{font-size:10.5px;padding:0 5px}}
+@media (max-width:640px){.leg{font-size:9.5px;padding:0 4px;border-width:1px}.pin .lab{font-size:10px;padding:0 3px;bottom:16px;left:11px}.pin.lft .lab{left:auto;right:11px}.pin svg{width:17px;height:23px}}
 .mapkey{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted);margin:10px 0 0}
 .mapkey .sw{display:inline-block;width:24px;height:0;border-top:3px dashed var(--path);vertical-align:middle;margin-right:6px}
 
@@ -181,7 +182,7 @@ a{color:var(--path)}
       <svg id="routesvg" aria-hidden="true"></svg><div id="leglabels"></div>
     </div>
     <div class="mapkey"><span><i class="sw"></i>A move of the direct line, arrow toward the new home, with about when it happened</span></div>
-    <p class="fine" style="margin-top:8px">The farms at Lille Nejsum and Raunsholt are traced on their own page, <a href="nejsum.html" target="_blank" rel="noopener">Finding Lille Nejsum</a>. Vester Mølle and the farm Hørkær in Kirkeskov have not been located on a modern map. Events there are shown at Jerslev church and Hellevad church. Basemap: Danmarks Topografiske Kortværk, skærmkort, Klimadatastyrelsen open data. Place positions from the Danish place-name register.</p>
+    <p class="fine" style="margin-top:8px">The farms at Lille Nejsum and Raunsholt are traced on their own page, <a href="nejsum.html" target="_blank" rel="noopener">Finding Lille Nejsum</a>. Vester Mølle and the farm Hørkær in Kirkeskov have not been located on a modern map. Events there are shown at Jerslev church and Hellevad. Basemap: Danmarks Topografiske Kortværk, skærmkort, Klimadatastyrelsen open data. Place positions from the Danish place-name register.</p>
   </section>
 
   <section class="card" aria-labelledby="gal-h">
@@ -234,7 +235,7 @@ const PLACES={
   krattet:{name:"Krattet",lat:57.32894,lon:10.13325,note:"Hamlet beside Sterup, written Sterupkrat in 1606.",left:true},
   jerslev:{name:"Jerslev church",lat:57.28364,lon:10.09036,note:"Parish church of Jerslev, with Vester Brønderslev in the same pastorate. Vester Mølle, the parish mill, has not been located; its events are shown here."},
   klaestrup:{name:"Klæstrup",lat:57.28272,lon:10.05517,note:"Hamlet 2 km west of Jerslev church.",left:true},
-  hellevad:{name:"Hellevad church",lat:57.21288,lon:10.15274,note:"Parish church of Hellevad, Ørum and Hellum. The farm Hørkær in Kirkeskov, Hellevad parish, has not been located; its events are shown here."},
+  hellevad:{name:"Hellevad",lat:57.21288,lon:10.15274,note:"Hellevad parish church, for Hellevad, Ørum and Hellum. The farm Hørkær in Kirkeskov, Hellevad parish, has not been located; its events are shown here."},
   allerup:{name:"Allerup",lat:57.23040,lon:10.19240,note:"Village in Hellevad parish. Home of Simon Christensen, probably Inger Christensdatter's brother."},
   raunsholt:{name:"Søndre Raunsholt",lat:57.30155,lon:10.24620,note:"Farm in Skæve parish, about 400 m from Lille Nejsum across the stream meadow. Very probably Peder Jørgensen's farm: the 1801 census lists it between its southern neighbours Hytten and Mølbak. Skæve also had a Nørre Raunsholt, 1.9 km north-west.",left:true},
   nejsum:{name:"Lille Nejsum",lat:57.30484,lon:10.24899,note:"Farm in Skæve parish. Simon Pedersen's farm from at least 1813. Located on the Finding Lille Nejsum page."},
@@ -245,8 +246,8 @@ const LEGS=[
  {from:"sterup",to:"villestrup",d:"1727",why:"Mette Pedersdatter marries Jørgen Pedersen and moves to Villestrup"},
  {from:"villestrup",to:"hellevad",d:"by 1760",why:"Peder Jørgensen in service at Hørkær, Hellevad parish, when he marries"},
  {from:"hellevad",to:"raunsholt",d:"1777–87",why:"Peder Jørgensen's family moves to Raunsholt, Skæve parish"},
- {from:"raunsholt",to:"nejsum",d:"by 1813",why:"Simon Pedersen takes the farm at Lille Nejsum"},
- {from:"nejsum",to:"klaestrup",d:"by 1876",why:"Christen Thomsen settles at Klæstrup, Jerslev parish"}];
+ {from:"raunsholt",to:"nejsum",d:"by 1813",why:"Simon Pedersen takes the farm at Lille Nejsum",loop:true},
+ {from:"nejsum",to:"klaestrup",d:"by 1876",why:"Christen Thomsen settles at Klæstrup, Jerslev parish",bend:0.2}];
 
 /* ===================== IMAGES ===================== */
 const IMG={
@@ -623,19 +624,35 @@ function buildMap(){
 function drawRoute(){
   const m=$("#map"),W=m.clientWidth,H=m.clientHeight,svg=$("#routesvg"); if(!W) return;
   svg.setAttribute("viewBox",`0 0 ${W} ${H}`);
-  const sw=W<500?2.2:3, ah=W<500?9:13, gap=W<500?10:15;   // stroke, arrowhead length, gap before pin
-  const P2=k=>{const [x,y]=pct(PLACES[k].lat,PLACES[k].lon);return [x/100*W,y/100*H];};
+  const small=W<500, sw=small?2.2:3, ah=small?9:13, HEAD=19, RAD=13;   // pin head centre sits 19px above the tip
+  const C=k=>{const [x,y]=pct(PLACES[k].lat,PLACES[k].lon);return [x/100*W,y/100*H-HEAD];};
+  const unit=(x,y)=>{const l=Math.hypot(x,y)||1;return [x/l,y/l];};
+  const dash=`stroke="var(--path)" stroke-width="${sw}" stroke-dasharray="${sw*2.4} ${sw*2}" stroke-linecap="round" fill="none"`;
+  const head=(ex,ey,tx,ty)=>{const [ux,uy]=unit(tx,ty),bx=ex-ux*ah,by=ey-uy*ah,nx=-uy*ah*.55,ny=ux*ah*.55;
+    return `<path d="M${ex},${ey} L${bx+nx},${by+ny} L${bx-nx},${by-ny} Z" fill="var(--path)" stroke="#fff" stroke-width="1"/>`;};
+  const bez=(t,p0,p1,p2,p3)=>{const u=1-t;return [u*u*u*p0[0]+3*u*u*t*p1[0]+3*u*t*t*p2[0]+t*t*t*p3[0],u*u*u*p0[1]+3*u*u*t*p1[1]+3*u*t*t*p2[1]+t*t*t*p3[1]];};
   let g="",labs="";
+  const lab=(x,y,L,cls="")=>{const pad=small?28:40; x=Math.max(pad,Math.min(W-(cls==="r"?pad*1.9:pad),x)); y=Math.max(12,Math.min(H-12,y)); labs+=`<div class="leg ${cls}" style="left:${x/W*100}%;top:${y/H*100}%" title="${esc(L.why)}">${esc(L.d)}</div>`;};
   LEGS.forEach(L=>{
-    const [x1,y1]=P2(L.from),[x2,y2]=P2(L.to); const dx=x2-x1,dy=y2-y1,len=Math.hypot(dx,dy); if(len<1) return;
-    const ux=dx/len,uy=dy/len, back=Math.min(gap,len*0.3);
-    const ex=x2-ux*back, ey=y2-uy*back;                      // arrow tip
-    const bx=ex-ux*ah, by=ey-uy*ah, nx=-uy*ah*0.55, ny=ux*ah*0.55;
-    g+=`<line x1="${x1}" y1="${y1}" x2="${bx}" y2="${by}" stroke="var(--path)" stroke-width="${sw}" stroke-dasharray="${sw*2.4} ${sw*2}" stroke-linecap="round"/>`;
-    g+=`<path d="M${ex},${ey} L${bx+nx},${by+ny} L${bx-nx},${by-ny} Z" fill="var(--path)" stroke="#fff" stroke-width="1"/>`;
-    // label at midpoint; push short legs sideways so the label clears the pins
-    let mx=(x1+x2)/2,my=(y1+y2)/2; if(len<60){my+=W<500?22:30;}
-    labs+=`<div class="leg" style="left:${mx/W*100}%;top:${my/H*100}%" title="${esc(L.why)}">${esc(L.d)}</div>`;
+    const A=C(L.from),B=C(L.to);
+    if(L.loop){                       // counter-clockwise swing round the east side
+      const k=small?30:46, S=[A[0]+RAD*.8,A[1]+RAD*.6], E=[B[0]+RAD,B[1]+2];
+      const c1=[S[0]+k*.9,S[1]+k*.7], c2=[E[0]+k*1.3,E[1]+k*.1];
+      g+=`<path d="M${S} C${c1} ${c2} ${E}" ${dash}/>`+head(E[0],E[1],E[0]-c2[0],E[1]-c2[1]);
+      const M=bez(.55,S,c1,c2,E); if(small) lab(A[0]-26,A[1]+30,L); else lab(M[0]+8,M[1]+20,L,"r"); return;
+    }
+    const [ux,uy]=unit(B[0]-A[0],B[1]-A[1]);
+    if(L.bend){                       // quadratic curve bowed toward the top of the map
+      const len=Math.hypot(B[0]-A[0],B[1]-A[1]); let px=-uy,py=ux; if(py>0){px=-px;py=-py;}
+      const Q=[(A[0]+B[0])/2+px*len*L.bend,(A[1]+B[1])/2+py*len*L.bend];
+      const [sx,sy]=unit(Q[0]-A[0],Q[1]-A[1]),[ex,ey]=unit(Q[0]-B[0],Q[1]-B[1]);
+      const S=[A[0]+sx*RAD,A[1]+sy*RAD],E=[B[0]+ex*RAD,B[1]+ey*RAD];
+      g+=`<path d="M${S} Q${Q} ${E}" ${dash}/>`+head(E[0],E[1],E[0]-Q[0],E[1]-Q[1]);
+      lab(.25*S[0]+.5*Q[0]+.25*E[0],.25*S[1]+.5*Q[1]+.25*E[1],L); return;
+    }
+    const S=[A[0]+ux*RAD,A[1]+uy*RAD+(uy<0.3?6:0)],E=[B[0]-ux*RAD,B[1]-uy*RAD];
+    g+=`<path d="M${S} L${E[0]-ux*ah*.8},${E[1]-uy*ah*.8}" ${dash}/>`+head(E[0],E[1],ux,uy);
+    lab((S[0]+E[0])/2,(S[1]+E[1])/2,L);
   });
   svg.innerHTML=g; $("#leglabels").innerHTML=labs;
 }
