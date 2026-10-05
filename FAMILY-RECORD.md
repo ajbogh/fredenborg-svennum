@@ -135,7 +135,7 @@ Ancestry and have not yet been checked. Items marked **[hypothesis]** are infere
 - Born 1903, Klæstrup, Jerslev parish.
 
 ## Open questions, in order of value
-1. Jørgen Pedersen's origin: not in Jerslev or Vester Brønderslev 1690–1707. Remaining: Øster Brønderslev, Serritslev, Tolstrup. Hellum and Hellevad are in the 1673–1732 gap. Try Vester Brønderslev (same pastorate), Hellum, Serritslev, Tolstrup baptisms c. 1695–1705 for a Jørgen to a Peder; and the Jerslev confirmation lists if any survive before 1737.
+1. Jørgen Pedersen's origin: not in Jerslev or Vester Brønderslev 1690–1707. Øster Brønderslev–Hallund book 1 (DFS ch/361/29869/, title page 5993306, starts Advent 1699/1700) read 1700–1705 on the images that load (5993309–5993321; 5993313 and 5993318 return 404): no Jørgen to a Peder. Only Jørgen: Hallund 1704, illegitimate son of Maren Jacobsdatter of Nørre Lunden, named father Niels Laursen of Sønderlunden. Øster Brønderslev before 1700 not online at this path. Remaining: Serritslev, Tolstrup. Hellum and Hellevad are in the 1673–1732 gap. Try Vester Brønderslev (same pastorate), Hellum, Serritslev, Tolstrup baptisms c. 1695–1705 for a Jørgen to a Peder; and the Jerslev confirmation lists if any survive before 1737.
 1b. Jørgen Pedersen and Mette Pedersdatter: burials after 1744, Jerslev.
 2. Mette's siblings: Jerslev baptisms 1708–1715 for "Peder Pedersen i Sterup". Burials 1707–1725 for Karen Jensdatter and the younger Peder. Probate (skifte) for old Peder Pedersen 1705 or his wife 1702 under the estate owning Sterup no. 2 would name the children and prove the link to the younger Peder.
 3. Peder Jørgensen's confirmation c. 1744–46 (Jerslev or Hellevad confirmation lists from 1737) and his burial after 1801 (Skæve).
