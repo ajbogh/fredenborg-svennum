@@ -233,6 +233,7 @@ const PLACES={
   villestrup:{name:"Villestrup",lat:57.32560,lon:10.17890,note:"Farm on the eastern edge of Jerslev parish. Written Willestrup in 1662."},
   krattet:{name:"Krattet",lat:57.32894,lon:10.13325,note:"Hamlet beside Sterup, written Sterupkrat in 1606.",left:true},
   jerslev:{name:"Jerslev church",lat:57.28364,lon:10.09036,note:"Parish church of Jerslev, with Vester Brønderslev in the same pastorate. Vester Mølle, the parish mill, has not been located; its events are shown here."},
+  vantmose:{name:"Vantmose",lat:57.3131,lon:10.1936,note:"Holding about 8 km east of Klæstrup, 1.5 km from Villestrup. Christen Thomsen was a smallholder at Mellem Vantmose in 1876, when his son Jens Kristian Severin was born.",left:false},
   klaestrup:{name:"Klæstrup",lat:57.28555,lon:10.06240,note:"Village 2 km west of Jerslev church. The pin marks the Bøgh farm, Marinus Bøgh's house no. 20, at Gl. Klæstrupvej 41.",left:true},
   hellevad:{name:"Hellevad",lat:57.21288,lon:10.15274,note:"Hellevad parish church, for Hellevad, Ørum and Hellum. The farm Hørkær in Kirkeskov, Hellevad parish, has not been located; its events are shown here."},
   allerup:{name:"Allerup",lat:57.23040,lon:10.19240,note:"Village in Hellevad parish. Home of Simon Christensen, probably Inger Christensdatter's brother."},
@@ -240,13 +241,14 @@ const PLACES={
   nejsum:{name:"Lille Nejsum",lat:57.30484,lon:10.24899,note:"Farm in Skæve parish. Simon Pedersen's farm from at least 1813. Located on the Finding Lille Nejsum page."},
   skaeve:{name:"Skæve church",lat:57.28856,lon:10.31224,note:"Parish church of Skæve.",left:true}
 };
-const ROUTE=["sterup","villestrup","hellevad","raunsholt","nejsum","klaestrup"];
+const ROUTE=["sterup","villestrup","hellevad","raunsholt","nejsum","vantmose","klaestrup"];
 const LEGS=[
  {from:"sterup",to:"villestrup",d:"1727",why:"Mette Pedersdatter marries Jørgen Pedersen and moves to Villestrup",who:["mette","jorgen"]},
  {from:"villestrup",to:"hellevad",d:"by 1760",why:"Peder Jørgensen in service at Hørkær, Hellevad parish, when he marries Inger Christensdatter",who:["pj","inger"]},
  {from:"hellevad",to:"raunsholt",d:"1777–87",why:"Peder Jørgensen's family moves to Raunsholt, Skæve parish",who:["pj","inger","simon"]},
  {from:"raunsholt",to:"nejsum",d:"by 1813",why:"Simon Pedersen takes the farm at Lille Nejsum",who:["simon"],loop:true},
- {from:"nejsum",to:"klaestrup",d:"by 1876",why:"Christen Thomsen settles at Klæstrup, Jerslev parish, where the family takes the name Bøgh",who:["christen","jks"],bend:0.2}];
+ {from:"nejsum",to:"vantmose",d:"by 1876",why:"Christen Thomsen and Petrea Jensen are smallholders at Mellem Vantmose",who:["christen","petrea"]},
+ {from:"vantmose",to:"klaestrup",d:"by 1901",why:"Jens Kristian Severin takes over the house of his godfather, Jens Kristian Pedersen Bøg, at Klæstrup",who:["jks","old_bogh"],bend:0.15}];
 
 /* ===================== IMAGES ===================== */
 const IMG={
@@ -271,9 +273,10 @@ const IMG={
  b_marinus:{src:"https://arkibasapi-apim.azure-api.net/filer/visning/46f8e82dc96d4cbaaefd863ef9e73a62",t:"Klæstrup, drawn from memory by Marinus Bøgh",cap:"Marinus Bøgh's map of Klæstrup, with 37 numbered houses. South is at the top. House 20, Jens Bøgh, is in the middle beside Osdam, the pond; house 18, Kren Tamsen (Thomsen), is just right of it.",ref:"Egnsmindesamlingen for Jerslev og Omegn, B1934, arkiv.dk/vis/3759332"},
  b_core:{src:"img/klaestrup/r_1884_cadastral_core.jpg",t:"Old Klæstrup's village green",cap:"The core of Klæstrup on the cadastral map: lanes radiating from a green with two ponds. The Bøgh farm's plot lies on the south side of the green beside the western pond.",ref:"Original 2, Klæstrup By, surveyed 1806, redrawn 1884"},
  b_today:{src:"img/klaestrup/r_22a_ortho2024.jpg",t:"The Bøgh farm today",cap:"Land parcel 22a outlined in red: the wooded plot and farmhouse at Gl. Klæstrupvej 41.",ref:"GeoDanmark orthophoto 2024; Matriklen"},
+ b_bapt1876:{src:"img/klaestrup/r_1876_baptism_severin.jpg",t:"Baptism of Jens Kristian Severin Thomsen, 1876",cap:"No. 18, born 22 April, baptised 2 July 1876 in Jerslev church: Jens Kristian Severin Thomsen. Parents: 'Husmand Kristen Thomsen og Hustru Petrea Jensen, Mellemvantmose'. Mother 24. Godparents: 'Pigerne Inger Marie Thomsen, Nejsum, Skæve Sogn, og Karoline Martine Jensen, Vantmose; Husmændene Jens Kr. Pedersen Bøg, Kløstrup, Thomas Kr. Thomsen, Falden, og Karlen Jørgen Thomsen, Nejsum, Skæve Sogn.'",ref:"Jerslev parish register, born males 1876 (Danish Family Search 133726, image 14417072)"},
  r1763:{src:"img/records/1763_baptism_christen.jpg",t:"Baptism of Christen Pedersen, 1763",cap:"'d. 20 Novbr. Peder Jørgensens og Inger Christensdatters barn af Hørkied i Kirkeskov, kaldet Christen. Frembaaret af Maren Hansdatter fra Brønhaven i Voer Sogn...' The godfathers, Jens Andersen of Fodtved, Christen Nielsen of Kirkeskov and Simon Christensen of Allerup, follow.",ref:"Hellevad–Ørum–Hellum parish register, baptisms 1763"}
 };
-const GALLERY=["b_marinus","b_today","n_simon","n_ln_rh","m1688_no2","o1813_full","o1813_village","o1813_title","m1688_page","r1701","r1702b","r1702d","r1703","r1705d","r1705b","r1727","r1728","r1729","r1739","r1760","r1763"];
+const GALLERY=["b_bapt1876","b_marinus","b_today","n_simon","n_ln_rh","m1688_no2","o1813_full","o1813_village","o1813_title","m1688_page","r1701","r1702b","r1702d","r1703","r1705d","r1705b","r1727","r1728","r1729","r1739","r1760","r1763"];
 
 /* ===================== PEOPLE ===================== */
 const P={
@@ -459,22 +462,34 @@ s_inger:{name:"Inger Simonsdatter",tag:"daughter of Simon and Ane",born:"c. 1825
  story:["Inger, the youngest, was nine in 1834. She was named for her grandmother, Inger Christensdatter of Raunsholt."],
  sources:["Census 1834, Lille Nejsum."]},
 
-christen:{name:"Christen (Kresten) Thomsen",tag:"of Klæstrup",born:"7 Aug 1850",died:"not yet recorded",bp:"skaeve",dp:null,status:"reported",direct:true,
- rel:{parents:["thomas"],children:["jks"]},
- imgs:["b_marinus","b_core"],
- story:["Christen Thomsen was born on 7 August 1850 in Skæve parish, most likely at Lille Nejsum, where his father Thomas farmed. His grandfather Simon, then seventy-three, was living in the house as a retired father, and died when Christen was almost three.","Sometime before 1876 he moved west to Klæstrup in Jerslev parish. That was the parish his great-grandfather Peder Jørgensen had left more than a century before. His son Jens Kristian Severin was born there in April 1876.","On the [[map Marinus Bøgh drew of Klæstrup from memory|b_marinus]], house no. 18, at Gl. Klæstrupvej 33, belongs to \"Kren Tamsen (Thomsen)\". Kren is the Vendsyssel form of Christen. The house stands two doors from no. 20, the Bøgh house. It is very likely Christen or his household, though no record yet joins the two. His baptism, marriage and death are still to be read from the registers."],
- sources:["Birth as given in the family record. Not yet checked against the image.","Marinus Bøgh's map of Klæstrup, no. 18 (Egnsmindesamlingen for Jerslev og Omegn, B1934)."]},
+christen:{name:"Christen (Kresten) Thomsen",tag:"of Mellem Vantmose",born:"7 Aug 1850",died:"not yet recorded",bp:"skaeve",dp:null,status:"reported",direct:true,
+ rel:{parents:["thomas"],spouse:["petrea"],children:["jks"]},
+ imgs:["b_bapt1876","b_marinus"],
+ story:["Christen Thomsen was born on 7 August 1850 in Skæve parish, most likely at Lille Nejsum, where his father Thomas farmed. His grandfather Simon, then seventy-three, was living in the house as a retired father, and died when Christen was almost three.","By 1876 he had moved about 8 km west, to Mellem Vantmose. It lies 1.5 km from Villestrup, where his great-great-grandparents Jørgen and Mette had farmed a century and a half before. He was a husmand, a smallholder, and married to Petrea Jensen, two years younger. On 22 April 1876 their son was born, and on 2 July [[he was baptised in Jerslev church|b_bapt1876]] as Jens Kristian Severin.","The godparents show how close Christen stayed to his family in Skæve. They were his sister Inger Marie Thomsen and his brother Jørgen Thomsen, both of Nejsum in Skæve parish, Thomas Kristian Thomsen of Falden, Karoline Martine Jensen of Vantmose, and a smallholder from Klæstrup, Jens Kristian Pedersen Bøg. The boy was named Jens Kristian for that last godfather, and he would one day carry his byname too.","On Marinus Bøgh's map of Klæstrup, house no. 18 belongs to \"Kren Tamsen (Thomsen)\". Kren is the Vendsyssel form of Christen. It may be Christen in later life, close to his son. No record yet joins the two. His death is still to be read from the registers."],
+ sources:["Birth as given in the family record. Not yet checked against the image.","Jerslev parish register, baptisms 1876, no. 18 (DFS 133726, image 14417072): \"Husmand Kristen Thomsen og Hustru Petrea Jensen, Mellemvantmose\".","Marinus Bøgh's map of Klæstrup, no. 18."]},
 
-jks:{name:"Jens Kristian Severin Thomsen Bøgh",tag:"of the Bøgh farm, Klæstrup",born:"22 Apr 1876",died:"not yet recorded",bp:"klaestrup",dp:null,status:"reported",direct:true,
- rel:{parents:["christen"],children:["jkm"]},
- imgs:["b_marinus","b_core","b_today"],
- story:["Jens Kristian Severin was born at Klæstrup, in Jerslev parish, on 22 April 1876, the son of Christen Thomsen. He kept his father's patronymic, Thomsen, and added a surname no one before him in this line had used: Bøgh.","The name came with a house. Marinus Bøgh's map of Klæstrup puts \"Jens Bøgh\" at no. 20, the farm on the old village green at Gl. Klæstrupvej 41, beside the pond the village called Osdam. [[That farm still stands|b_today]], on land parcel 22a, where the 1884 General Staff map already drew it.","Marinus wrote that the Jens Bøgh of the house was the foster son of \"old Jens Bøgh\", and that someone died in 1914. If the foster son was Severin, he took the name and the farm from the old man who raised him, while his birth father lived two doors away. If the foster son was Marinus, old Jens Bøgh was the head of the house in Marinus's boyhood. The Klæstrup censuses of 1880 to 1916 would settle it.","Bøgh is an old spelling of bøg, beech. The Danish name law of 1904 made it easy for families to leave behind the endless -sen names and take a name of their own, often from a farm or place. A Thomsen who became Bøgh fits that pattern. The full story of the house and the name is on its own page, Finding the Bøgh Farm."],
- sources:["Birth as given in the family record. Not yet checked against the image.","Marinus Bøgh's map of Klæstrup, no. 20: \"Jens Bøgh. Plejesøn af gamle Jens Bøgh. død 1914. Gl. Klæstrupvej 41. 22a.\"","Original 2 cadastral map of Klæstrup By, 1806 survey redrawn 1884; General Staff map 1884; Matriklen, parcel 22a."]},
+petrea:{name:"Petrea Jensen",tag:"of Mellem Vantmose",born:"c. 1852",died:"not yet recorded",bp:null,dp:null,status:"verified",direct:true,
+ rel:{spouse:["christen"],children:["jks"]},
+ imgs:["b_bapt1876"],
+ story:["Petrea Jensen was about twenty-four in the spring of 1876, the wife of the smallholder Christen Thomsen at Mellem Vantmose. On 22 April she bore a son. On 2 July he was baptised in Jerslev church as Jens Kristian Severin, and the same day she was churched, the old blessing of a mother after childbirth.","Her parents and birthplace are not yet known. Karoline Martine Jensen of Vantmose, who stood godmother, shares her patronymic and may have been her sister."],
+ sources:["Jerslev parish register, baptisms 1876, no. 18: mother's age 24, churched 2 July."]},
+
+old_bogh:{name:"Jens Kristian Pedersen Bøg",tag:"old Jens Bøgh, of Klæstrup",born:"c. 1826",died:"1914 (reported)",bp:null,dp:"klaestrup",status:"verified",
+ rel:{spouse:[],children:[]},
+ imgs:["b_bapt1876","b_marinus","b_today"],
+ story:["Jens Kristian Pedersen was a husmand, a smallholder, in Klæstrup, born about 1826. By 1876 he was already known by the byname Bøg, which is how the priest wrote him that summer: \"Husmand Jens Kr. Pedersen Bøg, Kløstrup\". He stood godfather to Christen Thomsen's newborn son, who was given his names, Jens Kristian.","He and his wife Kirsten Nielsen, four years older, had no heir in the records read so far. In the census of 1901 they were living out their old age as aftægtsfolk, a retired couple kept by the house under contract. The householder was their godson, Jens Kristian Severin Thomsen, 24 and unmarried, now the owner of the house.","Marinus Bøgh remembered the house at Gl. Klæstrupvej 41 as that of \"Jens Bøgh, foster son of old Jens Bøgh\", and gave 1914 as the year of a death. Old Jens Bøgh is this man. He would have been about eighty-eight. His byname became the family's surname."],
+ sources:["Jerslev parish register, baptisms 1876, no. 18, godfather.","Census 1901, Jerslev, Klæstrup, family 40: Jens Kr. Pedersen, 74, married, aftægtsmand; Kirsten Nielsen, 78, aftægtskone.","Marinus Bøgh's map of Klæstrup, no. 20."]},
+
+jks:{name:"Jens Kristian Severin Thomsen Bøgh",tag:"of the Bøgh farm, Klæstrup",born:"22 Apr 1876",died:"not yet recorded",bp:"vantmose",dp:null,status:"verified",direct:true,
+ rel:{parents:["christen","petrea"],children:["jkm"]},
+ imgs:["b_bapt1876","b_marinus","b_core","b_today"],
+ story:["Jens Kristian Severin was born on 22 April 1876 at Mellem Vantmose, the son of the smallholder Christen Thomsen and his wife Petrea Jensen. He was [[baptised in Jerslev church on 2 July|b_bapt1876]]. His aunt Inger Marie and his uncle Jørgen came from Nejsum in Skæve to stand godparents. So did a Klæstrup smallholder, Jens Kristian Pedersen, whom people called Bøg. The boy was named Jens Kristian for him.","That godfather shaped his life. In the census of 1901 Severin, twenty-four and unmarried, was the householder of a smallholding in Klæstrup, \"husejer ved landbruget\". Living with him were old Jens Kristian Pedersen, seventy-four, and his wife Kirsten Nielsen, seventy-eight, as aftægtsfolk: the retired couple whom the new owner housed and fed under contract. A godson taking over a childless couple's house in return for their keep was a common way for a holding to pass in rural Denmark.","Marinus Bøgh's map remembers it plainly. At no. 20, [[the farm on the old village green|b_today]] at Gl. Klæstrupvej 41, beside the pond called Osdam, lived \"Jens Bøgh, foster son of old Jens Bøgh\". Severin went by Jens, and old Jens Bøgh was his godfather. When the old man's byname became Severin's surname, the Thomsens became Bøghs. The 1904 name law made such a change simple. Bøgh is an old spelling of bøg, beech.","The 1901 census lists his house as matrikel 18, while Marinus gives 22a for no. 20. Land parcels were often split and renumbered, so this may be the same house or an earlier one. The full story is on its own page, Finding the Bøgh Farm."],
+ sources:["Jerslev parish register, baptisms 1876, no. 18 (DFS 133726, image 14417072).","Census 1901, Jerslev, Klæstrup, family 40, matr. 18: Jens Kr. Severin Thomsen, 24, single, husfader, husejer ved landbruget.","Marinus Bøgh's map of Klæstrup, no. 20: \"Jens Bøgh. Plejesøn af gamle Jens Bøgh. død 1914. Gl. Klæstrupvej 41. 22a.\""]},
 
 jkm:{name:"Jens Kristian Marinus Thomsen Bøgh",tag:"of Klæstrup",born:"1903",died:"not yet recorded",bp:"klaestrup",dp:null,status:"reported",direct:true,
  rel:{parents:["jks"]},
  imgs:["b_marinus"],
- story:["Jens Kristian Marinus was born at Klæstrup in Jerslev parish in 1903, nine generations from the elder Peder Pedersen of Sterup.","Late in life he [[drew Klæstrup from memory|b_marinus]]: thirty-seven houses, each with its family, its address and the nickname the village used. There is Pisen and Koldnaae, Dejlig Peter, Skål-Nørgård with his sisters Gine and Mie, Sladder-Maren, a veteran of 1864, and a parish councillor jailed for fourteen days after the brawl at Store Brønderslev market. At no. 20, on the old village green, he wrote the Bøgh name. His map is how the farm was found, more than three hundred years after his ancestor farmed a strip of Sterup's land.","The family remembers him as the foster son of old Jens Bøgh. A collection at the same archive, given by a Marius Bøgh, holds a history of Klæstrup School from 1847 to 1962 and a list of the village's residents in 1960, and may also be his. The search that began this whole record, with his own birthplace, ends where he drew it."],
+ story:["Jens Kristian Marinus was born at Klæstrup in Jerslev parish in 1903, nine generations from the elder Peder Pedersen of Sterup.","Late in life he [[drew Klæstrup from memory|b_marinus]]: thirty-seven houses, each with its family, its address and the nickname the village used. There is Pisen and Koldnaae, Dejlig Peter, Skål-Nørgård with his sisters Gine and Mie, Sladder-Maren, a veteran of 1864, and a parish councillor jailed for fourteen days after the brawl at Store Brønderslev market. At no. 20, on the old village green, he wrote the Bøgh name. His map is how the farm was found, more than three hundred years after his ancestor farmed a strip of Sterup's land.","Old Jens Bøgh, his father's godfather and foster father, died in 1914, when Marinus was about eleven, so Marinus grew up in that household too. A collection at the same archive, given by a Marius Bøgh, holds a history of Klæstrup School from 1847 to 1962 and a list of the village's residents in 1960, and may also be his. The search that began this whole record, with his own birthplace, ends where he drew it."],
  sources:["Birth as given in the family record.","Marinus Bøgh's map of Klæstrup (Egnsmindesamlingen for Jerslev og Omegn, B1934; arkiv.dk/vis/3759332)."]}
 };
 
@@ -564,15 +579,15 @@ function buildTree(){
      <div class="others">Earlier wives: <button data-id="mette_h">Mette Hansdatter</button> (m. 1810, d. 1812) and <button data-id="maren_l">Maren Larsdatter</button> (m. 1812, d. 1813)</div>
      ${kids(["daughter1813","thomas","s_mette","s_christen","s_inger"],"thomas")}</div><div class="stem"></div>`);
   t.push(`<div class="gen">${couple("thomas")}</div><div class="stem"></div>`);
-  t.push(`<div class="gen">${couple("christen")}</div><div class="stem"></div>`);
-  t.push(`<div class="gen">${couple("jks")}</div><div class="stem"></div>`);
+  t.push(`<div class="gen">${couple("christen","petrea")}</div><div class="stem"></div>`);
+  t.push(`<div class="gen">${couple("jks")}<div class="others">Godson and foster son of <button data-id="old_bogh">Jens Kristian Pedersen Bøg</button>, “old Jens Bøgh” (c. 1826–1914)</div></div><div class="stem"></div>`);
   t.push(`<div class="gen">${couple("jkm")}</div>`);
   $("#tree").innerHTML=t.join("");
 }
 
 /* ===================== DRAWER ===================== */
 let lastFocus=null;
-const ORDER=["old_peder","old_wife","peder","karen","mette1702","jorgen","mette","kirsten","pj","inger","pj_jorgen","pj_christen","pj_mads","pj_anne","pj_mette","simon","mette_h","maren_l","daughter1813","ane","thomas","s_mette","s_christen","s_inger","christen","jks","jkm"];
+const ORDER=["old_peder","old_wife","peder","karen","mette1702","jorgen","mette","kirsten","pj","inger","pj_jorgen","pj_christen","pj_mads","pj_anne","pj_mette","simon","mette_h","maren_l","daughter1813","ane","thomas","s_mette","s_christen","s_inger","christen","petrea","old_bogh","jks","jkm"];
 const STATUS={verified:"Read from the record",probable:"Probable",reported:"Reported, not yet checked"};
 function relLinks(ids){return ids.map(i=>P[i]&&!P[i].unknown?`<button data-id="${i}">${esc(P[i].name)}</button>`:esc(P[i]?P[i].name:i)).join(", ");}
 function openPerson(id,push=true){
@@ -586,9 +601,11 @@ function openPerson(id,push=true){
   let rel="";
   if(id==="jorgen") rel+=`<dt>Parents</dt><dd>A father named Peder; not yet identified</dd>`;
   if(r.parents) rel+=`<dt>Parents</dt><dd>${relLinks(r.parents)}</dd>`;
-  if(r.spouse) rel+=`<dt>${r.spouse.length>1?"Spouses":"Spouse"}</dt><dd>${relLinks(r.spouse)}</dd>`;
+  if(r.spouse&&r.spouse.length) rel+=`<dt>${r.spouse.length>1?"Spouses":"Spouse"}</dt><dd>${relLinks(r.spouse)}</dd>`;
   if(r.siblings) rel+=`<dt>Siblings</dt><dd>${relLinks(r.siblings)}</dd>`;
-  if(r.children) rel+=`<dt>Children</dt><dd>${relLinks(r.children)}</dd>`;
+  if(r.children&&r.children.length) rel+=`<dt>Children</dt><dd>${relLinks(r.children)}</dd>`;
+  if(id==="jks") rel+=`<dt>Foster father</dt><dd>${relLinks(["old_bogh"])}</dd>`;
+  if(id==="old_bogh") rel+=`<dt>Godson, foster son</dt><dd>${relLinks(["jks"])}</dd>`;
   const ev=E.filter(e=>e.who.includes(id)).sort((a,b)=>a.d.localeCompare(b.d));
   const tl=ev.map(e=>`<li class="${e.who[0]===id?"self":""}"><span class="d">${esc(e.ds)}${e.rep?" · reported":""}${e.prob?" · probable":""}</span>${placeLink(esc(e.t))}${e.pl?` <span class="pl">· ${placeLink(esc(PLACES[e.pl].name))}</span>`:""}</li>`).join("");
   const i=ORDER.indexOf(id),prev=ORDER[i-1],next=ORDER[i+1];

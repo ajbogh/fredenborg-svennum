@@ -127,10 +127,15 @@ Ancestry and have not yet been checked. Items marked **[hypothesis]** are infere
 - Died 5 Dec 1898, Skæve. **[reported]**
 
 ### Generation 6: Christen (Kresten) Thomsen **[reported]**
+- 1876: husmand at Mellem Vantmose, wife **Petrea Jensen** (b. c. 1852). Siblings Inger Marie Thomsen and Jørgen Thomsen of Nejsum, Skæve, godparents 1876; Thomas Kr. Thomsen of Falden possibly another relative.
 - Lead: Marinus Bøgh's map of Klæstrup (Egnsmindesamlingen for Jerslev og Omegn B1934, arkiv.dk/vis/3759332) no. 18 "Kren Tamsen (Thomsen)", Gl. Klæstrupvej 33, matr. 35a, two doors from the Bøgh house. **[lead]**
 - Born 7 Aug 1850, Skæve. Probably at Lille Nejsum, in the household with grandfather Simon.
 
-### Generation 7: Jens Kristian Severin Thomsen Bøgh **[reported]**
+### Generation 7: Jens Kristian Severin Thomsen Bøgh **[verified: baptism 1876, census 1901]**
+- **Baptism**: Jerslev register, born males 1876 no. 18 (DFS ch/359/133726/14417072). Born 22 Apr, baptised 2 Jul 1876 in church. Parents "Husmand Kristen Thomsen og Hustru Petrea Jensen, Mellemvantmose"; mother 24 (b. c. 1852), churched 2 Jul. Godparents: "Pigerne Inger Marie Thomsen, Nejsum, Skæve Sogn, og Karoline Martine Jensen, Vantmose; Husmændene **Jens Kr. Pedersen Bøg, Kløstrup**, Thomas Kr. Thomsen, Falden, og Karlen Jørgen Thomsen, Nejsum, Skæve Sogn." Birthplace is Mellem Vantmose (c. 57.313, 10.194; 1.5 km from Villestrup), not Klæstrup.
+- **Census 1901**, Jerslev, Klæstrup, family 40, matr. 18: Jens Kr. Severin Tomsen, 24, single, husfader, husejer ved landbruget; Jens Kr. Pedersen, 74 (b. 1826), married, aftægtsmand; Kirsten Nielsen, 78 (b. 1822), married, aftægtskone.
+- **Old Jens Bøgh = Jens Kristian Pedersen Bøg**, husmand of Klæstrup, b. c. 1826, wife Kirsten Nielsen; godfather (1876) and aftægt-giver (1901) to Severin; d. 1914 per Marinus. Severin was named for him and took his byname. Marinus's no. 20 "Jens Bøgh, plejesøn af gamle Jens Bøgh" = Severin. Byname Bøg already in use 1876, before the 1904 law.
+- Loose end: 1901 matr. 18 vs Marinus's 22a for no. 20.
 - Marinus's map no. 20: "Jens Bøgh. Plejesøn af gamle Jens Bøgh. død 1914. Gl. Klæstrupvej 41. 22a." Ambiguous: either Severin (foster son of an older Jens Bøgh d. 1914, source of the surname) or Marinus (family memory). Settle with Klæstrup censuses 1880–1916, 1914 burial of old Jens Bøgh, and any name-change note in the baptism margin.
 - Marinus's map is drawn with SOUTH AT THE TOP (mill and Lunden, at the village's east end, are on the left). House 20 is NOT Klæstrupvej 56; in 1884 a smithy ("Smedi") stood near Klæstrupvej 56.
 - Surname origins to test: foster father's name; farm Bøgen 4 km WSW (court books 1600s); beech trees at the farm. Name law 1904.
