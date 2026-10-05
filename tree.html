@@ -177,7 +177,7 @@ a{color:var(--path)}
       <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline id="route" fill="none" stroke="var(--path)" stroke-width="3" stroke-dasharray="7 6" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg>
     </div>
     <div class="mapkey"><span><i class="sw"></i>Homes of the direct line, in order</span></div>
-    <p class="fine" style="margin-top:8px">Vester Mølle and the farm Hørkær in Kirkeskov have not been located on a modern map. Events there are shown at Jerslev church and Hellevad church. Basemap: Danmarks Topografiske Kortværk, skærmkort, Klimadatastyrelsen open data. Place positions from the Danish place-name register.</p>
+    <p class="fine" style="margin-top:8px">The farms at Lille Nejsum and Raunsholt are traced on their own page, <a href="nejsum.html">Finding Lille Nejsum</a>. Vester Mølle and the farm Hørkær in Kirkeskov have not been located on a modern map. Events there are shown at Jerslev church and Hellevad church. Basemap: Danmarks Topografiske Kortværk, skærmkort, Klimadatastyrelsen open data. Place positions from the Danish place-name register.</p>
   </section>
 
   <section class="card" aria-labelledby="gal-h">
@@ -198,7 +198,7 @@ a{color:var(--path)}
 
   <section class="card" aria-labelledby="src-h">
     <h2 id="src-h">Sources</h2>
-    <p class="fine">Jerslev–Vester Brønderslev parish register from 1684, Hellevad–Ørum–Hellum register, Skæve register, and Øster Brønderslev–Hallund register from 1700 (Rigsarkivet, images via Danish Family Search and Arkivalieronline). Censuses of 1787, 1801, 1834, 1845 and 1850. Christian V's land register, 1688, Jerslev herred. Jerslev herred court books 1631 to 1688, extracts by Brejl. Full working notes, with image numbers for every record, are in <a href="https://github.com/ajbogh/fredenborg-svennum/blob/main/FAMILY-RECORD.md">FAMILY-RECORD.md</a>. The search for Fredenborg, the house once thought to start this line, is told in <a href="index.html">Finding Fredenborg</a>. That family turned out to be a different one.</p>
+    <p class="fine">Jerslev–Vester Brønderslev parish register from 1684, Hellevad–Ørum–Hellum register, Skæve register, and Øster Brønderslev–Hallund register from 1700 (Rigsarkivet, images via Danish Family Search and Arkivalieronline). Censuses of 1787, 1801, 1834, 1845 and 1850. Christian V's land register, 1688, Jerslev herred. Jerslev herred court books 1631 to 1688, extracts by Brejl. Full working notes, with image numbers for every record, are in <a href="https://github.com/ajbogh/fredenborg-svennum/blob/main/FAMILY-RECORD.md">FAMILY-RECORD.md</a>. Simon Pedersen's farm is located in <a href="nejsum.html">Finding Lille Nejsum</a>. The search for Fredenborg, the house once thought to start this line, is told in <a href="index.html">Finding Fredenborg</a>. That family turned out to be a different one.</p>
   </section>
 </div>
 
@@ -232,8 +232,8 @@ const PLACES={
   klaestrup:{name:"Klæstrup",lat:57.28272,lon:10.05517,note:"Hamlet 2 km west of Jerslev church.",left:true},
   hellevad:{name:"Hellevad church",lat:57.21288,lon:10.15274,note:"Parish church of Hellevad, Ørum and Hellum. The farm Hørkær in Kirkeskov, Hellevad parish, has not been located; its events are shown here."},
   allerup:{name:"Allerup",lat:57.23040,lon:10.19240,note:"Village in Hellevad parish. Home of Simon Christensen, probably Inger Christensdatter's brother."},
-  raunsholt:{name:"Raunsholt",lat:57.30166,lon:10.24587,note:"Farm in Skæve parish, today Ravnsholt. It lies about 270 m from Lille Nejsum.",left:true},
-  nejsum:{name:"Lille Nejsum",lat:57.30411,lon:10.24569,note:"Farm in Skæve parish. Simon Pedersen's farm from at least 1814."},
+  raunsholt:{name:"Søndre Raunsholt",lat:57.30155,lon:10.24620,note:"Farm in Skæve parish, about 400 m from Lille Nejsum. Skæve also had a Nørre Raunsholt, 1.9 km north-west, and the census does not yet say which was the family's.",left:true},
+  nejsum:{name:"Lille Nejsum",lat:57.30484,lon:10.24899,note:"Farm in Skæve parish. Simon Pedersen's farm from at least 1813. Located on the Finding Lille Nejsum page."},
   skaeve:{name:"Skæve church",lat:57.28856,lon:10.31224,note:"Parish church of Skæve.",left:true}
 };
 const ROUTE=["sterup","villestrup","hellevad","raunsholt","nejsum","klaestrup"];
@@ -256,9 +256,11 @@ const IMG={
  r1729:{src:"img/records/1729_baptism_peder.jpg",t:"Baptism of Peder Jørgensen, 1729",cap:"'Døbt et lidet barn Peder, Christen Jensens [struck through, 'Jørgen Pedersen' written above] og Mette Pedersdatters i Villestrup. Testes: Christen i Sigaard, Jens i Høholt, Peder i Fallen, Christens hustru i Krattet og Maren Jensdatter paa Veiene.'",ref:"Jerslev parish register, baptisms 6 Nov 1729 (image 14415867)"},
  r1739:{src:"img/records/1739_burial_peder_pedersen_krattet.jpg",t:"Burial of a Peder Pedersen of Krattet, 1739",cap:"'d. 21 Junii begravet Peder Pedersen af Krattet.' No age is given. He may be Mette's father, but the record cannot show it.",ref:"Jerslev parish register, burials 1739 (image 14415964)"},
  r1760:{src:"img/records/1760_marriage_peder_inger.jpg",t:"Marriage of Peder Jørgensen and Inger Christensdatter, 1760",cap:"The Hellevad marriage entry: the young man Peder Jørgensen and the maid Inger Christensdatter, both of Hørkær, betrothed 11 November and married 15 December 1760.",ref:"Hellevad–Ørum–Hellum parish register, marriages 1760"},
+ n_simon:{src:"img/nejsum/r_1813_simon_pedersen.jpg",t:"\"Simon Pedersen og Anders Christensen\", 1813",cap:"On the 1813 survey of central Skæve, the holders of Lille Nejsum are written across the field north of the farmstead: Simon Pedersen and Anders Christensen. The full story of the farm is on the Finding Lille Nejsum page.",ref:"Original 1, Den mellemste Del, Skæve, surveyed 1813 (Klimadatastyrelsen)"},
+ n_ln_rh:{src:"img/nejsum/r_1813_nejsum_raunsholt.jpg",t:"Lille Nejsum and Søndre Raunsholt, 1813",cap:"Lille Neisum at the top, its farmhouses in red at the road junction, and S. Raunsholt across the stream meadow below.",ref:"Original 1, Den mellemste Del, Skæve, surveyed 1813"},
  r1763:{src:"img/records/1763_baptism_christen.jpg",t:"Baptism of Christen Pedersen, 1763",cap:"'d. 20 Novbr. Peder Jørgensens og Inger Christensdatters barn af Hørkied i Kirkeskov, kaldet Christen. Frembaaret af Maren Hansdatter fra Brønhaven i Voer Sogn...' The godfathers, Jens Andersen of Fodtved, Christen Nielsen of Kirkeskov and Simon Christensen of Allerup, follow.",ref:"Hellevad–Ørum–Hellum parish register, baptisms 1763"}
 };
-const GALLERY=["m1688_no2","o1813_full","o1813_village","o1813_title","m1688_page","r1701","r1702b","r1702d","r1703","r1705d","r1705b","r1727","r1728","r1729","r1739","r1760","r1763"];
+const GALLERY=["n_simon","n_ln_rh","m1688_no2","o1813_full","o1813_village","o1813_title","m1688_page","r1701","r1702b","r1702d","r1703","r1705d","r1705b","r1727","r1728","r1729","r1739","r1760","r1763"];
 
 /* ===================== PEOPLE ===================== */
 const P={
@@ -349,7 +351,7 @@ pj:{name:"Peder Jørgensen",tag:"of Hørkær and Raunsholt",born:"bapt. 6 Nov 17
  "As a young man he went south into Hellevad parish, 15 km away, to work on the farm Hørkær in Kirkeskov. Inger Christensdatter served on the same farm. They were betrothed on 11 November 1760 and [[married at Hellevad on 15 December|r1760]]: 'ung Karl Peder Jørgensen' and 'Pigen Inger Christensdatter', the young man and the maid, both of Hørkær. He was thirty-one.",
  "Their first son was baptised Jørgen on 8 March 1761, for Peder's father. A second son, [[Christen, followed in November 1763|r1763]], for Inger's. Both times the godfathers included Jens Andersen of Fodtved and Simon Christensen of Allerup, who was probably Inger's brother. Mads came about 1767, Anne Kristine about 1771, Mette Marie in the mid-1770s for Peder's mother, and last Simon, about 1777.",
  "By 1787 the family had moved north to Raunsholt, a farm in Skæve parish. Their son Christen, about twenty-three, now held it, and Peder lived with him. The census taker wrote him as Peder Sørensen, aged sixty-three. That slip sent later researchers down a false trail for two centuries. Every other record, and the 1801 census, call him Peder Jørgensen.",
- "In February 1801 he was head of the household at Raunsholt again, seventy-one years old, a farmer married only once. Inger was beside him after forty years, with their daughter Mette and their son Christen at home. His youngest son, Simon, was away in service. Within a few years Simon would take a farm at Lille Nejsum, about 270 metres away.",
+ "In February 1801 he was head of the household at Raunsholt again, seventy-one years old, a farmer married only once. Inger was beside him after forty years, with their daughter Mette and their son Christen at home. His youngest son, Simon, was away in service. Within a few years Simon would take a farm at Lille Nejsum, across the stream meadow from Søndre Raunsholt.",
  "Peder's burial has not yet been found. It most likely lies in the Skæve register after 1801."],
  sources:["Jerslev baptisms, 6 Nov 1729 (image 14415867).","Hellevad marriages, 11 Nov / 15 Dec 1760.","Hellevad baptisms, 8 Mar 1761 and 20 Nov 1763.","Census 1787, Raunsholt, Skæve (written 'Peder Sørensen, 63').","Census 1801, Raunsholt, Skæve: Peder Jørgensen, 71."]},
 
@@ -371,7 +373,7 @@ pj_jorgen:{name:"Jørgen Pedersen",tag:"son of Peder and Inger",born:"bapt. 8 Ma
 pj_christen:{name:"Christen Pedersen",tag:"of Raunsholt",born:"bapt. 20 Nov 1763",died:"unknown",bp:"hellevad",dp:null,status:"verified",
  rel:{parents:["pj","inger"],siblings:["pj_jorgen","pj_mads","pj_anne","pj_mette","simon"]},
  imgs:["r1763"],
- story:["Christen was [[baptised at Hellevad on 20 November 1763|r1763]], carried to the font by Maren Hansdatter of Brønhaven in Voer parish. His godfathers were Jens Andersen of Fodtved, Christen Nielsen of Kirkeskov and Simon Christensen of Allerup. He was named for his mother's father.","By 1787, at about twenty-three, he held the farm at Raunsholt, with his parents living in. In 1801 he was still there and still unmarried, his father again head of the house. He was a near neighbour to his brother Simon's farm at Lille Nejsum."],
+ story:["Christen was [[baptised at Hellevad on 20 November 1763|r1763]], carried to the font by Maren Hansdatter of Brønhaven in Voer parish. His godfathers were Jens Andersen of Fodtved, Christen Nielsen of Kirkeskov and Simon Christensen of Allerup. He was named for his mother's father.","By 1787, at about twenty-three, he held the farm at Raunsholt, with his parents living in. In 1801 he was still there and still unmarried, his father again head of the house. If this was Søndre Raunsholt, he was a near neighbour to his brother Simon's farm at Lille Nejsum."],
  sources:["Hellevad baptisms, 20 Nov 1763.","Censuses 1787 and 1801, Raunsholt."]},
 
 pj_mads:{name:"Mads Pedersen",tag:"son of Peder and Inger",born:"c. 1767",died:"unknown",bp:null,dp:null,status:"verified",
@@ -391,10 +393,11 @@ pj_mette:{name:"Mette Marie Pedersdatter",tag:"daughter of Peder and Inger",born
 
 simon:{name:"Simon Pedersen",tag:"of Lille Nejsum",born:"c. 1777",died:"25 Jul 1853",bp:"hellevad",dp:"skaeve",status:"verified",direct:true,
  rel:{parents:["pj","inger"],spouse:["mette_h","maren_l","ane"],children:["daughter1813","thomas","s_mette","s_christen","s_inger"],siblings:["pj_jorgen","pj_christen","pj_mads","pj_anne","pj_mette"]},
+ imgs:["n_simon","n_ln_rh"],
  story:[
  "Simon was the youngest child of Peder Jørgensen and Inger Christensdatter, born about 1777. In his old age he told the census takers he was born in Hellevad parish. He carried the name of his mother's brother, Simon Christensen of Allerup. He was nine when the family is recorded at Raunsholt in Skæve parish in 1787. By 1801, about twenty-three, he had gone into service on another farm, as young men did.",
  "His married life began with grief. In 1810 he married Mette Hansdatter, and she died in March 1812. In November 1812 he married Maren Larsdatter. On 19 July 1813 she gave birth to a daughter and died the same day. Four days later, on 23 July 1813, with a newborn in the house, he married Ane Thomasdatter. A farm could not run without a wife, and a motherless baby could not wait. The haste was not coldness.",
- "This third marriage lasted forty years. Simon was now a farmer at Lille Nejsum, about 270 metres from Raunsholt, where his parents and brother Christen lived. On 16 December 1814 Ane bore a son, baptised at home the next day and named Thomas for her father. Mette followed around 1818, Christen around 1820, and Inger around 1825. Mette may honour his grandmother or his first wife. Christen was named for his grandfather, and Inger for his mother.",
+ "This third marriage lasted forty years. Simon was now a farmer at [[Lille Nejsum|n_simon]]. On the survey of 1813 his name is written across its fields, beside his partner Anders Christensen. Søndre Raunsholt, which may have been his parents' farm, lay just across the stream meadow. On 16 December 1814 Ane bore a son, baptised at home the next day and named Thomas for her father. Mette followed around 1818, Christen around 1820, and Inger around 1825. Mette may honour his grandmother or his first wife. Christen was named for his grandfather, and Inger for his mother.",
  "In the 1834 census he is sixty, a farmer with Ane, four children and a servant. By 1845 he had handed the farm to his son Thomas and lived on as aftægtsmand, a retired father kept by the farm under contract. The 1850 census finds him there at seventy-three, now with a new grandson, Christen, born that August.",
  "Simon Pedersen died on 25 July 1853, most likely at Lille Nejsum, aged seventy-six, and was buried at Skæve. He had buried two wives and lived to see his grandson begin to walk on the farm he had worked for forty years."],
  sources:["Census 1787, Raunsholt: Simon, 9, child of Peder and Inger.","Skæve marriages 1810, 1812, 23 Jul 1813 (reported by the researcher from the Skæve register).","Skæve baptisms, 17 Dec 1814.","Censuses 1834, 1840, 1845, 1850, Lille Nejsum.","Skæve burials, 1853, aged 76."]},

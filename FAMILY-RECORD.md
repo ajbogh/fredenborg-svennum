@@ -17,9 +17,9 @@ Ancestry and have not yet been checked. Items marked **[hypothesis]** are infere
 | Hellevad kirke | Hellevad | Dronninglund | 57.21288, 10.15274 | Pastorate Hellevad–Ørum–Hellum; one register for all three. Registers from 1646. |
 | Trøgdrup (Nørre and Sønder) | Hellevad | Dronninglund | c. 57.19, 10.12 | Common "Bløden" between them; 1676 dispute. |
 | Skæve kirke | Skæve | Dronninglund | 57.28856, 10.31224 | Registers from 1675. Vol. 1 1675–1777, vol. 2 from 1778 (Rigsarkivet images 28361212+). |
-| Lille Nejsum | Skæve | Dronninglund | 57.3153, 10.2573 | Farm on Nejsumvej, 4.5 km W of Skæve church; Nejsum recorded 1463. Simon Pedersen's farm 1814–1853. |
+| Lille Nejsum | Skæve | Dronninglund | 57.30484, 10.24899 (farmhouse, ±15 m) | Simon Pedersen's farm 1813–1853. 1813 Original 1 sheet "Den mellemste Del, Skæve" writes "Simon Pedersen og Anders Christensen" on its land; 1884 GS "L. Nejsum" building 11 m from today's house. See nejsum.html. |
 | Store Nejsum | Skæve | Dronninglund | near Lille Nejsum | Jørgen Pedersen farmer 1814. |
-| Ravnsholt (Raunsholt) | Skæve | Dronninglund | c. 57.303, 10.241 (plantage) | Single farm; Trap: Sdr. Ravnsholt, 1610 Raffuenshollt. Peder Jørgensen's family 1787 and 1801. |
+| Raunsholt | Skæve | Dronninglund | Søndre 57.30155, 10.24620; Nørre c. 57.319, 10.233 | TWO farms: Søndre (400 m SW of Lille Nejsum; holder 1813 Mathias Sørensen) and Nørre (1.9 km NW; 1884 "Nre Ravnsholt"). Which one held Peder Jørgensen's family in 1787/1801 is OPEN; check the census household headings. |
 | Villestrup | Jerslev | Børglum | east of Sterup, c. 57.31, 10.13 | Farm, 1662 Willestrup. Jørgen Pedersen and Mette Pedersdatter 1728–38; Peder Jørgensen baptised from here. |
 | Sterup | Jerslev | Børglum | c. 57.31, 10.11 | Largest village in the parish, 3 km N of the church. Peder Pedersen, Mette's father, 1703–05; Niels and Laurs Pedersen (probable brothers) 1703. |
 | Krattet (Sterupkrat) | Jerslev | Børglum | c. 0.5 km from Villestrup | Hamlet, 1606 Sterupkrat. Peder Sørensen's household 1701–22 (not kin on present evidence); Christen Pedersen's wife godmother 1728–29; Peder Pedersen "af Krattet" buried 1739. |

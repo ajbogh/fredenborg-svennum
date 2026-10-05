@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Finding Lille Nejsum</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Archivo+Narrow:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+:root{--bg:#f2f4ef;--surface:#fff;--surface2:#f7f8f4;--ink:#1f2a24;--muted:#5b6660;--rule:#d5dbd3;--line:#9aa69d;--accent:#2e6b3a;--accent-soft:#e3efe4;--warn:#8a5a12;--warn-soft:#f6ecd9;--path:#1f4e8a;--pin:#c0392b;--shadow:0 1px 2px rgba(0,0,0,.06),0 6px 24px rgba(0,0,0,.08);--display:'Source Serif 4',Georgia,serif;--sans:'Archivo Narrow','Arial Narrow',Arial,sans-serif;--mono:'IBM Plex Mono',Menlo,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#151916;--surface:#1f2520;--surface2:#252c26;--ink:#e6e9e3;--muted:#a3ada6;--rule:#39423b;--line:#5d6a60;--accent:#8fd09a;--accent-soft:#25382a;--warn:#e8bf73;--warn-soft:#3a3020;--path:#8fb6f0;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#151916;--surface:#1f2520;--surface2:#252c26;--ink:#e6e9e3;--muted:#a3ada6;--rule:#39423b;--line:#5d6a60;--accent:#8fd09a;--accent-soft:#25382a;--warn:#e8bf73;--warn-soft:#3a3020;--path:#8fb6f0;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.4)}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;margin:0;padding-block:32px 64px;padding-inline:clamp(16px,4vw,48px)}
+.wrap{max-width:1120px;margin:0 auto;display:grid;gap:28px}
+.wrap>*{min-width:0}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(32px,5vw,48px);line-height:1.08;margin:0;text-wrap:balance}
+h2{font-family:var(--display);font-weight:600;font-size:23px;margin:0 0 8px}
+p{max-width:72ch;margin:0 0 12px}
+a{color:var(--path)}
+.eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.lede{font-family:var(--display);font-size:clamp(17px,2vw,19px);max-width:68ch;margin-top:14px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:clamp(14px,2.5vw,24px)}
+.fine{font-size:13px;color:var(--muted)}
+.crumbs{font-size:14px;margin-bottom:14px}
+.verdict{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:6px}
+.vbox{border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:6px;padding:12px 14px;background:var(--surface2)}
+.vbox.open{border-left-color:var(--warn)}
+.vbox b{display:block;font-family:var(--display);font-size:18px}
+.vbox .c{font:13px var(--mono);color:var(--muted);display:block;margin:2px 0 6px}
+.vbox p{font-size:14.5px;margin:0}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:620px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+td.num{font-family:var(--mono);white-space:nowrap}
+.ilink{appearance:none;background:none;border:0;padding:0;font:inherit;color:var(--path);cursor:zoom-in;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
+
+/* slider */
+.cmp-controls{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;margin:10px 0}
+.cmp-controls label{display:inline-flex;align-items:center;gap:6px}
+.cmp-controls select,.cmp-controls input[type=range]{font:inherit;max-width:100%}
+.cmp{position:relative;width:100%;aspect-ratio:2000/2170;max-height:82vh;overflow:hidden;border:1px solid var(--rule);border-radius:6px;background:#222;user-select:none;touch-action:none;cursor:grab;--split:50%}
+.cmp-stage{position:absolute;inset:0;transform-origin:0 0}
+.cmp-layer{position:absolute;inset:0;width:100%;height:100%;display:block}
+.cmp-layer.paper{background:#f3f1ea}
+.cmp-divider{position:absolute;top:0;bottom:0;left:var(--split);width:0;border-left:3px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.5);pointer-events:none}
+.cmp-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;background:#fff;color:#222;display:grid;place-items:center;font-size:18px;box-shadow:0 1px 4px rgba(0,0,0,.5);pointer-events:auto}
+.cmp-pins{position:absolute;inset:0;pointer-events:none}
+.cpin{position:absolute;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center}
+.cpin svg{width:calc(20px / var(--z,1));height:calc(28px / var(--z,1));filter:drop-shadow(0 1px 1px rgba(0,0,0,.5))}
+.cpin span{position:absolute;bottom:calc(18px / var(--z,1));left:calc(12px / var(--z,1));white-space:nowrap;font:600 calc(12px / var(--z,1)) var(--sans);color:#fff;background:rgba(0,0,0,.66);padding:0 calc(5px / var(--z,1));border-radius:calc(3px / var(--z,1))}
+.cpin.l span{left:auto;right:calc(12px / var(--z,1))}
+
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.thumb{appearance:none;border:1px solid var(--rule);background:var(--surface2);border-radius:6px;padding:0;overflow:hidden;cursor:zoom-in;text-align:left;font:inherit;color:inherit;display:flex;flex-direction:column}
+.thumb img{display:block;width:100%;height:130px;object-fit:cover;background:#e9e4d6}
+.thumb span{font-size:13px;padding:7px 9px;line-height:1.3;color:var(--muted)}
+.thumb:focus-visible{outline:3px solid var(--path);outline-offset:2px}
+
+.lb{position:fixed;inset:0;z-index:40;background:#0b0d0c;display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .18s ease}
+.lb.on{opacity:1;pointer-events:auto}
+.lb-bar{display:flex;align-items:center;gap:8px;padding:calc(10px + env(safe-area-inset-top,0px)) 12px 8px;color:#e6e9e3}
+.lb-bar .t{flex:1;min-width:0;font:600 15px var(--sans);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb-bar button{appearance:none;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;min-width:38px;height:38px;padding:0 10px;font-size:18px;cursor:pointer}
+.lb-stage{flex:1;position:relative;overflow:hidden;touch-action:none;cursor:grab}
+.lb-stage.drag{cursor:grabbing}
+.lb-stage img{position:absolute;left:50%;top:50%;max-width:none;transform-origin:0 0;user-select:none;-webkit-user-drag:none;background:#f4efe2}
+.lb-cap{color:#d8ddd6;font:14.5px/1.5 var(--display);padding:10px 16px calc(14px + env(safe-area-inset-bottom,0px));max-height:34vh;overflow:auto;border-top:1px solid rgba(255,255,255,.12)}
+.lb-cap .src{display:block;font:12px var(--mono);color:#9aa59d;margin-top:4px}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);appearance:none;border:0;background:rgba(0,0,0,.45);color:#fff;width:42px;height:64px;font-size:26px;cursor:pointer;z-index:2}
+.lb-nav.prev{left:0;border-radius:0 8px 8px 0}.lb-nav.next{right:0;border-radius:8px 0 0 8px}
+@media (prefers-reduced-motion:reduce){.lb{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="crumbs"><a href="tree.html">The Bøgh Line</a> · <a href="index.html">Finding Fredenborg</a></div>
+    <div class="eyebrow">Skæve parish · Dronninglund herred · Vendsyssel, Denmark</div>
+    <h1>Finding Lille Nejsum</h1>
+    <p class="lede">Simon Pedersen farmed Lille Nejsum for forty years, from before 1813 until his death in 1853. His son Thomas was born there in 1814 and took the farm over. The farmstead stands today where the surveyors drew it in 1813 and 1884. Next door lies Søndre Raunsholt. That is one of two farms that could be the "Raunsholt" where Simon grew up.</p>
+  </header>
+
+  <section class="card">
+    <h2>The answer</h2>
+    <div class="verdict">
+      <div class="vbox"><b>Lille Nejsum</b><span class="c">57.30484 N, 10.24899 E · ±15 m</span><p>Found. The 1813 survey writes "Simon Pedersen" on the farm's land, and the 1884 map labels the farmstead "L. Nejsum". Today's farmhouse stands 11 m from the 1884 building.</p></div>
+      <div class="vbox open"><b>Søndre Raunsholt</b><span class="c">57.30155 N, 10.24620 E · ±15 m</span><p>Located, about 400 m south-west of Lille Nejsum, across the stream meadow. Whether this is the Raunsholt of the 1787 and 1801 censuses is still open.</p></div>
+      <div class="vbox open"><b>Nørre Raunsholt</b><span class="c">c. 57.319 N, 10.233 E</span><p>The other Raunsholt in Skæve parish, about 1.9 km north-west. It is the other candidate for Peder Jørgensen's farm.</p></div>
+    </div>
+  </section>
+
+  <section class="card" id="compare">
+    <h2>Then and now: drag the divider</h2>
+    <p>Six layers on one coordinate frame. The 1884 General Staff map and the modern layers come already georeferenced from the Danish map services. The 1813 survey has no grid, so it was fitted by turning and scaling it until its two farmsteads sat on the 1884 ones. Away from the farms it is approximate, but the stream, the meadow and the roads still fall close to their later lines.</p>
+    <div class="cmp-controls">
+      <label>Left <select id="cmp-left"><option value="o13">1813 survey (fitted)</option><option value="gs" selected>1884 General Staff</option><option value="hs">Lidar terrain</option><option value="or">2024 orthophoto</option><option value="c05">0.5 m contours</option><option value="c25">2.5 m contours</option></select></label>
+      <label>Right <select id="cmp-right"><option value="o13">1813 survey (fitted)</option><option value="gs">1884 General Staff</option><option value="hs">Lidar terrain</option><option value="or" selected>2024 orthophoto</option><option value="c05">0.5 m contours</option><option value="c25">2.5 m contours</option></select></label>
+      <label><input type="checkbox" id="cmp-c25"> 2.5 m contours over</label>
+      <label><input type="checkbox" id="cmp-pins" checked> Pins</label>
+      <label>Zoom <input type="range" id="cmp-zoom" min="1" max="5" step="0.1" value="1.6"></label>
+    </div>
+    <div class="cmp" id="cmp">
+      <div class="cmp-stage" id="cmp-stage">
+        <img class="cmp-layer" id="cmp-img-r" src="img/nejsum/ortho_2024.jpg" alt="2024 orthophoto around Lille Nejsum" draggable="false">
+        <img class="cmp-layer" id="cmp-img-l" src="img/nejsum/gs_1884.jpg" alt="1884 General Staff map around Lille Nejsum" draggable="false">
+        <img class="cmp-layer" id="cmp-c25-img" src="img/nejsum/c25.png" alt="" hidden draggable="false">
+        <div class="cmp-pins" id="cmp-pinlayer"></div>
+      </div>
+      <div class="cmp-divider" id="cmp-divider"><div class="cmp-handle">⟷</div></div>
+    </div>
+    <p class="fine" style="margin-top:10px">Frame 57.2945–57.3115 N, 10.2325–10.2615 E, about 1.7 × 1.9 km. Drag the white handle to wipe between layers. Drag anywhere else to pan when zoomed. Sources: Generalstabens høje målebordsblade, surveyed 1884; Danmarks Højdemodel hillshade and contours; GeoDanmark spring orthophoto 2024 (Klimadatastyrelsen and Dataforsyningen). Original 1 sheet "Den mellemste Del, Skæve", surveyed 1813.</p>
+  </section>
+
+  <section class="card">
+    <h2>How Lille Nejsum was found</h2>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Year</th><th>Source</th><th>What it gives</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1813</td><td>Original 1 survey sheet, "Den mellemste Del, Skæve", made for the new land register</td><td>The title lists "Lille Neisum, Sønd. Raunsholt". On the field north of the farmstead the surveyor wrote <button class="ilink" data-img="simon">"Simon Pedersen og Anders Christensen"</button>, the two holders of the farm. The farm buildings are drawn in red at a road junction on the north edge of the stream meadow.</td></tr>
+        <tr><td class="num">1814</td><td>Skæve parish register, baptisms</td><td>Thomas, son of "Gaardmand Simon Pedersen og hustru Ane Thomasdatter i Lille Neisum", born 16 December, baptised at home the next day.</td></tr>
+        <tr><td class="num">1834–1850</td><td>Censuses of 1834, 1840, 1845, 1850</td><td>Simon Pedersen at Lille Nejsum, first as farmer and from 1845 as the retired father of the farmer, Thomas Simonsen.</td></tr>
+        <tr><td class="num">1853</td><td>Skæve parish register, burials</td><td>Simon Pedersen dies 25 July, aged 76.</td></tr>
+        <tr><td class="num">1884</td><td>General Staff 1:20,000 map</td><td>A farmstead labelled "L. Nejsum" at the same junction on the north edge of the meadow. <button class="ilink" data-img="cmp_ln">Side by side with today</button>, the buildings are 11 m apart.</td></tr>
+        <tr><td class="num">2024</td><td>Orthophoto and Danish place-name register</td><td>The farm at the junction is still called Lille Nejsum. Its house stands at 57.30484 N, 10.24899 E.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="fine" style="margin-top:10px">The place-name register's label point for "Lille Nejsum" sits on the road about 140 m west of the buildings. The position above is the farmhouse itself, read from the 2024 orthophoto and checked against the 1884 building symbol.</p>
+  </section>
+
+  <section class="card">
+    <h2>Which Raunsholt?</h2>
+    <p>The 1787 and 1801 censuses place Peder Jørgensen and Inger Christensdatter at "Raunsholt" in Skæve parish, with their son Christen and, in 1787, their youngest son Simon. Skæve had two farms of that name. The <button class="ilink" data-img="o1813_sheet">1813 survey</button> draws <button class="ilink" data-img="nr">"N: Raunsholt"</button> as a lone house symbol at the edge of the sheet, and surveys <button class="ilink" data-img="ln_rh">"S. Raunsholt"</button> in full, next to Lille Nejsum. The <button class="ilink" data-img="gs_wide">1884 map</button> labels the northern farm "Nre Ravnsholt" and the southern one with an abbreviated "S".</p>
+    <ul>
+      <li><strong>For Søndre Raunsholt:</strong> it is Lille Nejsum's nearest neighbour. Simon, who grew up at Raunsholt, ended up farming the land next door, which is just how farm families of the time moved.</li>
+      <li><strong>Against it, or at least not for it:</strong> in 1813 the surveyor wrote <button class="ilink" data-img="rh_names">"Mathias Sørensen"</button> as the holder of Søndre Raunsholt, with a later name in red. No member of Peder Jørgensen's family appears there. By 1813 Peder was dead or past eighty, so this does not rule it out.</li>
+      <li><strong>How to settle it:</strong> the census pages themselves. Danish censuses of 1787 and 1801 often head each household with the full farm name, Nørre or Søndre. The Skæve entries for 1787 and 1801 would decide it in one look.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>The maps and records</h2>
+    <p class="fine">Choose any image to open it full screen. Pinch, scroll or double-click to zoom.</p>
+    <div class="thumbs" id="gallery"></div>
+  </section>
+
+  <section class="card">
+    <h2>Why Sterup farm no. 2 has no page yet</h2>
+    <p>Mette Pedersdatter's grandfather was co-tenant of farm no. 2 in Sterup in 1688. Fredenborg could be pinned because the 1844 land register carried each farm's 1688 tax value forward, which tied the old farm to a new number and a mapped plot. In Sterup that link is broken. No farm in the 1844 register carries farm no. 2's 1688 value, and several farms show the same round figure. The village's tax values were almost certainly redistributed when its fields were enclosed around 1800. The <a href="tree.html#old_peder">1799 survey of Sterup</a> shows the village and its fields, but not which plot came from farm no. 2. A tenant list or probate naming the farm's later holders could still make the connection.</p>
+  </section>
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-labelledby="lb-t" aria-hidden="true">
+  <div class="lb-bar"><span class="t" id="lb-t"></span><button id="lb-out" aria-label="Zoom out">−</button><button id="lb-in" aria-label="Zoom in">+</button><button id="lb-fit" aria-label="Fit to screen">⤢</button><button id="lb-x" aria-label="Close">×</button></div>
+  <div class="lb-stage" id="lb-stage"><button class="lb-nav prev" id="lb-prev" aria-label="Previous image">‹</button><img id="lb-img" alt=""><button class="lb-nav next" id="lb-next" aria-label="Next image">›</button></div>
+  <div class="lb-cap" id="lb-cap"></div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const IMG={
+ simon:{src:"img/nejsum/r_1813_simon_pedersen.jpg",t:"\"Simon Pedersen og Anders Christensen\", 1813",cap:"On the 1813 survey the names of the holders are written across the field north of Lille Nejsum: Simon Pedersen and Anders Christensen. The struck figure below is the field's area. When the sheet was drawn, Simon held the farm jointly with Anders Christensen.",ref:"Original 1, Den mellemste Del, Skæve, surveyed 1813 (Klimadatastyrelsen)"},
+ ln_rh:{src:"img/nejsum/r_1813_nejsum_raunsholt.jpg",t:"Lille Nejsum and Søndre Raunsholt, 1813",cap:"The 1813 survey. Lille Neisum sits at the top, its farmhouses drawn in red where the roads meet on the north edge of the stream meadow. S. Raunsholt lies below, on the far side of the meadow, with the holder's name Mathias Sørensen. The winding blue line is the stream.",ref:"Original 1, Den mellemste Del, Skæve, surveyed 1813"},
+ rh_names:{src:"img/nejsum/r_1813_raunsholt_names.jpg",t:"Søndre Raunsholt's holder in 1813",cap:"\"Mathias Sørensen\" in black ink, with a later holder written in red underneath and struck through. Neither is a known member of Peder Jørgensen's family.",ref:"Original 1, Den mellemste Del, Skæve, surveyed 1813"},
+ nr:{src:"img/nejsum/r_1813_nordre_raunsholt.jpg",t:"Nørre Raunsholt on the 1813 survey",cap:"\"N: Raunsholt\", drawn as a single house symbol at the edge of the area surveyed on this sheet. Its own land was mapped on another sheet.",ref:"Original 1, Den mellemste Del, Skæve, surveyed 1813"},
+ o1813_title:{src:"img/nejsum/r_1813_title.jpg",t:"Title of the 1813 survey",cap:"\"Kort over ... Lille Neisum, Sønd. Raunsholt ... med øvrige smaae Afbygger Huuse, deres samtlige Jorder, beliggende udi Schieve Sogn, Børglum Herred og Hiørring Amt. Opmaalt ved Matrikulerings Arbeidet Aar 1813.\" A map of these farms and the small houses built off them, with all their land, measured for the land-register work of 1813.",ref:"Original 1, Den mellemste Del, Skæve, surveyed 1813"},
+ o1813_sheet:{src:"img/nejsum/r_1813_sheet.jpg",t:"The whole 1813 sheet, central Skæve",cap:"The full first sheet. Lille Neisum is near the centre, S. Raunsholt just below it, and N. Raunsholt at the far left edge.",ref:"Original 1, Den mellemste Del, Skæve, surveyed 1813"},
+ gs_wide:{src:"img/nejsum/r_1884_both_raunsholts.jpg",t:"Both Raunsholts on the 1884 map",cap:"The General Staff map of 1884. \"Nre Ravnsholt\" is in the upper middle, beside Vrengmose. \"L. Nejsum\" is at the bottom right. Søndre Raunsholt lies just below the bottom edge of this view.",ref:"Generalstabens høje målebordsblade, surveyed 1884"},
+ cmp_ln:{src:"img/nejsum/r_cmp_lille_nejsum.jpg",t:"Lille Nejsum, 1884 and 2024",cap:"The same 380 × 310 m on the 1884 General Staff map and the 2024 orthophoto. The hatched farm buildings of 1884 and today's farmhouse and barns stand on the same spot, 11 m apart.",ref:"Generalstabens høje målebordsblade 1884; GeoDanmark orthophoto 2024"},
+ cmp_rh:{src:"img/nejsum/r_cmp_raunsholt.jpg",t:"Søndre Raunsholt, 1884 and 2024",cap:"The same area on the 1884 map and the 2024 orthophoto. The farm still stands where the 1884 surveyors drew it, beside the north–south road, 16 m from its 1884 symbol.",ref:"Generalstabens høje målebordsblade 1884; GeoDanmark orthophoto 2024"}
+};
+const GALLERY=["simon","ln_rh","o1813_title","o1813_sheet","cmp_ln","cmp_rh","rh_names","nr","gs_wide"];
+const thumb=(k,set)=>`<button class="thumb" data-img="${k}" data-set="${set.join(",")}"><img src="${IMG[k].src}" alt="" loading="lazy"><span>${esc(IMG[k].t)}</span></button>`;
+$("#gallery").innerHTML=GALLERY.map(k=>thumb(k,GALLERY)).join("");
+
+/* ---------- slider ---------- */
+(function(){
+  const SRC={o13:'img/nejsum/o1813_fitted.jpg',gs:'img/nejsum/gs_1884.jpg',hs:'img/nejsum/hillshade.jpg',or:'img/nejsum/ortho_2024.jpg',c05:'img/nejsum/c05.png',c25:'img/nejsum/c25.png'};
+  const PINS=[["Lille Nejsum",56.85,39.17,false],["Søndre Raunsholt",47.25,58.53,true],["Store Nejsum",80.8,2.6,true]];
+  const svg='<svg viewBox="0 0 22 30" aria-hidden="true"><path d="M11 1C5.5 1 1 5.4 1 10.9 1 18.3 11 29 11 29s10-10.7 10-18.1C21 5.4 16.5 1 11 1z" fill="#c0392b" stroke="#fff" stroke-width="1.6"/><circle cx="11" cy="11" r="3.6" fill="#fff"/></svg>';
+  $("#cmp-pinlayer").innerHTML=PINS.map(([n,x,y,l])=>`<div class="cpin${l?" l":""}" style="left:${x}%;top:${y}%">${svg}<span>${n}</span></div>`).join("");
+  const cmp=$("#cmp"),stage=$("#cmp-stage"),L=$("#cmp-img-l"),R=$("#cmp-img-r");
+  const set=(img,k)=>{img.src=SRC[k];img.classList.toggle('paper',k==='c05'||k==='c25');};
+  $("#cmp-left").addEventListener('change',e=>set(L,e.target.value));
+  $("#cmp-right").addEventListener('change',e=>set(R,e.target.value));
+  const tog=(id,el)=>{const cb=$(id),t=$(el);const f=()=>{t.hidden=!cb.checked;};cb.addEventListener('change',f);f();};
+  tog('#cmp-c25','#cmp-c25-img'); tog('#cmp-pins','#cmp-pinlayer');
+  let z=1.6,px=.5205,py=.4885,tx=0,ty=0,ox=0,oy=0;
+  function clip(){const w=cmp.clientWidth;const s=parseFloat(getComputedStyle(cmp).getPropertyValue('--split'))/100*w;let f=((s-ox)/z)/w;f=Math.min(1,Math.max(0,f));L.style.clipPath='inset(0 '+((1-f)*100)+'% 0 0)';}
+  function apply(){const w=cmp.clientWidth,h=cmp.clientHeight;
+    const minx=w-w*z,miny=h-h*z; ox=Math.min(0,Math.max(minx,w/2-px*w*z+tx)); oy=Math.min(0,Math.max(miny,h/2-py*h*z+ty));
+    stage.style.transform=`translate(${ox}px,${oy}px) scale(${z})`; stage.style.setProperty('--z',z); clip();}
+  $("#cmp-zoom").addEventListener('input',e=>{z=parseFloat(e.target.value);apply();}); apply(); addEventListener('resize',apply);
+  let drag=null,sx=0,sy=0,stx=0,sty=0;
+  cmp.addEventListener('pointerdown',e=>{const r=cmp.getBoundingClientRect();const s=parseFloat(getComputedStyle(cmp).getPropertyValue('--split'))/100*r.width;
+    drag=Math.abs(e.clientX-r.left-s)<30?'split':'pan';sx=e.clientX;sy=e.clientY;stx=tx;sty=ty;cmp.setPointerCapture(e.pointerId);cmp.style.cursor=drag==='split'?'ew-resize':'grabbing';});
+  cmp.addEventListener('pointermove',e=>{if(!drag)return;const r=cmp.getBoundingClientRect();
+    if(drag==='split'){cmp.style.setProperty('--split',Math.min(100,Math.max(0,(e.clientX-r.left)/r.width*100))+'%');clip();}
+    else{tx=stx+(e.clientX-sx);ty=sty+(e.clientY-sy);apply();const w=cmp.clientWidth,h=cmp.clientHeight;tx=ox-(w/2-px*w*z);ty=oy-(h/2-py*h*z);}});
+  const up=()=>{drag=null;cmp.style.cursor='grab';};cmp.addEventListener('pointerup',up);cmp.addEventListener('pointercancel',up);
+})();
+
+/* ---------- lightbox ---------- */
+const LB={set:[],i:0,s:1,x:0,y:0,fit:1,last:null};
+const lbImg=$("#lb-img"),stage=$("#lb-stage");
+function lbApply(){lbImg.style.transform=`translate(${LB.x}px,${LB.y}px) scale(${LB.s})`;}
+function lbFit(){const W=stage.clientWidth,H=stage.clientHeight,w=lbImg.naturalWidth,h=lbImg.naturalHeight;if(!w)return;LB.fit=Math.min(W/w,H/h)*0.98;LB.s=LB.fit;LB.x=-w*LB.s/2;LB.y=-h*LB.s/2;lbApply();}
+function lbZoom(f,cx,cy){const r=stage.getBoundingClientRect();cx=(cx??r.left+r.width/2)-r.left-r.width/2;cy=(cy??r.top+r.height/2)-r.top-r.height/2;const ns=Math.max(LB.fit*0.5,Math.min(LB.s*f,LB.fit*12));const k=ns/LB.s;LB.x=cx-(cx-LB.x)*k;LB.y=cy-(cy-LB.y)*k;LB.s=ns;lbApply();}
+function lbShow(i){LB.i=(i+LB.set.length)%LB.set.length;const im=IMG[LB.set[LB.i]];$("#lb-t").textContent=im.t;$("#lb-cap").innerHTML=`${esc(im.cap)}<span class="src">${esc(im.ref)}</span>`;lbImg.alt=im.t;lbImg.onload=lbFit;lbImg.src=im.src;if(lbImg.complete&&lbImg.naturalWidth)lbFit();const many=LB.set.length>1;$("#lb-prev").hidden=!many;$("#lb-next").hidden=!many;}
+function openLB(k,set){LB.last=document.activeElement;LB.set=(set&&set.includes(k))?set:[k];$("#lb").classList.add("on");$("#lb").setAttribute("aria-hidden","false");document.body.style.overflow="hidden";lbShow(LB.set.indexOf(k));$("#lb-x").focus({preventScroll:true});}
+function closeLB(){$("#lb").classList.remove("on");$("#lb").setAttribute("aria-hidden","true");document.body.style.overflow="";if(LB.last&&LB.last.focus)LB.last.focus({preventScroll:true});}
+$("#lb-x").addEventListener("click",closeLB);$("#lb-fit").addEventListener("click",lbFit);
+$("#lb-in").addEventListener("click",()=>lbZoom(1.5));$("#lb-out").addEventListener("click",()=>lbZoom(1/1.5));
+$("#lb-prev").addEventListener("click",e=>{e.stopPropagation();lbShow(LB.i-1);});$("#lb-next").addEventListener("click",e=>{e.stopPropagation();lbShow(LB.i+1);});
+stage.addEventListener("wheel",e=>{e.preventDefault();lbZoom(e.deltaY<0?1.15:1/1.15,e.clientX,e.clientY);},{passive:false});
+stage.addEventListener("dblclick",e=>{if(e.target.closest(".lb-nav"))return;LB.s>LB.fit*1.05?lbFit():lbZoom(2.5,e.clientX,e.clientY);});
+(()=>{const pts=new Map();let d0=0,s0=1,px=0,py=0;
+ stage.addEventListener("pointerdown",e=>{if(e.target.closest(".lb-nav"))return;stage.setPointerCapture(e.pointerId);pts.set(e.pointerId,{x:e.clientX,y:e.clientY});stage.classList.add("drag");if(pts.size===2){const [a,b]=[...pts.values()];d0=Math.hypot(a.x-b.x,a.y-b.y);s0=LB.s;}px=e.clientX;py=e.clientY;});
+ stage.addEventListener("pointermove",e=>{if(!pts.has(e.pointerId))return;pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(pts.size===2){const [a,b]=[...pts.values()];const d=Math.hypot(a.x-b.x,a.y-b.y);lbZoom((s0*d/d0)/LB.s,(a.x+b.x)/2,(a.y+b.y)/2);}
+  else{LB.x+=e.clientX-px;LB.y+=e.clientY-py;px=e.clientX;py=e.clientY;lbApply();}});
+ const up=e=>{pts.delete(e.pointerId);if(!pts.size)stage.classList.remove("drag");if(pts.size===1){const [a]=[...pts.values()];px=a.x;py=a.y;}};
+ stage.addEventListener("pointerup",up);stage.addEventListener("pointercancel",up);
+})();
+addEventListener("resize",()=>{if($("#lb").classList.contains("on"))lbFit();});
+document.addEventListener("click",e=>{const im=e.target.closest("[data-img]");if(im){e.preventDefault();openLB(im.dataset.img,(im.dataset.set||"").split(",").filter(Boolean));}});
+document.addEventListener("keydown",e=>{if(!$("#lb").classList.contains("on"))return;
+  if(e.key==="Escape")closeLB();else if(e.key==="ArrowLeft"&&LB.set.length>1)lbShow(LB.i-1);else if(e.key==="ArrowRight"&&LB.set.length>1)lbShow(LB.i+1);else if(e.key==="+"||e.key==="=")lbZoom(1.4);else if(e.key==="-")lbZoom(1/1.4);
+  if(e.key==="Tab"){e.preventDefault();$("#lb-x").focus();}});
+</script>
+</body>
+</html>
