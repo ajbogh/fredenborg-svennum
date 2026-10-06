@@ -169,6 +169,12 @@ Ancestry and have not yet been checked. Items marked **[hypothesis]** are infere
 - +184 (85892252): fire inquest in Sterup. "Peder Laursens gaard" burned about 13 April; damage valued by neighbours incl. Jens Madsen i Øster Sterup Mølle, Jens Christensen and Peder Andersen i Sterup. Not our family.
 - No probate or heirs' notice for old Peder Pedersen (d. Apr 1705) found in the sample. Reading the whole volume page by page would be needed to rule it out.
 
+## Vrejlev Kloster estate rent books, 1688– (checked Oct 2026)
+- Rigsarkivet images 66630200–66630359 (160). Yearly rent books from May 1688 (+0 to +4), May 1691 (+5 on), later volumes to the 1840s.
+- The 1688–89 book lists every Vrejlev tenant by village (Krogsholt, Tolstrup, Damsgaard, Høgsted, Korsberg, Vrå sogn: Nørgaard, Bauer?, Hjørring area, Hallund?, Serritslev ...). **No Sterup and no Jerslev parish holding.** Vrejlev did not own Sterup no. 2. The 1685 case (Vrejlev's bailiff) concerned the servant of Laurs Pedersen Smed in Øster Brønderslev, not a Sterup tenant; the earlier inference was wrong.
+- Høgsted has a Peder Pedersen and "Laurids Pedersens enke" in 1688; different place, not our family.
+- Next: read the landlord's name in the left margin of the 1688 matrikel, Sterup no. 2 (modelbog 1781, fol. 130) and find that estate's rent books.
+
 ## Image references
 - Jerslev herreds tingbøger 1631–1688, Brejl extracts: brejl.dk (Jerslev herred, parts 1–2).
 - Jerslev kirkebog 1684–: Danish Family Search folder `ch/359/133720/`, images 14415760–14416000. Baptisms c. 14415784–14415880 (1693–1707 at 14415784–14415800: 1703 Sterup entries 14415795 right page, 1705 Mette 14415798 left page; 1727–33 at 14415864–871); marriages 14415895–14415915 (1690–1780; 1725–29 at 14415903); burials 14415940–14415979 (1693–1707 at 14415944–951, read in full; 1725–34 at 14415960–962; 1738–39 at 14415964); baptisms 1780s–90s 14415980–14416000.
