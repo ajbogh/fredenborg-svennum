@@ -174,6 +174,7 @@ Ancestry and have not yet been checked. Items marked **[hypothesis]** are infere
 - The 1688–89 book lists every Vrejlev tenant by village (Krogsholt, Tolstrup, Damsgaard, Høgsted, Korsberg, Vrå sogn: Nørgaard, Bauer?, Hjørring area, Hallund?, Serritslev ...). **No Sterup and no Jerslev parish holding.** Vrejlev did not own Sterup no. 2. The 1685 case (Vrejlev's bailiff) concerned the servant of Laurs Pedersen Smed in Øster Brønderslev, not a Sterup tenant; the earlier inference was wrong.
 - Høgsted has a Peder Pedersen and "Laurids Pedersens enke" in 1688; different place, not our family.
 - 1732 (images +50 to +53, "Extract over Vrejlev Klosters ... gaarde ... Jura patronatus", dated Aug 1732): only one Jerslev-parish holding, "Chr. i Fald" (Christen in Falden), who stood godfather at Peder Jørgensen's baptism 1729. No Sterup, Villestrup or Krattet.
+- **Owner of Sterup no. 2 in 1688** (margin, image 75699713): "Col: Lerche" (Colonel Lerche), reading probable. No. 3 next to it: "Fr. Margrete Rantzau". Catalogue search finds no Lerche estate rent books for 1688–1720 (only Lerchenborg, Zealand, from 1724, and a 1684 deed for Peder Lerche til Lerkenfeldt). Farm no. 2 was probably scattered privately held land with no surviving estate archive.
 - Next: read the landlord's name in the left margin of the 1688 matrikel, Sterup no. 2 (modelbog 1781, fol. 130) and find that estate's rent books.
 
 ## Image references
