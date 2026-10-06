@@ -163,6 +163,12 @@ Ancestry and have not yet been checked. Items marked **[hypothesis]** are infere
 6. The Fredenborg line (Søren Jensen, Christen Sørensen): a separate, documented family, no longer in the direct line; their story stays on the Finding Fredenborg page.
 7. Thomas Simonsen's marriage and the 1850 Skæve census household at Lille Nejsum.
 
+## Børglum-Jerslev herred court book, vol. B-028C (c. 1705–1707), fire-damaged
+- Rigsarkivet Arkivalieronline, images 85892068–85892644 (577). Every leaf survives only as a charred fragment mounted on new paper; top lines and dates are mostly burnt away. Sampled Oct 2026.
+- +176 to +182 (85892244–85892250): an estate's arrears roll ("Restance som hos ... tilliggende bønder og tienere"), parish by parish, each tenant's arrears in rye, barley and money for 1693–1706. Parishes seen: Hallund, Hellum, Haldensted, Tolstrup, Albæk, Mølleholm, Søerheden. Probably Kølskegård's tenants. No Jerslev/Sterup section in the pages seen.
+- +184 (85892252): fire inquest in Sterup. "Peder Laursens gaard" burned about 13 April; damage valued by neighbours incl. Jens Madsen i Øster Sterup Mølle, Jens Christensen and Peder Andersen i Sterup. Not our family.
+- No probate or heirs' notice for old Peder Pedersen (d. Apr 1705) found in the sample. Reading the whole volume page by page would be needed to rule it out.
+
 ## Image references
 - Jerslev herreds tingbøger 1631–1688, Brejl extracts: brejl.dk (Jerslev herred, parts 1–2).
 - Jerslev kirkebog 1684–: Danish Family Search folder `ch/359/133720/`, images 14415760–14416000. Baptisms c. 14415784–14415880 (1693–1707 at 14415784–14415800: 1703 Sterup entries 14415795 right page, 1705 Mette 14415798 left page; 1727–33 at 14415864–871); marriages 14415895–14415915 (1690–1780; 1725–29 at 14415903); burials 14415940–14415979 (1693–1707 at 14415944–951, read in full; 1725–34 at 14415960–962; 1738–39 at 14415964); baptisms 1780s–90s 14415980–14416000.
