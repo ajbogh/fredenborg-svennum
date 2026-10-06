@@ -173,6 +173,7 @@ Ancestry and have not yet been checked. Items marked **[hypothesis]** are infere
 - Rigsarkivet images 66630200–66630359 (160). Yearly rent books from May 1688 (+0 to +4), May 1691 (+5 on), later volumes to the 1840s.
 - The 1688–89 book lists every Vrejlev tenant by village (Krogsholt, Tolstrup, Damsgaard, Høgsted, Korsberg, Vrå sogn: Nørgaard, Bauer?, Hjørring area, Hallund?, Serritslev ...). **No Sterup and no Jerslev parish holding.** Vrejlev did not own Sterup no. 2. The 1685 case (Vrejlev's bailiff) concerned the servant of Laurs Pedersen Smed in Øster Brønderslev, not a Sterup tenant; the earlier inference was wrong.
 - Høgsted has a Peder Pedersen and "Laurids Pedersens enke" in 1688; different place, not our family.
+- 1732 (images +50 to +53, "Extract over Vrejlev Klosters ... gaarde ... Jura patronatus", dated Aug 1732): only one Jerslev-parish holding, "Chr. i Fald" (Christen in Falden), who stood godfather at Peder Jørgensen's baptism 1729. No Sterup, Villestrup or Krattet.
 - Next: read the landlord's name in the left margin of the 1688 matrikel, Sterup no. 2 (modelbog 1781, fol. 130) and find that estate's rent books.
 
 ## Image references
