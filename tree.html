@@ -6,7 +6,7 @@
 <title>The Bøgh Line</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Archivo+Narrow:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap">
 <style>
-:root{--route:#0d3b8e;--mappin:#a52a22;--bg:#f2f4ef;--surface:#fff;--surface2:#f7f8f4;--ink:#1f2a24;--muted:#5b6660;--rule:#d5dbd3;--line:#9aa69d;--accent:#2e6b3a;--accent-soft:#e3efe4;--warn:#8a5a12;--warn-soft:#f6ecd9;--rep:#5b5f8a;--rep-soft:#e8e9f3;--path:#1f4e8a;--pin:#8a2f2a;--shadow:0 1px 2px rgba(0,0,0,.06),0 6px 24px rgba(0,0,0,.08);--display:'Source Serif 4',Georgia,serif;--sans:'Archivo Narrow','Arial Narrow',Arial,sans-serif;--mono:'IBM Plex Mono',Menlo,monospace}
+:root{--route:#0d3b8e;--mat:#9d4225;--mappin:#a52a22;--bg:#f2f4ef;--surface:#fff;--surface2:#f7f8f4;--ink:#1f2a24;--muted:#5b6660;--rule:#d5dbd3;--line:#9aa69d;--accent:#2e6b3a;--accent-soft:#e3efe4;--warn:#8a5a12;--warn-soft:#f6ecd9;--rep:#5b5f8a;--rep-soft:#e8e9f3;--path:#1f4e8a;--pin:#8a2f2a;--shadow:0 1px 2px rgba(0,0,0,.06),0 6px 24px rgba(0,0,0,.08);--display:'Source Serif 4',Georgia,serif;--sans:'Archivo Narrow','Arial Narrow',Arial,sans-serif;--mono:'IBM Plex Mono',Menlo,monospace}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#151916;--surface:#1f2520;--surface2:#252c26;--ink:#e6e9e3;--muted:#a3ada6;--rule:#39423b;--line:#5d6a60;--accent:#8fd09a;--accent-soft:#25382a;--warn:#e8bf73;--warn-soft:#3a3020;--rep:#b3b7e8;--rep-soft:#2b2d40;--path:#8fb6f0;--pin:#f09a92;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.4)}}
 :root[data-theme="dark"]{color-scheme:dark;--bg:#151916;--surface:#1f2520;--surface2:#252c26;--ink:#e6e9e3;--muted:#a3ada6;--rule:#39423b;--line:#5d6a60;--accent:#8fd09a;--accent-soft:#25382a;--warn:#e8bf73;--warn-soft:#3a3020;--rep:#b3b7e8;--rep-soft:#2b2d40;--path:#8fb6f0;--pin:#f09a92;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.4)}
 *{box-sizing:border-box}
@@ -91,6 +91,8 @@ a{color:var(--path)}
 .pop li button{appearance:none;background:none;border:0;padding:0;font:inherit;color:var(--path);text-align:left;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
 .pop .x{position:absolute;top:6px;right:8px;appearance:none;background:none;border:0;font-size:20px;line-height:1;color:var(--muted);cursor:pointer}
 .leg.r{transform:translate(0,-50%)}
+.leg.m{background:var(--mat)}
+.sub .kb,.sub .kr2{display:inline-block;width:18px;height:0;border-top:3px dashed var(--route);vertical-align:middle;margin:0 5px 0 2px}.sub .kr2{border-top-color:var(--mat)}
 .leg{position:absolute;transform:translate(-50%,-50%);font:600 12px var(--mono);color:#fff;background:var(--route);border:1.5px solid #fff;font-weight:600;border-radius:999px;padding:1px 7px;white-space:nowrap;pointer-events:auto;cursor:pointer;appearance:none;line-height:1.5;box-shadow:0 1px 3px rgba(0,0,0,.35);z-index:1}
 @media (max-width:640px){.leg{font-size:9.5px;padding:0 4px;border-width:1px}.pin .lab{font-size:10px;padding:0 3px;bottom:16px;left:11px}.pin.lft .lab{left:auto;right:11px}.pin svg{width:17px;height:23px}}
 .mapkey{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--muted);margin:10px 0 0}
@@ -183,7 +185,7 @@ a{color:var(--path)}
 
   <section class="card" aria-labelledby="map-h">
     <h2 id="map-h">Where they lived</h2>
-    <p class="sub">Each pin is a farm, hamlet or church named in the records. Choose a pin to see who was born, married, lived or was buried there. The dashed arrows follow the direct line's moves from Sterup to Klæstrup, each labelled with about when it happened. Tap a date to see who moved.</p>
+    <p class="sub">Each pin is a farm, hamlet or church named in the records. Choose a pin to see who was born, married, lived or was buried there. The dashed arrows follow the direct line's moves, each labelled with about when it happened. <span class="kb"></span>Blue follows the father-to-son line from Sterup to Klæstrup. <span class="kr2"></span>Red follows the mothers who married into it and the moves of their families. Tap a date to see who moved.</p>
     <div class="mapwrap" id="map">
       <img src="img/line_basemap_wide.jpg" alt="Topographic map of central Vendsyssel from Vrensted in the west to Volstrup in the east">
       <svg id="routesvg" aria-hidden="true"></svg><div id="leglabels"></div>
@@ -261,7 +263,13 @@ const LEGS=[
  {from:"hellevad",to:"raunsholt",d:"1777–87",why:"Peder Jørgensen's family moves to Raunsholt, Skæve parish",who:["pj","inger","simon"]},
  {from:"raunsholt",to:"nejsum",d:"by 1813",why:"Simon Pedersen takes the farm at Lille Nejsum",who:["simon"],loop:true},
  {from:"nejsum",to:"vantmose",d:"by 1876",why:"Christen Thomsen and Petrea Jensen are smallholders at Mellem Vantmose",who:["christen","petrea"]},
- {from:"vantmose",to:"klaestrup",d:"by 1901",why:"Jens Kristian Severin takes over the house of his godfather, Jens Kristian Pedersen Bøg, at Klæstrup",who:["jks","old_bogh"],bend:0.15}];
+ {from:"vantmose",to:"klaestrup",d:"by 1901",why:"Jens Kristian Severin takes over the house of his godfather, Jens Kristian Pedersen Bøg, at Klæstrup",who:["jks","old_bogh"],bend:0.15},
+ {from:"knaeverhede",to:"nejsum",d:"1813",why:"Ane Thomasdatter of Knæverhede marries Simon Pedersen and comes to Lille Nejsum",who:["ane","thomas_j","ane_j","simon"],mat:true},
+ {from:"aasted",to:"nejsum",d:"by 1845",why:"Sille Maria Thomsdatter of Åsted marries Thomas Simonsen and comes to Lille Nejsum",who:["sille","thomas_c","mkj","thomas"],mat:true},
+ {from:"em",to:"stenum",d:"by 1862",why:"Morten Christiansen, born in Em, farms at Stenum Mark with his first wife, Kirstine Johanne Bertelsdatter",who:["morten","kirstine_jb","karen_m","christen_m"],mat:true},
+ {from:"stenum",to:"tylstrup",d:"by 1871",why:"Morten moves to Tylstrup Hede in Ajstrup parish: Brandskov by 1871, Rødbakke by 1875",who:["morten","mette_c","cj","kristine"],mat:true,bend:-0.18},
+ {from:"tylstrup",to:"klaestrup",d:"1902",why:"Johanne Kristine Christiansen of Rødbakke marries Jens Kristian Severin Thomsen and comes to Klæstrup",who:["kristine","jks","morten"],mat:true},
+ {from:"aasendrup",to:"klaestrup",d:"1929",why:"Maren Kirstine Christensen of Aasendrup marries Jens Kristian Marinus Thomsen Bøgh at Stenum and comes to Klæstrup",who:["mk","jkm","nils","johanne_n"],mat:true,bend:0.12,lt:.72}];
 
 /* ===================== IMAGES ===================== */
 const IMG={
@@ -890,19 +898,20 @@ function drawRoute(){
   const small=W<500, sw=small?2.2:3, ah=small?9:13, HEAD=19, RAD=13;   // pin head centre sits 19px above the tip
   const C=k=>{const [x,y]=pct(PLACES[k].lat,PLACES[k].lon);return [x/100*W,y/100*H-HEAD];};
   const unit=(x,y)=>{const l=Math.hypot(x,y)||1;return [x/l,y/l];};
-  const dash=`stroke="var(--route)" stroke-width="${sw}" stroke-dasharray="${sw*2.4} ${sw*2}" stroke-linecap="round" fill="none"`;
+  let col="var(--route)";
+  const dashF=()=>`stroke="${col}" stroke-width="${sw}" stroke-dasharray="${sw*2.4} ${sw*2}" stroke-linecap="round" fill="none"`;
   const halo=d=>`<path d="${d}" stroke="#fff" stroke-opacity=".85" stroke-width="${sw+3.5}" stroke-linecap="round" fill="none"/>`;
   const head=(ex,ey,tx,ty)=>{const [ux,uy]=unit(tx,ty),bx=ex-ux*ah,by=ey-uy*ah,nx=-uy*ah*.55,ny=ux*ah*.55;
-    return `<path d="M${ex},${ey} L${bx+nx},${by+ny} L${bx-nx},${by-ny} Z" fill="var(--route)" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/>`;};
+    return `<path d="M${ex},${ey} L${bx+nx},${by+ny} L${bx-nx},${by-ny} Z" fill="${col}" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/>`;};
   const bez=(t,p0,p1,p2,p3)=>{const u=1-t;return [u*u*u*p0[0]+3*u*u*t*p1[0]+3*u*t*t*p2[0]+t*t*t*p3[0],u*u*u*p0[1]+3*u*u*t*p1[1]+3*u*t*t*p2[1]+t*t*t*p3[1]];};
   let g="",labs="";
   const lab=(x,y,L,cls="")=>{const pad=small?28:40; x=Math.max(pad,Math.min(W-(cls==="r"?pad*1.9:pad),x)); y=Math.max(12,Math.min(H-12,y)); labs+=`<button class="leg ${cls}" data-leg="${L.i}" style="left:${x/W*100}%;top:${y/H*100}%" aria-label="Move ${esc(L.d)}: ${esc(L.why)}">${esc(L.d)}</button>`;};
-  LEGS.forEach((L,li)=>{L.i=li;
+  LEGS.forEach((L,li)=>{L.i=li; col=L.mat?"var(--mat)":"var(--route)"; const lc=L.mat?"m":"";
     const A=C(L.from),B=C(L.to);
     if(L.loop){                       // counter-clockwise swing round the east side
       const k=small?30:46, S=[A[0]+RAD*.8,A[1]+RAD*.6], E=[B[0]+RAD,B[1]+2];
       const c1=[S[0]+k*.9,S[1]+k*.7], c2=[E[0]+k*1.3,E[1]+k*.1];
-      g+=halo(`M${S} C${c1} ${c2} ${E}`)+`<path d="M${S} C${c1} ${c2} ${E}" ${dash}/>`+head(E[0],E[1],E[0]-c2[0],E[1]-c2[1]);
+      g+=halo(`M${S} C${c1} ${c2} ${E}`)+`<path d="M${S} C${c1} ${c2} ${E}" ${dashF()}/>`+head(E[0],E[1],E[0]-c2[0],E[1]-c2[1]);
       const M=bez(.55,S,c1,c2,E); if(small) lab(A[0]-26,A[1]+30,L); else lab(M[0]+8,M[1]+20,L,"r"); return;
     }
     const [ux,uy]=unit(B[0]-A[0],B[1]-A[1]);
@@ -911,12 +920,12 @@ function drawRoute(){
       const Q=[(A[0]+B[0])/2+px*len*L.bend,(A[1]+B[1])/2+py*len*L.bend];
       const [sx,sy]=unit(Q[0]-A[0],Q[1]-A[1]),[ex,ey]=unit(Q[0]-B[0],Q[1]-B[1]);
       const S=[A[0]+sx*RAD,A[1]+sy*RAD],E=[B[0]+ex*RAD,B[1]+ey*RAD];
-      g+=halo(`M${S} Q${Q} ${E}`)+`<path d="M${S} Q${Q} ${E}" ${dash}/>`+head(E[0],E[1],E[0]-Q[0],E[1]-Q[1]);
-      lab(.25*S[0]+.5*Q[0]+.25*E[0],.25*S[1]+.5*Q[1]+.25*E[1],L); return;
+      g+=halo(`M${S} Q${Q} ${E}`)+`<path d="M${S} Q${Q} ${E}" ${dashF()}/>`+head(E[0],E[1],E[0]-Q[0],E[1]-Q[1]);
+      const t=L.lt||.5,u=1-t; lab(u*u*S[0]+2*t*u*Q[0]+t*t*E[0],u*u*S[1]+2*t*u*Q[1]+t*t*E[1],L,lc); return;
     }
     const S=[A[0]+ux*RAD,A[1]+uy*RAD+(uy<0.3?6:0)],E=[B[0]-ux*RAD,B[1]-uy*RAD];
-    g+=halo(`M${S} L${E[0]-ux*ah*.8},${E[1]-uy*ah*.8}`)+`<path d="M${S} L${E[0]-ux*ah*.8},${E[1]-uy*ah*.8}" ${dash}/>`+head(E[0],E[1],ux,uy);
-    lab((S[0]+E[0])/2,(S[1]+E[1])/2,L);
+    g+=halo(`M${S} L${E[0]-ux*ah*.8},${E[1]-uy*ah*.8}`)+`<path d="M${S} L${E[0]-ux*ah*.8},${E[1]-uy*ah*.8}" ${dashF()}/>`+head(E[0],E[1],ux,uy);
+    lab((S[0]+E[0])/2,(S[1]+E[1])/2,L,lc);
   });
   svg.innerHTML=g; $("#leglabels").innerHTML=labs;
 }
