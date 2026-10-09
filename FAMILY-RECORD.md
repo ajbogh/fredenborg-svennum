@@ -177,31 +177,24 @@ Ancestry and have not yet been checked. Items marked **[hypothesis]** are infere
 - **Owner of Sterup no. 2 in 1688** (margin, image 75699713): "Col: Lerche" (Colonel Lerche), reading probable. No. 3 next to it: "Fr. Margrete Rantzau". Catalogue search finds no Lerche estate rent books for 1688–1720 (only Lerchenborg, Zealand, from 1724, and a 1684 deed for Peder Lerche til Lerkenfeldt). Farm no. 2 was probably scattered privately held land with no surviving estate archive.
 - **CLOSED (researcher, Oct 2026):** the search for old Peder Pedersen's father and the no. 2 tenancy chain. Remaining offline lead only: Aalborghus amt land-tax lists (kontributionsregistre) c. 1705–10, Rentekammeret, not scanned.
 
-## The wider Danish tree (from Ancestry, Oct 2026) — to verify
-Imported from the researcher's Ancestry tree; nothing below is checked against originals yet. Only people born before 1880 are listed here; the full structure, including living relatives, is kept privately outside this repository.
+## The wider Danish tree (from the Ancestry GEDCOM, 9 Oct 2026) — to verify
+The researcher's Ancestry tree was exported and checked by script against the records read here. Only people born before 1880 appear below; the full review, including living relatives, is kept privately outside this repository.
 
-**Christensen line** (a second Danish ancestry joining the family in the 20th century):
-- Nils Christensen 1875–1936 & Johanne Marie Pedersdr 1873–1945
-- Christen Jørgen Christensen 1839–1933 & Christiane Nielsdatter 1840–1923
-- Christen Christensen (no dates) & Maren "Ugift" Christendatter 1814– ("ugift" = unmarried, a status word, not a name)
-- Christen Nielsen Andersen 1789– & Else Marie Jensdatter 1794–
-- Jens Nielsen 1756– & Else Clemmensdatter 1757–
-- Niels Jensen 1732–1792 & Else Pedersdatter 1723–1760
-- Jens Christensen "1638–1732" & Inger Madsdatter 1697–1732 (**suspect**: father 94 at the birth)
-- Neils Christian Christensen Bjerregaard 1798–1873 & Maren Christensdatter 1799–1873
-- Christen Bjerregaard 1759–1832 & Kirsten Kjersten Christensen 1764–1835
-- Niels Pedersen Bjerregaard 1717–1787 & Ingeborg Pedersen 1722–1799
-- Peder Nielsen Skræder 1690– & Anne Jensdatter 1692–1769
-- Christen Jensen 1723–1782 & Marie Maren Christensdatter 1739–1811
-- Jens "Ladeforged" 1710–1769 (**suspect**: 13 at his son's birth; ladefoged is an occupation)
-- Christen Pedersen (no dates), father of Marie Maren
-- Christen Pedersen Iversen 1764–1839 & Karen Christensen 1771–1817
+**On the Bøgh line**
+- **Correct in Ancestry:** Mette Pedersdatter is entered as b. abt 1695, d. abt 1710. She was baptised 24 May 1705, married 1727 and was alive in 1738.
+- **Thomas Simonsen's wife: Sille Maria Thomsdatter**, b. 1816 Åsted parish, Horns herred (1870 census). Children at Skæve: Simon 1845, Inger Maria 1849, **Christen 1850**, Ane 1853, Jacob 1855, Jørgen 1859. Corroborated: Inger Marie Thomsen and Jørgen Thomsen of Nejsum stood godparents to Christen's son Severin in 1876. Her parents per Ancestry: Thomas Christensen (1781–1840, Åsted) and Marie Kirstine Jensdatter (1786–1854, Nørre Buje, Åsted); unsourced.
+- **Ane Thomasdatter's parents: Thomas Jacobsen (1754–1822) and Ane Jensdatter (1759–1838) of Knæverhede, Volstrup parish.** Corroborated: "Ane Jensdatter, gaardmandskone, Kraverbede" was godmother at Thomas Simonsen's baptism in 1814 — his grandmother. (The farm read here as "Kraverbede" is Knæverhede.)
+- **Above Thomas Jacobsen the Ancestry branch is unsourced and partly impossible** (Jakob Mortensen, Morten Mortensen, Hans Nielsen, Niels Olleson, and a Norwegian couple "Garatun" of Eidfjord b. 1600–1602, one "aged 111"). Not accepted.
+- Simon Pedersen's children (Ancestry, matching the censuses): Maren 19 Jul 1813 (mother Maren Larsdatter); with Ane Thomasdatter: Thomas 1814, Mette 18 Nov 1818, Christen 11 Feb 1821, Jørgen 19 Nov 1822 (d. before 1834), Inger 5 Aug 1825 (d. 21 Apr 1836). Marriages: Mette Hansdatter 2 Dec 1810; Maren Larsdatter 21 Nov 1812.
+- Severin's wife Johanne Kristine Kristiansen: b. 9 Dec 1875 Ajstrup, Kær herred; married 28 Feb 1902, Jerslev. Parents not yet in the tree.
+- Children of Severin and Johanne Kristine: Marinus 15 Feb 1903; Nielsine Petrea 31 Jan 1905; Marie 6 Apr–30 May 1906; Kristian Peter 26 Jul–13 Aug 1908; Morten Kristian 3 Mar–2 Sep 1910; Christa 4 Sep 1912; Martin 10 May 1919–26 Mar 1920.
 
-**Pedersdr line:** Peder Kristian Pedersen Kristinsen 1831–1899 & Mette Marie Larsen; his parents Kristen Pedersen & Johanne Marie Krogh (no dates).
-
-**Other flags:** Maren Nielsdatter 1755–1866 (age 111); a "Maren Christensen 1815–1852" attached as a child of the 1839/1840 couple (born before them); several Ancestry-suggested parents fail the patronymic or age test (see private notes).
-
-**Bøgh line additions (reported):** children of Jens K S Thomsen Bøgh & Johanne Kristine Kristiansen also include Marie 1906–1906, Kristian P 1908–1908, Morten K 1910–1910, Christa 1912–, Martin 1919–1920.
+**On the Christensen line** (pre-1880 people; joins the family in the 20th century)
+- Nils Christensen 1875–1936 & Johanne Marie Pedersdr 1873–1945 (marriage entered as 1875, before his birth — wrong year).
+- Christen Jørgen Christensen b. 29 Nov 1839 Ingstrup & Christiane Nielsdatter 1840–1923.
+- Maren "Ugift" Christendatter b. 1 Apr 1814 Vrensted — *ugift* means unmarried; her "spouses" Christen Christensen and Severin Christensen are probably named fathers. Her parents' marriage field reads "UDLAGT FADER" (named father): Christen Nielsen Andersen (b. 1789 Vester Hjermitslev) and Else Marie Jensdatter (b. 1794 Alstrup).
+- Further back: Jens Nielsen 1756 & Else Clemmensdatter; Niels Jensen 1732–1792 & Else Pedersdatter (entered twice); Neils Christian Christensen Bjerregaard 1798–1873 & Maren Christensdatter 1799–1873; Christen Bjerregaard 1759–1832 & Kirsten Kjersten Christensen 1764–1835; Niels Pedersen Bjerregaard 1717–1787 & Ingeborg Pedersen; Peder Nielsen Skræder & Anne Jensdatter; Christen Jensen 1723–1782 & Marie Maren Christensdatter; Christen Pedersen Iversen 1764–1839 & Karen Christensen 1771–1817; Peder Kristian Pedersen 1831–1899 (Østerby, Øland) & Mette Marie Larsen.
+- **Not accepted:** Jens Christensen "1638–1732" and Inger Madsdatter "–1732" (their "deaths" are the 1732 baptism of their son, place "barnedab"); Jens "Ladeforged" b. 1710 as father of a son b. 1723; a 1758 marriage "at Kristiansand, Norway"; a death on Zealand and a marriage "at Vejle" for Vendsyssel people; Maren Nielsdatter "1755–1866".
 
 ## Image references
 - Jerslev herreds tingbøger 1631–1688, Brejl extracts: brejl.dk (Jerslev herred, parts 1–2).
