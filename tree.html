@@ -58,6 +58,10 @@ a{color:var(--path)}
 .others{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center}
 .others button{appearance:none;font:inherit;color:var(--path);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
 .gnum{font:11px var(--mono);color:var(--muted);letter-spacing:.06em;margin-bottom:6px;text-transform:uppercase}
+.fam{border:1px dashed var(--rule);border-radius:8px;padding:10px clamp(6px,2vw,14px) 12px;display:flex;flex-direction:column;align-items:center;max-width:640px}
+.fam .p{width:clamp(132px,20vw,196px);padding:6px 10px 7px;box-shadow:none}
+.fam .p .nm{font-size:clamp(13px,1.5vw,15px)}
+.fam .others{max-width:520px}
 @media (max-width:640px){
   .split{grid-template-columns:1fr;gap:10px}
   .split .col.left{order:2}
@@ -66,10 +70,11 @@ a{color:var(--path)}
   .couple{flex-direction:column;align-items:center}
   .marr{width:2px;height:14px}
   .p{width:min(88vw,320px)}
+  .fam{width:100%}.fam .p{width:min(80vw,300px)}
 }
 
 /* ---------- map ---------- */
-.mapwrap{position:relative;width:100%;aspect-ratio:2400/2029;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background:#f5f1df}
+.mapwrap{position:relative;width:100%;aspect-ratio:2400/1534;border-radius:6px;overflow:hidden;border:1px solid var(--rule);background:#f5f1df}
 .mapwrap img{position:absolute;inset:0;width:100%;height:100%;display:block}
 .mapwrap svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .pin{position:absolute;transform:translate(-50%,-100%);appearance:none;border:0;background:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center}
@@ -180,7 +185,7 @@ a{color:var(--path)}
     <h2 id="map-h">Where they lived</h2>
     <p class="sub">Each pin is a farm, hamlet or church named in the records. Choose a pin to see who was born, married, lived or was buried there. The dashed arrows follow the direct line's moves from Sterup to Klæstrup, each labelled with about when it happened. Tap a date to see who moved.</p>
     <div class="mapwrap" id="map">
-      <img src="img/line_basemap.jpg" alt="Topographic map of central Vendsyssel from Klæstrup in the west to Skæve in the east">
+      <img src="img/line_basemap_wide.jpg" alt="Topographic map of central Vendsyssel from Vrensted in the west to Volstrup in the east">
       <svg id="routesvg" aria-hidden="true"></svg><div id="leglabels"></div>
     </div>
     <p class="fine" style="margin-top:8px">The farms at Lille Nejsum and Raunsholt are traced on their own page, <a href="nejsum.html" target="_blank" rel="noopener">Finding Lille Nejsum</a>, and the Bøgh farm at Klæstrup on <a href="bogh.html" target="_blank" rel="noopener">Finding the Bøgh Farm</a>. Vester Mølle and the farm Hørkær in Kirkeskov have not been located on a modern map. Events there are shown at Jerslev church and Hellevad. Basemap: Danmarks Topografiske Kortværk, skærmkort, Klimadatastyrelsen open data. Place positions from the Danish place-name register.</p>
@@ -229,7 +234,7 @@ a{color:var(--path)}
 
 <script>
 /* ===================== PLACES ===================== */
-const FRAME={N:57.3420,S:57.1980,W:10.0200,E:10.3350};
+const FRAME={N:57.4550,S:57.1650,W:9.6800,E:10.5200};
 const PLACES={
   sterup:{name:"Sterup",lat:57.31130,lon:10.09844,note:"Village in Jerslev parish, 3 km north of the church."},
   villestrup:{name:"Villestrup",lat:57.32560,lon:10.17890,note:"Farm on the eastern edge of Jerslev parish. Written Willestrup in 1662."},
@@ -241,7 +246,13 @@ const PLACES={
   allerup:{name:"Allerup",lat:57.23040,lon:10.19240,note:"Village in Hellevad parish. Home of Simon Christensen, probably Inger Christensdatter's brother."},
   raunsholt:{name:"Søndre Raunsholt",lat:57.30155,lon:10.24620,note:"Farm in Skæve parish, about 400 m from Lille Nejsum across the stream meadow. Very probably Peder Jørgensen's farm: the 1801 census lists it between its southern neighbours Hytten and Mølbak. Skæve also had a Nørre Raunsholt, 1.9 km north-west.",left:true},
   nejsum:{name:"Lille Nejsum",lat:57.30484,lon:10.24899,note:"Farm in Skæve parish. Simon Pedersen's farm from at least 1813. Located on the Finding Lille Nejsum page."},
-  skaeve:{name:"Skæve church",lat:57.28856,lon:10.31224,note:"Parish church of Skæve.",left:true}
+  skaeve:{name:"Skæve church",lat:57.28856,lon:10.31224,note:"Parish church of Skæve.",left:true},
+  knaeverhede:{name:"Knæverhede",lat:57.31291,lon:10.48751,left:true,note:"Farm in Volstrup parish. Home of Thomas Jacobsen and Ane Jensdatter, Ane Thomasdatter's parents."},
+  aasted:{name:"Åsted",lat:57.43886,lon:10.40597,note:"Parish in Horns herred. Birthplace of Sille Maria Thomsdatter, Thomas Simonsen's wife, and home of her parents.",left:true},
+  em:{name:"Em",lat:57.34416,lon:9.91002,note:"Parish west of Jerslev. Birthplace of Morten Christiansen, Johanne Kristine's father, in 1827."},
+  stenum:{name:"Stenum",lat:57.32105,lon:9.86611,note:"Parish west of Jerslev. Morten Christiansen's first family lived at Stenum Mark in the 1860s; Marinus Bøgh and Maren Kirstine Christensen married here in 1929.",left:true},
+  aasendrup:{name:"Aasendrup",lat:57.36560,lon:9.72260,note:"Hamlet in Vrensted parish. Home of Nils Christensen and Johanne Nielsen, Maren Kirstine's parents; earlier they lived at Vrensted østre Hede."},
+  tylstrup:{name:"Tylstrup Hede",lat:57.21220,lon:9.93410,note:"Heath in Ajstrup parish, Kær herred. Morten Christiansen farmed at Brandskov and then Rødbakke here; Johanne Kristine was born at Rødbakke in 1875. Neither farm name survives on modern maps.",left:true}
 };
 const ROUTE=["sterup","villestrup","hellevad","raunsholt","nejsum","vantmose","klaestrup"];
 const LEGS=[
@@ -277,6 +288,8 @@ const IMG={
  b_today:{src:"img/klaestrup/r_22a_ortho2024.jpg",t:"The Bøgh farm today",cap:"Land parcel 22a outlined in red: the wooded plot and farmhouse at Gl. Klæstrupvej 41.",ref:"GeoDanmark orthophoto 2024; Matriklen"},
  b_bapt1876:{src:"img/klaestrup/r_1876_baptism_severin.jpg",t:"Baptism of Jens Kristian Severin Thomsen, 1876",cap:"No. 18, born 22 April, baptised 2 July 1876 in Jerslev church: Jens Kristian Severin Thomsen. Parents: 'Husmand Kristen Thomsen og Hustru Petrea Jensen, Mellemvantmose'. Mother 24. Godparents: 'Pigerne Inger Marie Thomsen, Nejsum, Skæve Sogn, og Karoline Martine Jensen, Vantmose; Husmændene Jens Kr. Pedersen Bøg, Kløstrup, Thomas Kr. Thomsen, Falden, og Karlen Jørgen Thomsen, Nejsum, Skæve Sogn.'",ref:"Jerslev parish register, born males 1876 (Danish Family Search 133726, image 14417072)"},
  b_bapt1903:{src:"img/klaestrup/r_1903_baptism_marinus.jpg",t:"Baptism of Jens Kristian Marinus, 1903, and the name Bøgh",cap:"No. 8: born 15 February, baptised 9 April 1903 in Jerslev church. 'Jens Kristian Marinus Thomsen' with Thomsen struck and Bøgh written. Parents 'Gaardmand Jens Kristian Severin Thomsen [Bøgh] og Hustru Johanne Kristine Kristiansen, 27 Aar, Klæstrup'. Godparents: the mother; Husmand Hans Peter Kristensen and wife of Klæstrup; Aftægtsmand Jens Kristian Pedersen, Klæstrup; Ungkarl Kristen Thomsen, Klæstrup. Margin: 'Navnet Bøgh i Henhold til Navnebevilling af 26/2 1906.'",ref:"Jerslev parish register, born males 1903, p. 25 (Ancestry, image 48491_b411262-0025a)"},
+ b_bapt1875:{src:"img/klaestrup/r_1875_baptism_johanne_kristine.jpg",t:"Baptism of Johanne Kristine Christiansen, 1875",cap:"Ajstrup parish register, girls born 1875, no. 33: Johanne Kristine Christiansen, born 9 December 1875, baptised at home 22 December and presented in church 17 April 1876. Parents 'Gaardmand Morten Christiansen og Hustru Mette Cathrine Poulsen, paa Rødbakke'.",ref:"Ajstrup parish register 1865–1877 (Rigsarkivet, image 26820742)"},
+ b_bapt1909:{src:"img/klaestrup/r_1909_baptism_maren_kirstine.jpg",t:"Baptism of Maren Kirstine, 1909",cap:"Vrensted parish register, girls born 1909, no. 7: Maren Kirstine Kristensen, born 15 May 1909 at Aasendrup, baptised 12 September 1909. Parents 'Murer Niels Christian Christensen og Hustru Johanne Nielsen, 37 Aar, Aasendrup'.",ref:"Vrensted parish register 1905–1926 (Rigsarkivet, image 29015628)"},
  b_cen1911:{src:"img/klaestrup/r_1911_census_bogh.jpg",t:"The Bøgh household, census of 1911",cap:"Klæstrup, matr. 35b, family 6: Jens Bøgh, b. 22/4 1876, married, gaardejer; Kristine Bøgh, b. 9/12 1875, Aistrup; Marinus Bøgh, b. 15/2 1903; Nielsine Bøgh, b. 31/1 1905; Astrid, servant, b. 10/4 1897; Jens Pedersen, b. 18/6 1826, widower, slægtning (relative), aftægtsmand.",ref:"Census 1 Feb 1911, Jerslev parish (Danish Family Search ft/1911/74763, image 8438506)"},
  r1763:{src:"img/records/1763_baptism_christen.jpg",t:"Baptism of Christen Pedersen, 1763",cap:"'d. 20 Novbr. Peder Jørgensens og Inger Christensdatters barn af Hørkied i Kirkeskov, kaldet Christen. Frembaaret af Maren Hansdatter fra Brønhaven i Voer Sogn...' The godfathers, Jens Andersen of Fodtved, Christen Nielsen of Kirkeskov and Simon Christensen of Allerup, follow.",ref:"Hellevad–Ørum–Hellum parish register, baptisms 1763"}
 };
@@ -412,64 +425,107 @@ pj_mette:{name:"Mette Marie Pedersdatter",tag:"daughter of Peder and Inger",born
  sources:["Censuses 1787 and 1801, Raunsholt."]},
 
 simon:{name:"Simon Pedersen",tag:"of Lille Nejsum",born:"c. 1777",died:"25 Jul 1853",bp:"hellevad",dp:"skaeve",status:"verified",direct:true,
- rel:{parents:["pj","inger"],spouse:["mette_h","maren_l","ane"],children:["daughter1813","thomas","s_mette","s_christen","s_inger"],siblings:["pj_jorgen","pj_christen","pj_mads","pj_anne","pj_mette"]},
+ rel:{parents:["pj","inger"],spouse:["mette_h","maren_l","ane"],children:["daughter1813", "thomas", "s_mette", "s_christen", "s_jorgen", "s_inger"],siblings:["pj_jorgen","pj_christen","pj_mads","pj_anne","pj_mette"]},
  imgs:["n_simon","n_ln_rh"],
  story:[
  "Simon was the youngest child of Peder Jørgensen and Inger Christensdatter, born about 1777. In his old age he told the census takers he was born in Hellevad parish. He carried the name of his mother's brother, Simon Christensen of Allerup. He was nine when the family is recorded at Raunsholt in Skæve parish in 1787. By 1801, about twenty-three, he had gone into service on another farm, as young men did.",
- "His married life began with grief. In 1810 he married Mette Hansdatter, and she died in March 1812. In November 1812 he married Maren Larsdatter. On 19 July 1813 she gave birth to a daughter and died the same day. Four days later, on 23 July 1813, with a newborn in the house, he married Ane Thomasdatter. A farm could not run without a wife, and a motherless baby could not wait. The haste was not coldness.",
- "This third marriage lasted forty years. Simon was now a farmer at Lille Nejsum. On the survey of 1813 [[his name is written across its fields|n_simon]], beside his partner Anders Christensen. Søndre Raunsholt, very probably his parents' farm, lay just across the stream meadow. On 16 December 1814 Ane bore a son, baptised at home the next day and named Thomas for her father. Mette followed around 1818, Christen around 1820, and Inger around 1825. Mette may honour his grandmother or his first wife. Christen was named for his grandfather, and Inger for his mother.",
+ "His married life began with grief. On 2 December 1810 he married Mette Hansdatter, and she died in March 1812. On 21 November 1812 he married Maren Larsdatter. On 19 July 1813 she gave birth to a daughter, Maren, and died the same day. Four days later, on 23 July 1813, with a newborn in the house, he married Ane Thomasdatter. A farm could not run without a wife, and a motherless baby could not wait. The haste was not coldness.",
+ "This third marriage lasted forty years. Simon was now a farmer at Lille Nejsum. On the survey of 1813 [[his name is written across its fields|n_simon]], beside his partner Anders Christensen. Søndre Raunsholt, very probably his parents' farm, lay just across the stream meadow. On 16 December 1814 Ane bore a son, baptised at home the next day and named Thomas for her father. Her mother, Ane Jensdatter of Knæverhede, stood godmother. Mette followed on 18 November 1818, Christen on 11 February 1821, Jørgen on 19 November 1822 and Inger on 5 August 1825. Mette may honour his grandmother or his first wife. Christen was named for his grandfather and Jørgen for his great-grandfather. Inger was named for his mother. Jørgen died as a small child, and Inger in April 1836, aged ten.",
  "In the 1834 census he is sixty, a farmer with Ane, four children and a servant. By 1845 he had handed the farm to his son Thomas and lived on as aftægtsmand, a retired father kept by the farm under contract. The 1850 census finds him there at seventy-three, now with a new grandson, Christen, born that August.",
  "Simon Pedersen died on 25 July 1853, most likely at Lille Nejsum, aged seventy-six, and was buried at Skæve. He had buried two wives and lived to see his grandson begin to walk on the farm he had worked for forty years."],
  sources:["Census 1787, Raunsholt: Simon, 9, child of Peder and Inger.","Skæve marriages 1810, 1812, 23 Jul 1813 (reported by the researcher from the Skæve register).","Skæve baptisms, 17 Dec 1814.","Censuses 1834, 1840, 1845, 1850, Lille Nejsum.","Skæve burials, 1853, aged 76."]},
 
 mette_h:{name:"Mette Hansdatter",tag:"Simon's first wife",born:"unknown",died:"Mar 1812",bp:null,dp:"skaeve",status:"reported",
- rel:{spouse:["simon"]},
- story:["Mette Hansdatter married Simon Pedersen in 1810 and died in March 1812, less than two years later. Nothing more is known of her yet. Simon gave the name Mette to a daughter born about 1818. That may have been for her, as widowers often did, or for his grandmother."],
- sources:["Skæve register, as reported by the researcher. Not yet checked against the image."]},
+ rel:{"spouse": ["simon"]},
+ story:["Mette Hansdatter married Simon Pedersen at Skæve on 2 December 1810 and died in March 1812, less than eighteen months later. Nothing more is known of her yet. Simon gave the name Mette to a daughter born in 1818. That may have been for her, as widowers often did, or for his grandmother."],
+ sources:["Skæve register, marriage 2 Dec 1810, as reported in the family record. Not yet checked against the image."]},
+maren_l:{name:"Maren Larsdatter",tag:"Simon's second wife",born:"unknown",died:"19 Jul 1813",bp:null,dp:"nejsum",status:"reported",
+ rel:{"spouse": ["simon"], "children": ["daughter1813"]},
+ story:["Maren Larsdatter married Simon Pedersen at Skæve on 21 November 1812, eight months after his first wife died. On 19 July 1813 she gave birth to a daughter, Maren, and died the same day. She had been married for eight months."],
+ sources:["Skæve register, marriage 21 Nov 1812, as reported in the family record. Not yet checked against the image."]},
+daughter1813:{name:"Maren Simonsdatter",tag:"daughter of Simon and Maren",born:"19 Jul 1813",died:"unknown",bp:"nejsum",dp:null,status:"reported",
+ rel:{"parents": ["simon", "maren_l"], "siblings": ["thomas", "s_mette", "s_christen", "s_jorgen", "s_inger"]},
+ story:["Maren was born on 19 July 1813, the day her mother, Maren Larsdatter, died, and was named for her. Four days later her father married Ane Thomasdatter, who raised her alongside her own children. She is not in the household in the 1834 census, when she would have been twenty and most likely in service on another farm."],
+ sources:["Skæve register, as reported in the family record."]},
+ane:{name:"Ane Thomasdatter",tag:"of Lille Nejsum",born:"1786",died:"28 Feb 1861",bp:"knaeverhede",dp:"skaeve",status:"verified",direct:true,
+ rel:{"parents": ["thomas_j", "ane_j"], "spouse": ["simon"], "children": ["thomas", "s_mette", "s_christen", "s_jorgen", "s_inger"]},
+ story:["Ane was born in 1786 at Knæverhede in Volstrup parish, the daughter of the farmer Thomas Jacobsen and Ane Jensdatter. She married Simon Pedersen of Lille Nejsum on 23 July 1813, four days after his second wife died in childbirth. She came into a house with a newborn baby girl who was not hers.", "Her own first child was born on 16 December 1814 and baptised at home the next day. Her mother came from Knæverhede to stand godmother. Two months later, on 12 February 1815, she was churched at Skæve. The boy was named Thomas, for her father. Mette, Christen, Jørgen and Inger followed over the next ten years. She buried Jørgen as a small child and Inger in 1836, aged ten.", "In 1834 she was forty-eight, mistress of Lille Nejsum, with four children and a servant. She lived to see Thomas take over the farm and Simon retire into it. She was widowed in 1853 and died at Skæve on 28 February 1861, aged about seventy-four."],
+ sources:["Skæve baptisms, 17 Dec 1814, godmother \"Ane Jensdatter, gaardmandskone, Kraverbede\" (Knæverhede); churching 12 Feb 1815.", "Census 1834, Lille Nejsum: Ane Thomasdatter, 48.", "Birth 1786 at Volstrup and death 28 Feb 1861 at Skæve as given in the family record."]},
+thomas_j:{name:"Thomas Jacobsen",tag:"of Knæverhede",born:"8 Dec 1754",died:"20 Oct 1822",bp:"knaeverhede",dp:"knaeverhede",status:"reported",
+ rel:{"spouse": ["ane_j"], "children": ["ane"]},
+ story:["Thomas Jacobsen was born at Knæverhede in Volstrup parish on 8 December 1754 and farmed there all his life. Their daughter Ane married Simon Pedersen of Lille Nejsum in 1813, and the grandson born the next year was named Thomas for him.", "He died at Knæverhede on 20 October 1822, aged sixty-seven."],
+ sources:["Dates and places as given in the family record; not yet checked against the Volstrup register.", "His daughter's patronymic and the naming of his grandson Thomas fit."]},
 
-maren_l:{name:"Maren Larsdatter",tag:"Simon's second wife",born:"unknown",died:"19 Jul 1813",bp:null,dp:"skaeve",status:"reported",
- rel:{spouse:["simon"],children:["daughter1813"]},
- story:["Maren Larsdatter married Simon Pedersen in November 1812, eight months after his first wife died. On 19 July 1813 she gave birth to a daughter and died the same day. She was married for eight months."],
- sources:["Skæve register, as reported by the researcher. Not yet checked against the image."]},
-
-daughter1813:{name:"Daughter of Simon and Maren",tag:"born 19 Jul 1813",born:"19 Jul 1813",died:"unknown",bp:"nejsum",dp:null,status:"reported",
- rel:{parents:["simon","maren_l"],siblings:["thomas","s_mette","s_christen","s_inger"]},
- story:["She was born on 19 July 1813, the day her mother, Maren Larsdatter, died. Four days later her father married Ane Thomasdatter, who would raise her. Her name and what became of her are not yet known. She is not in the 1834 household."],
- sources:["Skæve register, as reported by the researcher."]},
-
-ane:{name:"Ane Thomasdatter",tag:"of Lille Nejsum",born:"c. 1786",died:"not yet found",bp:null,dp:null,status:"verified",direct:true,
- rel:{spouse:["simon"],children:["thomas","s_mette","s_christen","s_inger"]},
- story:[
- "Ane was born about 1786, the daughter of a man named Thomas. She married Simon Pedersen of Lille Nejsum on 23 July 1813, four days after his second wife died in childbirth. She came into a house with a newborn baby that was not hers.",
- "Her own first child was born on 16 December 1814 and baptised at home the next day. Two months later, on 12 February 1815, she was churched at Skæve. He was named Thomas, for her father. Mette, Christen and Inger followed over the next ten years.",
- "In 1834 she was forty-eight, mistress of Lille Nejsum, with four children and a servant. She lived to see Thomas take over the farm and Simon retire into it. Her death has not yet been searched for."],
- sources:["Skæve baptisms, 17 Dec 1814; churching 12 Feb 1815.","Census 1834, Lille Nejsum: Ane Thomasdatter, 48."]},
+ane_j:{name:"Ane Jensdatter",tag:"of Knæverhede",born:"13 Jul 1759",died:"Apr 1838",bp:null,dp:"knaeverhede",status:"probable",
+ rel:{"spouse": ["thomas_j"], "children": ["ane"]},
+ story:["Ane Jensdatter was born on 13 July 1759 at Falden in Albæk parish and married Thomas Jacobsen of Knæverhede. Her daughter Ane married into Lille Nejsum in Skæve parish.", "When her grandson Thomas was baptised at Lille Nejsum in December 1814, she made the journey from Volstrup to stand godmother. The priest wrote her as \"Ane Jensdatter, gaardmandskone, Kraverbede\", a farmer's wife of Knæverhede. She outlived her husband by sixteen years and died at Knæverhede in April 1838."],
+ sources:["Skæve baptisms, 17 Dec 1814: godmother at her grandson Thomas's baptism.", "Birth and death as given in the family record."]},
 
 thomas:{name:"Thomas Simonsen",tag:"of Lille Nejsum",born:"16 Dec 1814",died:"5 Dec 1898",bp:"nejsum",dp:"skaeve",status:"verified",direct:true,
- rel:{parents:["simon","ane"],children:["christen"],siblings:["daughter1813","s_mette","s_christen","s_inger"]},
- story:[
- "Thomas was born at Lille Nejsum on 16 December 1814 and baptised at home the next day, perhaps because he was weak, or because of the winter cold. On 15 January 1815 he was brought to Skæve church to be presented. Jørgen Pedersen, farmer of Store Nejsum, held him, with Laurs Jensen of Stagsted, the farmhand Otto Christensen, Ane Jensdatter of Kraverbede, and a girl named Inger Christensdatter of Lille Nejsum. She bore exactly the name of his grandmother at Raunsholt. He was named Thomas for his mother's father.",
- "He grew up on the farm with his sisters Mette and Inger and his brother Christen. In 1834 he was twenty and still at home. By 1845 he had taken over Lille Nejsum, and his father Simon lived on with him in retirement.",
- "His son Christen was born in August 1850, while old Simon was still in the house. Thomas farmed Lille Nejsum through the second half of the century. He died on 5 December 1898, just short of his eighty-fourth birthday, and was buried at Skæve. His wife's name is still to be added from the records."],
- sources:["Skæve baptisms, 17 Dec 1814; presentation 15 Jan 1815.","Censuses 1834, 1845, 1850, Lille Nejsum.","Death 5 Dec 1898, as given in the family record."]},
+ rel:{"parents": ["simon", "ane"], "spouse": ["sille"], "children": ["t_simon", "t_inger", "christen", "t_ane", "t_jacob", "t_jorgen"], "siblings": ["daughter1813", "s_mette", "s_christen", "s_jorgen", "s_inger"]},
+ story:["Thomas was born at Lille Nejsum on 16 December 1814 and baptised at home the next day, perhaps because he was weak, or because of the winter cold. On 15 January 1815 he was brought to Skæve church to be presented. Jørgen Pedersen, farmer of Store Nejsum, held him, with Laurs Jensen of Stagsted, the farmhand Otto Christensen, his grandmother Ane Jensdatter of Knæverhede, and a girl named Inger Christensdatter of Lille Nejsum. He was named Thomas for his mother's father, Thomas Jacobsen.", "He grew up on the farm with his half-sister Maren, his sisters Mette and Inger and his brothers Christen and Jørgen. In 1834 he was twenty and still at home. By 1845 he had taken over Lille Nejsum, and his father Simon lived on with him in retirement.", "He married Sille Maria Thomsdatter, a girl from Åsted parish two years younger. Their children were Simon, born 1845 and named for his grandfather, Inger Maria in 1849, Christen in August 1850, Ane in 1853, Jacob in 1855 and Jørgen in 1859. Old Simon died when Christen was almost three.", "Thomas farmed Lille Nejsum through the second half of the century. He died on 5 December 1898, just short of his eighty-fourth birthday, and was buried at Skæve."],
+ sources:["Skæve baptisms, 17 Dec 1814; presentation 15 Jan 1815.", "Censuses 1834, 1845, 1850, Lille Nejsum.", "Wife, children and death date as given in the family record (1870 census attached there)."]},
+sille:{name:"Sille Maria Thomsdatter",tag:"of Lille Nejsum",born:"1816",died:"not yet recorded",bp:"aasted",dp:null,status:"reported",direct:true,
+ rel:{"parents": ["thomas_c", "mkj"], "spouse": ["thomas"], "children": ["t_simon", "t_inger", "christen", "t_ane", "t_jacob", "t_jorgen"]},
+ story:["Sille Maria was born in 1816 in Åsted parish, in Horns herred north-east of Skæve, the daughter of Thomas Christensen and Marie Kirstine Jensdatter. She married Thomas Simonsen of Lille Nejsum and raised six children there: Simon, Inger Maria, Christen, Ane, Jacob and Jørgen.", "Her children kept close. When her son Christen's boy was baptised at Jerslev in 1876, Inger Marie Thomsen and Jørgen Thomsen, both still at Nejsum, came to stand godparents."],
+ sources:["As given in the family record, from the 1870 census for Skæve.", "Corroborated: Inger Marie Thomsen and Jørgen Thomsen of Nejsum, godparents at Jerslev 2 Jul 1876."]},
 
-s_mette:{name:"Mette Simonsdatter",tag:"daughter of Simon and Ane",born:"c. 1818",died:"unknown",bp:"nejsum",dp:null,status:"verified",
- rel:{parents:["simon","ane"],siblings:["daughter1813","thomas","s_christen","s_inger"]},
- story:["Mette was sixteen and living at home at Lille Nejsum in the 1834 census. Her name had come down from Mette Pedersdatter of Villestrup, her great-grandmother, or perhaps was given in memory of her father's first wife."],
- sources:["Census 1834, Lille Nejsum."]},
-s_christen:{name:"Christen Simonsen",tag:"son of Simon and Ane",born:"c. 1820",died:"unknown",bp:"nejsum",dp:null,status:"verified",
- rel:{parents:["simon","ane"],siblings:["daughter1813","thomas","s_mette","s_inger"]},
- story:["Christen was fourteen and at home at Lille Nejsum in 1834. He was named for his uncle Christen of Raunsholt and his great-grandfather, Inger Christensdatter's father."],
- sources:["Census 1834, Lille Nejsum."]},
-s_inger:{name:"Inger Simonsdatter",tag:"daughter of Simon and Ane",born:"c. 1825",died:"unknown",bp:"nejsum",dp:null,status:"verified",
- rel:{parents:["simon","ane"],siblings:["daughter1813","thomas","s_mette","s_christen"]},
- story:["Inger, the youngest, was nine in 1834. She was named for her grandmother, Inger Christensdatter of Raunsholt."],
- sources:["Census 1834, Lille Nejsum."]},
+thomas_c:{name:"Thomas Christensen",tag:"of Åsted",born:"22 Jul 1781",died:"30 Dec 1840",bp:"aasted",dp:"aasted",status:"reported",
+ rel:{"spouse": ["mkj"], "children": ["sille"]},
+ story:["Thomas Christensen was born in Åsted parish on 22 July 1781 and died there on 30 December 1840. His daughter Sille Maria married into Lille Nejsum in Skæve parish."],
+ sources:["As given in the family record; not yet checked against the Åsted register."]},
 
+mkj:{name:"Marie Kirstine Jensdatter",tag:"of Åsted",born:"16 Jul 1786",died:"13 Jan 1854",bp:"aasted",dp:"aasted",status:"reported",
+ rel:{"spouse": ["thomas_c"], "children": ["sille"]},
+ story:["Marie Kirstine Jensdatter was born on 16 July 1786 at Nørre Buje in Åsted parish. She married Thomas Christensen, and their daughter Sille Maria was born in 1816. She was widowed in 1840 and died in Åsted on 13 January 1854."],
+ sources:["As given in the family record; not yet checked against the Åsted register."]},
+
+t_simon:{name:"Simon Thomsen",tag:"child of Thomas and Sille",born:"1845",died:"unknown",bp:"skaeve",dp:null,status:"reported",
+ rel:{"parents": ["thomas", "sille"], "siblings": ["t_inger", "christen", "t_ane", "t_jacob", "t_jorgen"]},
+ story:["Simon, the eldest, was born in Skæve parish in 1845 and named for his grandfather Simon Pedersen, who was still living on the farm."],
+ sources:["As given in the family record."]},
+
+t_inger:{name:"Inger Maria Thomsen",tag:"child of Thomas and Sille",born:"1849",died:"unknown",bp:"skaeve",dp:null,status:"reported",
+ rel:{"parents": ["thomas", "sille"], "siblings": ["t_simon", "christen", "t_ane", "t_jacob", "t_jorgen"]},
+ story:["Inger Maria was born in Skæve parish in 1849, named for her great-grandmother Inger Christensdatter. In 1876, still at Nejsum, she stood godmother to her brother Christen's son."],
+ sources:["As given in the family record."]},
+
+t_ane:{name:"Ane Thomsen",tag:"child of Thomas and Sille",born:"1853",died:"unknown",bp:"skaeve",dp:null,status:"reported",
+ rel:{"parents": ["thomas", "sille"], "siblings": ["t_simon", "t_inger", "christen", "t_jacob", "t_jorgen"]},
+ story:["Ane was born in Skæve parish in 1853 and named for her grandmother, Ane Thomasdatter."],
+ sources:["As given in the family record."]},
+
+t_jacob:{name:"Jacob Thomsen",tag:"child of Thomas and Sille",born:"1855",died:"unknown",bp:"skaeve",dp:null,status:"reported",
+ rel:{"parents": ["thomas", "sille"], "siblings": ["t_simon", "t_inger", "christen", "t_ane", "t_jorgen"]},
+ story:["Jacob was born in Skæve parish in 1855."],
+ sources:["As given in the family record."]},
+
+t_jorgen:{name:"Jørgen Thomsen",tag:"child of Thomas and Sille",born:"1859",died:"unknown",bp:"skaeve",dp:null,status:"reported",
+ rel:{"parents": ["thomas", "sille"], "siblings": ["t_simon", "t_inger", "christen", "t_ane", "t_jacob"]},
+ story:["Jørgen, the youngest, was born in Skæve parish in 1859. In 1876, a farmhand at Nejsum, he stood godfather to his brother Christen's son."],
+ sources:["As given in the family record."]},
+
+s_mette:{name:"Mette Simonsdatter",tag:"daughter of Simon and Ane",born:"18 Nov 1818",died:"unknown",bp:"nejsum",dp:null,status:"verified",
+ rel:{"parents": ["simon", "ane"], "siblings": ["daughter1813", "thomas", "s_christen", "s_jorgen", "s_inger"]},
+ story:["Mette was born at Lille Nejsum on 18 November 1818. She was sixteen and living at home in the 1834 census. Her name had come down from Mette Pedersdatter of Villestrup, her great-grandmother, or perhaps was given in memory of her father's first wife."],
+ sources:["Census 1834, Lille Nejsum.", "Birth date as given in the family record."]},
+s_christen:{name:"Christen Simonsen",tag:"son of Simon and Ane",born:"11 Feb 1821",died:"unknown",bp:"nejsum",dp:null,status:"verified",
+ rel:{"parents": ["simon", "ane"], "siblings": ["daughter1813", "thomas", "s_mette", "s_jorgen", "s_inger"]},
+ story:["Christen was born at Lille Nejsum on 11 February 1821 and was fourteen and at home in 1834. He was named for his uncle Christen of Raunsholt and for Inger Christensdatter's father."],
+ sources:["Census 1834, Lille Nejsum.", "Birth date as given in the family record."]},
+s_jorgen:{name:"Jørgen Simonsen",tag:"son of Simon and Ane",born:"19 Nov 1822",died:"before 1834",bp:"nejsum",dp:null,status:"reported",
+ rel:{"parents": ["simon", "ane"], "siblings": ["daughter1813", "thomas", "s_mette", "s_christen", "s_inger"]},
+ story:["Jørgen was born at Lille Nejsum on 19 November 1822 and named for his great-grandfather, Jørgen Pedersen of Villestrup. He had died by the census of 1834. His nephew Jørgen Thomsen, born 1859, carried the name on."],
+ sources:["Birth date as given in the family record; absent from the 1834 census."]},
+
+s_inger:{name:"Inger Simonsdatter",tag:"daughter of Simon and Ane",born:"5 Aug 1825",died:"21 Apr 1836",bp:"nejsum",dp:"skaeve",status:"verified",
+ rel:{"parents": ["simon", "ane"], "siblings": ["daughter1813", "thomas", "s_mette", "s_christen", "s_jorgen"]},
+ story:["Inger, the youngest, was born on 5 August 1825 and named for her grandmother, Inger Christensdatter of Raunsholt. She was nine in the 1834 census and died on 21 April 1836, aged ten."],
+ sources:["Census 1834, Lille Nejsum.", "Birth and death dates as given in the family record."]},
 christen:{name:"Christen (Kresten) Thomsen",tag:"of Mellem Vantmose",born:"7 Aug 1850",died:"not yet recorded",bp:"skaeve",dp:null,status:"verified",direct:true,
- rel:{parents:["thomas"],spouse:["petrea"],children:["jks"]},
+ rel:{parents:["thomas","sille"],spouse:["petrea"],children:["jks"],siblings:["t_simon","t_inger","t_ane","t_jacob","t_jorgen"]},
  imgs:["b_bapt1876","b_marinus"],
- story:["Christen Thomsen was born on 7 August 1850 in Skæve parish, most likely at Lille Nejsum, where his father Thomas farmed. His grandfather Simon, then seventy-three, was living in the house as a retired father, and died when Christen was almost three.","By 1876 he had moved about 8 km west, to Mellem Vantmose. It lies 1.5 km from Villestrup, where his great-great-grandparents Jørgen and Mette had farmed a century and a half before. He was a husmand, a smallholder, and married to Petrea Jensen, two years younger. On 22 April 1876 their son was born, and on 2 July [[he was baptised in Jerslev church|b_bapt1876]] as Jens Kristian Severin.","The godparents show how close Christen stayed to his family in Skæve. They were his sister Inger Marie Thomsen and his brother Jørgen Thomsen, both of Nejsum in Skæve parish, Thomas Kristian Thomsen of Falden, Karoline Martine Jensen of Vantmose, and a smallholder from Klæstrup, Jens Kristian Pedersen Bøg. The boy was named Jens Kristian for that last godfather, and he would one day carry his byname too.","On Marinus Bøgh's map of Klæstrup, house no. 18 belongs to \"Kren Tamsen (Thomsen)\". Kren is the Vendsyssel form of Christen. At Marinus's baptism in 1903 one godfather was \"Ungkarl Kristen Thomsen, Klæstrup\", a bachelor. He is more likely Severin's brother, named for their father, than Christen himself, and may be the Kren Tamsen of the map. Christen's own death is still to be read from the registers."],
+ story:["Christen Thomsen was born on 7 August 1850 in Skæve parish, most likely at Lille Nejsum, where his father Thomas farmed, the third of Thomas and Sille Maria's six children. His grandfather Simon, then seventy-three, was living in the house as a retired father, and died when Christen was almost three.","By 1876 he had moved about 8 km west, to Mellem Vantmose. It lies 1.5 km from Villestrup, where his great-great-grandparents Jørgen and Mette had farmed a century and a half before. He was a husmand, a smallholder, and married to Petrea Jensen, two years younger. On 22 April 1876 their son was born, and on 2 July [[he was baptised in Jerslev church|b_bapt1876]] as Jens Kristian Severin.","The godparents show how close Christen stayed to his family in Skæve. They were his sister Inger Marie Thomsen and his brother Jørgen Thomsen, both of Nejsum in Skæve parish, Thomas Kristian Thomsen of Falden, Karoline Martine Jensen of Vantmose, and a smallholder from Klæstrup, Jens Kristian Pedersen Bøg. The boy was named Jens Kristian for that last godfather, and he would one day carry his byname too.","On Marinus Bøgh's map of Klæstrup, house no. 18 belongs to \"Kren Tamsen (Thomsen)\". Kren is the Vendsyssel form of Christen. At Marinus's baptism in 1903 one godfather was \"Ungkarl Kristen Thomsen, Klæstrup\", a bachelor. He is more likely Severin's brother, named for their father, than Christen himself, and may be the Kren Tamsen of the map. Christen's own death is still to be read from the registers."],
  sources:["Birth date as given in the family record; the baptism itself has not been read.","Jerslev parish register, baptisms 1876, no. 18 (DFS 133726, image 14417072): \"Husmand Kristen Thomsen og Hustru Petrea Jensen, Mellemvantmose\".","Marinus Bøgh's map of Klæstrup, no. 18."]},
 
 petrea:{name:"Petrea Jensen",tag:"of Mellem Vantmose",born:"c. 1852",died:"not yet recorded",bp:null,dp:null,status:"verified",direct:true,
@@ -481,31 +537,146 @@ petrea:{name:"Petrea Jensen",tag:"of Mellem Vantmose",born:"c. 1852",died:"not y
 old_bogh:{name:"Jens Kristian Pedersen Bøg",tag:"old Jens Bøgh, of Klæstrup",born:"18 Jun 1826",died:"1914 (reported)",bp:"jerslev",dp:"klaestrup",status:"verified",
  rel:{spouse:[],children:[]},
  imgs:["b_bapt1876","b_bapt1903","b_cen1911","b_marinus"],
- story:["Jens Kristian Pedersen was born in Jerslev parish on 18 June 1826 and spent his life as a husmand, a smallholder, in Klæstrup. By 1876 the village already called him Bøg, and that is how the priest wrote him that summer: \"Husmand Jens Kr. Pedersen Bøg, Kløstrup\". He stood godfather to Christen Thomsen and Petrea Jensen's newborn son, who was given his names, Jens Kristian.","He and his wife Kirsten Nielsen, four years older, grew old in Klæstrup. In 1901 they were living as aftægtsfolk, a retired couple kept under contract, in the house of their godson Severin, then twenty-four and unmarried. By 1911 Kirsten had died. Jens, eighty-four and a widower, was still in the house. The census taker now wrote him not as a lodger but as slægtning, a relative of the family.","That word changes the story. Petrea Jensen, Severin's mother, was born about 1852, when Jens Kristian Pedersen was twenty-six and Kirsten Nielsen thirty. Her patronymic, Jensen, is what a daughter of his would carry. Danish families named a first son after a grandfather. If Petrea was his daughter, then old Jens Bøgh was Severin's grandfather, and the boy who took his name and his house was raising up his mother's father's line. This is a strong possibility, not yet a proven fact. Petrea's baptism would settle it.","In 1903 he stood godfather once more, as \"Aftægtsmand Jens Kristian Pedersen, Klæstrup\", at the baptism of Severin's son Marinus. Marinus Bøgh remembered him as \"old Jens Bøgh\" and gave 1914 as the year he died. He would have been eighty-eight, and Marinus eleven."],
+ story:["Jens Kristian Pedersen was born in Jerslev parish on 18 June 1826 and spent his life as a husmand, a smallholder, in Klæstrup. By 1876 the village already called him Bøg, and that is how the priest wrote him that summer: \"Husmand Jens Kr. Pedersen Bøg, Kløstrup\". He stood godfather to Christen Thomsen and Petrea Jensen's newborn son, who was given his names, Jens Kristian.","He and his wife Kirsten Nielsen, four years older, grew old in Klæstrup. In 1901 they were living as aftægtsfolk, a retired couple kept under contract, in the house of their godson Severin, then twenty-four and unmarried. By 1911 Kirsten had died. Jens, eighty-four and a widower, was still in the house. The census taker now wrote him not as a lodger but as slægtning, a relative of the family.","In 1903 he stood godfather once more, as \"Aftægtsmand Jens Kristian Pedersen, Klæstrup\", at the baptism of Severin's son Marinus. Marinus Bøgh remembered him as \"old Jens Bøgh\" and gave 1914 as the year he died. He would have been eighty-eight, and Marinus eleven."],
  sources:["Jerslev parish register, baptisms 1876, no. 18, godfather.","Census 1901, Jerslev, Klæstrup, family 40: aftægtsmand, 74, with Kirsten Nielsen, 78.","Census 1911, Jerslev, Klæstrup, family 6, matr. 35b: Jens Pedersen, b. 18 Jun 1826, Jerslev, widower, slægtning, aftægtsmand (DFS ft/1911/74763/8438506).","Marinus Bøgh's map of Klæstrup, no. 20."]},
 
 jks:{name:"Jens Kristian Severin Thomsen Bøgh",tag:"of the Bøgh farm, Klæstrup",born:"22 Apr 1876",died:"not yet recorded",bp:"vantmose",dp:null,status:"verified",direct:true,
- rel:{parents:["christen","petrea"],spouse:["kristine"],children:["jkm","nielsine"]},
+ rel:{parents:["christen","petrea"],spouse:["kristine"],children:["jkm", "nielsine", "b_marie", "b_kristian", "b_morten", "b_christa", "b_martin"]},
  imgs:["b_bapt1876","b_bapt1903","b_cen1911","b_marinus","b_core","b_today"],
- story:["Jens Kristian Severin was born on 22 April 1876 at Mellem Vantmose, the son of the smallholder Christen Thomsen and his wife Petrea Jensen. He was [[baptised in Jerslev church on 2 July|b_bapt1876]]. His aunt Inger Marie and his uncle Jørgen came from Nejsum in Skæve to stand godparents. So did a Klæstrup smallholder, Jens Kristian Pedersen, whom people called Bøg. The boy was named Jens Kristian for him.","That godfather shaped his life. In the census of 1901 Severin, twenty-four and unmarried, was the householder of a smallholding in Klæstrup, \"husejer ved landbruget\". Living with him were old Jens Kristian Pedersen, seventy-four, and his wife Kirsten Nielsen, seventy-eight, as aftægtsfolk: the retired couple whom the new owner housed and fed under contract. A godson taking over a childless couple's house in return for their keep was a common way for a holding to pass in rural Denmark.","Marinus Bøgh's map remembers it plainly. At no. 20, [[the farm on the old village green|b_today]] at Gl. Klæstrupvej 41, beside the pond called Osdam, lived \"Jens Bøgh, foster son of old Jens Bøgh\". Severin went by Jens, and old Jens Bøgh was his godfather. When the old man's byname became Severin's surname, the Thomsens became Bøghs. The change is dated exactly: a name licence of 26 February 1906, under the 1904 name law, noted in the margin of Marinus's baptism. Bøgh is an old spelling of bøg, beech.","By the census of 1911 the change was made. He is written Jens Bøgh, a gaardejer, a farm owner, married to Kristine Bøgh, born 9 December 1875 at Aistrup in Aalborg county. Their children were Marinus, born 15 February 1903, and Nielsine, born 31 January 1905. A servant girl, Astrid, lived with them, and so did old Jens Pedersen, now eighty-four and widowed, entered as a slægtning, a relative. If he was Petrea's father, Severin was looking after his own grandfather.","The census numbers his land as matrikel 18 in 1901 and 35b in 1911. Marinus gives 22a for house no. 20. Parcels were split, merged and renumbered often in these years, and 35b no longer exists as a parcel. All three lie on or beside the old village green. The full story is on its own page, Finding the Bøgh Farm."],
+ story:["Jens Kristian Severin was born on 22 April 1876 at Mellem Vantmose, the son of the smallholder Christen Thomsen and his wife Petrea Jensen. He was [[baptised in Jerslev church on 2 July|b_bapt1876]]. His aunt Inger Marie and his uncle Jørgen came from Nejsum in Skæve to stand godparents. So did a Klæstrup smallholder, Jens Kristian Pedersen, whom people called Bøg. The boy was named Jens Kristian for him.","That godfather shaped his life. In the census of 1901 Severin, twenty-four and unmarried, was the householder of a smallholding in Klæstrup, \"husejer ved landbruget\". Living with him were old Jens Kristian Pedersen, seventy-four, and his wife Kirsten Nielsen, seventy-eight, as aftægtsfolk: the retired couple whom the new owner housed and fed under contract. A godson taking over a childless couple's house in return for their keep was a common way for a holding to pass in rural Denmark.","Marinus Bøgh's map remembers it plainly. At no. 20, [[the farm on the old village green|b_today]] at Gl. Klæstrupvej 41, beside the pond called Osdam, lived \"Jens Bøgh, foster son of old Jens Bøgh\". Severin went by Jens, and old Jens Bøgh was his godfather. When the old man's byname became Severin's surname, the Thomsens became Bøghs. The change is dated exactly: a name licence of 26 February 1906, under the 1904 name law, noted in the margin of Marinus's baptism. Bøgh is an old spelling of bøg, beech.","He married Johanne Kristine Christiansen in Jerslev on 28 February 1902. She came from Rødbakke on Tylstrup Hede in Ajstrup parish, where her mother had died when she was four weeks old. Their children were Marinus, born 15 February 1903; Nielsine Petrea, born 31 January 1905 and named for his mother; Marie, Kristian Peter and Morten Kristian, born in 1906, 1908 and 1910, who each died within months; Christa, born 1912; and Martin, born 1919, who died the next spring. Morten Kristian carried the name of Johanne Kristine's father.","By the census of 1911 the name change was made. He is written Jens Bøgh, a gaardejer, a farm owner. Marinus and Nielsine were at home. A servant girl, Astrid, lived with them, and so did old Jens Pedersen, now eighty-four and widowed, entered as a slægtning, a relative.","The census numbers his land as matrikel 18 in 1901 and 35b in 1911. Marinus gives 22a for house no. 20. Parcels were split, merged and renumbered often in these years, and 35b no longer exists as a parcel. All three lie on or beside the old village green. The full story is on its own page, Finding the Bøgh Farm."],
  sources:["Jerslev parish register, baptisms 1876, no. 18 (DFS 133726, image 14417072).","Census 1901, Jerslev, Klæstrup, family 40, matr. 18: Jens Kr. Severin Thomsen, 24, single, husfader, husejer ved landbruget.","Census 1911, Jerslev, Klæstrup, family 6, matr. 35b: Jens Bøgh, b. 22 Apr 1876, married, gaardejer (DFS ft/1911/74763/8438506).","Marinus Bøgh's map of Klæstrup, no. 20: \"Jens Bøgh. Plejesøn af gamle Jens Bøgh. død 1914. Gl. Klæstrupvej 41. 22a.\""]},
 
-kristine:{name:"Johanne Kristine Kristiansen",tag:"of the Bøgh farm, Klæstrup",born:"9 Dec 1875",died:"not yet recorded",bp:null,dp:null,status:"verified",direct:true,
- rel:{spouse:["jks"],children:["jkm","nielsine"]},
- imgs:["b_bapt1903","b_cen1911"],
- story:["Johanne Kristine Kristiansen was born on 9 December 1875 at Aistrup in Aalborg county, the only member of the 1911 household born outside Hjørring county. At Marinus's baptism in 1903 the priest gave her full name and her age, twenty-seven. From 1906 she was Kristine Bøgh. She married Jens Kristian Severin Thomsen, who by 1911 went by Jens Bøgh, and came to his farm in Klæstrup.","Her son Marinus was born on 15 February 1903 and her daughter Nielsine on 31 January 1905. In 1911 she kept house for her husband, the two children, a servant girl, and old Jens Pedersen, the family's aged relative. Her marriage is still to be found; it most likely took place in 1901 or 1902, between the census that shows Severin single and Marinus's birth."],
- sources:["Jerslev parish register, born males 1903, no. 8: \"Hustru Johanne Kristine Kristiansen, 27 Aar, Klæstrup\".","Census 1911, Jerslev, Klæstrup, family 6: Kristine Bøgh, b. 9 Dec 1875, Aistrup, married, husmoder."]},
+kristine:{name:"Johanne Kristine Christiansen",tag:"of the Bøgh farm, Klæstrup",born:"9 Dec 1875",died:"not yet recorded",bp:"tylstrup",dp:null,status:"verified",direct:true,
+ rel:{"parents": ["morten", "mette_c"], "spouse": ["jks"], "children": ["jkm", "nielsine", "b_marie", "b_kristian", "b_morten", "b_christa", "b_martin"], "siblings": ["cj", "karen_m", "christen_m"]},
+ imgs:["b_bapt1875", "b_bapt1903", "b_cen1911"],
+ story:["Johanne Kristine was born on 9 December 1875 at Rødbakke, a farm on Tylstrup Hede in Ajstrup parish, Kær herred. Her parents were the farmer Morten Christiansen and his wife Mette Cathrine Poulsdatter. She was [[baptised at home on 22 December|b_bapt1875]] by the schoolteacher, because she was weak or the winter was hard, and presented in church the following April.", "Her mother died on 4 January 1876, when Johanne Kristine was twenty-six days old, most likely from the birth. Within the year her father married again, to Ane Marie Pedersen, who raised her. In the 1880 census she was four, at Rødbakke with her father and stepmother, her full brother Christian Johan, and her half-sister Karen Marie and half-brother Christen from her father's first marriage.", "She married Jens Kristian Severin Thomsen in Jerslev on 28 February 1902 and moved to his farm in Klæstrup, about 15 km north. At Marinus's baptism in 1903 the priest wrote her full name and her age, twenty-seven. From 1906 she was Kristine Bøgh. In the 1911 census she is the only member of the household born outside Hjørring county.", "She bore seven children. Marinus and Nielsine grew up. Marie, Kristian Peter and Morten Kristian were born in 1906, 1908 and 1910 and each died within months; Morten Kristian was named for her father. Christa followed in 1912 and Martin in 1919, who died the next spring."],
+ sources:["Ajstrup parish register, girls born 1875, no. 33 (image 26820742).", "Ajstrup burials, 4 Jan 1876: Mette Catherine Poulsdatter, 36.", "Census 1880, Ajstrup, Tylstrup Hede: Morten Christiansen's household.", "Jerslev parish register, born males 1903, no. 8: \"Hustru Johanne Kristine Kristiansen, 27 Aar\".", "Census 1911, Jerslev, Klæstrup, family 6.", "Marriage 28 Feb 1902 and the children's dates as given in the family record."]},
+morten:{name:"Morten Christiansen",tag:"of Rødbakke, Tylstrup Hede",born:"27 Aug 1827",died:"after 1 Feb 1880",bp:"em",dp:null,status:"verified",
+ rel:{"parents": ["christian_m", "mariane_p"], "spouse": ["kirstine_jb", "mette_c", "ane_mp"], "children": ["karen_m", "christen_m", "cj", "kristine"]},
+ story:["Morten Christiansen was born on 27 August 1827 in Em parish, west of Jerslev, the son of the cottager Christian Mortensen and his wife Mariane Pedersdatter. He was baptised at home the next day and presented in Em church on 28 December.", "He married three times. With his first wife, Kirstine Johanne Bertelsdatter, he farmed at Stenum Mark in the 1860s; their daughter Karen Marie was born about 1862 and their son Christen on 4 January 1865.", "By 1871 he had moved east to Ajstrup parish and married Mette Cathrine Poulsdatter, about twelve years his junior. They farmed at Brandskov on Tylstrup Hede, where their son Christian Johan was born on 18 August 1871. One of the godfathers was an old retired man of Tylstrup Hede named Christian Mortensen, very possibly Morten's own father living out his last years near his son. By 1875 the family was at Rødbakke, and there on 9 December their daughter Johanne Kristine was born. Mette Cathrine died twenty-six days later.", "Later in 1876, a widower of nearly fifty with four children, he married Ane Marie Pedersen, about thirteen years younger. In the 1880 census he is fifty-two, farmer of Rødbakke on Tylstrup Hede, with Ane Marie, Karen Marie, Christen, Christian Johan and little Johanne Kristine. His death is not yet found."],
+ sources:["Em parish register, boys born 1827, no. 3 (image 27111170).", "Stenum parish register, boys born 1865, no. 1: Christen, son of Morten Christiansen and Kirstine Johanne Bertelsdatter.", "Ajstrup parish register: boys born 1871, no. 14; girls born 1875, no. 33; burials 1876, no. 1; marriages 1876, no. 10.", "Census 1880, Ajstrup, Tylstrup Hede (image 11923353)."]},
 
-nielsine:{name:"Nielsine Bøgh",tag:"daughter of Jens and Kristine",born:"31 Jan 1905",died:"not yet recorded",bp:"klaestrup",dp:null,status:"verified",
- rel:{parents:["jks","kristine"],siblings:["jkm"]},
+christian_m:{name:"Christian Mortensen",tag:"of Em",born:"unknown",died:"unknown",bp:"em",dp:null,status:"verified",
+ rel:{"spouse": ["mariane_p"], "children": ["morten"]},
+ story:["Christian Mortensen was an indsidder, a cottager without land of his own, in Em parish in 1827, when his son Morten was born. The family name pattern held: Christian's son was Morten, and Morten's son was Christian Johan.", "In November 1871 an old retired man of Tylstrup Hede, written \"Aftægtsmand Chr. Mortensen\", stood godfather to Morten's son Christian Johan. That was very possibly Christian himself, kept in his old age near his son's farm. The record does not say so outright."],
+ sources:["Em parish register, boys born 1827, no. 3.", "Ajstrup parish register, boys born 1871, no. 14, godfather."]},
+
+mariane_p:{name:"Mariane Pedersdatter",tag:"of Em",born:"unknown",died:"unknown",bp:null,dp:null,status:"verified",
+ rel:{"spouse": ["christian_m"], "children": ["morten"]},
+ story:["Mariane Pedersdatter was the wife of the cottager Christian Mortensen of Em and the mother of Morten Christiansen, born 27 August 1827. Her own birth and parents are still to be found."],
+ sources:["Em parish register, boys born 1827, no. 3."]},
+
+kirstine_jb:{name:"Kirstine Johanne Bertelsdatter",tag:"Morten's first wife",born:"c. 1834",died:"before 1871",bp:null,dp:null,status:"verified",
+ rel:{"spouse": ["morten"], "children": ["karen_m", "christen_m"]},
+ story:["Kirstine Johanne Bertelsdatter was Morten Christiansen's first wife. In January 1865, aged thirty-one, she bore their son Christen at Stenum Mark. Their daughter Karen Marie had been born about 1862. She died before 1871, when Morten had remarried."],
+ sources:["Stenum parish register, boys born 1865, no. 1: mother's age 31."]},
+
+mette_c:{name:"Mette Cathrine Poulsdatter",tag:"of Brandskov and Rødbakke",born:"c. 1839",died:"4 Jan 1876",bp:null,dp:"tylstrup",status:"verified",
+ rel:{"spouse": ["morten"], "children": ["cj", "kristine"]},
+ story:["Mette Cathrine Poulsdatter, sometimes written Poulsen, was born about 1839. She married the widower Morten Christiansen of Ajstrup parish and became stepmother to his two children from his first marriage.", "At Brandskov on Tylstrup Hede she bore a son, Christian Johan, on 18 August 1871, when she was thirty-two. By 1875 the family had moved to Rødbakke, and there on 9 December she gave birth to a daughter, Johanne Kristine.", "She died on 4 January 1876, twenty-six days after the birth, aged thirty-six, and was buried at Ajstrup on 12 January. Her own birthplace and parents are still to be found."],
+ sources:["Ajstrup parish register: boys born 1871, no. 14 (mother 32); girls born 1875, no. 33; burials 1876, no. 1 (aged 36)."]},
+
+ane_mp:{name:"Ane Marie Pedersen",tag:"Morten's third wife",born:"c. 1840",died:"unknown",bp:"em",dp:null,status:"verified",
+ rel:{"spouse": ["morten"]},
+ story:["Ane Marie Pedersen married the widower Morten Christiansen at Ajstrup in 1876 and took on four stepchildren, the youngest a baby girl, Johanne Kristine. In the 1880 census she is thirty-nine, \"Ane Marie Christiansen født Pedersen\", mistress of Rødbakke on Tylstrup Hede. She was most likely from Em parish, like her husband."],
+ sources:["Ajstrup marriages 1876, no. 10.", "Census 1880, Ajstrup, Tylstrup Hede."]},
+
+karen_m:{name:"Karen Marie Christiansen",tag:"daughter of Morten",born:"c. 1862",died:"unknown",bp:"stenum",dp:null,status:"verified",
+ rel:{"parents": ["morten", "kirstine_jb"], "siblings": ["christen_m", "cj", "kristine"]},
+ story:["Karen Marie was born about 1862 in Stenum parish, the daughter of Morten Christiansen, most likely by his first wife Kirstine Johanne Bertelsdatter. In the 1880 census she was eighteen and at home at Rødbakke, half-sister to Johanne Kristine."],
+ sources:["Census 1880, Ajstrup, Tylstrup Hede: 18, born Stenum parish."]},
+
+christen_m:{name:"Christen Christiansen",tag:"son of Morten",born:"4 Jan 1865",died:"unknown",bp:"stenum",dp:null,status:"verified",
+ rel:{"parents": ["morten", "kirstine_jb"], "siblings": ["karen_m", "cj", "kristine"]},
+ story:["Christen was born on 4 January 1865 at Stenum Mark, the son of the farmer Morten Christiansen and Kirstine Johanne Bertelsdatter. In 1880 he was fifteen, at home at Rødbakke with his father and stepmother, half-brother to Johanne Kristine."],
+ sources:["Stenum parish register, boys born 1865, no. 1 (image 28482348).", "Census 1880, Ajstrup, Tylstrup Hede."]},
+
+cj:{name:"Christian Johan Christiansen",tag:"son of Morten and Mette Cathrine",born:"18 Aug 1871",died:"unknown",bp:"tylstrup",dp:null,status:"verified",
+ rel:{"parents": ["morten", "mette_c"], "siblings": ["kristine", "karen_m", "christen_m"]},
+ story:["Christian Johan was born at Brandskov on Tylstrup Hede on 18 August 1871, the son of Morten Christiansen and Mette Cathrine Poulsdatter, and baptised in Ajstrup church on 5 November. Among his godparents was an old retired man, Chr. Mortensen, very possibly his grandfather. He was four when his mother died, and eight in the 1880 census at Rødbakke. He was Johanne Kristine's only full brother."],
+ sources:["Ajstrup parish register, boys born 1871, no. 14 (image 26820650).", "Census 1880, Ajstrup, Tylstrup Hede: \"Christen Johan\", 8."]},
+
+nielsine:{name:"Nielsine Petrea Bøgh",tag:"daughter of Jens and Kristine",born:"31 Jan 1905",died:"not yet recorded",bp:"klaestrup",dp:null,status:"verified",
+ rel:{parents:["jks","kristine"],siblings:["jkm", "b_marie", "b_kristian", "b_morten", "b_christa", "b_martin"]},
  imgs:["b_cen1911"],
- story:["Nielsine was born in Jerslev parish on 31 January 1905, the second child of Jens Bøgh and Kristine, two years younger than her brother Marinus. In 1911 she was six, at home on the farm in Klæstrup with her parents, her brother, a servant girl and the old man the family called a relative."],
+ story:["Nielsine Petrea was born in Jerslev parish on 31 January 1905, the second child of Jens Bøgh and Kristine, two years younger than her brother Marinus. Petrea was her grandmother's name. In 1911 she was six, at home on the farm in Klæstrup with her parents, her brother, a servant girl and the old man the family called a relative."],
  sources:["Census 1911, Jerslev, Klæstrup, family 6."]},
 
+b_marie:{name:"Marie Bøgh",tag:"child of Jens and Kristine Bøgh",born:"6 Apr 1906",died:"30 May 1906",bp:"klaestrup",dp:"klaestrup",status:"reported",
+ rel:{"parents": ["jks", "kristine"], "siblings": ["jkm", "nielsine", "b_kristian", "b_morten", "b_christa", "b_martin"]},
+ story:["Marie was born at Klæstrup on 6 April 1906, six weeks after the family took the name Bøgh, and died on 30 May, seven weeks old."],
+ sources:["As given in the family record."]},
+
+b_kristian:{name:"Kristian Peter Bøgh",tag:"child of Jens and Kristine Bøgh",born:"26 Jul 1908",died:"13 Aug 1908",bp:"klaestrup",dp:"klaestrup",status:"reported",
+ rel:{"parents": ["jks", "kristine"], "siblings": ["jkm", "nielsine", "b_marie", "b_morten", "b_christa", "b_martin"]},
+ story:["Kristian Peter was born at Klæstrup on 26 July 1908 and died on 13 August, eighteen days old."],
+ sources:["As given in the family record."]},
+
+b_morten:{name:"Morten Kristian Bøgh",tag:"child of Jens and Kristine Bøgh",born:"3 Mar 1910",died:"2 Sep 1910",bp:"klaestrup",dp:"klaestrup",status:"reported",
+ rel:{"parents": ["jks", "kristine"], "siblings": ["jkm", "nielsine", "b_marie", "b_kristian", "b_christa", "b_martin"]},
+ story:["Morten Kristian was born at Klæstrup on 3 March 1910, named for his mother's father, Morten Christiansen, and died on 2 September, six months old."],
+ sources:["As given in the family record."]},
+
+b_christa:{name:"Christa Bøgh",tag:"child of Jens and Kristine Bøgh",born:"4 Sep 1912",died:"not yet recorded",bp:"klaestrup",dp:null,status:"reported",
+ rel:{"parents": ["jks", "kristine"], "siblings": ["jkm", "nielsine", "b_marie", "b_kristian", "b_morten", "b_martin"]},
+ story:["Christa was born at Klæstrup on 4 September 1912, the sixth child of Jens and Kristine Bøgh."],
+ sources:["As given in the family record."]},
+
+b_martin:{name:"Martin Bøgh",tag:"child of Jens and Kristine Bøgh",born:"10 May 1919",died:"26 Mar 1920",bp:"klaestrup",dp:"klaestrup",status:"reported",
+ rel:{"parents": ["jks", "kristine"], "siblings": ["jkm", "nielsine", "b_marie", "b_kristian", "b_morten", "b_christa"]},
+ story:["Martin, the youngest, was born at Klæstrup on 10 May 1919 and died on 26 March 1920, ten months old."],
+ sources:["As given in the family record."]},
+
+mk:{name:"Maren Kirstine Christensen",tag:"of Aasendrup and Klæstrup",born:"15 May 1909",died:"not yet recorded",bp:"aasendrup",dp:null,status:"verified",direct:true,
+ rel:{"parents": ["nils", "johanne_n"], "spouse": ["jkm"], "siblings": ["n_christian", "n_laurits", "n_henry", "n_magnus", "n_laura", "n_magny"]},
+ imgs:["b_bapt1909"],
+ story:["Maren Kirstine was born on 15 May 1909 at Aasendrup in Vrensted parish, the sixth of seven children of the mason and smallholder Nils Christensen and Johanne Nielsen. She was [[baptised in Vrensted church on 12 September|b_bapt1909]]. Her mother stood godmother herself, alongside a tailor, Sev. Christensen, and two young people of Vrensted.", "In the 1911 census she is one, at Aasendrup with her parents and her brothers and sisters Christian Jørgen, Laurits Alfred, Laura and the baby Magny. Her brother Laurits Alfred was later known in the family as Lawrence.", "On 13 January 1929, at nineteen, she married Jens Kristian Marinus Thomsen Bøgh of Klæstrup at Stenum. Their son Erling was born in 1930."],
+ sources:["Vrensted parish register, girls born 1909, no. 7 (image 29015628).", "Census 1911, Vrensted, Aasendrup, household 8.", "Marriage 13 Jan 1929, Stenum, as given in the family record."]},
+
+nils:{name:"Nils Christensen",tag:"of Aasendrup",born:"12 Dec 1875",died:"2 May 1936",bp:null,dp:"stenum",status:"verified",
+ rel:{"spouse": ["johanne_n"], "children": ["n_christian", "n_laurits", "n_henry", "n_magnus", "n_laura", "mk", "n_magny"]},
+ story:["Nils Christensen, Niels Christian in the church books, was born in Vrensted parish on 12 December 1875. He was a murer, a mason, who also worked a smallholding. He married Johanne Nielsen, three years older, and their first son, Christian Jørgen, was born in her home parish of Hune on 3 December 1900.", "By 1902 they were living on Vrensted østre Hede, the heath east of Vrensted village. Laurits Alfred was born there in 1902, Henry Georg in 1904 and Magnus in 1906. In the census of February 1906 the newest baby was still unnamed, written simply \"Dreng\", a boy. In 1907 they moved to Aasendrup, where Laura Marie Elisabet, Maren Kirstine and Magny Henriette Georgia were born.", "In the 1911 census he is a landbruger, a farmer, at Aasendrup, with Johanne and five of the children. He later moved to Stenum and died there on 2 May 1936."],
+ sources:["Vrensted parish register: boys born 1902 no. 17, 1904 no. 6, 1906 no. 1; girls born 1907 no. 4, 1909 no. 7, 1910 no. 15.", "Census 1906, Vrensted.", "Census 1911, Vrensted, Aasendrup, household 8.", "Death as given in the family record."]},
+
+johanne_n:{name:"Johanne Nielsen",tag:"of Aasendrup",born:"31 Oct 1872",died:"23 Mar 1945",bp:null,dp:null,status:"verified",
+ rel:{"spouse": ["nils"], "children": ["n_christian", "n_laurits", "n_henry", "n_magnus", "n_laura", "mk", "n_magny"]},
+ story:["Johanne Nielsen was born on 31 October 1872 in Hune parish, near the west coast of Vendsyssel. She married the mason Nils Christensen, and their first child was born in Hune in December 1900.", "She bore at least seven children between 1900 and 1910, on Vrensted østre Hede and then at Aasendrup. At her daughter Maren Kirstine's baptism in 1909 she was thirty-seven and stood godmother herself. She died on 23 March 1945."],
+ sources:["Census 1911, Vrensted, Aasendrup: born 31 Oct 1872, Hune.", "Vrensted parish register, girls born 1909, no. 7: \"Hustru Johanne Nielsen, 37 Aar\".", "Death as given in the family record."]},
+
+n_christian:{name:"Christian Jørgen Christensen",tag:"child of Nils and Johanne",born:"3 Dec 1900",died:"unknown",bp:null,dp:null,status:"verified",
+ rel:{"parents": ["nils", "johanne_n"], "siblings": ["n_laurits", "n_henry", "n_magnus", "n_laura", "mk", "n_magny"]},
+ story:["Christian Jørgen, the eldest, was born in Hune parish on 3 December 1900."],
+ sources:["Vrensted parish register and the 1906 and 1911 censuses."]},
+
+n_laurits:{name:"Laurits Alfred Christensen",tag:"child of Nils and Johanne",born:"4 Sep 1902",died:"1977",bp:null,dp:null,status:"verified",
+ rel:{"parents": ["nils", "johanne_n"], "siblings": ["n_christian", "n_henry", "n_magnus", "n_laura", "mk", "n_magny"]},
+ story:["Laurits Alfred was born on Vrensted østre Hede on 4 September 1902. He was later known in the family as Lawrence, and died in 1977."],
+ sources:["Vrensted parish register and the 1906 and 1911 censuses."]},
+
+n_henry:{name:"Henry Georg Christensen",tag:"child of Nils and Johanne",born:"16 Feb 1904",died:"unknown",bp:null,dp:null,status:"verified",
+ rel:{"parents": ["nils", "johanne_n"], "siblings": ["n_christian", "n_laurits", "n_magnus", "n_laura", "mk", "n_magny"]},
+ story:["Henry Georg was born on Vrensted østre Hede on 16 February 1904. He is not in the family's 1911 household."],
+ sources:["Vrensted parish register and the 1906 and 1911 censuses."]},
+
+n_magnus:{name:"Magnus Christensen",tag:"child of Nils and Johanne",born:"6 Jan 1906",died:"unknown",bp:null,dp:null,status:"verified",
+ rel:{"parents": ["nils", "johanne_n"], "siblings": ["n_christian", "n_laurits", "n_henry", "n_laura", "mk", "n_magny"]},
+ story:["Magnus was born on Vrensted østre Hede on 6 January 1906. In the census taken that February he was still unnamed, written \"Dreng\", a boy. He is not in the family's 1911 household."],
+ sources:["Vrensted parish register and the 1906 and 1911 censuses."]},
+
+n_laura:{name:"Laura Marie Elisabet Christensen",tag:"child of Nils and Johanne",born:"8 Apr 1907",died:"unknown",bp:"aasendrup",dp:null,status:"verified",
+ rel:{"parents": ["nils", "johanne_n"], "siblings": ["n_christian", "n_laurits", "n_henry", "n_magnus", "mk", "n_magny"]},
+ story:["Laura Marie Elisabet was born at Aasendrup on 8 April 1907, soon after the family moved there."],
+ sources:["Vrensted parish register and the 1906 and 1911 censuses."]},
+
+n_magny:{name:"Magny Henriette Georgia Christensen",tag:"child of Nils and Johanne",born:"29 Jul 1910",died:"unknown",bp:"aasendrup",dp:null,status:"verified",
+ rel:{"parents": ["nils", "johanne_n"], "siblings": ["n_christian", "n_laurits", "n_henry", "n_magnus", "n_laura", "mk"]},
+ story:["Magny Henriette Georgia, the youngest, was born at Aasendrup on 29 July 1910."],
+ sources:["Vrensted parish register and the 1906 and 1911 censuses."]},
+
 jkm:{name:"Jens Kristian Marinus Thomsen Bøgh",tag:"of Klæstrup",born:"15 Feb 1903",died:"not yet recorded",bp:"klaestrup",dp:null,status:"verified",direct:true,
- rel:{parents:["jks","kristine"],siblings:["nielsine"]},
+ rel:{parents:["jks","kristine"],spouse:["mk"],siblings:["nielsine", "b_marie", "b_kristian", "b_morten", "b_christa", "b_martin"]},
  imgs:["b_bapt1903","b_cen1911","b_marinus"],
- story:["Jens Kristian Marinus was born at Klæstrup on 15 February 1903, nine generations from the elder Peder Pedersen of Sterup. He was [[baptised in Jerslev church on 9 April|b_bapt1903]]. His parents were written \"Gaardmand Jens Kristian Severin Thomsen og Hustru Johanne Kristine Kristiansen, 27 Aar, Klæstrup\". His godparents were his mother, the smallholder Hans Peter Kristensen and his wife of Klæstrup, the old retired man Jens Kristian Pedersen, and a bachelor, Kristen Thomsen of Klæstrup.","Three years later the priest went back to the entry. He struck out Thomsen in both the boy's and the father's names, wrote Bøgh above, and added in the margin: \"Navnet Bøgh i Henhold til Navnebevilling af 26/2 1906\". The name Bøgh was granted by name licence on 26 February 1906. On that day Marinus, three years old, became a Bøgh. In the 1911 census he is eight, written simply Marinus Bøgh, with his little sister Nielsine and old Jens Pedersen, the aged relative, in the same house.","Late in life he [[drew Klæstrup from memory|b_marinus]]: thirty-seven houses, each with its family, its address and the nickname the village used. There is Pisen and Koldnaae, Dejlig Peter, Skål-Nørgård with his sisters Gine and Mie, Sladder-Maren, a veteran of 1864, and a parish councillor jailed for fourteen days after the brawl at Store Brønderslev market. At no. 20, on the old village green, he wrote the Bøgh name. His map is how the farm was found, more than three hundred years after his ancestor farmed a strip of Sterup's land.","Old Jens Bøgh, his father's godfather and foster father, died in 1914, when Marinus was about eleven, so Marinus grew up in that household too. A collection at the same archive, given by a Marius Bøgh, holds a history of Klæstrup School from 1847 to 1962 and a list of the village's residents in 1960, and may also be his. The search that began this whole record, with his own birthplace, ends where he drew it."],
+ story:["Jens Kristian Marinus was born at Klæstrup on 15 February 1903, nine generations from the elder Peder Pedersen of Sterup. He was [[baptised in Jerslev church on 9 April|b_bapt1903]]. His parents were written \"Gaardmand Jens Kristian Severin Thomsen og Hustru Johanne Kristine Kristiansen, 27 Aar, Klæstrup\". His godparents were his mother, the smallholder Hans Peter Kristensen and his wife of Klæstrup, the old retired man Jens Kristian Pedersen, and a bachelor, Kristen Thomsen of Klæstrup.","Three years later the priest went back to the entry. He struck out Thomsen in both the boy's and the father's names, wrote Bøgh above, and added in the margin: \"Navnet Bøgh i Henhold til Navnebevilling af 26/2 1906\". The name Bøgh was granted by name licence on 26 February 1906. On that day Marinus, three years old, became a Bøgh. In the 1911 census he is eight, written simply Marinus Bøgh, with his little sister Nielsine and old Jens Pedersen, the aged relative, in the same house.","Late in life he [[drew Klæstrup from memory|b_marinus]]: thirty-seven houses, each with its family, its address and the nickname the village used. There is Pisen and Koldnaae, Dejlig Peter, Skål-Nørgård with his sisters Gine and Mie, Sladder-Maren, a veteran of 1864, and a parish councillor jailed for fourteen days after the brawl at Store Brønderslev market. At no. 20, on the old village green, he wrote the Bøgh name. His map is how the farm was found, more than three hundred years after his ancestor farmed a strip of Sterup's land.","On 13 January 1929 he married Maren Kirstine Christensen at Stenum. She was a mason's daughter from Aasendrup in Vrensted parish, six years younger. Their son Erling was born in 1930.","Old Jens Bøgh, his father's godfather and foster father, died in 1914, when Marinus was about eleven, so Marinus grew up in that household too. A collection at the same archive, given by a Marius Bøgh, holds a history of Klæstrup School from 1847 to 1962 and a list of the village's residents in 1960, and may also be his. The search that began this whole record, with his own birthplace, ends where he drew it."],
  sources:["Jerslev parish register, born males 1903, no. 8, with margin note of the name licence of 26 Feb 1906 (Ancestry image 48491_b411262-0025a).","Census 1911, Jerslev, Klæstrup, family 6: Marinus Bøgh, b. 15 Feb 1903, Jerslev.","Marinus Bøgh's map of Klæstrup (Egnsmindesamlingen for Jerslev og Omegn, B1934; arkiv.dk/vis/3759332)."]}
 };
 
@@ -535,26 +706,72 @@ const E=[
  {d:"1767-01-01",ds:"c. 1767",pl:null,t:"Mads, son of Peder and Inger, born",who:["pj_mads","pj","inger"]},
  {d:"1771-01-01",ds:"c. 1771",pl:null,t:"Anne Kristine, daughter of Peder and Inger, born",who:["pj_anne","pj","inger"]},
  {d:"1774-01-01",ds:"c. 1774",pl:null,t:"Mette Marie, daughter of Peder and Inger, born",who:["pj_mette","pj","inger"]},
+ {d:"1754-12-08",ds:"8 Dec 1754",pl:"knaeverhede",t:"Thomas Jacobsen born at Knæverhede, Volstrup parish",who:["thomas_j"],rep:true},
+ {d:"1759-07-13",ds:"13 Jul 1759",pl:null,t:"Ane Jensdatter born at Falden, Albæk parish",who:["ane_j"],rep:true},
+ {d:"1781-07-22",ds:"22 Jul 1781",pl:"aasted",t:"Thomas Christensen born in Åsted parish",who:["thomas_c"],rep:true},
+ {d:"1786-01-01",ds:"1786",pl:"knaeverhede",t:"Ane, daughter of Thomas Jacobsen and Ane Jensdatter, born",who:["ane","thomas_j","ane_j"],rep:true},
+ {d:"1786-07-16",ds:"16 Jul 1786",pl:"aasted",t:"Marie Kirstine Jensdatter born at Nørre Buje, Åsted parish",who:["mkj"],rep:true},
  {d:"1777-01-01",ds:"c. 1777",pl:"hellevad",t:"Simon, youngest son of Peder and Inger, born in Hellevad parish",who:["simon","pj","inger"]},
  {d:"1787-07-01",ds:"1 Jul 1787",pl:"raunsholt",t:"Census at Raunsholt: Christen holds the farm; Peder, Inger, Mads, Anne Kristine, Mette Marie and Simon in the household",who:["pj","inger","pj_christen","pj_mads","pj_anne","pj_mette","simon"]},
  {d:"1801-02-01",ds:"1 Feb 1801",pl:"raunsholt",t:"Census at Raunsholt: Peder, 71, and Inger, 68, with Christen and Mette at home",who:["pj","inger","pj_christen","pj_mette"]},
- {d:"1810-01-01",ds:"1810",pl:"skaeve",t:"Simon Pedersen marries Mette Hansdatter",who:["simon","mette_h"],rep:true},
+ {d:"1810-12-02",ds:"2 Dec 1810",pl:"skaeve",t:"Simon Pedersen marries Mette Hansdatter",who:["simon","mette_h"],rep:true},
  {d:"1812-03-01",ds:"Mar 1812",pl:"skaeve",t:"Mette Hansdatter, Simon's first wife, dies",who:["mette_h","simon"],rep:true},
- {d:"1812-11-01",ds:"Nov 1812",pl:"skaeve",t:"Simon Pedersen marries Maren Larsdatter",who:["simon","maren_l"],rep:true},
- {d:"1813-07-19",ds:"19 Jul 1813",pl:"nejsum",t:"A daughter born to Simon and Maren; Maren dies the same day",who:["daughter1813","maren_l","simon"],rep:true},
- {d:"1813-07-23",ds:"23 Jul 1813",pl:"skaeve",t:"Simon Pedersen marries Ane Thomasdatter",who:["simon","ane","daughter1813"],rep:true},
- {d:"1814-12-16",ds:"16 Dec 1814",pl:"nejsum",t:"Thomas, son of Simon and Ane, born; baptised at home the next day",who:["thomas","simon","ane","daughter1813"]},
+ {d:"1812-11-21",ds:"21 Nov 1812",pl:"skaeve",t:"Simon Pedersen marries Maren Larsdatter",who:["simon","maren_l"],rep:true},
+ {d:"1813-07-19",ds:"19 Jul 1813",pl:"nejsum",t:"Maren, daughter of Simon and Maren, born; her mother dies the same day",who:["daughter1813","maren_l","simon"],rep:true},
+ {d:"1813-07-23",ds:"23 Jul 1813",pl:"skaeve",t:"Simon Pedersen marries Ane Thomasdatter of Knæverhede",who:["simon","ane","daughter1813","thomas_j","ane_j"],rep:true},
+ {d:"1814-12-16",ds:"16 Dec 1814",pl:"nejsum",t:"Thomas, son of Simon and Ane, born; baptised at home the next day with his grandmother Ane Jensdatter as godmother",who:["thomas","simon","ane","daughter1813","ane_j"]},
  {d:"1815-02-12",ds:"12 Feb 1815",pl:"skaeve",t:"Ane Thomasdatter churched after Thomas's birth",who:["ane"]},
- {d:"1818-01-01",ds:"c. 1818",pl:"nejsum",t:"Mette, daughter of Simon and Ane, born",who:["s_mette","simon","ane","thomas"]},
- {d:"1820-01-01",ds:"c. 1820",pl:"nejsum",t:"Christen, son of Simon and Ane, born",who:["s_christen","simon","ane","thomas"]},
- {d:"1825-01-01",ds:"c. 1825",pl:"nejsum",t:"Inger, daughter of Simon and Ane, born",who:["s_inger","simon","ane","thomas"]},
+ {d:"1816-01-01",ds:"1816",pl:"aasted",t:"Sille Maria, daughter of Thomas Christensen and Marie Kirstine Jensdatter, born",who:["sille","thomas_c","mkj"],rep:true},
+ {d:"1818-11-18",ds:"18 Nov 1818",pl:"nejsum",t:"Mette, daughter of Simon and Ane, born",who:["s_mette","simon","ane","thomas"],rep:true},
+ {d:"1821-02-11",ds:"11 Feb 1821",pl:"nejsum",t:"Christen, son of Simon and Ane, born",who:["s_christen","simon","ane","thomas"],rep:true},
+ {d:"1822-10-20",ds:"20 Oct 1822",pl:"knaeverhede",t:"Thomas Jacobsen of Knæverhede dies",who:["thomas_j","ane_j","ane"],rep:true},
+ {d:"1822-11-19",ds:"19 Nov 1822",pl:"nejsum",t:"Jørgen, son of Simon and Ane, born; he dies as a small child",who:["s_jorgen","simon","ane","thomas"],rep:true},
+ {d:"1825-08-05",ds:"5 Aug 1825",pl:"nejsum",t:"Inger, daughter of Simon and Ane, born",who:["s_inger","simon","ane","thomas"],rep:true},
+ {d:"1827-08-27",ds:"27 Aug 1827",pl:"em",t:"Morten, son of the cottager Christian Mortensen and Mariane Pedersdatter, born",who:["morten","christian_m","mariane_p"]},
  {d:"1834-02-18",ds:"18 Feb 1834",pl:"nejsum",t:"Census at Lille Nejsum: Simon, 60, Ane, 48, Thomas, Mette, Christen and Inger",who:["simon","ane","thomas","s_mette","s_christen","s_inger"]},
- {d:"1845-02-01",ds:"1845",pl:"nejsum",t:"Census: Thomas holds Lille Nejsum; Simon retired in the house",who:["thomas","simon"]},
- {d:"1850-08-07",ds:"7 Aug 1850",pl:"skaeve",t:"Christen (Kresten), son of Thomas, born",who:["christen","thomas","simon"],rep:true},
- {d:"1853-07-25",ds:"25 Jul 1853",pl:"skaeve",t:"Simon Pedersen dies, aged 76",who:["simon","ane","thomas","christen","s_mette","s_christen","s_inger"]},
- {d:"1876-04-22",ds:"22 Apr 1876",pl:"klaestrup",t:"Jens Kristian Severin Thomsen Bøgh, son of Christen, born",who:["jks","christen"],rep:true},
- {d:"1898-12-05",ds:"5 Dec 1898",pl:"skaeve",t:"Thomas Simonsen dies, aged 83",who:["thomas","christen","jks"],rep:true},
- {d:"1903-01-01",ds:"1903",pl:"klaestrup",t:"Jens Kristian Marinus Thomsen Bøgh, son of Jens Kristian Severin, born",who:["jkm","jks"],rep:true}
+ {d:"1836-04-21",ds:"21 Apr 1836",pl:"nejsum",t:"Inger Simonsdatter dies, aged ten",who:["s_inger","simon","ane","thomas"],rep:true},
+ {d:"1838-04-01",ds:"Apr 1838",pl:"knaeverhede",t:"Ane Jensdatter of Knæverhede dies",who:["ane_j","ane"],rep:true},
+ {d:"1840-12-30",ds:"30 Dec 1840",pl:"aasted",t:"Thomas Christensen of Åsted dies",who:["thomas_c","mkj","sille"],rep:true},
+ {d:"1845-02-01",ds:"1845",pl:"nejsum",t:"Census: Thomas holds Lille Nejsum; Simon retired in the house. Thomas and Sille Maria's first son, Simon, born this year",who:["thomas","sille","simon","t_simon"]},
+ {d:"1849-01-01",ds:"1849",pl:"nejsum",t:"Inger Maria, daughter of Thomas and Sille Maria, born",who:["t_inger","thomas","sille"],rep:true},
+ {d:"1850-08-07",ds:"7 Aug 1850",pl:"skaeve",t:"Christen (Kresten), son of Thomas and Sille Maria, born",who:["christen","thomas","sille","simon"],rep:true},
+ {d:"1853-01-01",ds:"1853",pl:"nejsum",t:"Ane, daughter of Thomas and Sille Maria, born",who:["t_ane","thomas","sille"],rep:true},
+ {d:"1853-07-25",ds:"25 Jul 1853",pl:"skaeve",t:"Simon Pedersen dies, aged 76",who:["simon","ane","thomas","christen","s_mette","s_christen"]},
+ {d:"1854-01-13",ds:"13 Jan 1854",pl:"aasted",t:"Marie Kirstine Jensdatter dies in Åsted",who:["mkj","sille"],rep:true},
+ {d:"1855-01-01",ds:"1855",pl:"nejsum",t:"Jacob, son of Thomas and Sille Maria, born",who:["t_jacob","thomas","sille"],rep:true},
+ {d:"1859-01-01",ds:"1859",pl:"nejsum",t:"Jørgen, son of Thomas and Sille Maria, born",who:["t_jorgen","thomas","sille"],rep:true},
+ {d:"1861-02-28",ds:"28 Feb 1861",pl:"skaeve",t:"Ane Thomasdatter dies, aged about 74",who:["ane","thomas"],rep:true},
+ {d:"1862-01-01",ds:"c. 1862",pl:"stenum",t:"Karen Marie, daughter of Morten Christiansen, born in Stenum parish",who:["karen_m","morten","kirstine_jb"]},
+ {d:"1865-01-04",ds:"4 Jan 1865",pl:"stenum",t:"Christen, son of Morten Christiansen and Kirstine Johanne Bertelsdatter, born at Stenum Mark",who:["christen_m","morten","kirstine_jb","karen_m"]},
+ {d:"1871-08-18",ds:"18 Aug 1871",pl:"tylstrup",t:"Christian Johan, son of Morten Christiansen and Mette Cathrine Poulsdatter, born at Brandskov",who:["cj","morten","mette_c","christian_m"]},
+ {d:"1872-10-31",ds:"31 Oct 1872",pl:null,t:"Johanne Nielsen born in Hune parish",who:["johanne_n"]},
+ {d:"1875-12-09",ds:"9 Dec 1875",pl:"tylstrup",t:"Johanne Kristine, daughter of Morten and Mette Cathrine, born at Rødbakke; baptised at home on 22 December",who:["kristine","morten","mette_c","cj"]},
+ {d:"1875-12-12",ds:"12 Dec 1875",pl:null,t:"Niels Christian (Nils) Christensen born in Vrensted parish",who:["nils"]},
+ {d:"1876-01-04",ds:"4 Jan 1876",pl:"tylstrup",t:"Mette Cathrine Poulsdatter dies at Rødbakke, 26 days after her daughter's birth",who:["mette_c","kristine","morten","cj"]},
+ {d:"1876-04-17",ds:"17 Apr 1876",pl:"tylstrup",t:"Johanne Kristine presented in Ajstrup church",who:["kristine"]},
+ {d:"1876-04-22",ds:"22 Apr 1876",pl:"vantmose",t:"Jens Kristian Severin, son of Christen Thomsen and Petrea, born",who:["jks","christen","petrea"]},
+ {d:"1876-06-01",ds:"1876",pl:"tylstrup",t:"Morten Christiansen, a widower of nearly fifty, marries Ane Marie Pedersen",who:["morten","ane_mp","kristine","cj","karen_m","christen_m"]},
+ {d:"1880-02-01",ds:"1 Feb 1880",pl:"tylstrup",t:"Census at Rødbakke, Tylstrup Hede: Morten, 52, Ane Marie, 39, Karen Marie, Christen, Christian Johan and Johanne Kristine",who:["morten","ane_mp","karen_m","christen_m","cj","kristine"]},
+ {d:"1898-12-05",ds:"5 Dec 1898",pl:"skaeve",t:"Thomas Simonsen dies, aged 83",who:["thomas","sille","christen","jks"],rep:true},
+ {d:"1900-12-03",ds:"3 Dec 1900",pl:null,t:"Christian Jørgen, first son of Nils Christensen and Johanne Nielsen, born in Hune parish",who:["n_christian","nils","johanne_n"]},
+ {d:"1902-02-28",ds:"28 Feb 1902",pl:"jerslev",t:"Jens Kristian Severin Thomsen marries Johanne Kristine Christiansen",who:["jks","kristine","christen","petrea"],rep:true},
+ {d:"1902-09-04",ds:"4 Sep 1902",pl:null,t:"Laurits Alfred, son of Nils and Johanne, born on Vrensted østre Hede",who:["n_laurits","nils","johanne_n"]},
+ {d:"1903-02-15",ds:"15 Feb 1903",pl:"klaestrup",t:"Jens Kristian Marinus, son of Severin and Johanne Kristine, born",who:["jkm","jks","kristine"]},
+ {d:"1904-02-16",ds:"16 Feb 1904",pl:null,t:"Henry Georg, son of Nils and Johanne, born on Vrensted østre Hede",who:["n_henry","nils","johanne_n"]},
+ {d:"1905-01-31",ds:"31 Jan 1905",pl:"klaestrup",t:"Nielsine Petrea, daughter of Severin and Johanne Kristine, born",who:["nielsine","jks","kristine","jkm"],rep:true},
+ {d:"1906-01-06",ds:"6 Jan 1906",pl:null,t:"Magnus, son of Nils and Johanne, born on Vrensted østre Hede",who:["n_magnus","nils","johanne_n"]},
+ {d:"1906-04-06",ds:"6 Apr 1906",pl:"klaestrup",t:"Marie Bøgh born; she dies on 30 May",who:["b_marie","jks","kristine"],rep:true},
+ {d:"1907-04-08",ds:"8 Apr 1907",pl:"aasendrup",t:"Laura Marie Elisabet, daughter of Nils and Johanne, born at Aasendrup",who:["n_laura","nils","johanne_n"]},
+ {d:"1908-07-26",ds:"26 Jul 1908",pl:"klaestrup",t:"Kristian Peter Bøgh born; he dies on 13 August",who:["b_kristian","jks","kristine"],rep:true},
+ {d:"1909-05-15",ds:"15 May 1909",pl:"aasendrup",t:"Maren Kirstine, daughter of Nils and Johanne, born at Aasendrup; baptised 12 September",who:["mk","nils","johanne_n"]},
+ {d:"1910-03-03",ds:"3 Mar 1910",pl:"klaestrup",t:"Morten Kristian Bøgh born, named for his mother's father; he dies on 2 September",who:["b_morten","jks","kristine"],rep:true},
+ {d:"1910-07-29",ds:"29 Jul 1910",pl:"aasendrup",t:"Magny Henriette Georgia, daughter of Nils and Johanne, born at Aasendrup",who:["n_magny","nils","johanne_n"]},
+ {d:"1911-02-01",ds:"1 Feb 1911",pl:"aasendrup",t:"Census at Aasendrup: Nils, Johanne, Christian Jørgen, Laurits Alfred, Laura, Maren Kirstine and Magny",who:["nils","johanne_n","n_christian","n_laurits","n_laura","mk","n_magny"]},
+ {d:"1912-09-04",ds:"4 Sep 1912",pl:"klaestrup",t:"Christa Bøgh born",who:["b_christa","jks","kristine"],rep:true},
+ {d:"1919-05-10",ds:"10 May 1919",pl:"klaestrup",t:"Martin Bøgh born; he dies the next March",who:["b_martin","jks","kristine"],rep:true},
+ {d:"1929-01-13",ds:"13 Jan 1929",pl:"stenum",t:"Jens Kristian Marinus Thomsen Bøgh marries Maren Kirstine Christensen",who:["jkm","mk","jks","kristine","nils","johanne_n"],rep:true},
+ {d:"1936-05-02",ds:"2 May 1936",pl:"stenum",t:"Nils Christensen dies at Stenum",who:["nils","mk"],rep:true},
+ {d:"1945-03-23",ds:"23 Mar 1945",pl:null,t:"Johanne Nielsen dies",who:["johanne_n","mk"],rep:true}
 ];
 
 /* ===================== HELPERS ===================== */
@@ -592,19 +809,26 @@ function buildTree(){
   t.push(`<div class="split pair"><div class="col left">${card("jorgen")}</div><div class="col right">${card("mette")}</div></div>`);
   t.push(`<div class="gen"><div class="stem short" style="margin-top:0"></div>${kids(["kirsten","pj"],"pj")}</div><div class="stem"></div>`);
   t.push(`<div class="gen">${couple("pj","inger")}${kids(["pj_jorgen","pj_christen","pj_mads","pj_anne","pj_mette","simon"],"simon")}</div><div class="stem"></div>`);
-  t.push(`<div class="gen">${couple("simon","ane")}
+  const fam=(label,inner)=>`<div class="fam"><div class="gnum">${label}</div>${inner}</div><div class="stem short"></div>`;
+  t.push(`<div class="gen">${fam("Ane's family, Knæverhede",couple("thomas_j","ane_j"))}${couple("simon","ane")}
      <div class="others">Earlier wives: <button data-id="mette_h">Mette Hansdatter</button> (m. 1810, d. 1812) and <button data-id="maren_l">Maren Larsdatter</button> (m. 1812, d. 1813)</div>
-     ${kids(["daughter1813","thomas","s_mette","s_christen","s_inger"],"thomas")}</div><div class="stem"></div>`);
-  t.push(`<div class="gen">${couple("thomas")}</div><div class="stem"></div>`);
+     ${kids(["daughter1813","thomas","s_mette","s_christen","s_jorgen","s_inger"],"thomas")}</div><div class="stem"></div>`);
+  t.push(`<div class="gen">${fam("Sille Maria's family, Åsted",couple("thomas_c","mkj"))}${couple("thomas","sille")}
+     ${kids(["t_simon","t_inger","christen","t_ane","t_jacob","t_jorgen"],"christen")}</div><div class="stem"></div>`);
   t.push(`<div class="gen">${couple("christen","petrea")}</div><div class="stem"></div>`);
-  t.push(`<div class="gen">${couple("jks","kristine")}<div class="others">Godson and foster son of <button data-id="old_bogh">Jens Kristian Pedersen Bøg</button>, “old Jens Bøgh” (1826–1914)</div></div><div class="stem"></div>`);
-  t.push(`<div class="gen">${couple("jkm")}<div class="others">Sister: <button data-id="nielsine">Nielsine Bøgh</button> (b. 1905)</div></div>`);
+  t.push(`<div class="gen">${fam("Johanne Kristine's family, Tylstrup Hede",`${couple("christian_m","mariane_p")}<div class="stem short"></div>${couple("morten","mette_c")}
+     <div class="others">Morten's other wives: <button data-id="kirstine_jb">Kirstine Johanne Bertelsdatter</button> (mother of Karen Marie and Christen) and <button data-id="ane_mp">Ane Marie Pedersen</button> (m. 1876)</div>
+     ${kids(["karen_m","christen_m","cj","kristine"],"kristine","Morten's children")}`)}${couple("jks","kristine")}
+     <div class="others">Godson and foster son of <button data-id="old_bogh">Jens Kristian Pedersen Bøg</button>, “old Jens Bøgh” (1826–1914)</div>
+     ${kids(["jkm","nielsine","b_marie","b_kristian","b_morten","b_christa","b_martin"],"jkm")}</div><div class="stem"></div>`);
+  t.push(`<div class="gen">${fam("Maren Kirstine's family, Aasendrup",`${couple("nils","johanne_n")}${kids(["n_christian","n_laurits","n_henry","n_magnus","n_laura","mk","n_magny"],"mk")}`)}${couple("jkm","mk")}
+     <div class="others">Son: Erling Bøgh (1930–2026)</div></div>`);
   $("#tree").innerHTML=t.join("");
 }
 
 /* ===================== DRAWER ===================== */
 let lastFocus=null;
-const ORDER=["old_peder","old_wife","peder","karen","mette1702","jorgen","mette","kirsten","pj","inger","pj_jorgen","pj_christen","pj_mads","pj_anne","pj_mette","simon","mette_h","maren_l","daughter1813","ane","thomas","s_mette","s_christen","s_inger","christen","petrea","old_bogh","jks","kristine","jkm","nielsine"];
+const ORDER=["old_peder","old_wife","peder","karen","mette1702","jorgen","mette","kirsten","pj","inger","pj_jorgen","pj_christen","pj_mads","pj_anne","pj_mette","thomas_j","ane_j","simon","mette_h","maren_l","daughter1813","ane","thomas","s_mette","s_christen","s_jorgen","s_inger","thomas_c","mkj","sille","t_simon","t_inger","christen","t_ane","t_jacob","t_jorgen","petrea","old_bogh","jks","christian_m","mariane_p","morten","kirstine_jb","mette_c","ane_mp","karen_m","christen_m","cj","kristine","jkm","nielsine","b_marie","b_kristian","b_morten","b_christa","b_martin","nils","johanne_n","n_christian","n_laurits","n_henry","n_magnus","n_laura","mk","n_magny"];
 const STATUS={verified:"Read from the record",probable:"Probable",reported:"Reported, not yet checked"};
 function relLinks(ids){return ids.map(i=>P[i]&&!P[i].unknown?`<button data-id="${i}">${esc(P[i].name)}</button>`:esc(P[i]?P[i].name:i)).join(", ");}
 function openPerson(id,push=true){
@@ -622,7 +846,7 @@ function openPerson(id,push=true){
   if(r.siblings) rel+=`<dt>Siblings</dt><dd>${relLinks(r.siblings)}</dd>`;
   if(r.children&&r.children.length) rel+=`<dt>Children</dt><dd>${relLinks(r.children)}</dd>`;
   if(id==="jks") rel+=`<dt>Foster father</dt><dd>${relLinks(["old_bogh"])}</dd>`;
-  if(id==="old_bogh") rel+=`<dt>Possible daughter</dt><dd>${relLinks(["petrea"])} (unproven)</dd><dt>Godson, foster son</dt><dd>${relLinks(["jks"])}</dd>`;
+  if(id==="old_bogh") rel+=`<dt>Godson, foster son</dt><dd>${relLinks(["jks"])}</dd>`;
   const ev=E.filter(e=>e.who.includes(id)).sort((a,b)=>a.d.localeCompare(b.d));
   const tl=ev.map(e=>`<li class="${e.who[0]===id?"self":""}"><span class="d">${esc(e.ds)}${e.rep?" · reported":""}${e.prob?" · probable":""}</span>${placeLink(esc(e.t))}${e.pl?` <span class="pl">· ${placeLink(esc(PLACES[e.pl].name))}</span>`:""}</li>`).join("");
   const i=ORDER.indexOf(id),prev=ORDER[i-1],next=ORDER[i+1];
