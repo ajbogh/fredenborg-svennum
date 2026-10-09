@@ -186,7 +186,7 @@ The researcher's Ancestry tree was exported and checked by script against the re
 - **Ane Thomasdatter's parents: Thomas Jacobsen (1754–1822) and Ane Jensdatter (1759–1838) of Knæverhede, Volstrup parish.** Corroborated: "Ane Jensdatter, gaardmandskone, Kraverbede" was godmother at Thomas Simonsen's baptism in 1814 — his grandmother. (The farm read here as "Kraverbede" is Knæverhede.)
 - **Above Thomas Jacobsen the Ancestry branch is unsourced and partly impossible** (Jakob Mortensen, Morten Mortensen, Hans Nielsen, Niels Olleson, and a Norwegian couple "Garatun" of Eidfjord b. 1600–1602, one "aged 111"). Not accepted.
 - Simon Pedersen's children (Ancestry, matching the censuses): Maren 19 Jul 1813 (mother Maren Larsdatter); with Ane Thomasdatter: Thomas 1814, Mette 18 Nov 1818, Christen 11 Feb 1821, Jørgen 19 Nov 1822 (d. before 1834), Inger 5 Aug 1825 (d. 21 Apr 1836). Marriages: Mette Hansdatter 2 Dec 1810; Maren Larsdatter 21 Nov 1812.
-- Severin's wife Johanne Kristine Kristiansen: b. 9 Dec 1875 Ajstrup, Kær herred; married 28 Feb 1902, Jerslev. Parents not yet in the tree.
+- Severin's wife **Johanne Kristine Christiansen**: b. **9 Dec 1875**, Rødbakke, Ajstrup Sogn, Kær herred (Ajstrup register, girls 1875 no. 33, image 26820742; home-baptised 22 Dec 1875, presented in church 17 Apr 1876); married 28 Feb 1902, Jerslev. **Parents: Gaardmand Morten Christiansen and Mette Cathrine Poulsen of Rødbakke.**
 - Children of Severin and Johanne Kristine: Marinus 15 Feb 1903; Nielsine Petrea 31 Jan 1905; Marie 6 Apr–30 May 1906; Kristian Peter 26 Jul–13 Aug 1908; Morten Kristian 3 Mar–2 Sep 1910; Christa 4 Sep 1912; Martin 10 May 1919–26 Mar 1920.
 
 **On the Christensen line** (pre-1880 people; joins the family in the 20th century)
