@@ -177,6 +177,32 @@ Ancestry and have not yet been checked. Items marked **[hypothesis]** are infere
 - **Owner of Sterup no. 2 in 1688** (margin, image 75699713): "Col: Lerche" (Colonel Lerche), reading probable. No. 3 next to it: "Fr. Margrete Rantzau". Catalogue search finds no Lerche estate rent books for 1688–1720 (only Lerchenborg, Zealand, from 1724, and a 1684 deed for Peder Lerche til Lerkenfeldt). Farm no. 2 was probably scattered privately held land with no surviving estate archive.
 - **CLOSED (researcher, Oct 2026):** the search for old Peder Pedersen's father and the no. 2 tenancy chain. Remaining offline lead only: Aalborghus amt land-tax lists (kontributionsregistre) c. 1705–10, Rentekammeret, not scanned.
 
+## The wider Danish tree (from Ancestry, Oct 2026) — to verify
+Imported from the researcher's Ancestry tree; nothing below is checked against originals yet. Only people born before 1880 are listed here; the full structure, including living relatives, is kept privately outside this repository.
+
+**Christensen line** (a second Danish ancestry joining the family in the 20th century):
+- Nils Christensen 1875–1936 & Johanne Marie Pedersdr 1873–1945
+- Christen Jørgen Christensen 1839–1933 & Christiane Nielsdatter 1840–1923
+- Christen Christensen (no dates) & Maren "Ugift" Christendatter 1814– ("ugift" = unmarried, a status word, not a name)
+- Christen Nielsen Andersen 1789– & Else Marie Jensdatter 1794–
+- Jens Nielsen 1756– & Else Clemmensdatter 1757–
+- Niels Jensen 1732–1792 & Else Pedersdatter 1723–1760
+- Jens Christensen "1638–1732" & Inger Madsdatter 1697–1732 (**suspect**: father 94 at the birth)
+- Neils Christian Christensen Bjerregaard 1798–1873 & Maren Christensdatter 1799–1873
+- Christen Bjerregaard 1759–1832 & Kirsten Kjersten Christensen 1764–1835
+- Niels Pedersen Bjerregaard 1717–1787 & Ingeborg Pedersen 1722–1799
+- Peder Nielsen Skræder 1690– & Anne Jensdatter 1692–1769
+- Christen Jensen 1723–1782 & Marie Maren Christensdatter 1739–1811
+- Jens "Ladeforged" 1710–1769 (**suspect**: 13 at his son's birth; ladefoged is an occupation)
+- Christen Pedersen (no dates), father of Marie Maren
+- Christen Pedersen Iversen 1764–1839 & Karen Christensen 1771–1817
+
+**Pedersdr line:** Peder Kristian Pedersen Kristinsen 1831–1899 & Mette Marie Larsen; his parents Kristen Pedersen & Johanne Marie Krogh (no dates).
+
+**Other flags:** Maren Nielsdatter 1755–1866 (age 111); a "Maren Christensen 1815–1852" attached as a child of the 1839/1840 couple (born before them); several Ancestry-suggested parents fail the patronymic or age test (see private notes).
+
+**Bøgh line additions (reported):** children of Jens K S Thomsen Bøgh & Johanne Kristine Kristiansen also include Marie 1906–1906, Kristian P 1908–1908, Morten K 1910–1910, Christa 1912–, Martin 1919–1920.
+
 ## Image references
 - Jerslev herreds tingbøger 1631–1688, Brejl extracts: brejl.dk (Jerslev herred, parts 1–2).
 - Jerslev kirkebog 1684–: Danish Family Search folder `ch/359/133720/`, images 14415760–14416000. Baptisms c. 14415784–14415880 (1693–1707 at 14415784–14415800: 1703 Sterup entries 14415795 right page, 1705 Mette 14415798 left page; 1727–33 at 14415864–871); marriages 14415895–14415915 (1690–1780; 1725–29 at 14415903); burials 14415940–14415979 (1693–1707 at 14415944–951, read in full; 1725–34 at 14415960–962; 1738–39 at 14415964); baptisms 1780s–90s 14415980–14416000.
