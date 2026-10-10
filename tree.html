@@ -64,12 +64,21 @@ a{color:var(--path)}
 .tv-port.drag{cursor:grabbing}
 .tv-layer{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
 .tv-lines{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
-.tv-tools{position:absolute;z-index:3;top:8px;left:8px;right:8px;display:flex;flex-wrap:wrap;gap:6px;pointer-events:none}
+.tv-tools{position:absolute;z-index:3;top:8px;left:8px;right:112px;display:flex;flex-wrap:wrap;gap:6px;pointer-events:none}
 .tv-tools>*{pointer-events:auto}
 .tv-tools button,.tv-tools select{appearance:none;font:600 13px var(--sans);color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:5px 10px;min-width:34px;cursor:pointer;box-shadow:var(--shadow)}
 .tv-tools select{max-width:min(60vw,260px);font-weight:500}
 .tv-tools button:focus-visible,.tv-tools select:focus-visible{outline:3px solid var(--path);outline-offset:1px}
 .tv-hint{position:absolute;z-index:3;bottom:6px;right:10px;font:11px var(--mono);color:var(--muted);background:var(--surface2);padding:1px 6px;border-radius:4px;pointer-events:none}
+.tv-full{position:absolute;z-index:4;top:8px;right:8px;display:inline-flex;align-items:center;gap:6px;appearance:none;font:600 13px var(--sans);color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:5px 10px;cursor:pointer;box-shadow:var(--shadow)}
+.tv-full svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tv-full .co,.tv.full .tv-full .ex{display:none}.tv.full .tv-full .co{display:inline}
+.tv-full:focus-visible{outline:3px solid var(--path);outline-offset:1px}
+.tv.full{position:fixed;inset:0;z-index:15;margin:0;border:0;border-radius:0}
+.tv.full .tv-port{height:100vh;height:100dvh}
+.tv.full .tv-tools,.tv.full .tv-full{top:calc(8px + env(safe-area-inset-top,0px))}
+.tv.full .tv-hint{bottom:calc(6px + env(safe-area-inset-bottom,0px))}
+html.tv-lock,html.tv-lock body{overflow:hidden}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .blk{position:absolute;display:flex;flex-direction:column;align-items:center}
 .blk .couple{flex-wrap:nowrap}
@@ -198,7 +207,7 @@ a{color:var(--path)}
 
   <section class="card" aria-labelledby="tree-h">
     <h2 id="tree-h">Family tree</h2>
-    <p class="sub">The oldest generation is at the top. Drag to move around, and pinch or use the buttons to zoom. Each card opens a biography with every birth, marriage and death that touched that person. A small dot marks the direct line. Brothers and sisters appear as chips under their parents.</p>
+    <p class="sub">The oldest generation is at the top. Drag to move around, and scroll, pinch or use the buttons to zoom. Expand fills the screen. Each card opens a biography with every birth, marriage and death that touched that person. A small dot marks the direct line. Brothers and sisters appear as chips under their parents.</p>
     <div class="key"><span><i class="dot kv"></i>Read from the original record</span><span><i class="dot kp"></i>Probable, from strong but indirect evidence</span><span><i class="dot kr"></i>Reported in the family record, not yet checked</span><span><i class="ln"></i>Father-to-son Bøgh line</span><span><i class="ln lm"></i>The mothers' lines</span></div>
     <div class="tv" id="tv">
       <div class="tv-tools" role="toolbar" aria-label="Tree view">
@@ -206,7 +215,8 @@ a{color:var(--path)}
         <label class="tv-find"><span class="vh">Centre on</span><select id="tv-find"><option value="">Centre on…</option></select></label>
       </div>
       <div class="tv-port" id="tv-port"><div class="tv-layer" id="tree"><svg class="tv-lines" id="tv-lines" aria-hidden="true"></svg></div></div>
-      <div class="tv-hint">Drag to move · pinch or Ctrl + scroll to zoom</div>
+      <button type="button" class="tv-full" id="tv-full" aria-pressed="false" aria-label="Expand the tree to full screen"><svg viewBox="0 0 16 16" aria-hidden="true"><path class="ex" d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4"/><path class="co" d="M6 2v4H2M14 6h-4V2M10 14v-4h4M2 10h4v4"/></svg><span>Expand</span></button>
+      <div class="tv-hint">Drag to move · scroll or pinch to zoom</div>
     </div>
   </section>
 
@@ -921,6 +931,15 @@ function tvCentre(id,k){const card=$(`#tree .p[data-id="${id}"]`); if(!card) ret
   if(k) TV.k=k; TV.x=port.clientWidth/2-x*TV.k; TV.y=port.clientHeight/2-y*TV.k; tvClamp();
   $("#tree").style.transition="transform .35s ease"; tvApply(); setTimeout(()=>$("#tree").style.transition="",400);
   card.classList.add("flash"); setTimeout(()=>card.classList.remove("flash"),1600);}
+function tvFull(on){
+  const tv=$("#tv"),port=$("#tv-port"),b=$("#tv-full");
+  if(on===tv.classList.contains("full")) return;
+  const cx=(port.clientWidth/2-TV.x)/TV.k, cy=(port.clientHeight/2-TV.y)/TV.k;   // keep the same spot in the middle
+  tv.classList.toggle("full",on); document.documentElement.classList.toggle("tv-lock",on);
+  b.setAttribute("aria-pressed",on); b.setAttribute("aria-label",on?"Return the tree to the page":"Expand the tree to full screen"); b.querySelector("span").textContent=on?"Contract":"Expand";
+  TV.x=port.clientWidth/2-cx*TV.k; TV.y=port.clientHeight/2-cy*TV.k; tvClamp(); tvApply();
+  if(!on) tv.scrollIntoView({block:"nearest"});
+}
 let tvReady=false;
 function tvInit(){
   const port=$("#tv-port");
@@ -931,7 +950,8 @@ function tvInit(){
   $("#tv-in").addEventListener("click",()=>tvZoom(1.25)); $("#tv-out").addEventListener("click",()=>tvZoom(1/1.25));
   $("#tv-fit").addEventListener("click",tvFit);
   $("#tv-find").addEventListener("change",e=>{if(e.target.value)tvCentre(e.target.value,Math.max(TV.k,.85)); e.target.selectedIndex=0;});
-  port.addEventListener("wheel",e=>{if(!(e.ctrlKey||e.metaKey))return; e.preventDefault(); tvZoom(Math.exp(-e.deltaY*.0025),e.clientX,e.clientY);},{passive:false});
+  port.addEventListener("wheel",e=>{e.preventDefault(); const dy=e.deltaY*(e.deltaMode===1?16:e.deltaMode===2?400:1); tvZoom(Math.exp(-Math.max(-120,Math.min(120,dy))*(e.ctrlKey?.01:.0025)),e.clientX,e.clientY);},{passive:false});
+  $("#tv-full").addEventListener("click",()=>tvFull(!$("#tv").classList.contains("full")));
   const pts=new Map(); let moved=false,d0=0,k0=1,px=0,py=0,sx=0,sy=0;
   port.addEventListener("pointerdown",e=>{if(e.button>0)return; pts.set(e.pointerId,{x:e.clientX,y:e.clientY}); px=sx=e.clientX; py=sy=e.clientY; if(pts.size===1)moved=false;
     if(pts.size===2){const [a,b]=[...pts.values()]; d0=Math.hypot(a.x-b.x,a.y-b.y); k0=TV.k; moved=true; [...pts.keys()].forEach(i=>{try{port.setPointerCapture(i)}catch(_){}});}});
@@ -1109,7 +1129,7 @@ $("#scrim").addEventListener("click",()=>closeDrawer());
 $("#d-close").addEventListener("click",()=>closeDrawer());
 document.addEventListener("keydown",e=>{
   if($("#lb").classList.contains("on")){ if(e.key==="Escape") closeLB(); else if(e.key==="ArrowLeft"&&LB.set.length>1) lbShow(LB.i-1); else if(e.key==="ArrowRight"&&LB.set.length>1) lbShow(LB.i+1); else if(e.key==="+"||e.key==="=") lbZoom(1.4); else if(e.key==="-") lbZoom(1/1.4); if(e.key==="Tab"){e.preventDefault();$("#lb-x").focus();} return; }
-  if(e.key==="Escape"){ if($("#drawer").classList.contains("on")) closeDrawer(); else closePop(); }
+  if(e.key==="Escape"){ if($("#drawer").classList.contains("on")) closeDrawer(); else if($("#tv").classList.contains("full")) tvFull(false); else closePop(); }
   if(e.key==="Tab"&&$("#drawer").classList.contains("on")){
     const f=[...$("#drawer").querySelectorAll("button")].filter(b=>b.offsetParent); if(!f.length) return;
     const a=f[0],z=f[f.length-1];
