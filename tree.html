@@ -58,6 +58,26 @@ a{color:var(--path)}
 .others{font-size:12.5px;color:var(--muted);margin-top:6px;text-align:center}
 .others button{appearance:none;font:inherit;color:var(--path);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
 .gnum{font:11px var(--mono);color:var(--muted);letter-spacing:.06em;margin-bottom:6px;text-transform:uppercase}
+.ln{display:inline-block;width:20px;height:0;border-top:3px solid var(--route);vertical-align:middle}.ln.lm{border-top-color:var(--mat)}
+.tv{position:relative;margin-top:12px;border:1px solid var(--rule);border-radius:8px;background:var(--surface2);overflow:hidden}
+.tv-port{position:relative;height:clamp(460px,72vh,820px);overflow:hidden;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+.tv-port.drag{cursor:grabbing}
+.tv-layer{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
+.tv-lines{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
+.tv-tools{position:absolute;z-index:3;top:8px;left:8px;right:8px;display:flex;flex-wrap:wrap;gap:6px;pointer-events:none}
+.tv-tools>*{pointer-events:auto}
+.tv-tools button,.tv-tools select{appearance:none;font:600 13px var(--sans);color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:5px 10px;min-width:34px;cursor:pointer;box-shadow:var(--shadow)}
+.tv-tools select{max-width:min(60vw,260px);font-weight:500}
+.tv-tools button:focus-visible,.tv-tools select:focus-visible{outline:3px solid var(--path);outline-offset:1px}
+.tv-hint{position:absolute;z-index:3;bottom:6px;right:10px;font:11px var(--mono);color:var(--muted);background:var(--surface2);padding:1px 6px;border-radius:4px;pointer-events:none}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.blk{position:absolute;display:flex;flex-direction:column;align-items:center}
+.blk .couple{flex-wrap:nowrap}
+.blk .p{width:200px}
+.blk .kids{max-width:100%;margin-top:8px}
+.blk .others{max-width:100%;padding:0 4px}
+.blk .marr{width:28px}
+.p.flash{outline:3px solid var(--path);outline-offset:3px}
 .fam{border:1px dashed var(--rule);border-radius:8px;padding:10px clamp(6px,2vw,14px) 12px;display:flex;flex-direction:column;align-items:center;max-width:640px}
 .fam .p{width:clamp(132px,20vw,196px);padding:6px 10px 7px;box-shadow:none}
 .fam .p .nm{font-size:clamp(13px,1.5vw,15px)}
@@ -67,9 +87,9 @@ a{color:var(--path)}
   .split .col.left{order:2}
   .split.pair::before{display:none}.stem2{grid-template-columns:1fr}.stem2 i:first-child{display:none}
   .split.pair .col.left{order:0}
-  .couple{flex-direction:column;align-items:center}
-  .marr{width:2px;height:14px}
-  .p{width:min(88vw,320px)}
+  .couple:not(.blk .couple){flex-direction:column;align-items:center}
+  .marr:not(.blk .marr){width:2px;height:14px}
+  .p:not(.blk .p){width:min(88vw,320px)}
   .fam{width:100%}.fam .p{width:min(80vw,300px)}
 }
 
@@ -178,9 +198,16 @@ a{color:var(--path)}
 
   <section class="card" aria-labelledby="tree-h">
     <h2 id="tree-h">Family tree</h2>
-    <p class="sub">The oldest generation is at the top. Each card opens a biography with every birth, marriage and death that touched that person. A small dot marks the direct line. Brothers and sisters appear as chips under their parents.</p>
-    <div class="key"><span><i class="dot kv"></i>Read from the original record</span><span><i class="dot kp"></i>Probable, from strong but indirect evidence</span><span><i class="dot kr"></i>Reported in the family record, not yet checked</span></div>
-    <div class="tree" id="tree"></div>
+    <p class="sub">The oldest generation is at the top. Drag to move around, and pinch or use the buttons to zoom. Each card opens a biography with every birth, marriage and death that touched that person. A small dot marks the direct line. Brothers and sisters appear as chips under their parents.</p>
+    <div class="key"><span><i class="dot kv"></i>Read from the original record</span><span><i class="dot kp"></i>Probable, from strong but indirect evidence</span><span><i class="dot kr"></i>Reported in the family record, not yet checked</span><span><i class="ln"></i>Father-to-son Bøgh line</span><span><i class="ln lm"></i>The mothers' lines</span></div>
+    <div class="tv" id="tv">
+      <div class="tv-tools" role="toolbar" aria-label="Tree view">
+        <button type="button" id="tv-in" aria-label="Zoom in">+</button><button type="button" id="tv-out" aria-label="Zoom out">−</button><button type="button" id="tv-fit">Fit all</button>
+        <label class="tv-find"><span class="vh">Centre on</span><select id="tv-find"><option value="">Centre on…</option></select></label>
+      </div>
+      <div class="tv-port" id="tv-port"><div class="tv-layer" id="tree"><svg class="tv-lines" id="tv-lines" aria-hidden="true"></svg></div></div>
+      <div class="tv-hint">Drag to move · pinch or Ctrl + scroll to zoom</div>
+    </div>
   </section>
 
   <section class="card" aria-labelledby="map-h">
@@ -806,32 +833,117 @@ function kids(list,lineId,label="Children"){
   return `<div class="kids"><span class="kidlabel">${label}</span>${list.map(k=>{const p=P[k];return `<button class="kid${k===lineId?" line":""}" data-id="${k}">${esc(p.name.split(" ")[0]==="Daughter"?"Daughter":p.name.split(" (")[0].split(" ").slice(0,p.name.startsWith("Anne")||p.name.startsWith("Mette Marie")?2:1).join(" "))}<i>${esc(short(p))}</i></button>`}).join("")}</div>`;
 }
 
-/* ===================== TREE ===================== */
+/* ===================== TREE (zoomable canvas) ===================== */
+// The Bøgh surname line, drawn in blue; every other link is a mother's line, drawn in red.
+const SPINE=new Set(["jkm","jks","christen","thomas","simon","pj","jorgen","jorgen_father"]);
+const PAR_OVERRIDE={jorgen:["jorgen_father"]};
+const NOTES={
+  simon:`Earlier wives: <button data-id="mette_h">Mette Hansdatter</button> (m. 1810, d. 1812) and <button data-id="maren_l">Maren Larsdatter</button> (m. 1812, d. 1813), mother of <button data-id="daughter1813">Maren</button>`,
+  morten:`Other wives: <button data-id="kirstine_jb">Kirstine Johanne Bertelsdatter</button>, mother of <button data-id="karen_m">Karen Marie</button> and <button data-id="christen_m">Christen</button>; <button data-id="ane_mp">Ane Marie Pedersen</button> (m. 1876)`,
+  jks:`Godson and foster son of <button data-id="old_bogh">Jens Kristian Pedersen Bøg</button>, “old Jens Bøgh” (1826–1914)`,
+  jkm:`Son: Erling Bøgh (1930–2026)`};
+const CW=200,MG=28,SG=48,VG=74;
+const TV={x:0,y:0,k:1,w:0,h:0,blocks:[]};
+function parentsOf(id){const r=PAR_OVERRIDE[id]||(P[id]&&P[id].rel&&P[id].rel.parents)||[];return r.filter(i=>P[i]);}
+function makeNode(h,w,depth){
+  const n={h,w,depth,bw:w?CW*2+MG:CW,up:[]};
+  const hp=parentsOf(h), wp=w?parentsOf(w):[];
+  if(hp.length) n.hp=makeNode(hp[0],hp[1],depth+1);
+  if(wp.length) n.wp=makeNode(wp[0],wp[1],depth+1);
+  return n;
+}
+// Tidy layout: each couple sits under its parents' couples; subtrees are packed by per-generation contours.
+function lay(n){
+  const kids=[n.hp,n.wp].filter(Boolean); let cont=[];
+  kids.forEach((c,i)=>{const cc=lay(c);
+    if(i===0){c.off=0;cont=cc;return;}
+    let off=-Infinity;for(let d=0;d<Math.min(cont.length,cc.length);d++)off=Math.max(off,cont[d][1]-cc[d][0]+SG);
+    c.off=off;cc.forEach((r,d)=>{const s=[r[0]+off,r[1]+off];cont[d]=cont[d]?[Math.min(cont[d][0],s[0]),Math.max(cont[d][1],s[1])]:s;});});
+  let L=0;
+  if(n.hp&&n.wp) L=(n.hp.off+n.hp.bw/2+n.wp.off+n.wp.bw/2)/2-n.bw/2;
+  else if(n.hp) L=n.hp.off+n.hp.bw/2-CW/2;
+  else if(n.wp) L=n.wp.off+n.wp.bw/2-(n.bw-CW/2);
+  kids.forEach(c=>c.off-=L);
+  return [[0,n.bw],...cont.map(r=>[r[0]-L,r[1]-L])];
+}
+function place(n,x,out){n.x=x;out.push(n);[n.hp,n.wp].forEach(c=>c&&place(c,x+c.off,out));}
+function kidsOf(n){
+  const src=n.w?P[n.w]:P[n.h]; let list=(src.rel&&src.rel.children)||[];
+  if(n.h==="morten") list=["cj","kristine"];
+  return list.filter(k=>P[k]);
+}
 function buildTree(){
-  const t=[];
-  t.push(`<div class="split">
-    <div class="col left"><div class="gnum">Jørgen's family</div>${card("jorgen_father")}</div>
-    <div class="col right"><div class="gnum">Mette's family</div>${couple("old_peder","old_wife")}<div class="stem short"></div>${couple("peder","karen")}${kids(["mette1702","mette"],"mette")}</div>
-  </div>`);
-  t.push(`<div class="stem2"><i></i><i></i></div>`);
-  t.push(`<div class="split pair"><div class="col left">${card("jorgen")}</div><div class="col right">${card("mette")}</div></div>`);
-  t.push(`<div class="gen"><div class="stem short" style="margin-top:0"></div>${kids(["kirsten","pj"],"pj")}</div><div class="stem"></div>`);
-  t.push(`<div class="gen">${couple("pj","inger")}${kids(["pj_jorgen","pj_christen","pj_mads","pj_anne","pj_mette","simon"],"simon")}</div><div class="stem"></div>`);
-  const fam=(label,inner)=>`<div class="fam"><div class="gnum">${label}</div>${inner}</div><div class="stem short"></div>`;
-  t.push(`<div class="gen">${fam("Ane's family, Knæverhede",couple("thomas_j","ane_j"))}${couple("simon","ane")}
-     <div class="others">Earlier wives: <button data-id="mette_h">Mette Hansdatter</button> (m. 1810, d. 1812) and <button data-id="maren_l">Maren Larsdatter</button> (m. 1812, d. 1813)</div>
-     ${kids(["daughter1813","thomas","s_mette","s_christen","s_jorgen","s_inger"],"thomas")}</div><div class="stem"></div>`);
-  t.push(`<div class="gen">${fam("Sille Maria's family, Åsted",couple("thomas_c","mkj"))}${couple("thomas","sille")}
-     ${kids(["t_simon","t_inger","christen","t_ane","t_jacob","t_jorgen"],"christen")}</div><div class="stem"></div>`);
-  t.push(`<div class="gen">${couple("christen","petrea")}</div><div class="stem"></div>`);
-  t.push(`<div class="gen">${fam("Johanne Kristine's family, Tylstrup Hede",`${couple("christian_m","mariane_p")}<div class="stem short"></div>${couple("morten","mette_c")}
-     <div class="others">Morten's other wives: <button data-id="kirstine_jb">Kirstine Johanne Bertelsdatter</button> (mother of Karen Marie and Christen) and <button data-id="ane_mp">Ane Marie Pedersen</button> (m. 1876)</div>
-     ${kids(["karen_m","christen_m","cj","kristine"],"kristine","Morten's children")}`)}${couple("jks","kristine")}
-     <div class="others">Godson and foster son of <button data-id="old_bogh">Jens Kristian Pedersen Bøg</button>, “old Jens Bøgh” (1826–1914)</div>
-     ${kids(["jkm","nielsine","b_marie","b_kristian","b_morten","b_christa","b_martin"],"jkm")}</div><div class="stem"></div>`);
-  t.push(`<div class="gen">${fam("Maren Kirstine's family, Aasendrup",`${couple("nils","johanne_n")}${kids(["n_christian","n_laurits","n_henry","n_magnus","n_laura","mk","n_magny"],"mk")}`)}${couple("jkm","mk")}
-     <div class="others">Son: Erling Bøgh (1930–2026)</div></div>`);
-  $("#tree").innerHTML=t.join("");
+  const root=makeNode("jkm","mk",0); lay(root); const all=[]; place(root,0,all);
+  const line={}; // which child of each couple continues the line
+  all.forEach(n=>{if(n.hp)n.hp.child=n.h; if(n.wp)n.wp.child=n.w;});
+  const layer=$("#tree");
+  layer.querySelectorAll(".blk").forEach(e=>e.remove());
+  all.forEach(n=>{
+    const el=document.createElement("div"); el.className="blk"; el.style.width=n.bw+"px";
+    const ks=kidsOf(n), note=NOTES[n.h]||"";
+    el.innerHTML=couple(n.h,n.w)+(note?`<div class="others">${note}</div>`:"")+(ks.length>1||(ks.length&&ks[0]!==n.child)?kids(ks,n.child):"");
+    layer.appendChild(el); n.el=el;
+  });
+  // rows: oldest at the top, each row as tall as its tallest block
+  const maxD=Math.max(...all.map(n=>n.depth)), rowH=[];
+  all.forEach(n=>{n.hgt=n.el.offsetHeight; rowH[n.depth]=Math.max(rowH[n.depth]||0,n.hgt);});
+  const rowY=[]; let y=60; for(let d=maxD;d>=0;d--){rowY[d]=y; y+=rowH[d]+VG;}
+  const minX=Math.min(...all.map(n=>n.x)), pad=40;
+  all.forEach(n=>{n.x+=pad-minX; n.y=rowY[n.depth]; n.el.style.left=n.x+"px"; n.el.style.top=n.y+"px";});
+  TV.w=Math.max(...all.map(n=>n.x+n.bw))+pad; TV.h=y-VG+pad;
+  layer.style.width=TV.w+"px"; layer.style.height=TV.h+"px";
+  // connectors: from the bottom of the parents' block to the top of the child's card
+  const svg=$("#tv-lines"); svg.setAttribute("width",TV.w); svg.setAttribute("height",TV.h);
+  let g="";
+  all.forEach(n=>[["hp",n.h,0],["wp",n.w,n.bw-CW]].forEach(([k,id,cx])=>{const c=n[k]; if(!c) return;
+    const x1=c.x+c.bw/2, y1=c.y+c.hgt+4, x2=n.x+cx+CW/2, y2=n.y-2, my=y2-VG/2;
+    const col=SPINE.has(id)?"var(--route)":"var(--mat)";
+    g+=`<path d="M${x1},${y1} V${my} H${x2} V${y2}" fill="none" stroke="${col}" stroke-width="2.5" stroke-linejoin="round"/>`;}));
+  svg.innerHTML=g;
+  TV.blocks=all;
+  // "centre on" list, oldest first
+  const sel=$("#tv-find"); sel.length=1;
+  all.slice().sort((a,b)=>b.depth-a.depth||a.x-b.x).forEach(n=>[n.h,n.w].forEach(id=>{if(id&&!P[id].unknown){const o=document.createElement("option");o.value=id;o.textContent=`${P[id].name} (${yrs(P[id])})`;sel.appendChild(o);}}));
+  tvInit();
+}
+function tvApply(){$("#tree").style.transform=`translate(${TV.x}px,${TV.y}px) scale(${TV.k})`;}
+function tvClamp(){const port=$("#tv-port"),W=port.clientWidth,H=port.clientHeight,m=80;
+  TV.x=Math.min(W-m,Math.max(m-TV.w*TV.k,TV.x)); TV.y=Math.min(H-m,Math.max(m-TV.h*TV.k,TV.y));}
+function tvZoom(f,cx,cy){const port=$("#tv-port"),r=port.getBoundingClientRect();
+  if(cx==null){cx=r.left+r.width/2;cy=r.top+r.height/2;}
+  const k=Math.min(1.6,Math.max(.2,TV.k*f)),px=cx-r.left,py=cy-r.top;
+  TV.x=px-(px-TV.x)*k/TV.k; TV.y=py-(py-TV.y)*k/TV.k; TV.k=k; tvClamp(); tvApply();}
+function tvFit(){const port=$("#tv-port"),W=port.clientWidth,H=port.clientHeight-30;
+  TV.k=Math.min(1,W/TV.w,H/TV.h); TV.x=(W-TV.w*TV.k)/2; TV.y=30+(H-TV.h*TV.k)/2; tvApply();}
+function tvCentre(id,k){const card=$(`#tree .p[data-id="${id}"]`); if(!card) return;
+  const port=$("#tv-port"),blk=card.closest(".blk");
+  const x=blk.offsetLeft+card.offsetLeft+card.offsetWidth/2, y=blk.offsetTop+card.offsetTop+card.offsetHeight/2;
+  if(k) TV.k=k; TV.x=port.clientWidth/2-x*TV.k; TV.y=port.clientHeight/2-y*TV.k; tvClamp();
+  $("#tree").style.transition="transform .35s ease"; tvApply(); setTimeout(()=>$("#tree").style.transition="",400);
+  card.classList.add("flash"); setTimeout(()=>card.classList.remove("flash"),1600);}
+let tvReady=false;
+function tvInit(){
+  const port=$("#tv-port");
+  // open on Marinus and Maren Kirstine, with their parents in view
+  const W=port.clientWidth; TV.k=W<640?.62:.85;
+  const r=TV.blocks[0]; TV.x=W/2-(r.x+r.bw/2)*TV.k; TV.y=port.clientHeight-(r.y+r.hgt+50)*TV.k; tvClamp(); tvApply();
+  if(tvReady) return; tvReady=true;
+  $("#tv-in").addEventListener("click",()=>tvZoom(1.25)); $("#tv-out").addEventListener("click",()=>tvZoom(1/1.25));
+  $("#tv-fit").addEventListener("click",tvFit);
+  $("#tv-find").addEventListener("change",e=>{if(e.target.value)tvCentre(e.target.value,Math.max(TV.k,.85)); e.target.selectedIndex=0;});
+  port.addEventListener("wheel",e=>{if(!(e.ctrlKey||e.metaKey))return; e.preventDefault(); tvZoom(Math.exp(-e.deltaY*.0025),e.clientX,e.clientY);},{passive:false});
+  const pts=new Map(); let moved=false,d0=0,k0=1,px=0,py=0,sx=0,sy=0;
+  port.addEventListener("pointerdown",e=>{if(e.button>0)return; pts.set(e.pointerId,{x:e.clientX,y:e.clientY}); px=sx=e.clientX; py=sy=e.clientY; if(pts.size===1)moved=false;
+    if(pts.size===2){const [a,b]=[...pts.values()]; d0=Math.hypot(a.x-b.x,a.y-b.y); k0=TV.k; moved=true; [...pts.keys()].forEach(i=>{try{port.setPointerCapture(i)}catch(_){}});}});
+  port.addEventListener("pointermove",e=>{if(!pts.has(e.pointerId))return; pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+    if(pts.size===2){const [a,b]=[...pts.values()]; const d=Math.hypot(a.x-b.x,a.y-b.y); tvZoom((k0*d/d0)/TV.k,(a.x+b.x)/2,(a.y+b.y)/2); return;}
+    if(!moved&&Math.hypot(e.clientX-sx,e.clientY-sy)>6){moved=true; port.classList.add("drag"); try{port.setPointerCapture(e.pointerId)}catch(_){}}
+    if(moved){TV.x+=e.clientX-px; TV.y+=e.clientY-py; tvClamp(); tvApply();} px=e.clientX; py=e.clientY;});
+  const up=e=>{pts.delete(e.pointerId); if(pts.size===1){const [a]=[...pts.values()]; px=a.x; py=a.y;} if(!pts.size)port.classList.remove("drag");};
+  port.addEventListener("pointerup",up); port.addEventListener("pointercancel",up);
+  // a drag must not count as a click on the card under the pointer
+  port.addEventListener("click",e=>{if(moved){e.stopPropagation(); e.preventDefault(); moved=false;}},true);
+  addEventListener("resize",()=>{tvClamp(); tvApply();});
 }
 
 /* ===================== DRAWER ===================== */
